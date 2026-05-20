@@ -50,21 +50,70 @@ const dictionaries = {
       disclaimer: "Cita tidak berafiliasi dengan BKN, FHCI, atau lembaga pemerintah lainnya.",
     },
     landing: {
-      heroEyebrow: "Tryout SKD CPNS dengan AI",
-      heroTitle: "Cita-cita jadi ASN, dimulai dari sini.",
+      heroEyebrow: "Sesi Latihan SKD CPNS Dibuka",
+      heroPillIcon: "live",
+      heroTitle: "Wujudkan Cita-cita jadi ASN,",
+      heroTitleItalic: "dimulai dari sini.",
       heroSubtitle:
         "Latihan SKD 30 soal dalam 30 menit. Tiap soal punya pembahasan AI mendalam — Anda bisa tanya lebih lanjut sampai paham.",
       ctaStart: "Mulai Tryout Gratis",
-      ctaLeaderboard: "Lihat Peringkat",
+      ctaLeaderboard: "Lihat Metodologi Kami",
+
+      // Two-column feature cards (anonymous + AI mentor)
+      privacyCardEyebrow: "PRIVACY FIRST",
+      privacyCardTitle: "Anonymous-First Prep",
+      privacyCardBody:
+        "Cita dirancang untuk dapat digunakan tanpa pendaftaran akun. Mode tamu (Guest) tersedia untuk simulasi cepat tanpa jejak digital.",
+      privacyCardCheck1: "Tanpa pelacakan media sosial",
+      privacyCardCheck2: "Mode Guest untuk simulasi cepat",
+
+      mentorCardEyebrow: "AI MENTOR 24/7",
+      mentorCardTitle: "Bimbingan Mendalam & Personal",
+      mentorCardBody:
+        "Tutor AI siap membahas alasan jawaban benar dan salah, kapan pun Anda perlu, langsung dari halaman soal.",
+      mentorCardChat1Q:
+        "Mengapa jawaban D salah pada soal TIU Logika tersebut?",
+      mentorCardChat1A:
+        "Pada soal logika ini, opsi D mengandung kontradiksi premis. Mari saya uraikan langkah deduksinya...",
+
+      // Simulation showcase
+      showcaseTitle: "Simulasi yang",
+      showcaseTitleItalic: "Identik",
+      showcaseTitleAfter: "dengan CAT BKN.",
+      showcaseBody:
+        "Antarmuka simulasi Cita merepresentasikan Computer Assisted Test (CAT) BKN: timer, jumlah soal, dan tata letak tombol disusun semirip mungkin agar pengalaman ujian terasa familiar saat hari H.",
+      showcaseFeat1Title: "Manajemen Waktu",
+      showcaseFeat1Body:
+        "Timer terlihat sepanjang sesi. Anda dapat menandai soal dan kembali ke soal yang dilewati.",
+      showcaseFeat2Title: "Skor Langsung",
+      showcaseFeat2Body:
+        "Skor per subtes dihitung otomatis. Bandingkan dengan ambang batas resmi BKN.",
+      showcaseMockTitle: "Pratinjau Simulasi",
+      showcaseMockSubtitle: "Klik untuk membuka",
+      showcaseBadge: "ANTARMUKA IDENTIK",
+      showcaseQuestionLabel: "NOMOR SOAL: 42",
+
+      // Final CTA section
+      finalCtaTitle: "Mulai perjalanan",
+      finalCtaTitleItalic: "menuju NIP Anda",
+      finalCtaTitleAfter: "hari ini.",
+      finalCtaSubtitle:
+        "Tanpa pendaftaran. Tanpa biaya. Buka tryout langsung di peramban Anda.",
+      finalCtaButton: "Mulai Sekarang",
+
       featuresTitle: "Apa yang Anda dapatkan",
       feat1Title: "30 soal kurasi AI",
-      feat1Desc: "Soal TWK, TIU, TKP yang dirancang merepresentasikan tipe soal SKD asli.",
+      feat1Desc:
+        "Soal TWK, TIU, TKP yang dirancang merepresentasikan tipe soal SKD asli.",
       feat2Title: "Pembahasan AI per soal",
-      feat2Desc: "Tiap soal punya pembahasan dari Claude Opus 4.7. Bingung? Tanya tutor AI.",
+      feat2Desc:
+        "Tiap soal punya pembahasan dari Claude Opus 4.7. Bingung? Tanya tutor AI.",
       feat3Title: "Peringkat anonim",
-      feat3Desc: "Tanpa daftar akun. Ikut tryout, langsung tampil di peringkat.",
+      feat3Desc:
+        "Tanpa daftar akun. Ikut tryout, langsung tampil di peringkat.",
       bottomCtaTitle: "Siap mulai?",
-      bottomCtaSubtitle: "Tanpa daftar. Tanpa biaya. Langsung kerjakan.",
+      bottomCtaSubtitle:
+        "Tanpa daftar. Tanpa biaya. Langsung kerjakan.",
     },
     tryout: {
       briefingTitle: "Siap untuk 30 menit fokus?",
@@ -317,12 +366,57 @@ const dictionaries = {
         "Cita is not affiliated with BKN, FHCI, or any Indonesian government agency.",
     },
     landing: {
-      heroEyebrow: "AI-powered Indonesian Civil Service Exam prep",
-      heroTitle: "Become a public servant — start your prep here.",
+      heroEyebrow: "SKD CPNS Practice Sessions Open",
+      heroPillIcon: "live",
+      heroTitle: "Realize your civil-service ambition,",
+      heroTitleItalic: "starting here.",
       heroSubtitle:
-        "30 questions in 30 minutes. Each question comes with a deep AI explanation — chat with our AI tutor until every concept clicks.",
+        "30 questions in 30 minutes. Each question ships with a deep AI explanation — chat with our AI tutor until every concept clicks.",
       ctaStart: "Start free mock test",
-      ctaLeaderboard: "View leaderboard",
+      ctaLeaderboard: "Read our methodology",
+
+      // Two-column feature cards
+      privacyCardEyebrow: "PRIVACY FIRST",
+      privacyCardTitle: "Anonymous-First Prep",
+      privacyCardBody:
+        "Cita is designed to be usable without account registration. Guest mode is available for quick, footprint-free simulations.",
+      privacyCardCheck1: "No social-media tracking",
+      privacyCardCheck2: "Guest mode for quick simulations",
+
+      mentorCardEyebrow: "AI MENTOR 24/7",
+      mentorCardTitle: "Deep, Personal Guidance",
+      mentorCardBody:
+        "An AI tutor stands by to walk you through why answers are right or wrong, exactly when you need it, right from the question page.",
+      mentorCardChat1Q:
+        "Why is option D wrong on that TIU logic question?",
+      mentorCardChat1A:
+        "On that logic problem, option D contradicts the premise set. Let me walk you through the deduction step by step...",
+
+      // Simulation showcase
+      showcaseTitle: "A simulation",
+      showcaseTitleItalic: "Identical",
+      showcaseTitleAfter: "to the BKN CAT.",
+      showcaseBody:
+        "Cita's simulation interface mirrors the BKN Computer Assisted Test (CAT): timer, question count, and button placement are arranged so the experience feels familiar on exam day.",
+      showcaseFeat1Title: "Time Management",
+      showcaseFeat1Body:
+        "Timer remains visible throughout the session. You can flag questions and revisit anything you skipped.",
+      showcaseFeat2Title: "Live Scoring",
+      showcaseFeat2Body:
+        "Per-subtest scores compute automatically. Compare them against the official BKN passing thresholds.",
+      showcaseMockTitle: "Simulation Preview",
+      showcaseMockSubtitle: "Click to expand",
+      showcaseBadge: "IDENTICAL UI",
+      showcaseQuestionLabel: "QUESTION NO: 42",
+
+      // Final CTA section
+      finalCtaTitle: "Begin the path",
+      finalCtaTitleItalic: "to your civil service ID",
+      finalCtaTitleAfter: "today.",
+      finalCtaSubtitle:
+        "No signup. No payment. Open the mock test directly in your browser.",
+      finalCtaButton: "Start Now",
+
       featuresTitle: "What you get",
       feat1Title: "30 AI-curated questions",
       feat1Desc:
@@ -331,7 +425,8 @@ const dictionaries = {
       feat2Desc:
         "Every question ships with a Claude Opus 4.7 explanation. Confused? Chat with the AI tutor.",
       feat3Title: "Anonymous leaderboard",
-      feat3Desc: "No signup needed. Take the test, your score lands on the leaderboard.",
+      feat3Desc:
+        "No signup needed. Take the test, your score lands on the leaderboard.",
       bottomCtaTitle: "Ready to start?",
       bottomCtaSubtitle: "No signup. No payment. Just start.",
     },
