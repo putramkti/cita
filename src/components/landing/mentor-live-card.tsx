@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { AnimatePresence, motion } from "motion/react"
-import { GraduationCap } from "lucide-react"
+import { Sparkles, User } from "lucide-react"
 
 /**
  * Mentor AI live-chat preview — runs once when the component
@@ -78,8 +78,10 @@ export function MentorLiveCard({
       <div className="flex items-start gap-3">
         <span
           aria-hidden="true"
-          className="size-7 shrink-0 rounded-full bg-white/10 border border-white/15"
-        />
+          className="size-7 shrink-0 rounded-full bg-white/10 border border-white/15 inline-flex items-center justify-center text-white/70"
+        >
+          <User className="size-3.5" strokeWidth={1.8} />
+        </span>
         <p className="rounded-lg bg-white/[0.06] border border-white/10 px-3.5 py-2.5 text-sm italic text-white/80 leading-relaxed">
           “{questionText}”
         </p>
@@ -109,7 +111,7 @@ export function MentorLiveCard({
             }}
           />
           <span className="relative size-7 rounded-full bg-[var(--gold)]/20 border border-[var(--gold)]/40 inline-flex items-center justify-center text-[var(--gold-soft)]">
-            <GraduationCap className="size-3.5" strokeWidth={2} />
+            <Sparkles className="size-3.5" strokeWidth={2} />
           </span>
         </div>
 
