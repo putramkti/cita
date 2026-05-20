@@ -24,7 +24,7 @@ export default async function PrivacyPage() {
       <SiteHeader />
       <main className="flex-1 px-4 py-12 sm:py-16">
         <article className="mx-auto max-w-2xl">
-          <h1 className="text-3xl font-bold tracking-tight mb-2">{t.privacy.title}</h1>
+          <h1 className="serif text-4xl sm:text-5xl tracking-tight text-foreground mb-3">{t.privacy.title}</h1>
           <p className="text-sm text-muted-foreground mb-8">
             {t.privacy.effective}: {EFFECTIVE_DATE} · {t.privacy.lastUpdated}: {EFFECTIVE_DATE}
           </p>

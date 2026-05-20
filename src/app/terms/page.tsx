@@ -22,20 +22,20 @@ export default async function TermsPage() {
       <SiteHeader />
       <main className="flex-1 px-4 py-12 sm:py-16">
         <article className="mx-auto max-w-2xl">
-          <h1 className="text-3xl font-bold tracking-tight mb-2">{t.terms.title}</h1>
+          <h1 className="serif text-4xl sm:text-5xl tracking-tight text-foreground mb-3">{t.terms.title}</h1>
           <p className="text-sm text-muted-foreground mb-8">
             {t.terms.effective}: {EFFECTIVE_DATE} · {t.terms.lastUpdated}: {EFFECTIVE_DATE}
           </p>
 
           <div className="space-y-6 text-[15px] leading-relaxed text-foreground/90">
-            <section className="rounded-xl border border-amber-500/30 bg-amber-500/5 p-4 space-y-2">
-              <h2 className="text-sm font-semibold text-amber-300 uppercase tracking-widest mb-2">
+            <section className="rounded-xl border border-[var(--gold)]/40 bg-[var(--review-amber)] p-5 space-y-2">
+              <h2 className="text-sm font-semibold text-[var(--review-amber-fg)] uppercase tracking-widest mb-2">
                 {t.terms.noticeLabel}
               </h2>
-              <p className="text-sm">
+              <p className="text-sm text-[var(--review-amber-fg)]">
                 <strong>{t.terms.noticeBoldBody}</strong>
               </p>
-              <p className="text-sm text-muted-foreground">{t.terms.noticeBody}</p>
+              <p className="text-sm text-[var(--review-amber-fg)]/85">{t.terms.noticeBody}</p>
             </section>
 
             <section>
