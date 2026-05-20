@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Simulation Results | Cita Academic</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Instrument+Serif:ital@0;1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #f8f9fa;
+            color: #191c1d;
+            -webkit-font-smoothing: antialiased;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .card-border {
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .academic-blur {
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+    </style>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#f8f9fa",
+                        "primary": "#000000",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "tertiary-fixed-dim": "#e7c185",
+                        "primary-container": "#131b2e",
+                        "secondary-container": "#d0e1fb",
+                        "primary-fixed-dim": "#bec6e0",
+                        "surface-dim": "#d9dadb",
+                        "surface-variant": "#e1e3e4",
+                        "secondary": "#505f76",
+                        "inverse-on-surface": "#f0f1f2",
+                        "on-tertiary-container": "#9f7f49",
+                        "on-primary-container": "#7c839b",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "error-container": "#ffdad6",
+                        "outline-variant": "#c6c6cd",
+                        "on-tertiary-fixed": "#271900",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed": "#d3e4fe",
+                        "tertiary-container": "#271900",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-container": "#54647a",
+                        "error": "#ba1a1a",
+                        "on-surface-variant": "#45464d",
+                        "surface-container": "#edeeef",
+                        "tertiary-fixed": "#ffdeab",
+                        "inverse-surface": "#2e3132",
+                        "surface-container-low": "#f3f4f5",
+                        "on-surface": "#191c1d",
+                        "tertiary": "#000000",
+                        "on-error": "#ffffff",
+                        "on-background": "#191c1d",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#dae2fd",
+                        "outline": "#76777d",
+                        "surface-tint": "#565e74",
+                        "inverse-primary": "#bec6e0",
+                        "background": "#f8f9fa",
+                        "on-secondary-fixed": "#0b1c30",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "surface-bright": "#f8f9fa",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed-variant": "#5c4212",
+                        "surface-container-high": "#e7e8e9",
+                        "on-primary-fixed": "#131b2e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "margin-desktop": "32px",
+                        "xs": "4px",
+                        "max-reading-width": "768px",
+                        "gutter": "16px",
+                        "max-content-width": "1152px",
+                        "sm": "8px",
+                        "unit": "4px",
+                        "margin-mobile": "16px",
+                        "lg": "24px",
+                        "xl": "32px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Instrument Serif"],
+                        "label-caps": ["Inter"],
+                        "headline-md-mobile": ["Instrument Serif"],
+                        "body-base": ["Inter"],
+                        "headline-md": ["Instrument Serif"],
+                        "body-bold": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "700"}],
+                        "headline-md-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "0", "fontWeight": "500"}],
+                        "body-base": ["16px", {"lineHeight": "24px", "letterSpacing": "0", "fontWeight": "400"}],
+                        "headline-md": ["28px", {"lineHeight": "36px", "letterSpacing": "0", "fontWeight": "500"}],
+                        "body-bold": ["16px", {"lineHeight": "24px", "letterSpacing": "0", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface font-body-base text-on-surface">
+<!-- TopNavBar -->
+<header class="bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md border-b border-outline-variant/20 docked full-width top-0 sticky z-50">
+<div class="flex justify-between items-center px-margin-desktop w-full max-w-max-content-width mx-auto h-16">
+<div class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">Cita</div>
+<nav class="hidden md:flex space-x-lg">
+<a class="text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary-fixed transition-colors cursor-pointer duration-200 font-body-base text-body-base" href="#">Tryouts</a>
+<a class="text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary-fixed transition-colors cursor-pointer duration-200 font-body-base text-body-base" href="#">Study</a>
+<a class="text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary-fixed transition-colors cursor-pointer duration-200 font-body-base text-body-base" href="#">AI Tutor</a>
+<a class="text-primary dark:text-on-primary-fixed font-body-bold border-b-2 border-primary cursor-pointer duration-200 font-body-base text-body-base" href="#">Results</a>
+</nav>
+<div class="flex items-center space-x-md">
+<button class="text-secondary hover:text-primary transition-colors text-body-base font-body-base">Log In</button>
+<button class="bg-primary text-on-primary px-lg py-sm rounded transition-all hover:opacity-90 font-body-bold text-body-base">Start Test</button>
+</div>
+</div>
+</header>
+<main class="max-w-max-content-width mx-auto px-margin-desktop py-xl">
+<!-- Hero: Total Score Section -->
+<section class="mb-xl text-center">
+<div class="inline-flex items-center gap-xs mb-md px-md py-1 bg-on-tertiary-container/10 text-on-tertiary-container rounded-full border border-on-tertiary-container/20">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-label-caps text-label-caps uppercase tracking-widest">Simulation Completed</span>
+</div>
+<h1 class="font-display-lg text-display-lg mb-sm">Performance Summary</h1>
+<div class="flex flex-col items-center justify-center py-xl bg-surface-container-lowest card-border rounded-xl mb-lg">
+<div class="text-primary font-display-lg text-[80px] leading-none mb-xs">412</div>
+<div class="font-label-caps text-label-caps text-secondary mb-md">TOTAL SCORE</div>
+<div class="px-xl py-sm bg-primary text-on-primary rounded-full font-body-bold text-body-base flex items-center gap-sm">
+                    PASSING STATUS: LULUS
+                </div>
+</div>
+</section>
+<!-- Metrics: Bento-style Cards -->
+<section class="bento-grid mb-xl">
+<!-- TWK Card -->
+<div class="col-span-12 md:col-span-4 bg-surface-container-lowest card-border p-lg rounded-xl flex flex-col">
+<div class="flex justify-between items-start mb-xl">
+<div>
+<h3 class="font-body-bold text-body-base">TWK</h3>
+<p class="text-secondary text-sm">Tes Wawasan Kebangsaan</p>
+</div>
+<span class="material-symbols-outlined text-secondary">history_edu</span>
+</div>
+<div class="mt-auto">
+<div class="flex justify-between items-end mb-xs">
+<span class="font-display-lg text-headline-md">115</span>
+<span class="font-label-caps text-label-caps text-secondary">TARGET: 65</span>
+</div>
+<div class="w-full h-1 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-on-tertiary-container" style="width: 100%"></div>
+</div>
+</div>
+</div>
+<!-- TIU Card -->
+<div class="col-span-12 md:col-span-4 bg-surface-container-lowest card-border p-lg rounded-xl flex flex-col">
+<div class="flex justify-between items-start mb-xl">
+<div>
+<h3 class="font-body-bold text-body-base">TIU</h3>
+<p class="text-secondary text-sm">Tes Intelegensia Umum</p>
+</div>
+<span class="material-symbols-outlined text-secondary">psychology</span>
+</div>
+<div class="mt-auto">
+<div class="flex justify-between items-end mb-xs">
+<span class="font-display-lg text-headline-md">145</span>
+<span class="font-label-caps text-label-caps text-secondary">TARGET: 80</span>
+</div>
+<div class="w-full h-1 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-on-tertiary-container" style="width: 100%"></div>
+</div>
+</div>
+</div>
+<!-- TKP Card -->
+<div class="col-span-12 md:col-span-4 bg-surface-container-lowest card-border p-lg rounded-xl flex flex-col">
+<div class="flex justify-between items-start mb-xl">
+<div>
+<h3 class="font-body-bold text-body-base">TKP</h3>
+<p class="text-secondary text-sm">Tes Karakteristik Pribadi</p>
+</div>
+<span class="material-symbols-outlined text-secondary">groups</span>
+</div>
+<div class="mt-auto">
+<div class="flex justify-between items-end mb-xs">
+<span class="font-display-lg text-headline-md">152</span>
+<span class="font-label-caps text-label-caps text-secondary">TARGET: 166</span>
+</div>
+<div class="w-full h-1 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-error" style="width: 91%"></div>
+</div>
+<p class="text-error text-xs mt-2 font-body-bold">Critical: Score below target</p>
+</div>
+</div>
+</section>
+<!-- AI Insight Box -->
+<section class="mb-xl">
+<div class="bg-primary-container text-on-primary-container p-xl rounded-xl relative overflow-hidden">
+<div class="absolute top-0 right-0 p-lg opacity-10">
+<span class="material-symbols-outlined text-[120px]">smart_toy</span>
+</div>
+<div class="relative z-10 max-w-[600px]">
+<div class="flex items-center gap-sm mb-md">
+<span class="material-symbols-outlined text-tertiary-fixed">auto_awesome</span>
+<h2 class="font-body-bold text-body-base text-white">AI Intelligence Insight</h2>
+</div>
+<p class="font-display-lg text-headline-md text-white mb-md leading-tight">
+                        "Anda cenderung terburu-buru di subtes TKP. Waktu rata-rata Anda per soal hanya 28 detik, jauh di bawah optimal 45 detik."
+                    </p>
+<div class="space-y-sm">
+<div class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-sm mt-1">lightbulb</span>
+<p class="text-on-primary-container/80 text-body-base">Rekomendasi: Fokus pada kata kunci 'Integritas' dan 'Pelayanan Publik' pada simulasi berikutnya.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Analisis Butir Soal -->
+<section class="mb-xl">
+<div class="flex items-center justify-between mb-lg">
+<h2 class="font-headline-md text-headline-md">Analisis Butir Soal</h2>
+<div class="flex gap-md">
+<button class="text-body-base font-label-caps text-label-caps border border-outline-variant px-md py-xs rounded hover:bg-surface-container">FILTER: SEMUA</button>
+<button class="text-body-base font-label-caps text-label-caps border border-outline-variant px-md py-xs rounded hover:bg-surface-container">UNDUH LAPORAN</button>
+</div>
+</div>
+<div class="space-y-md">
+<!-- Question Entry 1 -->
+<div class="bg-surface-container-lowest card-border p-lg rounded-lg flex flex-col md:flex-row md:items-center justify-between gap-lg group hover:border-primary transition-all">
+<div class="flex gap-lg items-start">
+<div class="w-10 h-10 shrink-0 flex items-center justify-center rounded bg-on-tertiary-container/10 text-on-tertiary-container font-body-bold">
+                            01
+                        </div>
+<div>
+<div class="flex items-center gap-sm mb-xs">
+<span class="font-label-caps text-label-caps text-secondary">TIU - SILOGISME</span>
+<span class="bg-green-100 text-green-800 text-[10px] px-2 py-0.5 rounded font-bold uppercase">Benar</span>
+</div>
+<p class="text-body-base line-clamp-1 text-on-surface-variant">Semua atlet lari adalah orang yang memiliki stamina kuat. Sebagian orang yang memiliki stamina kuat...</p>
+</div>
+</div>
+<button class="flex items-center justify-center gap-sm px-lg py-sm border border-outline-variant rounded hover:border-primary hover:text-primary transition-colors whitespace-nowrap">
+<span class="material-symbols-outlined text-sm">chat_bubble</span>
+<span class="font-body-bold text-body-base">Tanya AI Tutor</span>
+</button>
+</div>
+<!-- Question Entry 2 -->
+<div class="bg-surface-container-lowest card-border p-lg rounded-lg flex flex-col md:flex-row md:items-center justify-between gap-lg group hover:border-primary transition-all">
+<div class="flex gap-lg items-start">
+<div class="w-10 h-10 shrink-0 flex items-center justify-center rounded bg-error-container text-error font-body-bold">
+                            02
+                        </div>
+<div>
+<div class="flex items-center gap-sm mb-xs">
+<span class="font-label-caps text-label-caps text-secondary">TWK - NASIONALISME</span>
+<span class="bg-red-100 text-red-800 text-[10px] px-2 py-0.5 rounded font-bold uppercase">Salah</span>
+</div>
+<p class="text-body-base line-clamp-1 text-on-surface-variant">Tokoh yang mengusulkan rumusan dasar negara pada tanggal 31 Mei 1945 adalah...</p>
+</div>
+</div>
+<button class="flex items-center justify-center gap-sm px-lg py-sm border border-outline-variant rounded bg-primary text-on-primary hover:opacity-90 transition-opacity whitespace-nowrap">
+<span class="material-symbols-outlined text-sm">chat_bubble</span>
+<span class="font-body-bold text-body-base">Tanya AI Tutor</span>
+</button>
+</div>
+<!-- Question Entry 3 -->
+<div class="bg-surface-container-lowest card-border p-lg rounded-lg flex flex-col md:flex-row md:items-center justify-between gap-lg group hover:border-primary transition-all">
+<div class="flex gap-lg items-start">
+<div class="w-10 h-10 shrink-0 flex items-center justify-center rounded bg-error-container text-error font-body-bold">
+                            03
+                        </div>
+<div>
+<div class="flex items-center gap-sm mb-xs">
+<span class="font-label-caps text-label-caps text-secondary">TKP - ANTI RADIKALISME</span>
+<span class="bg-red-100 text-red-800 text-[10px] px-2 py-0.5 rounded font-bold uppercase">Salah</span>
+</div>
+<p class="text-body-base line-clamp-1 text-on-surface-variant">Ketika Anda menemukan rekan kerja yang sering membagikan konten bernada provokatif di grup WhatsApp kantor, sikap Anda...</p>
+</div>
+</div>
+<button class="flex items-center justify-center gap-sm px-lg py-sm border border-outline-variant rounded hover:border-primary hover:text-primary transition-colors whitespace-nowrap">
+<span class="material-symbols-outlined text-sm">chat_bubble</span>
+<span class="font-body-bold text-body-base">Tanya AI Tutor</span>
+</button>
+</div>
+</div>
+<div class="mt-lg text-center">
+<button class="text-secondary font-body-bold text-body-base hover:text-primary transition-colors">Lihat Semua 110 Soal</button>
+</div>
+</section>
+<!-- Aesthetic Graphic Section -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-lg mb-xl">
+<div class="h-[300px] rounded-xl overflow-hidden relative">
+<img alt="Study focus" class="w-full h-full object-cover grayscale opacity-80" data-alt="A focused high-angle shot of a minimalist wooden desk with a stack of white papers, an expensive fountain pen, and a single green leaf in a ceramic vase. The lighting is soft morning sunlight streaming through a window, creating long shadows and a calm, academic atmosphere with a palette of beige, charcoal, and natural wood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWFQoi8PMbfAlibwxeRR4BJ6v-2mUYBbNGaqVzyHuUAj9mnOAMn7Z1kLbni7YnMsnf3mmh3e6k6X7FWZTovir-b5iSDb_EX-BXSx0lX4SbhLDzgxWurv3MAz3EIUQH12UD7HGOJuURrOTtHGMzDBhq4Glg9UsTe_FcHwb-mk9zMM35sHRyhd7NsUvhmB5j5d6u6ja4QJkEApVYAnJtyNyLeBmn35ONVsRSQrXabsrdUBcbNB-Mpvc6lIBHgzHoKnCUKRRr5X2N5gu0"/>
+<div class="absolute inset-0 bg-primary/20 flex items-center justify-center">
+<p class="font-display-lg text-headline-md text-white text-center px-xl">The roots of education are bitter, but the fruit is sweet.</p>
+</div>
+</div>
+<div class="h-[300px] rounded-xl overflow-hidden relative">
+<img alt="Library" class="w-full h-full object-cover grayscale opacity-80" data-alt="A wide perspective of a grand classical library with floor-to-ceiling wooden bookshelves filled with thousands of leather-bound books. The floor is polished dark marble reflecting the warm, dim ambient lighting from traditional brass library lamps. The mood is silent, scholarly, and deeply prestigious with a focus on archival textures." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbUWL1UZtFnovi8QrIz8EgJ7ol-EZViXabcJ6skXuObFFtQuFlhgS5-5GKkofBjQem7ykV5KR-20QMPh6KJNk11XGvFmzzW17KCZc2ACqGRPjJOjm0aJ2zp-tV71A1uF6PLNVv3DJWo8yYqRSa_p8fhaHYTm77c7XI1DJ6Q9bTJKJoNpmg-M1Imu74g6DNq9TeRKn1XDOspHfw8CVsSf_dQTRD3j_saRzRGjbEOWNjSmL6Wf8m3Q-nSkc-Rfr9KNMwbD_UJwBzmUpD"/>
+<div class="absolute inset-0 bg-primary/20 flex items-center justify-center">
+<p class="font-display-lg text-headline-md text-white text-center px-xl">Your consistent practice is carving the path to excellence.</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-highest dark:bg-surface-container mt-auto py-xl px-margin-desktop grid grid-cols-1 md:grid-cols-2 gap-lg max-w-max-content-width mx-auto border-t border-outline-variant/30">
+<div class="flex flex-col gap-sm">
+<div class="font-headline-md text-headline-md text-primary">Cita Academic</div>
+<p class="text-secondary dark:text-on-secondary-container font-body-base text-body-base">© 2024 Cita Academic. Excellence through discipline.</p>
+</div>
+<div class="flex flex-wrap gap-md md:justify-end items-center">
+<a class="text-secondary hover:text-primary underline transition-opacity duration-300 font-body-base text-body-base" href="#">Privacy Policy</a>
+<a class="text-secondary hover:text-primary underline transition-opacity duration-300 font-body-base text-body-base" href="#">Terms of Service</a>
+<a class="text-secondary hover:text-primary underline transition-opacity duration-300 font-body-base text-body-base" href="#">University Partnerships</a>
+<a class="text-secondary hover:text-primary underline transition-opacity duration-300 font-body-base text-body-base" href="#">Methodology</a>
+</div>
+</footer>
+<script>
+        // Micro-interactions for score cards
+        document.querySelectorAll('.card-border').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-2px)';
+                card.style.transition = 'transform 0.2s ease';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body></html>

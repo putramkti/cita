@@ -4,49 +4,88 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/*
+ * Academic Zen design system — Cita v2 redesign
+ *
+ * Philosophy: scholarly, calm, editorial. Hairline borders, no shadows,
+ * generous whitespace. Serif headings + utilitarian sans body.
+ *
+ * Light is the default; dark is preserved as an opt-in toggle.
+ */
+
 :root {
-  --radius: 0.625rem;
-  /* Light theme — calm, focused */
-  --background: oklch(0.99 0.002 264);
-  --foreground: oklch(0.15 0.015 270);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.15 0.015 270);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.15 0.015 270);
-  --primary: oklch(0.55 0.18 260);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.96 0.01 260);
-  --secondary-foreground: oklch(0.25 0.05 260);
-  --muted: oklch(0.96 0.005 260);
-  --muted-foreground: oklch(0.52 0.02 270);
-  --accent: oklch(0.94 0.03 260);
-  --accent-foreground: oklch(0.25 0.05 260);
-  --destructive: oklch(0.62 0.22 25);
-  --border: oklch(0.92 0.01 270);
-  --input: oklch(0.92 0.01 270);
-  --ring: oklch(0.55 0.18 260);
+  --radius: 0.5rem;
+
+  /* Academic Zen — light (parchment + ink blue + gold) */
+  --background: #f8f9fa;             /* Parchment White */
+  --foreground: #0f172a;             /* Ink Blue (also used for primary) */
+  --card: #ffffff;                   /* Archival White */
+  --card-foreground: #0f172a;
+  --popover: #ffffff;
+  --popover-foreground: #0f172a;
+  --primary: #0f172a;                /* Solid Ink Blue for primary buttons */
+  --primary-foreground: #ffffff;
+  --secondary: #f3f4f5;              /* Surface container low */
+  --secondary-foreground: #0f172a;
+  --muted: #f3f4f5;
+  --muted-foreground: #64748b;       /* Serene Slate */
+  --accent: #b5935b;                 /* Academic Gold */
+  --accent-foreground: #ffffff;
+  --destructive: #dc2626;            /* Error / timer red */
+  --border: #e2e8f0;                 /* 1px hairline */
+  --input: #e2e8f0;
+  --ring: #b5935b;                   /* Gold focus ring */
+
+  /* Brand-specific (used outside shadcn token surface) */
+  --surface-container: #edeeef;
+  --surface-container-high: #e7e8e9;
+  --on-surface-variant: #45464d;
+  --gold: #b5935b;
+  --gold-soft: #e7c185;
+  --ink: #0f172a;
+  --ink-muted: #475569;
+  --review-amber: #fcecc7;           /* Mark-for-review pill bg */
+  --review-amber-fg: #5c4212;
+  --success-soft: #dcefe1;
+  --success-fg: #166534;
+  --error-soft: #fee2e2;
+  --error-fg: #991b1b;
 }
 
 .dark {
-  /* Dark theme — default: wening, calm focus */
-  --background: oklch(0.13 0.015 265);
-  --foreground: oklch(0.97 0.005 260);
-  --card: oklch(0.17 0.018 265);
-  --card-foreground: oklch(0.97 0.005 260);
-  --popover: oklch(0.17 0.018 265);
-  --popover-foreground: oklch(0.97 0.005 260);
-  --primary: oklch(0.72 0.16 260);
-  --primary-foreground: oklch(0.13 0.015 265);
-  --secondary: oklch(0.22 0.02 265);
-  --secondary-foreground: oklch(0.97 0.005 260);
-  --muted: oklch(0.22 0.02 265);
-  --muted-foreground: oklch(0.68 0.02 265);
-  --accent: oklch(0.27 0.04 260);
-  --accent-foreground: oklch(0.97 0.005 260);
-  --destructive: oklch(0.65 0.22 25);
-  --border: oklch(0.27 0.02 265);
-  --input: oklch(0.22 0.02 265);
-  --ring: oklch(0.72 0.16 260);
+  /* Academic Zen — dark (preserved via toggle, ink-on-night palette) */
+  --background: #0c1018;             /* Deep ink night */
+  --foreground: #e7e8e9;
+  --card: #131a25;
+  --card-foreground: #e7e8e9;
+  --popover: #131a25;
+  --popover-foreground: #e7e8e9;
+  --primary: #f1efe8;                /* Inverted — light surface as primary on dark */
+  --primary-foreground: #0c1018;
+  --secondary: #1a2230;
+  --secondary-foreground: #e7e8e9;
+  --muted: #1a2230;
+  --muted-foreground: #94a3b8;
+  --accent: #d6b178;                 /* Brighter gold for dark surface */
+  --accent-foreground: #0c1018;
+  --destructive: #ef4444;
+  --border: #1f2a3a;
+  --input: #1f2a3a;
+  --ring: #d6b178;
+
+  --surface-container: #131a25;
+  --surface-container-high: #1a2230;
+  --on-surface-variant: #cbd5e1;
+  --gold: #d6b178;
+  --gold-soft: #f0d9a5;
+  --ink: #f1efe8;
+  --ink-muted: #cbd5e1;
+  --review-amber: #3a2e16;
+  --review-amber-fg: #e7c185;
+  --success-soft: #14271c;
+  --success-fg: #86efac;
+  --error-soft: #2a1414;
+  --error-fg: #fca5a5;
 }
 
 @theme inline {
@@ -68,26 +107,84 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+
+  /* Brand custom colors usable as utilities (bg-gold, text-ink, etc.) */
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-review-amber: var(--review-amber);
+  --color-review-amber-fg: var(--review-amber-fg);
+  --color-success-soft: var(--success-soft);
+  --color-success-fg: var(--success-fg);
+  --color-error-soft: var(--error-soft);
+  --color-error-fg: var(--error-fg);
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+
+  /* Inter for UI; Instrument Serif for editorial headings.
+     Loaded via Google Fonts <link> in app/layout.tsx head. */
+  --font-sans:
+    "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  --font-serif:
+    "Instrument Serif", "Source Serif 4", "Source Serif Pro", "Georgia",
+    "Times New Roman", serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
 }
 
 * {
   border-color: var(--border);
 }
 
+html,
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
 }
 
-/* Subtle gradient bg for visual depth — fits "wening" mood */
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "ss01", "cv11";
+}
+
+/* Editorial serif utility — apply to hero headlines and question stems */
+.font-serif,
+.serif {
+  font-family: var(--font-serif);
+  font-feature-settings: "ss01";
+}
+
+/* Academic Zen labels — uppercase + tracked + small */
+.label-caps {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1rem;
+  color: var(--muted-foreground);
+}
+
+/* Hairline horizontal rule — 1px outline color */
+.hairline {
+  height: 1px;
+  background: var(--border);
+}
+
+/* Backdrop-blur header surface (light parchment translucency) */
+.surface-blur {
+  background-color: color-mix(in oklab, var(--background) 75%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Subtle parchment grain — purely decorative, very low opacity */
 body::before {
   content: "";
   position: fixed;
@@ -95,6 +192,12 @@ body::before {
   pointer-events: none;
   z-index: -1;
   background:
-    radial-gradient(ellipse at top left, oklch(0.55 0.18 260 / 0.08), transparent 50%),
-    radial-gradient(ellipse at bottom right, oklch(0.72 0.16 200 / 0.05), transparent 50%);
+    radial-gradient(1200px 600px at 0% -10%, color-mix(in oklab, var(--gold) 6%, transparent), transparent 60%),
+    radial-gradient(1000px 500px at 100% 110%, color-mix(in oklab, var(--ink) 4%, transparent), transparent 60%);
+}
+
+.dark body::before {
+  background:
+    radial-gradient(1200px 600px at 0% -10%, color-mix(in oklab, var(--gold) 8%, transparent), transparent 60%),
+    radial-gradient(1000px 500px at 100% 110%, color-mix(in oklab, var(--accent) 5%, transparent), transparent 60%);
 }
