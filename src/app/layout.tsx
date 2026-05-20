@@ -15,6 +15,9 @@ const descriptions = {
   en: "Indonesian Civil Service Exam (SKD CPNS) prep with per-question AI explanations and an AI tutor. Calm, focused, accurate.",
 }
 
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://cita-nu.vercel.app"
+
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale()
   const t = getDictByLocale(locale)
@@ -34,12 +37,53 @@ export async function generateMetadata(): Promise<Metadata> {
       "indonesian civil service exam",
       "ASN test prep",
     ],
-    icons: { icon: "/favicon.svg" },
+    icons: {
+      icon: [
+        { url: "/favicon.svg", type: "image/svg+xml" },
+        { url: "/favicon.ico", sizes: "any" },
+      ],
+      apple: "/apple-touch-icon.png",
+    },
+    manifest: "/manifest.webmanifest",
+    metadataBase: new URL(SITE_URL),
+    alternates: {
+      canonical: "/",
+      languages: {
+        id: "/",
+        en: "/",
+      },
+    },
     openGraph: {
       title: titles[locale],
       description: descriptions[locale],
       type: "website",
       locale: locale === "id" ? "id_ID" : "en_US",
+      url: SITE_URL,
+      siteName: "Cita",
+      images: [
+        {
+          url: `/api/og?title=${encodeURIComponent(
+            locale === "id"
+              ? "Tryout SKD CPNS dengan AI Tutor"
+              : "AI-powered Indonesian Civil Service Exam Prep",
+          )}`,
+          width: 1200,
+          height: 630,
+          alt: titles[locale],
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: titles[locale],
+      description: descriptions[locale],
+      images: [
+        `/api/og?title=${encodeURIComponent(
+          locale === "id"
+            ? "Tryout SKD CPNS dengan AI Tutor"
+            : "AI-powered Indonesian Civil Service Exam Prep",
+        )}`,
+      ],
     },
     robots: { index: true, follow: true },
     other: {
