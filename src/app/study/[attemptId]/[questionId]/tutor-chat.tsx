@@ -1,6 +1,8 @@
 "use client"
 
 import { useCallback, useEffect, useRef, useState } from "react"
+import ReactMarkdown from "react-markdown"
+import remarkGfm from "remark-gfm"
 import { Send, Sparkles, AlertCircle, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
@@ -209,7 +211,7 @@ export function TutorChat({
         {isStreaming && messages[messages.length - 1]?.content === "" && (
           <div className="flex items-center gap-2 text-sm text-muted-foreground pl-11">
             <PulseDots />
-            <span>Tutor lagi mikir...</span>
+            <span>Tutor sedang menyusun jawaban...</span>
           </div>
         )}
 
@@ -313,17 +315,41 @@ function MessageBubble({ role, content }: { role: "user" | "assistant"; content:
             : "bg-primary/15 border border-primary/30 text-primary",
         )}
       >
-        {isUser ? "Lo" : <Sparkles className="size-4" />}
+        {isUser ? "Anda" : <Sparkles className="size-4" />}
       </div>
       <div
         className={cn(
-          "rounded-2xl px-4 py-3 text-sm leading-relaxed max-w-[85%] whitespace-pre-wrap",
+          "rounded-2xl px-4 py-3 text-sm leading-relaxed max-w-[85%]",
           isUser
-            ? "bg-primary/10 border border-primary/20 text-foreground"
+            ? "bg-primary/10 border border-primary/20 text-foreground whitespace-pre-wrap"
             : "bg-muted/30 border border-border/40 text-foreground/90",
         )}
       >
-        {content || "..."}
+        {!content ? (
+          "..."
+        ) : isUser ? (
+          content
+        ) : (
+          <div
+            className={cn(
+              "prose prose-sm prose-invert max-w-none",
+              // shadcn-friendly tweaks for our color scheme
+              "prose-p:my-2 prose-p:leading-relaxed",
+              "prose-strong:text-foreground prose-strong:font-semibold",
+              "prose-ul:my-2 prose-ul:pl-5 prose-li:my-0.5 prose-li:marker:text-primary/70",
+              "prose-ol:my-2 prose-ol:pl-5",
+              "prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:bg-muted/60 prose-code:text-foreground prose-code:before:content-[''] prose-code:after:content-['']",
+              "prose-pre:bg-muted/40 prose-pre:border prose-pre:border-border/40 prose-pre:rounded-md",
+              "prose-h1:text-base prose-h1:font-semibold prose-h1:mt-3 prose-h1:mb-1.5",
+              "prose-h2:text-base prose-h2:font-semibold prose-h2:mt-3 prose-h2:mb-1.5",
+              "prose-h3:text-sm prose-h3:font-semibold prose-h3:mt-2.5 prose-h3:mb-1",
+              "prose-blockquote:border-primary/40 prose-blockquote:text-foreground/80",
+              "prose-a:text-primary hover:prose-a:underline",
+            )}
+          >
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
+          </div>
+        )}
       </div>
     </div>
   )
