@@ -263,3 +263,93 @@ body::before {
   border-radius: 9999px;
   animation: zen-spin 0.7s linear infinite;
 }
+
+/* ─── Landing-page choreography ────────────────────────────────────────
+ *
+ * Academic Zen ease curves. Avoid bounces; prefer linear-to-exponential.
+ * All animations are wrapped in @media (prefers-reduced-motion: no-preference)
+ * so users with the system flag enabled see the static end-state.
+ */
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Scroll-triggered section reveal */
+  @keyframes zen-reveal-in {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 30px, 0);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  .zen-reveal {
+    opacity: 0;
+    will-change: transform, opacity;
+  }
+  .zen-reveal[data-revealed="true"] {
+    animation: zen-reveal-in 1000ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  /* 3-dot typing indicator */
+  @keyframes zen-typing-pulse {
+    0%, 60%, 100% { opacity: 0.25; transform: translateY(0); }
+    30% { opacity: 1; transform: translateY(-2px); }
+  }
+  .zen-typing-dot {
+    animation: zen-typing-pulse 1.4s ease-in-out infinite;
+  }
+  .zen-typing-dot:nth-child(2) { animation-delay: 0.18s; }
+  .zen-typing-dot:nth-child(3) { animation-delay: 0.36s; }
+
+  /* Message reveal: fade + scale */
+  @keyframes zen-message-in {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  .zen-message-reveal {
+    animation: zen-message-in 600ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    will-change: transform, opacity;
+  }
+
+  /* Avatar active-status pulse: very subtle ring */
+  @keyframes zen-avatar-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--gold) 35%, transparent); }
+    50% { box-shadow: 0 0 0 6px color-mix(in oklab, var(--gold) 0%, transparent); }
+  }
+  .zen-avatar-active {
+    animation: zen-avatar-pulse 2.4s ease-in-out infinite;
+  }
+
+  /* Slow breathing pulse on the active question cell */
+  @keyframes zen-breathing {
+    0%, 100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--gold) 45%, transparent); }
+    50% { box-shadow: 0 0 0 5px color-mix(in oklab, var(--gold) 0%, transparent); }
+  }
+  .zen-breathing {
+    animation: zen-breathing 2.8s ease-in-out infinite;
+  }
+
+  /* Arrow nudge on hover for nav-style buttons */
+  .zen-nudge-right [data-arrow] {
+    transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .zen-nudge-right:hover [data-arrow] {
+    transform: translateX(4px);
+  }
+  .zen-nudge-left [data-arrow] {
+    transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .zen-nudge-left:hover [data-arrow] {
+    transform: translateX(-4px);
+  }
+}
+
+/* Reduced-motion fallback: keep the end-state visible without animating */
+@media (prefers-reduced-motion: reduce) {
+  .zen-reveal { opacity: 1; transform: none; }
+  .zen-typing-dot { opacity: 0.6; }
+  .zen-avatar-active,
+  .zen-breathing { box-shadow: none; }
+}
