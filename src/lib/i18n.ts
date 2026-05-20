@@ -185,6 +185,100 @@ const dictionaries = {
       privacy: "Privasi",
       terms: "Ketentuan",
     },
+    privacy: {
+      title: "Kebijakan Privasi",
+      effective: "Berlaku efektif",
+      lastUpdated: "Terakhir diperbarui",
+      summaryTitle: "Ringkasan",
+      summaryBody:
+        "Cita adalah platform latihan SKD CPNS yang dirancang agar dapat digunakan tanpa pendaftaran akun. Apabila Anda hanya mengerjakan tryout dan melihat hasil, kami tidak memerlukan data pribadi Anda.",
+      collectedTitle: "Data yang kami simpan",
+      collectedAnonIdLabel: "ID anonim",
+      collectedAnonIdBody:
+        "Saat Anda memulai tryout, sistem membuat ID acak (contoh: anon_xxxxxxxx) yang disimpan dalam cookie peramban Anda. ID ini digunakan untuk mengaitkan jawaban dengan satu sesi tryout. Cookie berlaku selama satu tahun dan dapat Anda hapus kapan saja melalui pengaturan peramban.",
+      collectedAnswersLabel: "Jawaban tryout",
+      collectedAnswersBody:
+        "Pilihan jawaban per soal, durasi pengerjaan, dan skor total. Data ini digunakan untuk menampilkan hasil dan menghitung statistik agregat (misalnya soal yang paling sering dijawab keliru).",
+      collectedEmailLabel: "Alamat surel",
+      collectedEmailBody:
+        "Bersifat opsional. Hanya disimpan apabila Anda mendaftar untuk menyinkronkan riwayat antar perangkat, dan dapat dihapus kapan saja.",
+      notDoTitle: "Yang TIDAK kami lakukan",
+      notDo1: "Kami tidak menjual data Anda kepada pihak ketiga.",
+      notDo2: "Kami tidak menjalankan iklan pelacak (tracking ad) di Cita.",
+      notDo3: "Kami tidak melacak aktivitas Anda di luar Cita.",
+      notDo4:
+        "Kami tidak mengaitkan ID anonim Anda dengan identitas asli, kecuali Anda sendiri mendaftar dengan alamat surel.",
+      thirdPartyTitle: "Pihak ketiga yang kami gunakan",
+      thirdPartySupabase:
+        "Supabase — penyedia basis data dan autentikasi. Data tersimpan pada server AWS di kawasan Asia Tenggara.",
+      thirdPartySupabaseLink: "Pelajari kebijakan Supabase",
+      thirdPartyVercel:
+        "Vercel — penyedia hosting aplikasi. Berpotensi mencatat log akses (alamat IP, user-agent) untuk keperluan diagnostik infrastruktur.",
+      thirdPartyVercelLink: "Pelajari kebijakan Vercel",
+      rightsTitle: "Hak Anda",
+      rightsDelete:
+        "Penghapusan data — apabila Anda tidak mendaftar dengan surel, cukup hapus cookie cita_anon_id pada peramban Anda. Setelah itu, kami tidak dapat lagi mengaitkan data lama dengan Anda.",
+      rightsAccess:
+        "Akses dan koreksi — apabila Anda telah mendaftar dengan surel dan ingin meninjau atau menghapus data Anda, silakan menghubungi kami melalui kanal kontak di bawah.",
+      contactTitle: "Kontak",
+      contactBody:
+        "Pertanyaan atau permintaan terkait privasi dapat disampaikan melalui kanal Issue publik pada repositori Cita di GitHub. Pada masa MVP ini, fitur penghapusan data otomatis akan ditambahkan pada rilis berikutnya.",
+      contactLinkLabel: "Buka Issue di GitHub",
+      footnote:
+        "Kebijakan ini dapat berubah seiring perkembangan Cita. Versi terbaru selalu tersedia pada halaman ini.",
+      navTerms: "Ketentuan Layanan",
+      navHome: "Kembali ke beranda",
+    },
+    terms: {
+      title: "Ketentuan Layanan",
+      effective: "Berlaku efektif",
+      lastUpdated: "Terakhir diperbarui",
+      noticeLabel: "Penting — pernyataan non-afiliasi",
+      noticeBoldBody:
+        "Cita adalah produk independen dan TIDAK berafiliasi, tidak disponsori, serta tidak diendos oleh Badan Kepegawaian Negara (BKN), Kementerian PANRB, maupun lembaga pemerintah Republik Indonesia mana pun.",
+      noticeBody:
+        "Soal pada Cita disusun oleh tim Cita untuk keperluan latihan dan tidak merepresentasikan soal resmi seleksi CPNS atau dokumen pemerintah yang bersifat rahasia.",
+      s1Title: "1. Tentang Cita",
+      s1Body:
+        "Cita adalah platform latihan daring untuk Seleksi Kompetensi Dasar (SKD) CPNS. Materi soal mencakup TWK, TIU, dan TKP, disusun mengikuti pola umum SKD berdasarkan literatur publik dan sumber terbuka.",
+      s2Title: "2. Penggunaan yang diperkenankan",
+      s2Item1: "Latihan pribadi sebagai bagian dari persiapan tes SKD CPNS.",
+      s2Item2: "Berbagi tautan tryout atau hasil latihan kepada rekan atau komunitas belajar.",
+      s2Item3: "Memberikan masukan kepada kami terkait soal yang tidak akurat.",
+      s3Title: "3. Penggunaan yang dilarang",
+      s3Item1:
+        "Menyalin, mendistribusikan ulang, atau menjual kembali konten Cita (soal, pembahasan, desain) untuk kepentingan komersial tanpa izin tertulis dari kami.",
+      s3Item2:
+        "Memodifikasi atau mengakses sistem Cita di luar antarmuka publik, termasuk namun tidak terbatas pada scraping yang agresif, brute-force, atau eksploitasi kerentanan.",
+      s3Item3:
+        "Menyatakan atau menyiratkan bahwa Cita berafiliasi dengan BKN, instansi pemerintah, atau lembaga lain yang sebenarnya tidak terkait.",
+      s4Title: "4. Akurasi konten",
+      s4Lead: "Kami berupaya menyediakan soal dan pembahasan seakurat mungkin, dengan catatan berikut:",
+      s4Item1:
+        "Soal pada Cita tidak menjamin kelulusan Anda dalam seleksi CPNS resmi. Pola dan bobot soal SKD dapat berubah sesuai kebijakan BKN.",
+      s4Item2:
+        "Pembahasan dihasilkan dengan bantuan model penalaran tingkat lanjut dan ditinjau oleh tim Cita. Apabila Anda menemukan kekeliruan, mohon dilaporkan.",
+      s4Item3:
+        "Konten Cita disediakan apa adanya (as-is). Kami tidak bertanggung jawab atas keputusan Anda terkait persiapan ujian, hasil ujian, maupun dampak lain dari penggunaan Cita.",
+      s5Title: "5. Layanan dan ketersediaan",
+      s5Body:
+        "Cita masih berada pada fase awal pengembangan. Kami dapat mengubah, menambah, atau menghapus fitur tanpa pemberitahuan terlebih dahulu. Layanan disediakan tanpa Service Level Agreement (SLA) tertulis. Apabila terjadi gangguan, kami akan menanganinya secepat mungkin.",
+      s6Title: "6. Penghentian akses",
+      s6Body:
+        "Kami berhak membatasi atau menghentikan akses pengguna yang melanggar ketentuan ini, tanpa pemberitahuan terlebih dahulu, demi keamanan pengguna lain.",
+      s7Title: "7. Hukum yang berlaku",
+      s7Body:
+        "Ketentuan ini tunduk pada hukum Republik Indonesia. Sengketa terlebih dahulu diselesaikan secara musyawarah; apabila tidak tercapai mufakat, akan diselesaikan melalui jalur hukum yang berlaku.",
+      s8Title: "8. Perubahan ketentuan",
+      s8Body:
+        "Ketentuan ini dapat diperbarui dari waktu ke waktu. Versi terbaru selalu tersedia pada halaman ini. Tanggal \"Terakhir diperbarui\" di atas mencerminkan revisi paling mutakhir.",
+      contactTitle: "Kontak",
+      contactBody:
+        "Pertanyaan terkait ketentuan layanan ini dapat disampaikan melalui kanal Issue publik pada repositori Cita di GitHub.",
+      contactLinkLabel: "Buka Issue di GitHub",
+      navPrivacy: "Kebijakan Privasi",
+      navHome: "Kembali ke beranda",
+    },
     meta: {
       examLabel: "Tipe soal", // shown next to question category for clarity
     },
@@ -355,6 +449,100 @@ const dictionaries = {
       backHome: "Back to home",
       privacy: "Privacy",
       terms: "Terms",
+    },
+    privacy: {
+      title: "Privacy Policy",
+      effective: "Effective date",
+      lastUpdated: "Last updated",
+      summaryTitle: "Summary",
+      summaryBody:
+        "Cita is an SKD CPNS practice platform designed to be usable without account registration. If you simply take a tryout and view your results, we do not require any personal data from you.",
+      collectedTitle: "Data we store",
+      collectedAnonIdLabel: "Anonymous ID",
+      collectedAnonIdBody:
+        "When you start a tryout, the system creates a random ID (e.g. anon_xxxxxxxx) stored in your browser cookie. The ID is used to associate your answers with a single tryout session. The cookie has a one-year lifetime and can be deleted at any time through your browser settings.",
+      collectedAnswersLabel: "Tryout answers",
+      collectedAnswersBody:
+        "Your selected answer per question, time spent, and total score. This data is used to display results and to compute aggregate statistics (such as the most frequently missed questions).",
+      collectedEmailLabel: "Email address",
+      collectedEmailBody:
+        "Optional. Stored only if you sign up to sync history across devices, and removable at any time.",
+      notDoTitle: "What we do NOT do",
+      notDo1: "We do not sell your data to third parties.",
+      notDo2: "We do not run tracking advertising on Cita.",
+      notDo3: "We do not track your activity outside of Cita.",
+      notDo4:
+        "We do not link your anonymous ID to a real-world identity, unless you yourself sign up with an email address.",
+      thirdPartyTitle: "Third parties we use",
+      thirdPartySupabase:
+        "Supabase — database and authentication provider. Data is stored on AWS servers in the Southeast Asia region.",
+      thirdPartySupabaseLink: "Supabase privacy policy",
+      thirdPartyVercel:
+        "Vercel — application hosting provider. May log access information (IP address, user-agent) for infrastructure diagnostics.",
+      thirdPartyVercelLink: "Vercel privacy policy",
+      rightsTitle: "Your rights",
+      rightsDelete:
+        "Data deletion — if you have not signed up with an email address, simply remove the cita_anon_id cookie from your browser. After that, we are no longer able to associate prior data with you.",
+      rightsAccess:
+        "Access and correction — if you have signed up with an email and would like to review or delete your data, please contact us through the channel below.",
+      contactTitle: "Contact",
+      contactBody:
+        "Privacy-related questions or requests can be raised through the public Issue tracker on the Cita repository on GitHub. During this MVP phase, an automated data-deletion feature will be added in a subsequent release.",
+      contactLinkLabel: "Open an issue on GitHub",
+      footnote:
+        "This policy may evolve as Cita develops. The current version is always available on this page.",
+      navTerms: "Terms of Service",
+      navHome: "Back to home",
+    },
+    terms: {
+      title: "Terms of Service",
+      effective: "Effective date",
+      lastUpdated: "Last updated",
+      noticeLabel: "Important — non-affiliation notice",
+      noticeBoldBody:
+        "Cita is an independent product and is NOT affiliated with, sponsored by, or endorsed by Badan Kepegawaian Negara (BKN), the Ministry of PANRB, or any agency of the Government of the Republic of Indonesia.",
+      noticeBody:
+        "Question content on Cita is authored by the Cita team for practice purposes and does not represent any official SKD CPNS examination or any classified government document.",
+      s1Title: "1. About Cita",
+      s1Body:
+        "Cita is an online practice platform for the Indonesian Civil Service Selection Test (SKD CPNS). Question content covers TWK, TIU, and TKP, written following common SKD patterns based on publicly available literature and open sources.",
+      s2Title: "2. Permitted use",
+      s2Item1: "Personal practice as part of preparing for the SKD CPNS exam.",
+      s2Item2: "Sharing tryout links or your practice results with peers or learning communities.",
+      s2Item3: "Providing feedback to us regarding inaccurate questions.",
+      s3Title: "3. Prohibited use",
+      s3Item1:
+        "Copying, redistributing, or reselling Cita content (questions, explanations, design) for commercial purposes without our written permission.",
+      s3Item2:
+        "Modifying or accessing Cita's systems outside of the public interface, including but not limited to aggressive scraping, brute force, or vulnerability exploitation.",
+      s3Item3:
+        "Stating or implying that Cita is affiliated with BKN, government agencies, or any other unrelated organization.",
+      s4Title: "4. Content accuracy",
+      s4Lead: "We strive to provide questions and explanations as accurately as possible, with the following caveats:",
+      s4Item1:
+        "Cita questions do not guarantee that you will pass the official CPNS selection. SKD question patterns and weights may change in line with BKN policy.",
+      s4Item2:
+        "Explanations are produced with the assistance of an advanced reasoning model and reviewed by the Cita team. If you find an error, please report it.",
+      s4Item3:
+        "Cita content is provided as-is. We are not responsible for your decisions regarding exam preparation, exam outcomes, or any other consequences of using Cita.",
+      s5Title: "5. Service and availability",
+      s5Body:
+        "Cita is in the early stages of development. We may change, add, or remove features without prior notice. The service is provided without a written Service Level Agreement (SLA). If an outage occurs, we will address it as quickly as possible.",
+      s6Title: "6. Termination of access",
+      s6Body:
+        "We reserve the right to limit or terminate access for users who violate these terms, without prior notice, in the interest of other users' safety.",
+      s7Title: "7. Governing law",
+      s7Body:
+        "These terms are governed by the laws of the Republic of Indonesia. Disputes shall first be resolved amicably; if no settlement is reached, they shall be resolved through the applicable legal channels.",
+      s8Title: "8. Changes to these terms",
+      s8Body:
+        "These terms may be updated from time to time. The current version is always available on this page. The \"Last updated\" date above reflects the most recent revision.",
+      contactTitle: "Contact",
+      contactBody:
+        "Questions regarding these Terms of Service can be raised through the public Issue tracker on the Cita repository on GitHub.",
+      contactLinkLabel: "Open an issue on GitHub",
+      navPrivacy: "Privacy Policy",
+      navHome: "Back to home",
     },
     meta: {
       examLabel: "Question type",
