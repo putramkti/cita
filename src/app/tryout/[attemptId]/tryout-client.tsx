@@ -240,14 +240,24 @@ export function TryoutClient({
               type="button"
               onClick={onSubmit}
               disabled={pending || submittedRef.current}
+              aria-busy={pending || undefined}
               className={cn(
                 "mt-1 inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium px-4 py-3 transition-colors",
                 "bg-primary text-primary-foreground hover:bg-primary/90",
                 "disabled:opacity-60 disabled:cursor-not-allowed",
               )}
             >
-              {pending ? dict.submitting : dict.submit}
-              <Send className="size-4" strokeWidth={1.5} />
+              {pending ? (
+                <>
+                  <span className="zen-spinner" aria-hidden="true" />
+                  {dict.submitting}
+                </>
+              ) : (
+                <>
+                  {dict.submit}
+                  <Send className="size-4" strokeWidth={1.5} />
+                </>
+              )}
             </button>
 
             <p className="text-[11px] text-muted-foreground text-center">
@@ -344,8 +354,10 @@ export function TryoutClient({
                   type="button"
                   onClick={onSubmit}
                   disabled={pending || submittedRef.current}
+                  aria-busy={pending || undefined}
                   className="inline-flex items-center justify-center gap-2 rounded-md bg-primary text-primary-foreground text-sm font-medium px-4 py-2.5 hover:bg-primary/90 transition-colors disabled:opacity-60"
                 >
+                  {pending && <span className="zen-spinner" aria-hidden="true" />}
                   {pending ? dict.submitting : dict.submit}
                 </button>
               )}

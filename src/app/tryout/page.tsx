@@ -4,6 +4,7 @@ import { redirect } from "next/navigation"
 import { startTryout } from "./actions"
 import { SiteHeader } from "@/components/layout/site-header"
 import { SiteFooter } from "@/components/layout/site-footer"
+import { PendingButton } from "@/components/feedback/pending-button"
 import { getDict } from "@/lib/i18n"
 import { getServiceClient } from "@/utils/supabase/admin"
 
@@ -79,12 +80,12 @@ export default async function TryoutLandingPage() {
             </ul>
 
             <form action={startTryout}>
-              <button
-                type="submit"
-                className="inline-flex w-full items-center justify-center rounded-md bg-primary text-primary-foreground text-sm font-medium px-6 py-3 hover:bg-primary/90 transition-colors"
+              <PendingButton
+                className="w-full"
+                loadingLabel={t.locale === "en" ? "Starting…" : "Memulai…"}
               >
                 {t.tryout.startNow}
-              </button>
+              </PendingButton>
             </form>
 
             <p className="text-center text-xs text-muted-foreground leading-relaxed">
