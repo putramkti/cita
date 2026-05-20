@@ -47,6 +47,7 @@ const dictionaries = {
       privacy: "Privasi",
       terms: "Ketentuan",
       about: "Tentang",
+      requirements: "Syarat & Dokumen",
       disclaimer: "Cita tidak berafiliasi dengan BKN, FHCI, atau lembaga pemerintah lainnya.",
     },
     landing: {
@@ -519,6 +520,7 @@ const dictionaries = {
       privacy: "Privacy",
       terms: "Terms",
       about: "About",
+      requirements: "Requirements & Documents",
       disclaimer:
         "Cita is not affiliated with BKN, FHCI, or any Indonesian government agency.",
     },

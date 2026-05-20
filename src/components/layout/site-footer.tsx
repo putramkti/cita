@@ -58,6 +58,14 @@ export async function SiteFooter() {
                 </Link>
               </li>
               <li>
+                <Link
+                  href="/persyaratan"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  {t.footer.requirements}
+                </Link>
+              </li>
+              <li>
                 <a
                   href={REPO_URL}
                   target="_blank"
