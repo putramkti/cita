@@ -5,6 +5,7 @@ import { SiteFooter } from "@/components/layout/site-footer"
 import { RevealOnView } from "@/components/feedback/reveal-on-view"
 import { MentorLiveCard } from "@/components/landing/mentor-live-card"
 import { SimulationDashboard } from "@/components/landing/simulation-dashboard"
+import { CpnsTimeline } from "@/components/landing/cpns-timeline"
 import { getDict } from "@/lib/i18n"
 
 const SITE_URL =
@@ -79,6 +80,17 @@ export default async function HomePage() {
       <SiteHeader />
       <main className="flex-1">
         <HeroSection t={t.landing} />
+        <CpnsTimeline
+          eyebrow={t.landing.timelineEyebrow}
+          title={t.landing.timelineTitle}
+          subtitle={t.landing.timelineSubtitle}
+          progressLabel={t.landing.timelineProgressLabel}
+          legendDone={t.landing.timelineLegendDone}
+          legendActive={t.landing.timelineLegendActive}
+          legendUpcoming={t.landing.timelineLegendUpcoming}
+          sourceLabel={t.landing.timelineSourceLabel}
+          stages={t.landing.timelineStages}
+        />
         <FeatureCardsSection t={t.landing} />
         <ShowcaseSection t={t.landing} />
         <FinalCtaSection t={t.landing} />

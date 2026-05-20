@@ -129,6 +129,72 @@ const dictionaries = {
         "Tanpa pendaftaran. Tanpa biaya. Buka tryout langsung di peramban Anda.",
       finalCtaButton: "Mulai Sekarang",
 
+      // CPNS 2026 timeline section — hard-coded estimates based on
+      // detikJatim 18-05-2026 and detikJateng 12-05-2026 reporting
+      // of statements from BKN (Plt Direktur Perencanaan ASN) and
+      // Menteri PANRB Rini Widyantini. Update as soon as the
+      // official BKN schedule is released.
+      timelineEyebrow: "JADWAL CPNS 2026",
+      timelineTitle: "Linimasa rekrutmen CPNS 2026",
+      timelineSubtitle:
+        "Estimasi tahapan berdasarkan pernyataan resmi BKN dan KemenPAN-RB. Jadwal final menunggu pengumuman resmi pemerintah.",
+      timelineProgressLabel: "Progres tahapan",
+      timelineLegendDone: "Selesai",
+      timelineLegendActive: "Berlangsung",
+      timelineLegendUpcoming: "Akan datang",
+      timelineSourceLabel:
+        "Sumber: BKN · KemenPAN-RB · per 21 Mei 2026",
+      timelineStages: [
+        {
+          id: "perencanaan",
+          label: "Penyusunan Formasi",
+          period: "Apr–Mei 2026",
+          status: "active",
+        },
+        {
+          id: "pengumuman",
+          label: "Pengumuman Formasi",
+          period: "Jun 2026",
+          status: "upcoming",
+        },
+        {
+          id: "pendaftaran",
+          label: "Pendaftaran SSCASN",
+          period: "Jun–Jul 2026",
+          status: "upcoming",
+        },
+        {
+          id: "administrasi",
+          label: "Seleksi Administrasi",
+          period: "Jul–Agu 2026",
+          status: "upcoming",
+        },
+        {
+          id: "skd",
+          label: "SKD",
+          period: "Sep–Okt 2026",
+          status: "upcoming",
+        },
+        {
+          id: "skb",
+          label: "SKB",
+          period: "Nov–Des 2026",
+          status: "upcoming",
+        },
+        {
+          id: "pengumuman-akhir",
+          label: "Pengumuman Akhir",
+          period: "Jan 2027",
+          status: "upcoming",
+        },
+        {
+          id: "pelantikan",
+          label: "Pemberkasan & Pelantikan",
+          period: "Feb–Apr 2027",
+          status: "upcoming",
+        },
+      ] as const,
+
       featuresTitle: "Apa yang Anda dapatkan",
       feat1Title: "30 soal kurasi AI",
       feat1Desc:
@@ -535,6 +601,71 @@ const dictionaries = {
       finalCtaSubtitle:
         "No signup. No payment. Open the mock test directly in your browser.",
       finalCtaButton: "Start Now",
+
+      // CPNS 2026 timeline — keep stage labels in Indonesian
+      // because they are domain-specific exam terminology that
+      // English-speaking visitors looking at this product will
+      // recognise (the product itself is Indonesia-centric).
+      timelineEyebrow: "CPNS 2026 SCHEDULE",
+      timelineTitle: "CPNS 2026 recruitment timeline",
+      timelineSubtitle:
+        "Estimated stages based on official statements from BKN and KemenPAN-RB. Final dates pending an official government announcement.",
+      timelineProgressLabel: "Stage progress",
+      timelineLegendDone: "Completed",
+      timelineLegendActive: "In progress",
+      timelineLegendUpcoming: "Upcoming",
+      timelineSourceLabel:
+        "Source: BKN · KemenPAN-RB · as of 21 May 2026",
+      timelineStages: [
+        {
+          id: "perencanaan",
+          label: "Formation Planning",
+          period: "Apr–May 2026",
+          status: "active",
+        },
+        {
+          id: "pengumuman",
+          label: "Formation Announcement",
+          period: "Jun 2026",
+          status: "upcoming",
+        },
+        {
+          id: "pendaftaran",
+          label: "SSCASN Registration",
+          period: "Jun–Jul 2026",
+          status: "upcoming",
+        },
+        {
+          id: "administrasi",
+          label: "Administrative Screening",
+          period: "Jul–Aug 2026",
+          status: "upcoming",
+        },
+        {
+          id: "skd",
+          label: "SKD",
+          period: "Sep–Oct 2026",
+          status: "upcoming",
+        },
+        {
+          id: "skb",
+          label: "SKB",
+          period: "Nov–Dec 2026",
+          status: "upcoming",
+        },
+        {
+          id: "pengumuman-akhir",
+          label: "Final Result",
+          period: "Jan 2027",
+          status: "upcoming",
+        },
+        {
+          id: "pelantikan",
+          label: "Onboarding & Inauguration",
+          period: "Feb–Apr 2027",
+          status: "upcoming",
+        },
+      ] as const,
 
       featuresTitle: "What you get",
       feat1Title: "30 AI-curated questions",
