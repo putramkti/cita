@@ -416,6 +416,19 @@ const dictionaries = {
     meta: {
       examLabel: "Tipe soal", // shown next to question category for clarity
     },
+    notFound: {
+      eyebrow: "404",
+      title: "Halaman tidak ditemukan",
+      body: "Tautan yang Anda buka tidak tersedia atau sudah dipindahkan. Silakan kembali ke beranda untuk melanjutkan.",
+      cta: "Kembali ke Beranda",
+    },
+    errorBoundary: {
+      eyebrow: "TERJADI KESALAHAN",
+      title: "Sesuatu tidak berjalan semestinya",
+      body: "Maaf, terjadi gangguan tak terduga di halaman ini. Silakan coba muat ulang atau kembali ke beranda.",
+      retry: "Coba Lagi",
+      home: "Kembali ke Beranda",
+    },
   },
   en: {
     locale: "en" as const,
@@ -813,6 +826,19 @@ const dictionaries = {
     },
     meta: {
       examLabel: "Question type",
+    },
+    notFound: {
+      eyebrow: "404",
+      title: "Page not found",
+      body: "The link you followed isn't available or has been moved. Please return to the home page to continue.",
+      cta: "Back to Home",
+    },
+    errorBoundary: {
+      eyebrow: "SOMETHING WENT WRONG",
+      title: "We hit an unexpected snag",
+      body: "Sorry, something went wrong on this page. Please reload, or head back to the home page.",
+      retry: "Try Again",
+      home: "Back to Home",
     },
   },
 }
