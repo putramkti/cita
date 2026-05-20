@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Cita logomark: 8-pointed compass star (Astakara echo) inscribed in a circle.
+       8 directions = breadth of preparation (TWK + TIU + TKP). Center dot = focus / cita-cita. -->
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#a5b4fc"/>
+      <stop offset="1" stop-color="#7dd3fc"/>
+    </linearGradient>
+  </defs>
+  <circle cx="32" cy="32" r="28" stroke="url(#g)" stroke-width="2" stroke-opacity="0.6"/>
+  <!-- 8-point star -->
+  <path
+    d="M32 6 L36 28 L58 32 L36 36 L32 58 L28 36 L6 32 L28 28 Z"
+    fill="url(#g)" fill-opacity="0.85"/>
+  <path
+    d="M32 14 L34 30 L50 32 L34 34 L32 50 L30 34 L14 32 L30 30 Z"
+    fill="#0c1220" fill-opacity="0.7"/>
+  <circle cx="32" cy="32" r="3" fill="url(#g)"/>
+</svg>
