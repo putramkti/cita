@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next"
 import { Suspense } from "react"
 import { ThemeProvider } from "@/components/theme-provider"
+import { MotionRoot } from "@/components/feedback/motion-root"
 import { RouteProgress } from "@/components/feedback/route-progress"
 import { getLocale, getDictByLocale } from "@/lib/i18n"
 import "./globals.css"
@@ -91,10 +92,12 @@ export default async function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
-          <Suspense fallback={null}>
-            <RouteProgress />
-          </Suspense>
-          {children}
+          <MotionRoot>
+            <Suspense fallback={null}>
+              <RouteProgress />
+            </Suspense>
+            {children}
+          </MotionRoot>
         </ThemeProvider>
       </body>
     </html>

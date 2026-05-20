@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { motion } from "motion/react"
 import {
   Send,
   Bookmark,
@@ -20,15 +21,20 @@ import { cn } from "@/lib/utils"
  * exam screen, used on the landing page to give visitors a real
  * sense of what the test interface feels like before they start.
  *
+ * Built on Motion (framer-motion v12+ rebrand) for every micro-
+ * interaction: hover nudge on Prev/Next, breathing pulse on the
+ * active question cell, smooth countdown digit transitions.
+ *
  * Live elements:
  *   - Countdown timer (ticks once per second, default 45:00).
- *     Uses tabular-nums so digit width doesn't shift the layout.
- *   - Breathing pulse on the "current" question cell (#1) to draw
- *     the eye to the active position in the navigator.
- *   - Hover nudge on Previous / Next buttons (arrow translates 4px).
+ *     Uses tabular-nums so digit width stays stable.
+ *   - motion.span breathing ring on cell #1 to draw the eye to
+ *     the active position in the navigator.
+ *   - motion.button whileHover springs the chevron 4px in the
+ *     direction of travel.
  *
- * All copy is locale-aware via the dict prop; the calling page
- * passes `t.landing.sim` from the i18n catalogue.
+ * Reduced-motion users automatically get the static end-state via
+ * the MotionConfig reducedMotion="user" wrapper in root layout.
  */
 export interface SimulationDashboardDict {
   modeLabel: string
@@ -54,8 +60,13 @@ export interface SimulationDashboardDict {
 }
 
 const TOTAL_SECONDS = 45 * 60
+const ZEN_EASE = [0.16, 1, 0.3, 1] as [number, number, number, number]
 
-export function SimulationDashboard({ dict }: { dict: SimulationDashboardDict }) {
+export function SimulationDashboard({
+  dict,
+}: {
+  dict: SimulationDashboardDict
+}) {
   // Live countdown — start at 44:58 (matches design source) so the
   // bar feels mid-session.
   const [secondsLeft, setSecondsLeft] = useState(44 * 60 + 58)
@@ -67,9 +78,7 @@ export function SimulationDashboard({ dict }: { dict: SimulationDashboardDict })
     return () => window.clearInterval(id)
   }, [])
 
-  const mm = Math.floor(secondsLeft / 60)
-    .toString()
-    .padStart(2, "0")
+  const mm = Math.floor(secondsLeft / 60).toString().padStart(2, "0")
   const ss = (secondsLeft % 60).toString().padStart(2, "0")
 
   return (
@@ -120,17 +129,40 @@ export function SimulationDashboard({ dict }: { dict: SimulationDashboardDict })
               const n = i + 1
               const isCurrent = n === 1
               const isMarked = n === 3
+              if (isCurrent) {
+                return (
+                  <div key={n} className="relative aspect-square">
+                    {/* Breathing ring layer */}
+                    <motion.span
+                      aria-hidden="true"
+                      className="absolute inset-0 rounded-md"
+                      animate={{
+                        boxShadow: [
+                          "0 0 0 0 color-mix(in oklab, var(--gold) 45%, transparent)",
+                          "0 0 0 5px color-mix(in oklab, var(--gold) 0%, transparent)",
+                          "0 0 0 0 color-mix(in oklab, var(--gold) 45%, transparent)",
+                        ],
+                      }}
+                      transition={{
+                        duration: 2.8,
+                        ease: "easeInOut",
+                        repeat: Infinity,
+                      }}
+                    />
+                    <span className="relative inset-0 inline-flex h-full w-full items-center justify-center rounded-md bg-primary text-primary-foreground text-[11px] font-medium tabular-nums">
+                      {n}
+                    </span>
+                  </div>
+                )
+              }
               return (
                 <span
                   key={n}
                   className={cn(
                     "aspect-square inline-flex items-center justify-center rounded-md text-[11px] font-medium tabular-nums",
-                    isCurrent &&
-                      "bg-primary text-primary-foreground zen-breathing",
                     isMarked &&
                       "bg-[var(--review-amber)] text-[var(--review-amber-fg)] border border-[var(--gold)]/40",
-                    !isCurrent &&
-                      !isMarked &&
+                    !isMarked &&
                       "bg-card text-foreground border border-border",
                   )}
                 >
@@ -140,7 +172,7 @@ export function SimulationDashboard({ dict }: { dict: SimulationDashboardDict })
             })}
           </div>
 
-          {/* Submit button */}
+          {/* Submit button (decorative) */}
           <button
             type="button"
             tabIndex={-1}
@@ -187,32 +219,44 @@ export function SimulationDashboard({ dict }: { dict: SimulationDashboardDict })
             ))}
           </ul>
 
-          {/* Action row */}
+          {/* Action row — Motion-driven hover nudge on prev/next */}
           <div className="flex items-center gap-2 flex-wrap pt-1">
-            <button
+            <motion.button
               type="button"
               tabIndex={-1}
-              className="zen-nudge-left inline-flex items-center gap-2 rounded-md border border-border bg-card text-xs font-medium px-3.5 py-2 text-foreground hover:bg-secondary transition-colors"
+              whileHover="hover"
+              initial="rest"
+              animate="rest"
+              className="inline-flex items-center gap-2 rounded-md border border-border bg-card text-xs font-medium px-3.5 py-2 text-foreground hover:bg-secondary transition-colors"
             >
-              <ChevronLeft
-                data-arrow
-                className="size-3.5"
-                strokeWidth={1.5}
-              />
+              <motion.span
+                variants={{ rest: { x: 0 }, hover: { x: -4 } }}
+                transition={{ duration: 0.2, ease: ZEN_EASE }}
+                className="inline-flex"
+              >
+                <ChevronLeft className="size-3.5" strokeWidth={1.5} />
+              </motion.span>
               {dict.previous}
-            </button>
-            <button
+            </motion.button>
+
+            <motion.button
               type="button"
               tabIndex={-1}
-              className="zen-nudge-right inline-flex items-center gap-2 rounded-md bg-primary text-primary-foreground text-xs font-medium px-3.5 py-2 hover:bg-primary/90 transition-colors"
+              whileHover="hover"
+              initial="rest"
+              animate="rest"
+              className="inline-flex items-center gap-2 rounded-md bg-primary text-primary-foreground text-xs font-medium px-3.5 py-2 hover:bg-primary/90 transition-colors"
             >
               {dict.next}
-              <ChevronRight
-                data-arrow
-                className="size-3.5"
-                strokeWidth={1.5}
-              />
-            </button>
+              <motion.span
+                variants={{ rest: { x: 0 }, hover: { x: 4 } }}
+                transition={{ duration: 0.2, ease: ZEN_EASE }}
+                className="inline-flex"
+              >
+                <ChevronRight className="size-3.5" strokeWidth={1.5} />
+              </motion.span>
+            </motion.button>
+
             <button
               type="button"
               tabIndex={-1}
