@@ -7,6 +7,9 @@ import { MentorLiveCard } from "@/components/landing/mentor-live-card"
 import { SimulationDashboard } from "@/components/landing/simulation-dashboard"
 import { getDict } from "@/lib/i18n"
 
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://cita-nu.vercel.app"
+
 /**
  * Landing page — Academic Zen redesign.
  *
@@ -32,8 +35,47 @@ import { getDict } from "@/lib/i18n"
  */
 export default async function HomePage() {
   const t = await getDict()
+
+  // JSON-LD — EducationalOrganization + WebApplication.
+  // Two top-level objects in @graph so search engines treat them as
+  // related entities. EducationalOrganization carries the brand;
+  // WebApplication signals the actual product (free tryout webapp).
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "EducationalOrganization",
+        "@id": `${SITE_URL}#org`,
+        name: "Cita",
+        url: SITE_URL,
+        logo: `${SITE_URL}/icon-512.png`,
+        description: t.landing.heroSubtitle,
+        sameAs: ["https://github.com/putramkti/cita"],
+      },
+      {
+        "@type": "WebApplication",
+        "@id": `${SITE_URL}#app`,
+        name: "Cita — Tryout SKD CPNS",
+        url: SITE_URL,
+        applicationCategory: "EducationalApplication",
+        operatingSystem: "Any (web)",
+        offers: {
+          "@type": "Offer",
+          price: "0",
+          priceCurrency: "IDR",
+        },
+        publisher: { "@id": `${SITE_URL}#org` },
+        description: t.landing.heroSubtitle,
+      },
+    ],
+  }
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <SiteHeader />
       <main className="flex-1">
         <HeroSection t={t.landing} />
