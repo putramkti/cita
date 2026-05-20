@@ -1,7 +1,7 @@
 "use client"
 
 import { useCallback, useEffect, useRef, useState } from "react"
-import { Send, Sparkles, AlertCircle } from "lucide-react"
+import { Send, Sparkles, AlertCircle, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
@@ -12,10 +12,10 @@ export interface ChatMessage {
 }
 
 const QUICK_PROMPTS = [
-  { label: "Beri analogi sehari-hari", prompt: "Kasih gw analogi dari kehidupan sehari-hari biar konsep ini lebih gampang dicerna." },
-  { label: "Jelaskan kayak ke anak SMP", prompt: "Coba jelasin lagi tapi kayak lo lagi ngajarin anak SMP — bahasa simpel, contoh nyata." },
-  { label: "Kenapa opsi salah itu salah?", prompt: "Tolong bahas satu-satu kenapa opsi-opsi yang salah itu kurang tepat." },
-  { label: "Kasih contoh kasus nyata", prompt: "Kasih 1-2 contoh kasus nyata di Indonesia yang mencerminkan jawaban benarnya." },
+  { label: "Beri analogi sehari-hari", prompt: "Tolong berikan analogi dari kehidupan sehari-hari agar konsep ini lebih mudah saya pahami." },
+  { label: "Jelaskan untuk pemula", prompt: "Mohon jelaskan ulang dengan bahasa yang lebih sederhana, seolah-olah sedang menjelaskan kepada siswa SMP." },
+  { label: "Mengapa opsi lain salah?", prompt: "Mohon bahas satu per satu mengapa opsi-opsi yang salah itu kurang tepat." },
+  { label: "Berikan contoh kasus nyata", prompt: "Mohon berikan satu sampai dua contoh kasus nyata di Indonesia yang mencerminkan jawaban yang benar." },
 ] as const
 
 interface TutorChatProps {
@@ -37,6 +37,7 @@ export function TutorChat({
   const [userMsgCount, setUserMsgCount] = useState(initialUserMsgCount)
   const [input, setInput] = useState("")
   const [isStreaming, setIsStreaming] = useState(false)
+  const [showQuickPrompts, setShowQuickPrompts] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const abortRef = useRef<AbortController | null>(null)
   const endRef = useRef<HTMLDivElement | null>(null)
@@ -222,24 +223,39 @@ export function TutorChat({
         <div ref={endRef} />
       </div>
 
-      {/* Quick prompts (visible if room left) */}
-      {remaining > 0 && (
-        <div className="border-t border-border/40 px-5 py-3 flex flex-wrap gap-2">
-          {QUICK_PROMPTS.map((qp) => (
+      {/* Quick prompts (visible if room left & not closed) */}
+      {remaining > 0 && showQuickPrompts && (
+        <div className="border-t border-border/40 px-5 py-3 relative">
+          <div className="flex items-start justify-between gap-3 mb-2">
+            <span className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/80">
+              Saran pertanyaan
+            </span>
             <button
-              key={qp.label}
               type="button"
-              onClick={() => handleQuickPrompt(qp.prompt)}
-              disabled={!canSend}
-              className={cn(
-                "text-xs px-3 py-1.5 rounded-full border transition-colors",
-                "border-border/60 text-muted-foreground hover:border-primary/40 hover:text-foreground hover:bg-accent/50",
-                "disabled:opacity-50 disabled:pointer-events-none",
-              )}
+              onClick={() => setShowQuickPrompts(false)}
+              aria-label="Tutup saran pertanyaan"
+              className="text-muted-foreground/60 hover:text-foreground transition-colors -mr-1 -mt-1 p-1 rounded hover:bg-accent/40"
             >
-              {qp.label}
+              <X className="size-3.5" />
             </button>
-          ))}
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {QUICK_PROMPTS.map((qp) => (
+              <button
+                key={qp.label}
+                type="button"
+                onClick={() => handleQuickPrompt(qp.prompt)}
+                disabled={!canSend}
+                className={cn(
+                  "text-xs px-3 py-1.5 rounded-full border transition-colors",
+                  "border-border/60 text-muted-foreground hover:border-primary/40 hover:text-foreground hover:bg-accent/50",
+                  "disabled:opacity-50 disabled:pointer-events-none",
+                )}
+              >
+                {qp.label}
+              </button>
+            ))}
+          </div>
         </div>
       )}
 
