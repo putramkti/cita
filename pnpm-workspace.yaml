@@ -1,6 +1,14 @@
 allowBuilds:
   sharp: true
   unrs-resolver: true
+  msw: true
+  prisma: true
+  "@prisma/engines": true
+  "@prisma/client": true
 onlyBuiltDependencies:
   - sharp
   - unrs-resolver
+  - msw
+  - prisma
+  - "@prisma/engines"
+  - "@prisma/client"

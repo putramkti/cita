@@ -1,0 +1,100 @@
+// Cita — SKD CPNS Tryout
+// Prisma schema for Supabase Postgres
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum Category {
+  TWK
+  TIU
+  TKP
+}
+
+enum AttemptStatus {
+  IN_PROGRESS
+  SUBMITTED
+  EXPIRED
+}
+
+model User {
+  id          String    @id @default(cuid())
+  email       String?   @unique
+  displayName String?
+  // null = anonymous user (hybrid auth: anyone can try, login optional)
+  isAnonymous Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  attempts    Attempt[]
+
+  @@map("users")
+}
+
+model Question {
+  id            String        @id @default(cuid())
+  category      Category
+  subcategory   String
+  questionText  String        @db.Text
+  // [{label: 'A', text: '...'}, ...]
+  options       Json
+  correctAnswer String
+  // For TKP only — 5 unique weights 1..5 keyed by label A..E. Null for TWK/TIU.
+  optionWeights Json?
+  difficulty    Int           @default(2)
+  // Cached AI explanation (pre-generated; saves real-time API calls in prod)
+  explanation   String?       @db.Text
+  source        String        @default("original")
+  createdAt    DateTime       @default(now())
+  attemptItems  AttemptItem[]
+
+  @@index([category])
+  @@map("questions")
+}
+
+model Attempt {
+  id            String        @id @default(cuid())
+  userId        String
+  user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  status        AttemptStatus @default(IN_PROGRESS)
+  startedAt     DateTime      @default(now())
+  finishedAt    DateTime?
+  durationSec   Int?
+  // Skor — per kategori (max TWK=50, TIU=50, TKP=50 untuk MVP 10 soal/kategori × 5)
+  scoreTWK      Int?
+  scoreTIU      Int?
+  scoreTKP      Int?
+  totalScore    Int?
+  // 'lulus' | 'tidak_lulus' — based on simplified MVP passing grade
+  passingStatus String?
+  items         AttemptItem[]
+
+  @@index([userId])
+  @@index([totalScore])
+  @@index([status])
+  @@map("attempts")
+}
+
+model AttemptItem {
+  id          String   @id @default(cuid())
+  attemptId   String
+  attempt     Attempt  @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  questionId  String
+  question    Question @relation(fields: [questionId], references: [id])
+  // null = belum dijawab
+  userAnswer  String?
+  isCorrect   Boolean?
+  scoreEarned Int      @default(0)
+  timeSpentMs Int?
+  answeredAt  DateTime?
+
+  @@unique([attemptId, questionId])
+  @@index([attemptId])
+  @@map("attempt_items")
+}
