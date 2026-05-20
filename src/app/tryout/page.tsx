@@ -1,22 +1,60 @@
 import Link from "next/link"
+import { cookies } from "next/headers"
+import { redirect } from "next/navigation"
 import { startTryout } from "./actions"
 import { SiteHeader } from "@/components/layout/site-header"
 import { SiteFooter } from "@/components/layout/site-footer"
 import { getDict } from "@/lib/i18n"
+import { getServiceClient } from "@/utils/supabase/admin"
 
 export const metadata = {
   title: "Mulai Tryout SKD CPNS",
 }
 
+// Always run server-side per request — we redirect based on live DB state.
+export const dynamic = "force-dynamic"
+
+const ANON_COOKIE = "cita_anon_id"
+
 /**
  * Tryout briefing — Academic Zen layout.
  *
- * Editorial pre-test surface: label-caps eyebrow, oversized serif
- * heading, a hairline-bordered card carrying the rules and the
- * primary CTA. No gradients, no shadows.
+ * Resume-on-revisit: if the visitor already has an IN_PROGRESS
+ * attempt, we redirect them straight to that attempt's exam screen
+ * instead of showing the briefing card. The exam page will reconcile
+ * the timer locally; if the duration has elapsed the user can
+ * submit from there. Submitted attempts are ignored (status changes
+ * to SUBMITTED on submit), so finished users still see the briefing
+ * and can start a new run.
  */
 export default async function TryoutLandingPage() {
   const t = await getDict()
+
+  // Resume hook: read the anon cookie without creating a new user
+  // (creating a user here would be premature — only startTryout
+  // should mint identities).
+  const cookieStore = await cookies()
+  const userId = cookieStore.get(ANON_COOKIE)?.value
+
+  if (userId) {
+    const sb = getServiceClient()
+    // Latest IN_PROGRESS attempt for this user. We keep this query
+    // narrow (status + userId, single row) so it stays cheap on
+    // every visit to /tryout.
+    const { data: ongoing } = await sb
+      .from("attempts")
+      .select("id")
+      .eq("userId", userId)
+      .eq("status", "IN_PROGRESS")
+      .order("startedAt", { ascending: false })
+      .limit(1)
+      .maybeSingle()
+
+    if (ongoing?.id) {
+      redirect(`/tryout/${ongoing.id}`)
+    }
+  }
+
   return (
     <>
       <SiteHeader />
