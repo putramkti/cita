@@ -4,6 +4,7 @@ import { SiteHeader } from "@/components/layout/site-header"
 import { TRYOUT_CONFIG } from "@/lib/types"
 import type { AttemptItem, Question } from "@/lib/types"
 import { tsToMs } from "@/lib/time"
+import { getDict } from "@/lib/i18n"
 import { TryoutClient } from "./tryout-client"
 
 export const dynamic = "force-dynamic"
@@ -70,6 +71,8 @@ export default async function TryoutPage({ params }: PageProps) {
     return a.id.localeCompare(b.id)
   })
 
+  const t = await getDict()
+
   return (
     <>
       <SiteHeader />
@@ -78,6 +81,27 @@ export default async function TryoutPage({ params }: PageProps) {
         items={normalized}
         startedAt={startedAt}
         durationMin={TRYOUT_CONFIG.duration_min}
+        dict={{
+          modeLabel: t.tryout.modeLabel,
+          timeRemainingLabel: t.tryout.timeRemainingLabel,
+          overview: t.tryout.overview,
+          questionPanelLabel: t.tryout.questionPanelLabel,
+          ofLabel: t.tryout.ofLabel,
+          previous: t.tryout.previous,
+          next: t.tryout.next,
+          markReview: t.tryout.markReview,
+          submit: t.tryout.submit,
+          submitting: t.tryout.submitting,
+          questionUnavailable: t.tryout.questionUnavailable,
+          retry: t.tryout.retry,
+          tools: t.tryout.tools,
+          toolAi: t.tryout.toolAi,
+          toolNotes: t.tryout.toolNotes,
+          toolCalc: t.tryout.toolCalc,
+          toolsComingSoon: t.tryout.toolsComingSoon,
+          motivationalQuote: t.tryout.motivationalQuote,
+          answeredCount: t.tryout.answeredCount,
+        }}
       />
     </>
   )
