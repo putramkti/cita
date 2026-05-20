@@ -43,6 +43,12 @@ export async function SiteHeader() {
             {t.nav.leaderboard}
           </Link>
           <Link
+            href="/persyaratan"
+            className="text-muted-foreground hover:text-foreground transition-colors"
+          >
+            {t.nav.requirements}
+          </Link>
+          <Link
             href="/about"
             className="text-muted-foreground hover:text-foreground transition-colors"
           >

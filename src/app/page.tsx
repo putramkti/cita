@@ -80,6 +80,7 @@ export default async function HomePage() {
       <SiteHeader />
       <main className="flex-1">
         <HeroSection t={t.landing} />
+        <FeatureCardsSection t={t.landing} />
         <CpnsTimeline
           eyebrow={t.landing.timelineEyebrow}
           title={t.landing.timelineTitle}
@@ -91,7 +92,6 @@ export default async function HomePage() {
           sourceLabel={t.landing.timelineSourceLabel}
           stages={t.landing.timelineStages}
         />
-        <FeatureCardsSection t={t.landing} />
         <ShowcaseSection t={t.landing} />
         <FinalCtaSection t={t.landing} />
       </main>
