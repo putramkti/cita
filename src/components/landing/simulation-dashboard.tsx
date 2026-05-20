@@ -142,10 +142,7 @@ export function SimulationDashboard({
             </h3>
           </div>
 
-          {/* Mobile-only mini grid (5×2 = 10 representative cells) */}
-          <div className="sm:hidden">
-            <QuestionGrid total={10} compact />
-          </div>
+          {/* Mobile-only mini grid hidden — keeps the card lean on phone */}
 
           {/* 3 answer options */}
           <ul className="space-y-2">

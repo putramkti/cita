@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Check, Clock, BarChart3, GraduationCap, Sparkle } from "lucide-react"
+import { Check, Clock, BarChart3, Sparkles, Fingerprint } from "lucide-react"
 import { SiteHeader } from "@/components/layout/site-header"
 import { SiteFooter } from "@/components/layout/site-footer"
 import { RevealOnView } from "@/components/feedback/reveal-on-view"
@@ -125,7 +125,7 @@ function FeatureCardsSection({
                 aria-hidden="true"
                 className="inline-flex items-center justify-center size-10 rounded-lg border border-border text-foreground"
               >
-                <Sparkle className="size-5" strokeWidth={1.5} />
+                <Fingerprint className="size-5" strokeWidth={1.5} />
               </span>
               <span className="label-caps">{t.privacyCardEyebrow}</span>
             </div>
@@ -157,7 +157,7 @@ function FeatureCardsSection({
                 aria-hidden="true"
                 className="inline-flex items-center justify-center size-10 rounded-lg border border-white/10 text-[var(--gold-soft)]"
               >
-                <GraduationCap className="size-5" strokeWidth={1.5} />
+                <Sparkles className="size-5" strokeWidth={1.5} />
               </span>
               <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-white/55">
                 {t.mentorCardEyebrow}

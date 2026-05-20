@@ -67,7 +67,7 @@ const dictionaries = {
       privacyCardCheck1: "Tanpa pelacakan media sosial",
       privacyCardCheck2: "Mode Guest untuk simulasi cepat",
 
-      mentorCardEyebrow: "AI MENTOR 24/7",
+      mentorCardEyebrow: "CITA TUTOR 24/7",
       mentorCardTitle: "Bimbingan Mendalam & Personal",
       mentorCardBody:
         "Tutor AI siap membahas alasan jawaban benar dan salah, kapan pun Anda perlu, langsung dari halaman soal.",
@@ -461,7 +461,7 @@ const dictionaries = {
       privacyCardCheck1: "No social-media tracking",
       privacyCardCheck2: "Guest mode for quick simulations",
 
-      mentorCardEyebrow: "AI MENTOR 24/7",
+      mentorCardEyebrow: "CITA TUTOR 24/7",
       mentorCardTitle: "Deep, Personal Guidance",
       mentorCardBody:
         "An AI tutor stands by to walk you through why answers are right or wrong, exactly when you need it, right from the question page.",
