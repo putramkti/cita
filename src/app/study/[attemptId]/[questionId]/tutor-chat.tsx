@@ -16,7 +16,7 @@ export interface ChatMessage {
 export interface TutorChatDict {
   tutorName: string
   tutorTagline: string
-  remaining: (n: number, max: number) => string
+  remaining: string
   thinking: string
   placeholder: string
   placeholderLimit: string
@@ -218,7 +218,7 @@ export function TutorChat({
           </div>
         </div>
         <span className="text-xs text-muted-foreground tabular-nums">
-          {dict.remaining(remaining, maxUserMsgs)}
+          {dict.remaining.replace("{n}", String(remaining)).replace("{max}", String(maxUserMsgs))}
         </span>
       </div>
 
