@@ -276,7 +276,7 @@ export default async function ResultPage({ params }: PageProps) {
                       <div className="mt-3 rounded-md border border-primary/20 bg-primary/5 p-3 text-sm leading-relaxed">
                         <div className="flex items-center gap-1.5 text-primary mb-1.5 text-xs uppercase tracking-widest font-semibold">
                           <Sparkles className="size-3.5" />
-                          Penjelasan
+                          Penjelasan AI
                         </div>
                         <p className="text-foreground/90">{q.explanation}</p>
                       </div>
@@ -301,6 +301,9 @@ export default async function ResultPage({ params }: PageProps) {
                 <Link href="/">Kembali ke beranda</Link>
               </Button>
             </div>
+            <p className="text-xs text-muted-foreground mt-5">
+              Pembahasan AI di-generate oleh Claude Opus 4.7 saat soal disusun, divalidasi tim Cita.
+            </p>
           </section>
         </div>
       </main>
