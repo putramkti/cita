@@ -29,7 +29,9 @@ const dictionaries = {
     nav: {
       tryout: "Tryout",
       leaderboard: "Peringkat",
+      about: "Tentang",
       start: "Mulai",
+      login: "Log In",
       backHome: "Kembali ke beranda",
     },
     header: {
@@ -37,6 +39,11 @@ const dictionaries = {
     },
     footer: {
       tagline: "Tenang, fokus, akurat",
+      excellence: "Excellence through discipline. Media latihan SKD CPNS yang fokus pada ketenangan kognitif.",
+      copyright: "Cita Academic. Hak cipta dilindungi.",
+      resourcesTitle: "Sumber",
+      legalTitle: "Legalitas",
+      methodology: "Metodologi",
       privacy: "Privasi",
       terms: "Ketentuan",
       about: "Tentang",
@@ -288,7 +295,9 @@ const dictionaries = {
     nav: {
       tryout: "Mock test",
       leaderboard: "Leaderboard",
+      about: "About",
       start: "Start",
+      login: "Log In",
       backHome: "Back to home",
     },
     header: {
@@ -296,6 +305,11 @@ const dictionaries = {
     },
     footer: {
       tagline: "Calm, focused, accurate",
+      excellence: "Excellence through discipline. Indonesia's most focused SKD CPNS prep platform.",
+      copyright: "Cita Academic. All rights reserved.",
+      resourcesTitle: "Resources",
+      legalTitle: "Legal",
+      methodology: "Methodology",
       privacy: "Privacy",
       terms: "Terms",
       about: "About",
