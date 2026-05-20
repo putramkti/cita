@@ -1,10 +1,9 @@
 import Link from "next/link"
 import { notFound, redirect } from "next/navigation"
-import { ArrowLeft, Sparkles } from "lucide-react"
+import { ArrowLeft, ArrowRight, Lightbulb, Check } from "lucide-react"
 import { cookies } from "next/headers"
 import { getServiceClient } from "@/utils/supabase/admin"
 import { SiteHeader } from "@/components/layout/site-header"
-import { Badge } from "@/components/ui/badge"
 import { TutorChat } from "./tutor-chat"
 import type { AttemptItem, Category, Question } from "@/lib/types"
 import { cn } from "@/lib/utils"
@@ -16,6 +15,21 @@ interface PageProps {
   params: Promise<{ attemptId: string; questionId: string }>
 }
 
+const CATEGORY_NAMES: Record<Category, { id: string; en: string }> = {
+  TWK: {
+    id: "Tes Wawasan Kebangsaan",
+    en: "National Insight Test",
+  },
+  TIU: {
+    id: "Tes Intelegensi Umum",
+    en: "General Intelligence Test",
+  },
+  TKP: {
+    id: "Tes Karakteristik Pribadi",
+    en: "Personality Test",
+  },
+}
+
 export default async function StudyPage({ params }: PageProps) {
   const { attemptId, questionId } = await params
   const t = await getDict()
@@ -23,9 +37,7 @@ export default async function StudyPage({ params }: PageProps) {
   // Auth: must own the attempt via cookie
   const cookieStore = await cookies()
   const userId = cookieStore.get("cita_anon_id")?.value
-  if (!userId) {
-    redirect(`/tryout`)
-  }
+  if (!userId) redirect(`/tryout`)
 
   const sb = getServiceClient()
 
@@ -36,13 +48,8 @@ export default async function StudyPage({ params }: PageProps) {
     .single()
 
   if (!attempt) notFound()
-  if (attempt.userId !== userId) {
-    redirect("/tryout")
-  }
-  if (attempt.status !== "SUBMITTED") {
-    // Tutor only after submit
-    redirect(`/tryout/${attemptId}`)
-  }
+  if (attempt.userId !== userId) redirect("/tryout")
+  if (attempt.status !== "SUBMITTED") redirect(`/tryout/${attemptId}`)
 
   // Load attempt item + question
   const { data: itemRaw } = await sb
@@ -65,7 +72,7 @@ export default async function StudyPage({ params }: PageProps) {
 
   if (!question) notFound()
 
-  // Load existing chat history
+  // Chat history
   const { data: msgsRaw } = await sb
     .from("explainer_messages")
     .select("id, role, content, createdAt")
@@ -78,10 +85,9 @@ export default async function StudyPage({ params }: PageProps) {
     role: m.role as "user" | "assistant",
     content: m.content as string,
   }))
-
   const userMsgCount = initialMessages.filter((m) => m.role === "user").length
 
-  // Find this question's index in the attempt for nav
+  // Find this question's index for prev/next nav
   const { data: allItems } = await sb
     .from("attempt_items")
     .select("questionId, question:questions(category)")
@@ -108,117 +114,112 @@ export default async function StudyPage({ params }: PageProps) {
     <div className="min-h-screen flex flex-col">
       <SiteHeader />
       <main className="flex-1">
-        <div className="mx-auto max-w-7xl px-4 py-6 sm:py-8">
-          <div className="mb-5 flex items-center justify-between gap-3 flex-wrap">
+        <div className="mx-auto max-w-7xl px-4 sm:px-8 py-6 sm:py-10">
+          {/* Top nav row */}
+          <div className="mb-8 flex items-center justify-between gap-3 flex-wrap">
             <Link
               href={`/tryout/${attemptId}/result`}
               className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
-              <ArrowLeft className="size-4" />
+              <ArrowLeft className="size-4" strokeWidth={1.5} />
               {t.study.backToResult}
             </Link>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1">
               {prevQ && (
                 <Link
                   href={`/study/${attemptId}/${prevQ}`}
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors px-2"
+                  className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors px-2 py-1.5"
                 >
-                  ← {t.study.prevQuestion}
+                  <ArrowLeft className="size-3.5" strokeWidth={1.5} />
+                  {t.study.prevQuestion}
                 </Link>
               )}
               {nextQ && (
                 <Link
                   href={`/study/${attemptId}/${nextQ}`}
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors px-2"
+                  className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors px-2 py-1.5"
                 >
-                  {t.study.nextQuestion} →
+                  {t.study.nextQuestion}
+                  <ArrowRight className="size-3.5" strokeWidth={1.5} />
                 </Link>
               )}
             </div>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
+          {/* 2-col split */}
+          <div className="grid lg:grid-cols-2 gap-6 lg:gap-10">
             {/* LEFT: Question recap */}
             <section className="lg:sticky lg:top-20 lg:self-start lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto pr-1">
-              <div className="space-y-5">
-                <div className="flex items-center gap-2 text-xs">
-                  <CategoryBadge category={question.category} />
-                  <span className="text-muted-foreground">{question.subcategory}</span>
-                  <span className="text-muted-foreground">·</span>
-                  <span className="text-muted-foreground">
-                    {t.locale === "en"
-                      ? `Difficulty ${question.difficulty}/5`
-                      : `Tingkat ${question.difficulty}/5`}
-                  </span>
-                </div>
+              <p className="label-caps mb-3">
+                {t.locale === "en" ? "QUESTION RECAP" : "RINGKASAN SOAL"}
+              </p>
+              <h1 className="serif text-3xl text-foreground leading-tight mb-1.5">
+                {CATEGORY_NAMES[question.category][t.locale]} ({question.category})
+              </h1>
+              <p className="text-sm text-muted-foreground mb-7">
+                {t.locale === "en" ? "Topic" : "Topik"}: {question.subcategory}
+              </p>
 
-                <h1 className="text-xl sm:text-2xl font-semibold leading-relaxed">
+              <article className="rounded-xl border border-border bg-card p-6 sm:p-7 mb-6">
+                <p className="serif text-xl leading-relaxed text-foreground mb-7">
                   {question.questionText}
-                </h1>
+                </p>
 
-                <ul className="space-y-2">
+                <ul className="space-y-2.5">
                   {question.options.map((opt) => {
                     const userPicked = item.userAnswer === opt.label
                     const isAnsKey = opt.label === question.correctAnswer
-                    const weight =
-                      question.category === "TKP" && question.optionWeights
-                        ? question.optionWeights[opt.label]
-                        : null
                     return (
-                      <li
-                        key={opt.label}
-                        className={cn(
-                          "flex gap-3 rounded-md border px-3 py-2 text-sm",
-                          isAnsKey
-                            ? "border-emerald-500/40 bg-emerald-500/5"
-                            : userPicked
-                              ? "border-amber-500/40 bg-amber-500/5"
-                              : "border-border/40",
-                        )}
-                      >
-                        <span
+                      <li key={opt.label}>
+                        <div
                           className={cn(
-                            "shrink-0 inline-flex items-center justify-center size-6 rounded text-xs font-semibold",
+                            "flex items-start gap-3 rounded-lg border px-3.5 py-3 text-sm",
                             isAnsKey
-                              ? "bg-emerald-500/20 text-emerald-300"
+                              ? "border-foreground bg-foreground/[0.04]"
                               : userPicked
-                                ? "bg-amber-500/20 text-amber-300"
-                                : "bg-muted text-muted-foreground",
+                                ? "border-destructive/40 bg-[var(--error-soft)]"
+                                : "border-border",
                           )}
                         >
-                          {opt.label}
-                        </span>
-                        <span className="flex-1 leading-relaxed pt-0.5">{opt.text}</span>
-                        <span className="text-xs text-muted-foreground shrink-0 pt-1">
-                          {weight !== null && (
-                            <span>
-                              {t.locale === "en" ? `weight ${weight}` : `bobot ${weight}`}
-                            </span>
-                          )}
-                          {userPicked && !isAnsKey && (
-                            <span className="ml-2">{t.result.yourAnswer.toLowerCase()}</span>
-                          )}
+                          <span
+                            className={cn(
+                              "shrink-0 inline-flex items-center justify-center size-7 rounded-md text-xs font-semibold border",
+                              isAnsKey
+                                ? "bg-primary text-primary-foreground border-primary"
+                                : userPicked
+                                  ? "bg-card text-foreground border-border"
+                                  : "bg-card text-muted-foreground border-border",
+                            )}
+                          >
+                            {opt.label}
+                          </span>
+                          <span className="flex-1 leading-relaxed pt-0.5 text-foreground/90">
+                            {opt.text}
+                          </span>
                           {isAnsKey && (
-                            <span className="ml-2">
-                              {t.locale === "en" ? "correct" : "kunci"}
-                            </span>
+                            <Check
+                              className="size-4 text-foreground shrink-0 mt-1"
+                              strokeWidth={2}
+                            />
                           )}
-                        </span>
+                        </div>
                       </li>
                     )
                   })}
                 </ul>
+              </article>
 
-                {question.explanation && (
-                  <div className="rounded-md border border-primary/20 bg-primary/5 p-4 text-sm leading-relaxed">
-                    <div className="flex items-center gap-1.5 text-primary mb-2 text-xs uppercase tracking-widest font-semibold">
-                      <Sparkles className="size-3.5" />
-                      {t.study.explanationLabel}
-                    </div>
-                    <p className="text-foreground/90">{question.explanation}</p>
-                  </div>
-                )}
-              </div>
+              {question.explanation && (
+                <div className="rounded-xl border border-[var(--gold)]/40 bg-[var(--review-amber)] px-5 py-4 flex gap-3">
+                  <Lightbulb
+                    className="size-5 shrink-0 text-[var(--review-amber-fg)] mt-0.5"
+                    strokeWidth={1.5}
+                  />
+                  <p className="text-sm italic leading-relaxed text-[var(--review-amber-fg)]">
+                    {question.explanation}
+                  </p>
+                </div>
+              )}
             </section>
 
             {/* RIGHT: Tutor chat */}
@@ -231,24 +232,15 @@ export default async function StudyPage({ params }: PageProps) {
                 maxUserMsgs={5}
                 dict={t.study}
               />
+              <p className="mt-3 text-center text-xs text-muted-foreground">
+                {t.locale === "en"
+                  ? "Cita AI can make mistakes. Verify important information with the official syllabus."
+                  : "Cita AI dapat keliru. Mohon validasi informasi penting dengan silabus resmi."}
+              </p>
             </section>
           </div>
         </div>
       </main>
     </div>
-  )
-}
-
-function CategoryBadge({ category }: { category: Category }) {
-  const tone =
-    category === "TWK"
-      ? "bg-sky-500/15 text-sky-300 border-sky-500/30"
-      : category === "TIU"
-        ? "bg-violet-500/15 text-violet-300 border-violet-500/30"
-        : "bg-emerald-500/15 text-emerald-300 border-emerald-500/30"
-  return (
-    <Badge variant="outline" className={cn("text-[10px] font-semibold", tone)}>
-      {category}
-    </Badge>
   )
 }
