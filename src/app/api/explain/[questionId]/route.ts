@@ -17,8 +17,9 @@
 import { NextRequest } from "next/server"
 import { cookies } from "next/headers"
 import { getServiceClient } from "@/utils/supabase/admin"
-import { buildSystemPrompt, sanitizeUserInput } from "@/lib/tutor"
+import { buildSystemPrompt, sanitizeUserInput, type TutorLocale } from "@/lib/tutor"
 import { makeId } from "@/lib/tryout"
+import { LOCALE_COOKIE, SUPPORTED_LOCALES, DEFAULT_LOCALE } from "@/lib/i18n"
 import type { Question } from "@/lib/types"
 
 export const runtime = "nodejs"
@@ -138,12 +139,20 @@ export async function POST(
 
   const history = (historyRows ?? []) as Array<{ role: string; content: string }>
 
+  // Read locale from cookie (default id)
+  const localeCookie = cookieStore.get(LOCALE_COOKIE)?.value
+  const locale: TutorLocale =
+    localeCookie && (SUPPORTED_LOCALES as readonly string[]).includes(localeCookie)
+      ? (localeCookie as TutorLocale)
+      : (DEFAULT_LOCALE as TutorLocale)
+
   // Build messages for LLM
   const systemPrompt = buildSystemPrompt({
     question: question as Question,
     userAnswer: attemptItem.userAnswer ?? null,
     isCorrect: attemptItem.isCorrect ?? null,
     scoreEarned: attemptItem.scoreEarned ?? 0,
+    locale,
   })
 
   const messages = [

@@ -13,12 +13,32 @@ export interface ChatMessage {
   content: string
 }
 
-const QUICK_PROMPTS = [
-  { label: "Beri analogi sehari-hari", prompt: "Tolong berikan analogi dari kehidupan sehari-hari agar konsep ini lebih mudah saya pahami." },
-  { label: "Jelaskan untuk pemula", prompt: "Mohon jelaskan ulang dengan bahasa yang lebih sederhana, seolah-olah sedang menjelaskan kepada siswa SMP." },
-  { label: "Mengapa opsi lain salah?", prompt: "Mohon bahas satu per satu mengapa opsi-opsi yang salah itu kurang tepat." },
-  { label: "Berikan contoh kasus nyata", prompt: "Mohon berikan satu sampai dua contoh kasus nyata di Indonesia yang mencerminkan jawaban yang benar." },
-] as const
+export interface TutorChatDict {
+  tutorName: string
+  tutorTagline: string
+  remaining: (n: number, max: number) => string
+  thinking: string
+  placeholder: string
+  placeholderLimit: string
+  send: string
+  suggestionsTitle: string
+  closeSuggestions: string
+  emptyTitle: string
+  emptySubtitle: string
+  youLabel: string
+  quickPrompts: {
+    analogy: string
+    eli5: string
+    whyWrong: string
+    realCase: string
+  }
+  quickPromptTexts: {
+    analogy: string
+    eli5: string
+    whyWrong: string
+    realCase: string
+  }
+}
 
 interface TutorChatProps {
   attemptId: string
@@ -26,6 +46,7 @@ interface TutorChatProps {
   initialMessages: ChatMessage[]
   initialUserMsgCount: number
   maxUserMsgs: number
+  dict: TutorChatDict
 }
 
 export function TutorChat({
@@ -34,7 +55,14 @@ export function TutorChat({
   initialMessages,
   initialUserMsgCount,
   maxUserMsgs,
+  dict,
 }: TutorChatProps) {
+  const QUICK_PROMPTS = [
+    { label: dict.quickPrompts.analogy, prompt: dict.quickPromptTexts.analogy },
+    { label: dict.quickPrompts.eli5, prompt: dict.quickPromptTexts.eli5 },
+    { label: dict.quickPrompts.whyWrong, prompt: dict.quickPromptTexts.whyWrong },
+    { label: dict.quickPrompts.realCase, prompt: dict.quickPromptTexts.realCase },
+  ]
   const [messages, setMessages] = useState<ChatMessage[]>(initialMessages)
   const [userMsgCount, setUserMsgCount] = useState(initialUserMsgCount)
   const [input, setInput] = useState("")
@@ -183,14 +211,14 @@ export function TutorChat({
             <Sparkles className="size-4 text-primary" />
           </div>
           <div>
-            <h2 className="font-semibold text-sm">Cita Tutor</h2>
+            <h2 className="font-semibold text-sm">{dict.tutorName}</h2>
             <p className="text-xs text-muted-foreground">
-              Diskusi soal ini dengan AI
+              {dict.tutorTagline}
             </p>
           </div>
         </div>
         <span className="text-xs text-muted-foreground tabular-nums">
-          {remaining}/{maxUserMsgs} pertanyaan tersisa
+          {dict.remaining(remaining, maxUserMsgs)}
         </span>
       </div>
 
@@ -199,19 +227,19 @@ export function TutorChat({
         {messages.length === 0 && (
           <div className="text-sm text-muted-foreground text-center py-8 max-w-prose mx-auto">
             <Sparkles className="size-6 text-primary mx-auto mb-3" />
-            <p className="font-medium text-foreground/90 mb-1">Tanya apa aja soal soal ini.</p>
-            <p>Tutor udah tau soal, kunci, dan jawaban lo. Mulai dari prompt cepat di bawah, atau ketik pertanyaan sendiri.</p>
+            <p className="font-medium text-foreground/90 mb-1">{dict.emptyTitle}</p>
+            <p>{dict.emptySubtitle}</p>
           </div>
         )}
 
         {messages.map((m) => (
-          <MessageBubble key={m.id} role={m.role} content={m.content} />
+          <MessageBubble key={m.id} role={m.role} content={m.content} youLabel={dict.youLabel} />
         ))}
 
         {isStreaming && messages[messages.length - 1]?.content === "" && (
           <div className="flex items-center gap-2 text-sm text-muted-foreground pl-11">
             <PulseDots />
-            <span>Tutor sedang menyusun jawaban...</span>
+            <span>{dict.thinking}</span>
           </div>
         )}
 
@@ -230,12 +258,12 @@ export function TutorChat({
         <div className="border-t border-border/40 px-5 py-3 relative">
           <div className="flex items-start justify-between gap-3 mb-2">
             <span className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/80">
-              Saran pertanyaan
+              {dict.suggestionsTitle}
             </span>
             <button
               type="button"
               onClick={() => setShowQuickPrompts(false)}
-              aria-label="Tutup saran pertanyaan"
+              aria-label={dict.closeSuggestions}
               className="text-muted-foreground/60 hover:text-foreground transition-colors -mr-1 -mt-1 p-1 rounded hover:bg-accent/40"
             >
               <X className="size-3.5" />
@@ -277,8 +305,8 @@ export function TutorChat({
           }}
           placeholder={
             remaining > 0
-              ? "Tanya apa aja... (Enter buat kirim, Shift+Enter buat baris baru)"
-              : "Batas pertanyaan tercapai. Lanjut ke soal lain ya."
+              ? dict.placeholder
+              : dict.placeholderLimit
           }
           maxLength={500}
           rows={1}
@@ -296,14 +324,14 @@ export function TutorChat({
           className="shrink-0"
         >
           <Send className="size-4" />
-          <span className="hidden sm:inline ml-1">Kirim</span>
+          <span className="hidden sm:inline ml-1">{dict.send}</span>
         </Button>
       </form>
     </div>
   )
 }
 
-function MessageBubble({ role, content }: { role: "user" | "assistant"; content: string }) {
+function MessageBubble({ role, content, youLabel }: { role: "user" | "assistant"; content: string; youLabel: string }) {
   const isUser = role === "user"
   return (
     <div className={cn("flex gap-3", isUser && "flex-row-reverse")}>
@@ -315,7 +343,7 @@ function MessageBubble({ role, content }: { role: "user" | "assistant"; content:
             : "bg-primary/15 border border-primary/30 text-primary",
         )}
       >
-        {isUser ? "Anda" : <Sparkles className="size-4" />}
+        {isUser ? youLabel : <Sparkles className="size-4" />}
       </div>
       <div
         className={cn(

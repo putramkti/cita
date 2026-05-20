@@ -3,12 +3,14 @@ import { startTryout } from "./actions"
 import { Button } from "@/components/ui/button"
 import { SiteHeader } from "@/components/layout/site-header"
 import { SiteFooter } from "@/components/layout/site-footer"
+import { getDict } from "@/lib/i18n"
 
 export const metadata = {
   title: "Mulai Tryout SKD CPNS",
 }
 
-export default function TryoutLandingPage() {
+export default async function TryoutLandingPage() {
+  const t = await getDict()
   return (
     <>
       <SiteHeader />
@@ -16,64 +18,44 @@ export default function TryoutLandingPage() {
         <div className="mx-auto max-w-2xl">
           <div className="mb-8 text-center">
             <p className="text-xs uppercase tracking-widest text-muted-foreground mb-3">
-              Tryout SKD
+              SKD Mock Test
             </p>
             <h1 className="text-3xl sm:text-4xl font-bold tracking-tight">
-              Siap untuk 30 menit fokus?
+              {t.tryout.briefingTitle}
             </h1>
             <p className="mt-3 text-muted-foreground text-balance">
-              30 soal SKD original — TWK, TIU, dan TKP. Sekali mulai, timer
-              berjalan terus sampai selesai atau habis.
+              {t.tryout.briefingSubtitle}
             </p>
           </div>
 
-          {/* Briefing card */}
           <div className="rounded-2xl border border-border/60 bg-card/40 p-6 sm:p-8 backdrop-blur space-y-5">
-            <h2 className="text-lg font-semibold">Yang perlu lo tau</h2>
             <ul className="space-y-3 text-sm">
-              <Bullet>
-                <strong className="text-foreground">30 soal · 30 menit.</strong>{" "}
-                10 TWK + 10 TIU + 10 TKP. Boleh skip dan balik lagi.
-              </Bullet>
-              <Bullet>
-                <strong className="text-foreground">Skor instan.</strong>{" "}
-                Begitu lo submit (atau timer habis), nilai per kategori &
-                kelulusan langsung muncul.
-              </Bullet>
-              <Bullet>
-                <strong className="text-foreground">AI explainer.</strong>{" "}
-                Setiap soal punya penjelasan kenapa jawaban itu paling tepat.
-              </Bullet>
-              <Bullet>
-                <strong className="text-foreground">Tanpa daftar.</strong>{" "}
-                Sesi dibuat anonim. Kalau mau simpan riwayat, login email pas
-                selesai.
-              </Bullet>
+              <Bullet>{t.tryout.rule1}</Bullet>
+              <Bullet>{t.tryout.rule2}</Bullet>
+              <Bullet>{t.tryout.rule3}</Bullet>
+              <Bullet>{t.tryout.rule4}</Bullet>
             </ul>
 
             <form action={startTryout} className="pt-3">
               <Button type="submit" size="lg" className="w-full px-7">
-                Mulai sekarang
+                {t.tryout.startNow}
               </Button>
             </form>
             <p className="text-center text-xs text-muted-foreground">
-              Dengan memulai, lo setuju dengan{" "}
+              {t.tryout.legalNote}{" "}
               <Link href="/terms" className="underline hover:text-foreground">
-                Ketentuan
+                {t.footer.terms}
               </Link>{" "}
-              &{" "}
+              {t.tryout.and}{" "}
               <Link href="/privacy" className="underline hover:text-foreground">
-                Privasi
-              </Link>{" "}
-              Cita.
+                {t.footer.privacy}
+              </Link>
+              {" "}Cita.
             </p>
           </div>
 
-          {/* Disclaimer */}
           <p className="mt-8 text-center text-xs text-muted-foreground/70">
-            Cita adalah platform persiapan SKD CPNS independen.
-            <br />
-            Tidak berafiliasi dengan BKN, BKPSDM, atau lembaga resmi manapun.
+            {t.footer.disclaimer}
           </p>
         </div>
       </main>

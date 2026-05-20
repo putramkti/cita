@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { TutorChat } from "./tutor-chat"
 import type { AttemptItem, Category, Question } from "@/lib/types"
 import { cn } from "@/lib/utils"
+import { getDict } from "@/lib/i18n"
 
 export const dynamic = "force-dynamic"
 
@@ -17,6 +18,7 @@ interface PageProps {
 
 export default async function StudyPage({ params }: PageProps) {
   const { attemptId, questionId } = await params
+  const t = await getDict()
 
   // Auth: must own the attempt via cookie
   const cookieStore = await cookies()
@@ -113,7 +115,7 @@ export default async function StudyPage({ params }: PageProps) {
               className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
               <ArrowLeft className="size-4" />
-              Kembali ke hasil
+              {t.study.backToResult}
             </Link>
             <div className="flex items-center gap-2">
               {prevQ && (
@@ -121,7 +123,7 @@ export default async function StudyPage({ params }: PageProps) {
                   href={`/study/${attemptId}/${prevQ}`}
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors px-2"
                 >
-                  ← Soal sebelumnya
+                  ← {t.study.prevQuestion}
                 </Link>
               )}
               {nextQ && (
@@ -129,7 +131,7 @@ export default async function StudyPage({ params }: PageProps) {
                   href={`/study/${attemptId}/${nextQ}`}
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors px-2"
                 >
-                  Soal selanjutnya →
+                  {t.study.nextQuestion} →
                 </Link>
               )}
             </div>
@@ -143,7 +145,11 @@ export default async function StudyPage({ params }: PageProps) {
                   <CategoryBadge category={question.category} />
                   <span className="text-muted-foreground">{question.subcategory}</span>
                   <span className="text-muted-foreground">·</span>
-                  <span className="text-muted-foreground">Tingkat {question.difficulty}/5</span>
+                  <span className="text-muted-foreground">
+                    {t.locale === "en"
+                      ? `Difficulty ${question.difficulty}/5`
+                      : `Tingkat ${question.difficulty}/5`}
+                  </span>
                 </div>
 
                 <h1 className="text-xl sm:text-2xl font-semibold leading-relaxed">
@@ -184,11 +190,19 @@ export default async function StudyPage({ params }: PageProps) {
                         </span>
                         <span className="flex-1 leading-relaxed pt-0.5">{opt.text}</span>
                         <span className="text-xs text-muted-foreground shrink-0 pt-1">
-                          {weight !== null && <span>bobot {weight}</span>}
-                          {userPicked && !isAnsKey && (
-                            <span className="ml-2">jawaban lo</span>
+                          {weight !== null && (
+                            <span>
+                              {t.locale === "en" ? `weight ${weight}` : `bobot ${weight}`}
+                            </span>
                           )}
-                          {isAnsKey && <span className="ml-2">kunci</span>}
+                          {userPicked && !isAnsKey && (
+                            <span className="ml-2">{t.result.yourAnswer.toLowerCase()}</span>
+                          )}
+                          {isAnsKey && (
+                            <span className="ml-2">
+                              {t.locale === "en" ? "correct" : "kunci"}
+                            </span>
+                          )}
                         </span>
                       </li>
                     )
@@ -199,7 +213,7 @@ export default async function StudyPage({ params }: PageProps) {
                   <div className="rounded-md border border-primary/20 bg-primary/5 p-4 text-sm leading-relaxed">
                     <div className="flex items-center gap-1.5 text-primary mb-2 text-xs uppercase tracking-widest font-semibold">
                       <Sparkles className="size-3.5" />
-                      Penjelasan dasar
+                      {t.study.explanationLabel}
                     </div>
                     <p className="text-foreground/90">{question.explanation}</p>
                   </div>
@@ -215,6 +229,7 @@ export default async function StudyPage({ params }: PageProps) {
                 initialMessages={initialMessages}
                 initialUserMsgCount={userMsgCount}
                 maxUserMsgs={5}
+                dict={t.study}
               />
             </section>
           </div>

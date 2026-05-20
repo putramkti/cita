@@ -4,8 +4,14 @@ import { Button } from "@/components/ui/button"
 import { SiteHeader } from "@/components/layout/site-header"
 import { SiteFooter } from "@/components/layout/site-footer"
 import { Logo } from "@/components/brand/logo"
+import { getDict } from "@/lib/i18n"
 
-export default function HomePage() {
+export default async function HomePage() {
+  const t = await getDict()
+  // Split heroTitle into 2 lines on the comma/em-dash for visual stacking
+  const titleParts = t.landing.heroTitle.split(/[,—]/)
+  const titleLine1 = titleParts[0]?.trim() ?? t.landing.heroTitle
+  const titleLine2 = titleParts.slice(1).join(", ").trim()
   return (
     <>
       <SiteHeader />
@@ -15,30 +21,31 @@ export default function HomePage() {
           <div className="mx-auto max-w-3xl text-center">
             <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-border/60 bg-card/40 px-3 py-1 text-xs text-muted-foreground backdrop-blur">
               <span className="size-1.5 rounded-full bg-primary animate-pulse" />
-              Latihan SKD CPNS dengan AI explainer
+              {t.landing.heroEyebrow}
             </div>
             <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-balance leading-[1.05]">
-              Cita-cita jadi ASN,
-              <br />
-              <span className="bg-gradient-to-br from-primary to-sky-300 bg-clip-text text-transparent">
-                dimulai dari latihan tenang.
-              </span>
+              {titleLine1}
+              {titleLine2 && (
+                <>
+                  ,
+                  <br />
+                  <span className="bg-gradient-to-br from-primary to-sky-300 bg-clip-text text-transparent">
+                    {titleLine2}
+                  </span>
+                </>
+              )}
             </h1>
             <p className="mt-6 text-lg text-muted-foreground text-balance">
-              30 soal SKD original (TWK · TIU · TKP). Timer 30 menit. Penjelasan
-              AI per soal. Tanpa drama, tanpa iklan, tanpa typo.
+              {t.landing.heroSubtitle}
             </p>
             <div className="mt-9 flex items-center justify-center gap-3 flex-wrap">
               <Button asChild size="lg" className="px-7">
-                <Link href="/tryout">Mulai Tryout Gratis</Link>
+                <Link href="/tryout">{t.landing.ctaStart}</Link>
               </Button>
               <Button asChild size="lg" variant="outline">
-                <Link href="#fitur">Lihat fitur</Link>
+                <Link href="/leaderboard">{t.landing.ctaLeaderboard}</Link>
               </Button>
             </div>
-            <p className="mt-5 text-xs text-muted-foreground">
-              Tanpa daftar dulu juga bisa. Login opsional untuk simpan riwayat.
-            </p>
           </div>
 
           {/* Subtle logo glow underneath hero */}
@@ -51,23 +58,23 @@ export default function HomePage() {
         <section id="fitur" className="px-4 py-16 border-t border-border/40">
           <div className="mx-auto max-w-5xl">
             <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-center mb-12">
-              Tiga hal yang bikin Cita beda
+              {t.landing.featuresTitle}
             </h2>
             <div className="grid sm:grid-cols-3 gap-5">
               <FeatureCard
                 icon={<Compass className="size-5" />}
-                title="Soal original"
-                desc="Disusun dari kerangka materi SKD resmi. Bukan scrape bank soal acak. Setiap soal punya difficulty, kategori, dan subtema yang jelas."
+                title={t.landing.feat1Title}
+                desc={t.landing.feat1Desc}
               />
               <FeatureCard
                 icon={<Brain className="size-5" />}
-                title="AI explainer"
-                desc="Salah jawaban gak cuma dapet kunci. Setiap soal punya penjelasan kenapa jawaban itu paling tepat — singkat, padat, mudah diingat."
+                title={t.landing.feat2Title}
+                desc={t.landing.feat2Desc}
               />
               <FeatureCard
                 icon={<Sparkles className="size-5" />}
-                title="Fokus, bukan ramai"
-                desc="UI tenang. Tanpa iklan, tanpa popup, tanpa countdown drama. Saat tes butuh konsentrasi, bukan distraksi."
+                title={t.landing.feat3Title}
+                desc={t.landing.feat3Desc}
               />
             </div>
           </div>
@@ -77,17 +84,12 @@ export default function HomePage() {
         <section className="px-4 py-16">
           <div className="mx-auto max-w-2xl rounded-2xl border border-border/60 bg-card/50 p-8 sm:p-10 text-center backdrop-blur">
             <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
-              Siap latihan 30 menit?
+              {t.landing.bottomCtaTitle}
             </h2>
-            <p className="mt-3 text-muted-foreground">
-              30 soal · timer 30 menit · skor instan · penjelasan AI per soal.
-            </p>
+            <p className="mt-3 text-muted-foreground">{t.landing.bottomCtaSubtitle}</p>
             <Button asChild size="lg" className="mt-7 px-7">
-              <Link href="/tryout">Mulai sekarang</Link>
+              <Link href="/tryout">{t.tryout.startNow}</Link>
             </Button>
-            <p className="mt-3 text-xs text-muted-foreground">
-              Tidak perlu kartu kredit. Tidak perlu instal apapun.
-            </p>
           </div>
         </section>
       </main>
