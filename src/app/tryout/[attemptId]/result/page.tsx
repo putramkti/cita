@@ -281,6 +281,15 @@ export default async function ResultPage({ params }: PageProps) {
                         <p className="text-foreground/90">{q.explanation}</p>
                       </div>
                     )}
+                    <div className="mt-3 flex justify-end">
+                      <Link
+                        href={`/study/${attemptId}/${q.id}`}
+                        className="inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:text-primary/80 transition-colors"
+                      >
+                        <Sparkles className="size-3.5" />
+                        Tanya Cita Tutor →
+                      </Link>
+                    </div>
                   </div>
                 )
               })}

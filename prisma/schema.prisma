@@ -82,19 +82,33 @@ model Attempt {
 }
 
 model AttemptItem {
-  id          String   @id @default(cuid())
-  attemptId   String
-  attempt     Attempt  @relation(fields: [attemptId], references: [id], onDelete: Cascade)
-  questionId  String
-  question    Question @relation(fields: [questionId], references: [id])
-  // null = belum dijawab
-  userAnswer  String?
-  isCorrect   Boolean?
-  scoreEarned Int      @default(0)
-  timeSpentMs Int?
-  answeredAt  DateTime?
+  id           String   @id
+  attemptId    String
+  questionId   String
+  userAnswer   String?  // 'A' | 'B' | 'C' | 'D' | 'E' | null (skipped)
+  isCorrect    Boolean? // null until graded; for TKP it's always null (always partial credit)
+  scoreEarned  Int      @default(0)
+  timeSpentMs  Int      @default(0)
+  answeredAt   DateTime?
+
+  attempt  Attempt  @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  question Question @relation(fields: [questionId], references: [id], onDelete: Restrict)
 
   @@unique([attemptId, questionId])
   @@index([attemptId])
   @@map("attempt_items")
+}
+
+model ExplainerMessage {
+  id         String   @id
+  attemptId  String
+  questionId String
+  role       String   // 'user' | 'assistant'
+  content    String
+  tokens     Int?
+  createdAt  DateTime @default(now())
+
+  @@index([attemptId, questionId, createdAt])
+  @@index([attemptId])
+  @@map("explainer_messages")
 }
