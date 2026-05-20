@@ -2,14 +2,23 @@ import Link from "next/link"
 import { Compass, Heart, ShieldCheck, Sparkles } from "lucide-react"
 import { SiteHeader } from "@/components/layout/site-header"
 import { SiteFooter } from "@/components/layout/site-footer"
+import { getDict, getLocale } from "@/lib/i18n"
 
-export const metadata = {
-  title: "Tentang Cita · Latihan SKD CPNS yang tenang, fokus, akurat",
-  description:
-    "Tentang Cita: produk independen untuk latihan tryout SKD CPNS, dibangun supaya proses persiapan terasa tenang dan terukur.",
+const REPO_URL = "https://github.com/putramkti/cita"
+const ISSUES_URL = "https://github.com/putramkti/cita/issues/new"
+
+export async function generateMetadata() {
+  const t = await getDict()
+  return {
+    title: `${t.about.title} · Cita`,
+    description: t.about.subtitle,
+  }
 }
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const t = await getDict()
+  const locale = await getLocale()
+
   return (
     <>
       <SiteHeader />
@@ -17,111 +26,114 @@ export default function AboutPage() {
         <article className="mx-auto max-w-2xl space-y-10">
           <header>
             <h1 className="text-3xl sm:text-4xl font-bold tracking-tight mb-3">
-              Tentang Cita
+              {t.about.title}
             </h1>
             <p className="text-muted-foreground text-balance">
-              Latihan SKD CPNS yang tenang, fokus, akurat. Dibangun untuk lo yang
-              cita-citanya jadi ASN, dan butuh teman latihan yang bisa diandalkan tanpa
-              membuat panik.
+              {t.about.subtitle}
             </p>
           </header>
 
           <section className="space-y-3 text-[15px] leading-relaxed text-foreground/90">
-            <h2 className="text-lg font-semibold">Kenapa Cita ada</h2>
-            <p>
-              Persiapan SKD itu berat. Soalnya banyak, materinya luas, dan nggak semua orang
-              punya akses bimbel. Sebagian aplikasi tryout di luar sana penuh iklan,
-              memaksa daftar akun sebelum lo bisa ngerasain produknya, atau ngasih
-              pembahasan yang asal.
-            </p>
-            <p>
-              Cita dibangun atas premis sederhana: lo harus bisa langsung nyoba 30 soal
-              dalam 30 menit, dapet skor jujur, dan baca pembahasan yang masuk akal.
-              Tanpa wajib daftar, tanpa iklan, tanpa drama.
-            </p>
+            <h2 className="text-lg font-semibold">{t.about.whyTitle}</h2>
+            <p>{t.about.why1}</p>
+            <p>{t.about.why2}</p>
           </section>
 
           <section className="grid sm:grid-cols-3 gap-4">
-            <Card icon={<Compass className="size-5" />} title="Tenang">
-              UI sengaja dibikin minim distraksi. Dark mode default, tipografi yang nyaman
-              dibaca lama, animasi yang nggak rame.
+            <Card icon={<Compass className="size-5" />} title={t.about.cardCalmTitle}>
+              {t.about.cardCalmDesc}
             </Card>
-            <Card icon={<Sparkles className="size-5" />} title="Fokus">
-              Satu sesi tryout = 30 soal × 30 menit. Cukup pendek buat dilakuin tiap hari,
-              cukup panjang buat melatih ritme ujian beneran.
+            <Card icon={<Sparkles className="size-5" />} title={t.about.cardFocusTitle}>
+              {t.about.cardFocusDesc}
             </Card>
-            <Card icon={<ShieldCheck className="size-5" />} title="Akurat">
-              Soal disusun mengikuti pola SKD terkini (Permen PANRB), pembahasan
-              di-generate Claude Opus 4.7 dan divalidasi tim Cita.
+            <Card icon={<ShieldCheck className="size-5" />} title={t.about.cardAccurateTitle}>
+              {t.about.cardAccurateDesc}
             </Card>
           </section>
 
           <section className="space-y-3 text-[15px] leading-relaxed text-foreground/90">
-            <h2 className="text-lg font-semibold">Yang membedakan Cita</h2>
+            <h2 className="text-lg font-semibold">{t.about.featuresTitle}</h2>
             <ul className="list-disc pl-5 space-y-2">
               <li>
-                <strong>Anonymous-first.</strong> Lo bisa langsung tryout tanpa daftar.
-                Kalau mau simpan riwayat lintas perangkat, baru daftar email — opsional.
+                <strong>{t.about.feat1Bold}</strong> {t.about.feat1}
               </li>
               <li>
-                <strong>AI-powered explainer.</strong> Tiap soal punya pembahasan yang
-                disusun bersama Claude Opus 4.7, jadi lo nggak cuma tau jawaban benar
-                tapi juga <em>kenapa</em> jawabannya begitu.
+                <strong>{t.about.feat2Bold}</strong> {t.about.feat2}
               </li>
               <li>
-                <strong>Skoring sesuai aturan resmi.</strong> TWK & TIU pakai sistem
-                benar = 5, salah = 0. TKP pakai bobot 1–5 sesuai pola SKD CPNS resmi.
+                <strong>{t.about.feat3Bold}</strong> {t.about.feat3}
               </li>
               <li>
-                <strong>Open & transparan.</strong> Cita open-source di GitHub. Lo bisa
-                ikut review soal, lapor bug, atau bikin pull request.
+                <strong>{t.about.feat4Bold}</strong> {t.about.feat4}
+              </li>
+              <li>
+                <strong>{t.about.feat5Bold}</strong>{" "}
+                {t.about.feat5}{" "}
+                <a
+                  href={REPO_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary underline underline-offset-2 hover:no-underline"
+                >
+                  github.com/putramkti/cita
+                </a>
               </li>
             </ul>
           </section>
 
           <section className="space-y-3 text-[15px] leading-relaxed text-foreground/90">
-            <h2 className="text-lg font-semibold">Disclaimer</h2>
-            <div className="rounded-xl border border-amber-500/30 bg-amber-500/5 p-4 text-sm">
-              Cita adalah produk independen dan{" "}
-              <strong>tidak berafiliasi dengan BKN, Kementerian PANRB, atau instansi
-              pemerintah Republik Indonesia manapun.</strong>{" "}
-              Soal di Cita disusun untuk latihan dan tidak mencerminkan soal resmi
-              seleksi CPNS. Skor di Cita bukan jaminan kelulusan tes resmi.
+            <h2 className="text-lg font-semibold">{t.about.stackTitle}</h2>
+            <p className="text-muted-foreground">{t.about.stackBody}</p>
+          </section>
+
+          <section className="space-y-3 text-[15px] leading-relaxed text-foreground/90">
+            <h2 className="text-lg font-semibold">{t.about.disclaimerTitle}</h2>
+            <div className="rounded-xl border border-amber-500/30 bg-amber-500/5 p-4 text-sm space-y-2">
+              <p>
+                <strong>{t.about.disclaimerBody1Bold}</strong>
+              </p>
+              <p className="text-muted-foreground">{t.about.disclaimerBody2}</p>
             </div>
           </section>
 
           <section className="space-y-3 text-[15px] leading-relaxed text-foreground/90">
             <h2 className="text-lg font-semibold flex items-center gap-2">
-              <Heart className="size-4 text-rose-400" />
-              Tim
+              <Heart className="size-4 text-rose-400" aria-hidden="true" />
+              {t.about.teamTitle}
             </h2>
+            <p>{t.about.teamBody1}</p>
             <p>
-              Cita dibangun oleh founder solo, didukung agen kecerdasan buatan untuk
-              produksi konten dan pembahasan. Kami percaya tools yang bagus bisa
-              membantu lo siap lebih cepat dengan ongkos belajar yang lebih wajar.
-            </p>
-            <p>
-              Punya saran, laporan soal yang janggal, atau mau kolaborasi?{" "}
+              {t.about.teamBody2}{" "}
               <a
-                href="mailto:hello@cita.example"
-                className="text-primary underline"
+                href={ISSUES_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary underline underline-offset-2 hover:no-underline"
               >
-                hello@cita.example
+                {t.about.teamLinkLabel}
               </a>
               .
             </p>
           </section>
 
-          <div className="mt-6 flex gap-4 text-sm">
+          <div className="mt-6 flex flex-wrap gap-4 text-sm" lang={locale}>
             <Link href="/" className="text-primary hover:underline">
-              Kembali ke beranda
+              {t.about.backHome}
             </Link>
             <Link href="/privacy" className="text-primary hover:underline">
-              Privasi
+              {t.about.privacy}
             </Link>
             <Link href="/terms" className="text-primary hover:underline">
-              Ketentuan
+              {t.about.terms}
             </Link>
+            <a
+              href={REPO_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ml-auto text-muted-foreground hover:text-foreground transition-colors"
+            >
+              GitHub
+            </a>
           </div>
         </article>
       </main>

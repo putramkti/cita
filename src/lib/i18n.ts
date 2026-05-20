@@ -139,6 +139,52 @@ const dictionaries = {
       lightMode: "Mode terang",
       languageToggle: "Bahasa",
     },
+    about: {
+      title: "Tentang Cita",
+      subtitle:
+        "Platform tutor SKD CPNS bertenaga AI dengan pendekatan tenang, fokus, dan akurat. Dibangun untuk Anda yang ingin berlatih tanpa friksi.",
+      whyTitle: "Mengapa Cita ada",
+      why1:
+        "Indonesia mencatat jutaan pelamar SKD CPNS pada tiap siklus. Sebagian besar platform persiapan menutup pembahasan di balik paywall, atau hanya menyajikan jawaban statis tanpa kedalaman pedagogis.",
+      why2:
+        "Cita berdiri dari premis sederhana: Anda harus dapat mencoba 30 soal dalam 30 menit, melihat skor jujur, dan membahas tiap soal lebih dalam dengan tutor AI — tanpa wajib mendaftar, tanpa iklan, tanpa hambatan.",
+      cardCalmTitle: "Tenang",
+      cardCalmDesc:
+        "Antarmuka sengaja dirancang minim distraksi. Mode gelap default, tipografi nyaman dibaca, animasi seperlunya.",
+      cardFocusTitle: "Fokus",
+      cardFocusDesc:
+        "Satu sesi tryout berdurasi 30 soal × 30 menit. Cukup ringkas untuk dilakukan harian, cukup realistis untuk melatih ritme ujian.",
+      cardAccurateTitle: "Akurat",
+      cardAccurateDesc:
+        "Soal mengikuti pola SKD terkini, pembahasan dasar dihasilkan oleh model penalaran tingkat lanjut dan ditinjau ulang.",
+      featuresTitle: "Yang membuat Cita berbeda",
+      feat1Bold: "Anonymous-first.",
+      feat1: "Anda dapat memulai tryout tanpa pendaftaran. Sesi terikat cookie sudah cukup untuk menyimpan progres.",
+      feat2Bold: "Cita Tutor.",
+      feat2: "Diskusi mendalam per soal dengan AI yang sudah memahami konteks Anda — soal, jawaban Anda, kunci, dan tingkat kesulitan. Maksimum 5 pertanyaan per soal, ditegakkan di sisi server.",
+      feat3Bold: "Bilingual.",
+      feat3: "Antarmuka tersedia dalam Bahasa Indonesia dan Inggris. Tutor mengikuti pilihan bahasa Anda dan menerjemahkan istilah lokal saat dibutuhkan.",
+      feat4Bold: "Tema terang dan gelap.",
+      feat4: "Sakelar tema di header. Preferensi disimpan agar konsisten antar kunjungan.",
+      feat5Bold: "Sumber terbuka.",
+      feat5: "Repositori publik di GitHub. Anda dapat membaca kode, mengirim laporan bug, atau berkontribusi.",
+      stackTitle: "Tumpukan teknologi",
+      stackBody:
+        "Next.js 16 (App Router) · TypeScript 5 · Tailwind CSS 4 · shadcn/ui · Supabase Postgres · Vercel · pnpm. Gateway LLM kompatibel OpenAI sehingga model yang melayani tutor dapat dipertukarkan tanpa perubahan kode.",
+      disclaimerTitle: "Pernyataan",
+      disclaimerBody1Bold: "Cita adalah produk independen dan tidak berafiliasi dengan, tidak didukung oleh, serta tidak dioperasikan atas nama Badan Kepegawaian Negara (BKN), Kementerian PANRB, atau lembaga pemerintah Republik Indonesia mana pun.",
+      disclaimerBody2:
+        "Soal di Cita disusun untuk keperluan latihan dan tidak merepresentasikan ujian SKD CPNS resmi. Skor di Cita bukan jaminan kelulusan ujian resmi. Untuk informasi otoritatif, rujuk ke sumber resmi BKN.",
+      teamTitle: "Tim",
+      teamBody1:
+        "Cita dibangun oleh founder solo dengan dukungan agen AI untuk eksekusi pengembangan dan pembuatan konten. Kami percaya tooling yang baik dapat memperpendek jarak antara Anda dan persiapan ujian yang berkualitas.",
+      teamBody2:
+        "Punya saran, menemukan soal yang janggal, atau ingin berkontribusi?",
+      teamLinkLabel: "Buka Issue di GitHub",
+      backHome: "Kembali ke beranda",
+      privacy: "Privasi",
+      terms: "Ketentuan",
+    },
     meta: {
       examLabel: "Tipe soal", // shown next to question category for clarity
     },
@@ -263,6 +309,52 @@ const dictionaries = {
       darkMode: "Dark mode",
       lightMode: "Light mode",
       languageToggle: "Language",
+    },
+    about: {
+      title: "About Cita",
+      subtitle:
+        "An AI-powered Indonesian Civil Service Exam (SKD CPNS) tutoring platform with a calm, focused, accurate approach. Built for people who want to practice without friction.",
+      whyTitle: "Why Cita exists",
+      why1:
+        "Each cycle, millions of Indonesians sit for the SKD CPNS exam. Most prep platforms paywall the explanation step or ship static answers with no pedagogical depth.",
+      why2:
+        "Cita stands on a simple premise: you should be able to attempt 30 questions in 30 minutes, see an honest score, and discuss each question with an AI tutor — no signup, no ads, no friction.",
+      cardCalmTitle: "Calm",
+      cardCalmDesc:
+        "The interface is intentionally low-distraction. Dark mode by default, comfortable typography, animation only where it helps.",
+      cardFocusTitle: "Focused",
+      cardFocusDesc:
+        "Each session is 30 questions × 30 minutes. Short enough to do daily, realistic enough to train your exam pacing.",
+      cardAccurateTitle: "Accurate",
+      cardAccurateDesc:
+        "Questions follow current SKD patterns; baseline explanations are generated by a frontier reasoning model and reviewed.",
+      featuresTitle: "What sets Cita apart",
+      feat1Bold: "Anonymous-first.",
+      feat1: "You can take a mock test without registering. A cookie-bound session is enough to track progress.",
+      feat2Bold: "Cita Tutor.",
+      feat2: "A per-question AI conversation that already knows your context — the question, your answer, the correct answer, and the difficulty. Up to 5 messages per question, enforced server-side.",
+      feat3Bold: "Bilingual.",
+      feat3: "The interface is available in Indonesian and English. The tutor follows your locale and translates Indonesian-specific terms when needed.",
+      feat4Bold: "Light and dark mode.",
+      feat4: "Theme toggle in the header. Your preference persists across visits.",
+      feat5Bold: "Open source.",
+      feat5: "Public repository on GitHub. You can read the code, file bugs, or contribute.",
+      stackTitle: "Tech stack",
+      stackBody:
+        "Next.js 16 (App Router) · TypeScript 5 · Tailwind CSS 4 · shadcn/ui · Supabase Postgres · Vercel · pnpm. The LLM gateway is OpenAI-compatible, so the model serving the tutor can be swapped without code changes.",
+      disclaimerTitle: "Disclaimer",
+      disclaimerBody1Bold: "Cita is an independent product and is not affiliated with, endorsed by, or operated on behalf of Badan Kepegawaian Negara (BKN), the Ministry of PANRB, or any agency of the Government of the Republic of Indonesia.",
+      disclaimerBody2:
+        "Question content is created for practice only and does not represent any official SKD CPNS examination. Scores on Cita are not a guarantee of passing the official exam. For authoritative information, consult primary BKN sources.",
+      teamTitle: "Team",
+      teamBody1:
+        "Cita is built by a solo founder with the help of AI agents for development execution and content generation. We believe good tooling can shorten the distance between you and high-quality exam preparation.",
+      teamBody2:
+        "Have a suggestion, found a question that looks off, or want to contribute?",
+      teamLinkLabel: "Open an issue on GitHub",
+      backHome: "Back to home",
+      privacy: "Privacy",
+      terms: "Terms",
     },
     meta: {
       examLabel: "Question type",
