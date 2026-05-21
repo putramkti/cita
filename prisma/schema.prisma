@@ -55,15 +55,31 @@ enum QuestionStatus {
   ARCHIVED
 }
 
+// Cita Role hierarchy (Phase 8)
+//   REGISTERED  default after sign-up
+//   PREMIUM     subscription-driven (also tracked in Subscription, but mirrored here for fast filter)
+//   MODERATOR   read + edit content, no user/billing access
+//   ADMIN       full access; gates /admin/*
+//
+// Note: ANON is implicit — visitors without a Cita user row. Don't store ANON in DB.
+enum Role {
+  REGISTERED
+  PREMIUM
+  MODERATOR
+  ADMIN
+}
+
 model User {
   id          String    @id @default(cuid())
   email       String?   @unique
   displayName String?
   isAnonymous Boolean   @default(true)
+  role        Role      @default(REGISTERED)
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
   attempts    Attempt[]
 
+  @@index([role])
   @@map("users")
 }
 

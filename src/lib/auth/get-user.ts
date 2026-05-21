@@ -1,5 +1,6 @@
 import "server-only";
 import { createClient } from "@/utils/supabase/server";
+import { prisma } from "@/lib/db/prisma";
 import type { User } from "@supabase/supabase-js";
 
 /**
@@ -12,7 +13,9 @@ import type { User } from "@supabase/supabase-js";
  *   MODERATOR  → content review, no admin powers
  *   ADMIN      → full access
  *
- * Stored in `user_metadata.role` (default: REGISTERED on first login).
+ * Stored in DB `users.role` column (Phase 8). Default: REGISTERED on first login.
+ * Migrated from `user_metadata.role` (Phase 4) to dedicated DB column for
+ * fast SQL filter at /admin/users and consistency with billing logic.
  */
 export type CitaRole =
   | "ANON"
@@ -34,6 +37,11 @@ export type CitaUser = {
 /**
  * Get current authenticated user (server-side, RSC-safe).
  * Returns null for anonymous visitors.
+ *
+ * Resolves role from `users.role` DB column. Falls back to REGISTERED
+ * if the row exists but role is unset (shouldn't happen post-migration,
+ * but kept defensive in case Supabase auth fires before Cita user row
+ * is created — see /auth/callback handler).
  *
  * Use {@link requireUser} when an authenticated session is mandatory.
  */
@@ -81,19 +89,36 @@ export async function requireRole(
   return user;
 }
 
-function mapUser(u: User): CitaUser {
+/**
+ * Convenience helper for /admin gates. Returns null if not admin (caller
+ * should redirect to '/'). Use this in server components instead of
+ * `requireRole("ADMIN")` when you want a soft redirect rather than throw.
+ */
+export async function getAdminUser(): Promise<CitaUser | null> {
+  const user = await getCurrentUser();
+  if (!user) return null;
+  return user.role === "ADMIN" ? user : null;
+}
+
+async function mapUser(u: User): Promise<CitaUser> {
   const meta = (u.user_metadata ?? {}) as Record<string, unknown>;
-  const rawRole = (meta.role as string | undefined)?.toUpperCase();
+
+  // Resolve role from DB. The Cita users.id mirrors Supabase user id.
+  // Single fast lookup with covering index on `id` (PK).
+  const dbUser = await prisma.user.findUnique({
+    where: { id: u.id },
+    select: { role: true, displayName: true },
+  });
+
   const role: CitaUser["role"] =
-    rawRole && rawRole in ROLE_RANK
-      ? (rawRole as CitaUser["role"])
-      : "REGISTERED";
+    (dbUser?.role as CitaUser["role"] | undefined) ?? "REGISTERED";
 
   return {
     id: u.id,
     email: u.email ?? null,
     role,
     displayName:
+      dbUser?.displayName ??
       (meta.full_name as string | undefined) ??
       (meta.name as string | undefined) ??
       null,

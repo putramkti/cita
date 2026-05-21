@@ -19,6 +19,8 @@ import * as crypto from "node:crypto";
 
 const SANDBOX_BASE = "https://app.sandbox.midtrans.com/snap/v1";
 const PROD_BASE = "https://app.midtrans.com/snap/v1";
+const SANDBOX_API_BASE = "https://api.sandbox.midtrans.com/v2";
+const PROD_API_BASE = "https://api.midtrans.com/v2";
 
 export interface SnapTransactionParams {
   orderId: string;
@@ -183,4 +185,55 @@ export function getPublicMidtransConfig() {
       ? "https://app.sandbox.midtrans.com/snap/snap.js"
       : "https://app.midtrans.com/snap/snap.js",
   };
+}
+
+/**
+ * Fetch the current transaction status of a given order from Midtrans.
+ *
+ * Used by /admin/orders/[id] when we suspect a missed webhook (e.g.
+ * notification URL not registered yet). Returns the raw JSON for audit.
+ *
+ * Returns null when the order isn't known to Midtrans (404).
+ */
+export interface MidtransStatusResponse {
+  order_id: string;
+  transaction_status: string;
+  fraud_status?: string;
+  status_code: string;
+  gross_amount: string;
+  signature_key?: string;
+  transaction_id?: string;
+  payment_type?: string;
+  transaction_time?: string;
+  expiry_time?: string;
+  [k: string]: unknown;
+}
+
+export async function fetchMidtransStatus(
+  midtransOrderId: string,
+): Promise<MidtransStatusResponse | null> {
+  if (!isMidtransConfigured()) {
+    throw new Error("midtrans_not_configured");
+  }
+  const apiBase = isSandbox() ? SANDBOX_API_BASE : PROD_API_BASE;
+  const url = `${apiBase}/${encodeURIComponent(midtransOrderId)}/status`;
+
+  const res = await fetch(url, {
+    method: "GET",
+    headers: {
+      Authorization: authHeader(),
+      Accept: "application/json",
+    },
+    cache: "no-store",
+  });
+
+  if (res.status === 404) return null;
+  if (!res.ok) {
+    const text = await res.text().catch(() => "");
+    throw new Error(
+      `midtrans_status_failed: HTTP ${res.status} ${text.slice(0, 300)}`,
+    );
+  }
+
+  return (await res.json()) as MidtransStatusResponse;
 }
