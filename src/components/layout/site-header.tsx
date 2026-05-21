@@ -2,6 +2,7 @@ import Link from "next/link"
 import { Logo } from "@/components/brand/logo"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { LocaleToggle } from "@/components/locale-toggle"
+import { HeaderAuth } from "@/components/layout/header-auth"
 import { getLocale, getDictByLocale } from "@/lib/i18n"
 
 /**
@@ -62,18 +63,8 @@ export async function SiteHeader() {
             labelDark={t.common.lightMode}
             labelLight={t.common.darkMode}
           />
-          {/* Cosmetic Log In placeholder — Cita is anonymous-first; this slot
-              is reserved for future cross-device sync. Disabled to signal
-              non-interactive state without removing the visual anchor. */}
-          <button
-            type="button"
-            disabled
-            aria-disabled="true"
-            title={t.nav.login}
-            className="hidden sm:inline-flex items-center text-sm text-muted-foreground/70 hover:text-muted-foreground/70 cursor-not-allowed select-none px-2 py-1.5"
-          >
-            {t.nav.login}
-          </button>
+          {/* Auth slot — shows "Masuk" link or user dropdown menu. */}
+          <HeaderAuth loginLabel={t.nav.login} />
           <Link
             href="/tryout"
             className="inline-flex items-center justify-center rounded-md bg-primary text-primary-foreground text-sm font-medium px-4 py-2 hover:bg-primary/90 transition-colors"
