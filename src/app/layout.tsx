@@ -3,6 +3,7 @@ import { Suspense } from "react"
 import { ThemeProvider } from "@/components/theme-provider"
 import { MotionRoot } from "@/components/feedback/motion-root"
 import { RouteProgress } from "@/components/feedback/route-progress"
+import { MidtransSnapScript } from "@/components/billing/midtrans-snap-script"
 import { getLocale, getDictByLocale } from "@/lib/i18n"
 import "./globals.css"
 
@@ -140,6 +141,7 @@ export default async function RootLayout({
             <Suspense fallback={null}>
               <RouteProgress />
             </Suspense>
+            <MidtransSnapScript />
             {children}
           </MotionRoot>
         </ThemeProvider>

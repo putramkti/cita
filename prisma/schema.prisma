@@ -201,3 +201,109 @@ model ExplainerMessage {
   @@index([attemptId])
   @@map("explainer_messages")
 }
+
+// ─────────────────────────────────────────────────────────────────────────
+// BILLING — Phase 7 (Subscription, Order, TutorUsage)
+//
+// Design notes:
+// - `Plan` is a simple enum so future tiers (TEAM, ENTERPRISE) just append.
+// - `Subscription` is one-per-user (unique userId). Lifecycle:
+//     PENDING → ACTIVE → (CANCELLED user-initiated, keeps access until expiresAt)
+//                      → EXPIRED (auto on cron / lazy on access check)
+// - `Order` is the audit trail. One-to-many per user; an Order pays for
+//   creating or extending a Subscription. Midtrans `orderId` is unique.
+// - `TutorUsage` is daily counter, keyed by (userId, date). Reset = new row.
+//   userId here is the Cita-internal user id — anon attempts use the
+//   `cita_anon_id` cookie value as userId (anon never reaches tutor due
+//   to gate, so this is mostly REGISTERED+).
+// ─────────────────────────────────────────────────────────────────────────
+
+enum Plan {
+  FREE
+  PREMIUM
+}
+
+enum SubscriptionStatus {
+  PENDING       // checkout initiated, payment not yet confirmed
+  ACTIVE        // paid, currently in valid period
+  CANCELLED     // user stopped auto-renew, still ACTIVE access until expiresAt
+  EXPIRED       // past expiresAt, no access
+}
+
+enum PaymentStatus {
+  PENDING       // Midtrans transaction created, not paid yet
+  PAID          // Midtrans confirmed via webhook
+  FAILED        // Midtrans reported failure
+  EXPIRED       // Midtrans transaction expired (24h default)
+  REFUNDED      // manual refund
+  CANCELLED     // user cancelled before paying
+}
+
+model Subscription {
+  id          String             @id @default(cuid())
+  userId      String             @unique
+  plan        Plan               @default(FREE)
+  status      SubscriptionStatus @default(ACTIVE)
+  startedAt   DateTime           @default(now())
+  expiresAt   DateTime?          // null untuk FREE
+  cancelledAt DateTime?
+  autoRenew   Boolean            @default(true)
+  // Track which Order created/extended this subscription (last paid)
+  lastOrderId String?
+  createdAt   DateTime           @default(now())
+  updatedAt   DateTime           @updatedAt
+
+  orders Order[]
+
+  @@index([userId])
+  @@index([status])
+  @@index([expiresAt])
+  @@map("subscriptions")
+}
+
+model Order {
+  id                 String        @id @default(cuid())
+  userId             String
+  plan               Plan
+  // Amount in IDR (smallest unit = rupiah, no fractional sen).
+  // 50000 = Rp 50.000 PREMIUM 1 month.
+  amount             Int
+  // Number of days this order grants. 30 for monthly. Future: 90, 180.
+  durationDays       Int           @default(30)
+  status             PaymentStatus @default(PENDING)
+  // Midtrans order_id (must be unique across the whole project).
+  // Generated server-side: `cita-${userId.slice(0,8)}-${ts}`
+  midtransOrderId    String        @unique
+  // Snap token returned from Midtrans, used by client SDK to open popup.
+  midtransSnapToken  String?
+  // Midtrans transaction_id (UUID) only available after first webhook event.
+  midtransTxId       String?
+  paidAt             DateTime?
+  expiredAt          DateTime?
+  // Raw last webhook payload for audit/debug.
+  raw                Json?
+  createdAt          DateTime      @default(now())
+  updatedAt          DateTime      @updatedAt
+
+  subscription   Subscription? @relation(fields: [subscriptionId], references: [id], onDelete: SetNull)
+  subscriptionId String?
+
+  @@index([userId])
+  @@index([status])
+  @@index([createdAt])
+  @@map("orders")
+}
+
+model TutorUsage {
+  id      String   @id @default(cuid())
+  userId  String
+  // Date-only (YYYY-MM-DD at 00:00:00 UTC). Reset = new row.
+  date    DateTime @db.Date
+  count   Int      @default(0)
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, date])
+  @@index([userId])
+  @@index([date])
+  @@map("tutor_usage")
+}

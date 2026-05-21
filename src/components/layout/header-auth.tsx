@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { LogOut, User } from "lucide-react";
 import { getCurrentUser } from "@/lib/auth/get-user";
+import { getCurrentPlan } from "@/lib/billing/get-plan";
+import { can } from "@/lib/billing/entitlements";
+import { PremiumBadge } from "@/components/billing/premium-badge";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -41,6 +44,10 @@ export async function HeaderAuth({ loginLabel }: Props) {
     user.displayName?.[0]?.toUpperCase() ?? user.email?.[0]?.toUpperCase() ?? "·";
   const label = user.displayName ?? user.email ?? "Akun";
 
+  // Plan + Premium badge entitlement
+  const plan = await getCurrentPlan(user.id);
+  const showBadge = can(plan, "premiumBadge");
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
@@ -51,12 +58,16 @@ export async function HeaderAuth({ loginLabel }: Props) {
           {initial}
         </span>
         <span className="max-w-[140px] truncate">{label}</span>
+        {showBadge && <PremiumBadge size="sm" />}
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56">
         <DropdownMenuLabel className="space-y-0.5">
-          <div className="text-xs font-medium">{label}</div>
+          <div className="flex items-center gap-1.5">
+            <span className="text-xs font-medium truncate">{label}</span>
+            {showBadge && <PremiumBadge size="sm" />}
+          </div>
           <div className="text-[10px] font-mono uppercase text-muted-foreground">
-            {user.role}
+            {plan === "PREMIUM" ? "PREMIUM" : user.role}
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
@@ -64,6 +75,14 @@ export async function HeaderAuth({ loginLabel }: Props) {
           <Link href="/akun" className="cursor-pointer text-sm">
             <User className="mr-2 size-4" aria-hidden="true" />
             Akun saya
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild>
+          <Link href="/akun/billing" className="cursor-pointer text-sm">
+            <span className="mr-2 inline-block size-4 text-center font-mono text-[10px]">
+              ◇
+            </span>
+            Langganan
           </Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />

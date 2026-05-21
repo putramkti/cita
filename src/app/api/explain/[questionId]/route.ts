@@ -21,6 +21,12 @@ import { NextRequest } from "next/server";
 import { cookies } from "next/headers";
 import { prisma } from "@/lib/db/prisma";
 import { getCurrentUser } from "@/lib/auth/get-user";
+import { getCurrentPlan } from "@/lib/billing/get-plan";
+import { quota, can } from "@/lib/billing/entitlements";
+import {
+  checkTutorQuota,
+  incrementTutorUsage,
+} from "@/lib/billing/usage";
 import {
   buildSystemPrompt,
   sanitizeUserInput,
@@ -37,7 +43,8 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const ANON_COOKIE = "cita_anon_id";
-const MAX_USER_MSGS_PER_QUESTION = 5;
+// NOTE: Per-question rate limit removed in Phase 7. Replaced with per-user
+// daily quota via `lib/billing/usage`. See entitlements for plan limits.
 
 interface ExplainRequest {
   attemptId: string;
@@ -52,15 +59,23 @@ function jsonError(status: number, message: string, code?: string) {
 }
 
 /**
- * Resolve viewer from session — Supabase user first, fall back to anon cookie.
- * Mirrors the resolution used by /tryout pages so anon attempts still get
- * tutor access via the cookie.
+ * Resolve viewer for tutor:
+ *   - Authenticated Supabase user → use their internal Cita user.id (eligible for tutor)
+ *   - Anonymous (cookie only)     → return { id: null, anonCookie: cookieVal }
+ *
+ * Tutor access requires authentication in Phase 7. Anon get the cookie
+ * back so /api/explain can still answer 401 with a helpful message that
+ * links to /auth/login.
  */
-async function resolveViewerId(): Promise<string | null> {
+async function resolveViewer(): Promise<{
+  citaUserId: string | null;
+  isAnon: boolean;
+}> {
   const supabaseUser = await getCurrentUser();
-  if (supabaseUser?.id) return supabaseUser.id;
+  if (supabaseUser?.id) return { citaUserId: supabaseUser.id, isAnon: false };
   const cookieStore = await cookies();
-  return cookieStore.get(ANON_COOKIE)?.value ?? null;
+  const anon = cookieStore.get(ANON_COOKIE)?.value ?? null;
+  return { citaUserId: null, isAnon: Boolean(anon) };
 }
 
 export async function POST(
@@ -69,12 +84,42 @@ export async function POST(
 ) {
   const { questionId } = await params;
 
-  const viewerId = await resolveViewerId();
-  if (!viewerId) {
+  const { citaUserId, isAnon } = await resolveViewer();
+  if (!citaUserId) {
     return jsonError(
       401,
-      "Mulai tryout dulu sebelum tanya tutor.",
+      isAnon
+        ? "Login dulu untuk pakai Cita Tutor."
+        : "Mulai tryout dulu sebelum tanya tutor.",
       "no_session",
+    );
+  }
+
+  // Plan + quota gate (replaces per-question rate limit)
+  const plan = await getCurrentPlan(citaUserId);
+  if (!can(plan, "tutorAccess")) {
+    return jsonError(
+      403,
+      "Akses tutor tidak tersedia untuk paket Anda.",
+      "no_tutor_access",
+    );
+  }
+  const dailyLimit = quota(plan, "tutorDailyQuota");
+  const quotaCheck = await checkTutorQuota(citaUserId, dailyLimit);
+  if (!quotaCheck.allowed) {
+    return new Response(
+      JSON.stringify({
+        error: {
+          message: `Kuota tutor harian habis (${quotaCheck.used}/${quotaCheck.limit}). Reset besok atau upgrade Premium.`,
+          code: "quota_exceeded",
+          quota: quotaCheck,
+          plan,
+        },
+      }),
+      {
+        status: 429,
+        headers: { "Content-Type": "application/json" },
+      },
     );
   }
 
@@ -136,7 +181,7 @@ export async function POST(
   if (!attempt) {
     return jsonError(404, "Attempt tidak ditemukan.", "attempt_not_found");
   }
-  if (attempt.userId !== viewerId) {
+  if (attempt.userId !== citaUserId) {
     return jsonError(403, "Akses ditolak.", "wrong_owner");
   }
 
@@ -172,18 +217,10 @@ export async function POST(
         : (questionRow.createdAt as unknown as string),
   };
 
-  // Per-question rate limit (per attempt+question)
-  const userMsgCount = await prisma.explainerMessage.count({
-    where: { attemptId, questionId, role: "user" },
-  });
-
-  if (userMsgCount >= MAX_USER_MSGS_PER_QUESTION) {
-    return jsonError(
-      429,
-      `Batas ${MAX_USER_MSGS_PER_QUESTION} pertanyaan per soal sudah tercapai.`,
-      "limit_reached",
-    );
-  }
+  // Per-question rate limit dropped in Phase 7 — daily quota enforced
+  // earlier via checkTutorQuota. Increment counter now (before LLM call)
+  // so a single user can't fan-out parallel tabs to bypass the gate.
+  await incrementTutorUsage(citaUserId);
 
   // Load full chat history for context
   const historyRows = await prisma.explainerMessage.findMany({
@@ -366,15 +403,15 @@ export async function GET(
   const attemptId = url.searchParams.get("attemptId");
   if (!attemptId) return jsonError(400, "attemptId required", "missing_field");
 
-  const viewerId = await resolveViewerId();
-  if (!viewerId) return jsonError(401, "no session", "no_session");
+  const { citaUserId } = await resolveViewer();
+  if (!citaUserId) return jsonError(401, "no session", "no_session");
 
   const attempt = await prisma.attempt.findUnique({
     where: { id: attemptId },
     select: { userId: true },
   });
   if (!attempt) return jsonError(404, "attempt not found", "attempt_not_found");
-  if (attempt.userId !== viewerId)
+  if (attempt.userId !== citaUserId)
     return jsonError(403, "forbidden", "wrong_owner");
 
   const msgs = await prisma.explainerMessage.findMany({
@@ -383,13 +420,20 @@ export async function GET(
     select: { id: true, role: true, content: true, createdAt: true },
   });
 
-  const userMsgCount = msgs.filter((m) => m.role === "user").length;
+  // Daily quota progress (replaces per-question maxUserMsgs)
+  const plan = await getCurrentPlan(citaUserId);
+  const dailyLimit = quota(plan, "tutorDailyQuota");
+  const quotaCheck = await checkTutorQuota(citaUserId, dailyLimit);
 
   return new Response(
     JSON.stringify({
       messages: msgs,
-      userMsgCount,
-      maxUserMsgs: MAX_USER_MSGS_PER_QUESTION,
+      // Legacy field retained for client compat — now populated from
+      // today's per-account counter, not per-question count.
+      userMsgCount: quotaCheck.used,
+      maxUserMsgs: quotaCheck.limit,
+      dailyQuota: quotaCheck,
+      plan,
     }),
     { status: 200, headers: { "Content-Type": "application/json" } },
   );

@@ -6,6 +6,7 @@ import { prisma } from "@/lib/db/prisma";
 import { getCurrentUser } from "@/lib/auth/get-user";
 import { SiteHeader } from "@/components/layout/site-header";
 import { TutorChat } from "./tutor-chat";
+import { AnonBlurOverlay } from "@/components/billing/anon-blur-overlay";
 import type { Category } from "@prisma/client";
 import { cn } from "@/lib/utils";
 import { getDict } from "@/lib/i18n";
@@ -47,8 +48,9 @@ export default async function StudyPage({ params }: PageProps) {
   // Auth: dual — Supabase user OR anon cookie. Mirror result page pattern.
   const supabaseUser = await getCurrentUser();
   const cookieStore = await cookies();
-  const viewerId =
-    supabaseUser?.id ?? cookieStore.get(ANON_COOKIE)?.value ?? null;
+  const anonId = cookieStore.get(ANON_COOKIE)?.value ?? null;
+  const viewerId = supabaseUser?.id ?? anonId;
+  const isAnon = !supabaseUser && Boolean(anonId);
 
   if (!viewerId) redirect("/tryout");
 
@@ -241,7 +243,7 @@ export default async function StudyPage({ params }: PageProps) {
             </section>
 
             {/* RIGHT: Tutor chat */}
-            <section className="min-h-[60vh]">
+            <section className="min-h-[60vh] relative">
               <TutorChat
                 attemptId={attemptId}
                 questionId={questionId}
@@ -255,6 +257,12 @@ export default async function StudyPage({ params }: PageProps) {
                   ? "Cita AI can make mistakes. Verify important information with the official syllabus."
                   : "Cita AI dapat keliru. Mohon validasi informasi penting dengan silabus resmi."}
               </p>
+              {isAnon && (
+                <AnonBlurOverlay
+                  locale={t.locale}
+                  nextPath={`/study/${attemptId}/${questionId}`}
+                />
+              )}
             </section>
           </div>
         </div>
