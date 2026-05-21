@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { Mail } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Cek email · Cita",
+  title: "Cek email",
   description: "Tautan masuk telah dikirim ke email Anda.",
   robots: { index: false, follow: false },
 };

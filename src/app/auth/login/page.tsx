@@ -5,7 +5,7 @@ import { getCurrentUser } from "@/lib/auth/get-user";
 import { LoginForm } from "./login-form";
 
 export const metadata: Metadata = {
-  title: "Masuk · Cita",
+  title: "Masuk",
   description:
     "Masuk ke Cita untuk menyimpan progres, melanjutkan tryout, dan membuka fitur premium.",
   robots: { index: false, follow: false },
