@@ -5,6 +5,9 @@ import { cookies } from "next/headers";
 import { prisma } from "@/lib/db/prisma";
 import { getCurrentUser } from "@/lib/auth/get-user";
 import { MODE_CONFIG } from "@/lib/tryout/config";
+import {
+  expireStaleAttempt,
+} from "../actions";
 import { TryoutClient } from "./tryout-client";
 
 export const dynamic = "force-dynamic";
@@ -73,6 +76,11 @@ export default async function LabTryoutAttemptPage({ params }: Props) {
   const remainingSec = totalSec - elapsedSec;
 
   if (remainingSec <= 0) {
+    // Timer udah lewat. Auto-score + mark EXPIRED so result page can render.
+    // Without this we'd loop: briefing→exam→result→exam (briefing redirects
+    // IN_PROGRESS attempts to /exam, /exam redirects expired ones to /result,
+    // /result redirects IN_PROGRESS back to /exam → infinite).
+    await expireStaleAttempt(attempt.id);
     redirect(`/lab-tryout/${attemptId}/result`);
   }
 

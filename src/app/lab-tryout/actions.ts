@@ -8,6 +8,7 @@ import { prisma } from "@/lib/db/prisma";
 import { ensureUser } from "@/lib/db/users";
 import { getCurrentUser } from "@/lib/auth/get-user";
 import {
+  MODE_CONFIG,
   sampleStratified,
   scoreAnswer,
   thresholdFor,
@@ -281,23 +282,85 @@ export async function submitAttempt(attemptId: string): Promise<void> {
 }
 
 /**
- * Auto-expire on timeout. Same as submit but flagged differently.
- * Called from client when timer reaches zero.
+ * Auto-expire helper: score + mark EXPIRED. No cookie ops, no redirect.
+ *
+ * Called from server components when they detect a stale-timer attempt
+ * (status === IN_PROGRESS but startedAt + duration < now). Idempotent:
+ * if status already terminal, returns without touching DB.
  */
-export async function expireAttempt(attemptId: string): Promise<void> {
-  const userId = await resolveUserId();
+export async function expireStaleAttempt(attemptId: string): Promise<void> {
   const attempt = await prisma.attempt.findUnique({
     where: { id: attemptId },
-    select: { userId: true, status: true },
+    include: {
+      items: {
+        include: {
+          question: {
+            select: {
+              category: true,
+              correctAnswer: true,
+              optionWeights: true,
+            },
+          },
+        },
+      },
+    },
   });
-  if (!attempt || attempt.userId !== userId) return;
-  if (attempt.status !== "IN_PROGRESS") return;
 
-  // Score then mark EXPIRED (separate state from manual SUBMITTED)
-  await submitAttempt(attemptId);
-  // submitAttempt redirects, so this never returns; but keep for clarity:
+  if (!attempt || attempt.status !== "IN_PROGRESS") return;
+
+  let scoreTWK = 0;
+  let scoreTIU = 0;
+  let scoreTKP = 0;
+  const itemUpdates: { id: string; earned: number; isCorrect: boolean | null }[] =
+    [];
+  for (const item of attempt.items) {
+    const { earned, isCorrect } = scoreAnswer(
+      {
+        category: item.question.category,
+        correctAnswer: item.question.correctAnswer,
+        optionWeights: item.question.optionWeights,
+      },
+      item.userAnswer,
+    );
+    if (item.question.category === "TWK") scoreTWK += earned;
+    else if (item.question.category === "TIU") scoreTIU += earned;
+    else if (item.question.category === "TKP") scoreTKP += earned;
+    itemUpdates.push({ id: item.id, earned, isCorrect });
+  }
+  const totalScore = scoreTWK + scoreTIU + scoreTKP;
+  const threshold = thresholdFor(attempt.mode);
+  const lulus =
+    scoreTWK >= threshold.TWK &&
+    scoreTIU >= threshold.TIU &&
+    scoreTKP >= threshold.TKP;
+
+  // Use durationMin × 60 as authoritative duration (timer-based EXPIRED)
+  const cfgDurationSec = MODE_CONFIG[attempt.mode].durationMin * 60;
+
   await prisma.attempt.update({
     where: { id: attemptId },
-    data: { status: "EXPIRED" },
+    data: {
+      status: "EXPIRED",
+      finishedAt: new Date(attempt.startedAt.getTime() + cfgDurationSec * 1000),
+      durationSec: cfgDurationSec,
+      scoreTWK,
+      scoreTIU,
+      scoreTKP,
+      totalScore,
+      passingStatus: lulus ? "lulus" : "tidak_lulus",
+    },
   });
+
+  await Promise.all(
+    itemUpdates.map((u) =>
+      prisma.attemptItem.update({
+        where: { id: u.id },
+        data: { scoreEarned: u.earned, isCorrect: u.isCorrect },
+      }),
+    ),
+  );
+
+  console.log(
+    `[expireStaleAttempt] EXPIRED ${attemptId} TWK=${scoreTWK} TIU=${scoreTIU} TKP=${scoreTKP}`,
+  );
 }
