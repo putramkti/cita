@@ -28,10 +28,17 @@ export default async function LabTryoutResultPage({ params }: Props) {
 
   const supabaseUser = await getCurrentUser();
   const cookieStore = await cookies();
-  const viewerId =
-    supabaseUser?.id ?? cookieStore.get(ANON_COOKIE)?.value ?? null;
+  const anonCookie = cookieStore.get(ANON_COOKIE)?.value;
+  const viewerId = supabaseUser?.id ?? anonCookie ?? null;
 
-  if (!viewerId) redirect("/lab-tryout");
+  console.log(
+    `[result] attemptId=${attemptId} viewerId=${viewerId} supabaseUser=${supabaseUser?.id ?? "null"} anonCookie=${anonCookie ?? "null"}`,
+  );
+
+  if (!viewerId) {
+    console.error(`[result] NO VIEWER ID → redirect /lab-tryout`);
+    redirect("/lab-tryout");
+  }
 
   const attempt = await prisma.attempt.findUnique({
     where: { id: attemptId },
@@ -57,10 +64,23 @@ export default async function LabTryoutResultPage({ params }: Props) {
     },
   });
 
-  if (!attempt) notFound();
-  if (attempt.userId !== viewerId) notFound();
+  console.log(
+    `[result] attempt=${attempt?.id ?? "null"} userId=${attempt?.userId ?? "null"} status=${attempt?.status ?? "null"}`,
+  );
+
+  if (!attempt) {
+    console.error(`[result] ATTEMPT NOT FOUND → 404`);
+    notFound();
+  }
+  if (attempt.userId !== viewerId) {
+    console.error(
+      `[result] OWNERSHIP FAIL viewer=${viewerId} attemptUser=${attempt.userId} → 404`,
+    );
+    notFound();
+  }
 
   if (attempt.status === "IN_PROGRESS") {
+    console.log(`[result] STILL IN_PROGRESS → redirect to attempt page`);
     redirect(`/lab-tryout/${attemptId}`);
   }
 

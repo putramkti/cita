@@ -164,7 +164,9 @@ export async function saveAnswer(args: {
  * Idempotent on already-submitted attempts → returns existing scores.
  */
 export async function submitAttempt(attemptId: string): Promise<void> {
+  console.log(`[submitAttempt] START attemptId=${attemptId}`);
   const userId = await resolveUserId();
+  console.log(`[submitAttempt] resolveUserId=${userId}`);
 
   const attempt = await prisma.attempt.findUnique({
     where: { id: attemptId },
@@ -183,11 +185,19 @@ export async function submitAttempt(attemptId: string): Promise<void> {
     },
   });
 
+  console.log(
+    `[submitAttempt] attempt=${attempt?.id ?? "null"} userId=${attempt?.userId ?? "null"} status=${attempt?.status ?? "null"} items=${attempt?.items.length ?? 0}`,
+  );
+
   if (!attempt || attempt.userId !== userId) {
+    console.error(
+      `[submitAttempt] OWNERSHIP FAIL viewerId=${userId} attemptUserId=${attempt?.userId ?? "null"}`,
+    );
     throw new Error("Attempt tidak ditemukan.");
   }
 
   if (attempt.status === "SUBMITTED") {
+    console.log(`[submitAttempt] already SUBMITTED → redirect to result`);
     redirect(`/lab-tryout/${attemptId}/result`);
   }
 
@@ -254,7 +264,12 @@ export async function submitAttempt(attemptId: string): Promise<void> {
     }
   });
 
+  console.log(
+    `[submitAttempt] PERSISTED scores TWK=${scoreTWK} TIU=${scoreTIU} TKP=${scoreTKP} total=${totalScore} status=${passingStatus}`,
+  );
+
   revalidatePath(`/lab-tryout/${attemptId}`);
+  console.log(`[submitAttempt] redirecting → /lab-tryout/${attemptId}/result`);
   redirect(`/lab-tryout/${attemptId}/result`);
 }
 
