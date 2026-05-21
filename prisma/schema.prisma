@@ -41,6 +41,13 @@ enum AttemptStatus {
   EXPIRED
 }
 
+enum AttemptMode {
+  // Daily drill: 30 soal (10 TWK + 10 TIU + 10 TKP), 30 menit
+  MINI
+  // Full SKD simulation: 110 soal (30 TWK + 35 TIU + 45 TKP), 100 menit
+  FULL
+}
+
 enum QuestionStatus {
   DRAFT
   REVIEWED
@@ -142,6 +149,7 @@ model Attempt {
   userId        String
   user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
   status        AttemptStatus @default(IN_PROGRESS)
+  mode          AttemptMode   @default(MINI)
   startedAt     DateTime      @default(now())
   finishedAt    DateTime?
   durationSec   Int?
@@ -155,6 +163,7 @@ model Attempt {
   @@index([userId])
   @@index([totalScore])
   @@index([status])
+  @@index([mode])
   @@map("attempts")
 }
 
@@ -162,6 +171,7 @@ model AttemptItem {
   id          String    @id @default(cuid())
   attemptId   String
   questionId  String
+  position    Int       @default(0) // sample order in attempt (0..n-1)
   userAnswer  String? // 'A' | 'B' | 'C' | 'D' | 'E' | null (skipped)
   isCorrect   Boolean? // null until graded; for TKP it's always null (always partial credit)
   scoreEarned Int       @default(0)
@@ -174,6 +184,7 @@ model AttemptItem {
   @@unique([attemptId, questionId])
   @@index([attemptId])
   @@index([questionId])
+  @@index([attemptId, position])
   @@map("attempt_items")
 }
 
