@@ -1,0 +1,655 @@
+{
+  "batch_id": "batch-015",
+  "topic": "Batch 015 — TKP TIK / Teknologi Informasi & Komunikasi",
+  "source_file": "docs/content/drafts/batch-015-tkp-tik.md",
+  "generated_at": "2026-05-21T10:12:20.209Z",
+  "stats": {
+    "total_soal": 12,
+    "by_difficulty": {
+      "1": 0,
+      "2": 4,
+      "3": 3,
+      "4": 5,
+      "5": 0
+    },
+    "warnings_total": 12
+  },
+  "questions": [
+    {
+      "id": "TKP_TIK_ADOPSI_001_001",
+      "category": "TKP",
+      "subcategory": "TIK",
+      "topic": "Adopsi Teknologi",
+      "questionText": "Kantor menerapkan aplikasi baru untuk mengelola pekerjaan sehari-hari yang belum pernah Anda gunakan sebelumnya. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Tetap memakai cara lama yang lebih familiar"
+        },
+        {
+          "label": "B",
+          "text": "Menggunakan aplikasi seadanya tanpa belajar lebih dalam"
+        },
+        {
+          "label": "C",
+          "text": "Mempelajari aplikasi secara aktif melalui tutorial, panduan, dan bertanya kepada rekan yang sudah mahir"
+        },
+        {
+          "label": "D",
+          "text": "Menunggu pelatihan resmi sebelum mulai menggunakan"
+        },
+        {
+          "label": "E",
+          "text": "Mencoba aplikasi sambil mengerjakan tugas lain"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 1,
+        "B": 2,
+        "C": 5,
+        "D": 2,
+        "E": 3
+      },
+      "difficulty": 2,
+      "tags": [
+        "tkp",
+        "tik",
+        "adopsi-teknologi",
+        "belajar"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_TIK_ADOPSI_001",
+      "imagePrompt": null,
+      "explanation": "Adopsi teknologi memerlukan inisiatif belajar aktif. Memanfaatkan tutorial, panduan, dan bertanya kepada rekan adalah pendekatan paling efektif untuk menguasai aplikasi baru.",
+      "explanationLong": "Pilihan C (skor 5) menerapkan multi-channel learning yang efektif. ASN modern dituntut adaptif terhadap teknologi (BerAKHLAK — Adaptif). Pilihan E (skor 3) campuran trial-and-error yang cukup baik. Pilihan B dan D (skor 2) pasif. Pilihan A (skor 1) bertentangan dengan transformasi digital yang menjadi prioritas pemerintah.",
+      "source": "BerAKHLAK — Adaptif, Kompeten; Permenpan-RB tentang SPBE (Sistem Pemerintahan Berbasis Elektronik)",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 1,2,5,2,3 (sum=13). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_TIK_GAPTEK_001_002",
+      "category": "TKP",
+      "subcategory": "TIK",
+      "topic": "Bantuan Rekan",
+      "questionText": "Seorang rekan kerja senior mengalami kesulitan menggunakan teknologi baru dan sering meminta bantuan Anda berulang kali. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Mengerjakan untuknya saja agar selesai cepat"
+        },
+        {
+          "label": "B",
+          "text": "Mengarahkan beliau ke unit IT untuk pelatihan"
+        },
+        {
+          "label": "C",
+          "text": "Membimbing dengan sabar, jelaskan langkah demi langkah, dan dorong beliau mencoba sendiri agar lebih mandiri ke depan"
+        },
+        {
+          "label": "D",
+          "text": "Membantu sekali saja kemudian menyuruh beliau belajar sendiri"
+        },
+        {
+          "label": "E",
+          "text": "Membuatkan catatan tertulis yang bisa beliau ikuti sendiri"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 2,
+        "B": 3,
+        "C": 5,
+        "D": 2,
+        "E": 4
+      },
+      "difficulty": 2,
+      "tags": [
+        "tkp",
+        "tik",
+        "mentoring",
+        "digital-divide"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_TIK_GAPTEK_001",
+      "imagePrompt": null,
+      "explanation": "Pendekatan teach-don't-do membangun kemandirian. Sabar membimbing dengan langkah demi langkah lebih bermanfaat jangka panjang daripada mengerjakan untuknya.",
+      "explanationLong": "Pilihan C (skor 5) memenuhi prinsip empowerment: kesabaran + struktur (langkah demi langkah) + dorongan mandiri. Ini tidak hanya menyelesaikan masalah jangka pendek tetapi juga membangun kompetensi rekan. Pilihan E (skor 4) baik dengan dokumentasi tetapi belum ada interaksi langsung. Pilihan B (skor 3) pengalihan ke unit yang tepat. Pilihan A dan D (skor 2) tidak membangun kapasitas rekan.",
+      "source": "BerAKHLAK — Kolaboratif, Kompeten",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 2,3,5,2,4 (sum=16). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_TIK_PASSWORD_001_003",
+      "category": "TKP",
+      "subcategory": "TIK",
+      "topic": "Keamanan Password",
+      "questionText": "Seorang rekan kerja meminta password akun aplikasi resmi Anda agar dapat membantu menyelesaikan tugas yang menumpuk. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Memberikan password karena ini hanya antar rekan"
+        },
+        {
+          "label": "B",
+          "text": "Menolak memberikan password, jelaskan bahwa password bersifat pribadi, dan tawarkan alternatif (kerjakan bersama atau buatkan akses tersendiri)"
+        },
+        {
+          "label": "C",
+          "text": "Memberikan password tetapi meminta segera diganti setelah selesai"
+        },
+        {
+          "label": "D",
+          "text": "Memberikan password setelah meminta izin atasan"
+        },
+        {
+          "label": "E",
+          "text": "Mengarahkan rekan untuk mendapatkan akun sendiri dari unit IT"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 1,
+        "B": 5,
+        "C": 1,
+        "D": 2,
+        "E": 4
+      },
+      "difficulty": 4,
+      "tags": [
+        "tkp",
+        "tik",
+        "keamanan",
+        "password"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_TIK_PASSWORD_001",
+      "imagePrompt": null,
+      "explanation": "Password adalah identitas digital pribadi yang tidak boleh dibagikan ke siapa pun. Setiap pelanggaran memunculkan risiko jejak audit yang menunjuk Anda atas tindakan rekan.",
+      "explanationLong": "Pilihan B (skor 5) menjaga prinsip keamanan informasi (UU 11/2008 ITE jo. UU 19/2016) sekaligus solutif dengan alternatif. Pilihan E (skor 4) tepat tetapi tidak menyentuh aspek keamanan secara langsung. Pilihan D (skor 2) meminta izin atasan tidak menetralkan risiko — atasan tidak punya wewenang membatalkan kewajiban personal melindungi password. Pilihan A dan C (skor 1) bentuk pelanggaran keamanan informasi. Catatan: di banyak instansi, sharing password adalah pelanggaran disiplin yang dapat dikenakan sanksi.",
+      "source": "UU 11/2008 jo. UU 19/2016 tentang ITE; ISO 27001 (Information Security); Permen Kominfo tentang SPBE",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 1,5,1,2,4 (sum=13). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_TIK_MEDSOS_PRIBADI_001_004",
+      "category": "TKP",
+      "subcategory": "TIK",
+      "topic": "Media Sosial Pribadi",
+      "questionText": "Anda ingin memposting kritik terhadap kebijakan suatu instansi pemerintah di akun media sosial pribadi Anda. Sikap yang sebaiknya Anda ambil adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Memposting karena akun pribadi adalah hak Anda"
+        },
+        {
+          "label": "B",
+          "text": "Memposting tetapi tanpa identitas ASN"
+        },
+        {
+          "label": "C",
+          "text": "Menahan diri dari posting kritik publik, gunakan jalur formal (saran tertulis, forum internal, atau mekanisme whistleblowing) untuk menyampaikan kritik konstruktif"
+        },
+        {
+          "label": "D",
+          "text": "Memposting dengan menambahkan disclaimer \"pendapat pribadi\""
+        },
+        {
+          "label": "E",
+          "text": "Membicarakan saja dengan rekan-rekan terdekat"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 1,
+        "B": 1,
+        "C": 5,
+        "D": 2,
+        "E": 3
+      },
+      "difficulty": 3,
+      "tags": [
+        "tkp",
+        "tik",
+        "medsos",
+        "etika-asn"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_TIK_MEDSOS_PRIBADI_001",
+      "imagePrompt": null,
+      "explanation": "ASN terikat etika netralitas dan loyalitas. Kritik publik di medsos terhadap pemerintah berisiko pelanggaran etika ASN, walau di akun pribadi. Gunakan jalur formal yang konstruktif.",
+      "explanationLong": "Pilihan C (skor 5) mempertahankan integritas kritik (kritik tetap perlu) sambil tetap dalam koridor etika ASN. SE Menteri PANRB tentang Pedoman Penggunaan Media Sosial bagi ASN (2018) tegas membatasi posting yang dapat mendiskreditkan pemerintah. Pilihan E (skor 3) lebih aman tetapi belum solutif. Pilihan D (skor 2) disclaimer tidak menetralkan pelanggaran etika. Pilihan A dan B (skor 1) keduanya pelanggaran — identitas tidak hilang dari investigasi.",
+      "source": "UU 5/2014 ASN; SE Menpan-RB 137/2018 tentang Pedoman Pemanfaatan Media Sosial bagi ASN; PP 42/2004",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 1,1,5,2,3 (sum=12). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_TIK_INTERNET_001_005",
+      "category": "TKP",
+      "subcategory": "TIK",
+      "topic": "Internet Kantor",
+      "questionText": "Anda mengetahui rekan kerja sering mengakses situs hiburan atau berbelanja online di jam kerja menggunakan jaringan internet kantor. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Membiarkan karena itu urusan pribadinya"
+        },
+        {
+          "label": "B",
+          "text": "Mengikuti karena banyak yang melakukan hal serupa"
+        },
+        {
+          "label": "C",
+          "text": "Mengingatkan rekan dengan baik bahwa internet kantor untuk dinas, dan jika tetap berlanjut sampaikan ke atasan atau unit IT"
+        },
+        {
+          "label": "D",
+          "text": "Lapor langsung ke unit IT tanpa peringatan"
+        },
+        {
+          "label": "E",
+          "text": "Mendokumentasikan perilaku rekan secara diam-diam"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 1,
+        "B": 1,
+        "C": 5,
+        "D": 3,
+        "E": 2
+      },
+      "difficulty": 3,
+      "tags": [
+        "tkp",
+        "tik",
+        "internet",
+        "penyalahgunaan"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_TIK_INTERNET_001",
+      "imagePrompt": null,
+      "explanation": "Pendekatan bertahap (peringatkan dulu → eskalasi jika tidak berubah) menjaga harmoni sekaligus menegakkan disiplin. Penyalahgunaan fasilitas IT berdampak pada produktivitas dan keamanan jaringan.",
+      "explanationLong": "Pilihan C (skor 5) memberi rekan kesempatan memperbaiki diri tanpa formalitas yang menyakitkan. Pilihan D (skor 3) langsung formal — sah tetapi melompati peer correction. Pilihan E (skor 2) data-collecting tanpa komunikasi membuat rekan tidak punya kesempatan koreksi. Pilihan A dan B (skor 1) ikut menjadi bagian dari pelanggaran.",
+      "source": "PP 53/2010 Disiplin PNS; Kebijakan IT Governance instansi",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 1,1,5,3,2 (sum=12). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_TIK_PRIVASI_001_006",
+      "category": "TKP",
+      "subcategory": "TIK",
+      "topic": "Privasi Data",
+      "questionText": "Anda memiliki akses ke database berisi data pribadi masyarakat. Seorang teman menelepon dan meminta tolong dicarikan data salah satu kenalannya. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Membantu mencarikan data karena hanya untuk teman"
+        },
+        {
+          "label": "B",
+          "text": "Membantu tetapi memberi sebagian data saja"
+        },
+        {
+          "label": "C",
+          "text": "Menolak dengan tegas, jelaskan bahwa data pribadi dilindungi UU PDP, dan akses hanya untuk kepentingan tugas resmi"
+        },
+        {
+          "label": "D",
+          "text": "Menanyakan keperluan teman secara detail dulu"
+        },
+        {
+          "label": "E",
+          "text": "Menyarankan teman menempuh jalur permintaan resmi"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 1,
+        "B": 1,
+        "C": 5,
+        "D": 2,
+        "E": 4
+      },
+      "difficulty": 4,
+      "tags": [
+        "tkp",
+        "tik",
+        "privasi",
+        "data-pribadi"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_TIK_PRIVASI_001",
+      "imagePrompt": null,
+      "explanation": "Akses data pribadi hanya untuk kepentingan tugas resmi. Penyalahgunaan akses adalah pelanggaran UU 27/2022 PDP yang dapat berujung pidana.",
+      "explanationLong": "Pilihan C (skor 5) menjalankan prinsip data minimization dan purpose limitation dari UU PDP. Pilihan E (skor 4) baik karena mengarahkan ke jalur formal, tetapi belum eksplisit pada larangan. Pilihan D (skor 2) sudah membuka pintu negosiasi yang seharusnya tidak ada. Pilihan A dan B (skor 1) keduanya pelanggaran UU PDP yang dapat dikenakan pidana 5 tahun atau denda Rp 5 miliar.",
+      "source": "UU 27/2022 tentang Pelindungan Data Pribadi; UU 11/2008 jo. UU 19/2016 ITE; Etika ASN",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 1,1,5,2,4 (sum=13). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_TIK_DIGITALISASI_001_007",
+      "category": "TKP",
+      "subcategory": "TIK",
+      "topic": "Digitalisasi",
+      "questionText": "Anda menyadari bahwa salah satu prosedur kerja yang masih manual dapat didigitalkan untuk mempercepat layanan. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Tetap menggunakan prosedur lama yang sudah berjalan"
+        },
+        {
+          "label": "B",
+          "text": "Menyusun proposal digitalisasi yang jelas (problem, solusi, biaya, manfaat) dan mengusulkan kepada atasan untuk dipertimbangkan"
+        },
+        {
+          "label": "C",
+          "text": "Mencoba mendigitalkan sendiri tanpa konfirmasi"
+        },
+        {
+          "label": "D",
+          "text": "Membicarakan dengan rekan saja tanpa langkah lanjut"
+        },
+        {
+          "label": "E",
+          "text": "Menyarankan kepada atasan secara lisan tanpa proposal"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 2,
+        "B": 5,
+        "C": 2,
+        "D": 1,
+        "E": 3
+      },
+      "difficulty": 2,
+      "tags": [
+        "tkp",
+        "tik",
+        "digitalisasi",
+        "inisiatif"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_TIK_DIGITALISASI_001",
+      "imagePrompt": null,
+      "explanation": "Inisiatif digitalisasi yang terstruktur dengan proposal jelas memudahkan atasan mengevaluasi dan memutuskan. Ini cara paling profesional menyampaikan inovasi.",
+      "explanationLong": "Pilihan B (skor 5) menjalankan prinsip evidence-based proposal: problem clearly defined, solution mapped, cost-benefit analyzed. Ini sesuai semangat SPBE (Sistem Pemerintahan Berbasis Elektronik) dan transformasi digital. Pilihan E (skor 3) baik tetapi tanpa struktur — atasan kesulitan menindaklanjuti. Pilihan A (skor 2) status quo. Pilihan C (skor 2) inisiatif tanpa otoritas berisiko duplikasi atau konflik dengan IT. Pilihan D (skor 1) tidak menghasilkan tindakan.",
+      "source": "Perpres 95/2018 tentang SPBE; BerAKHLAK — Adaptif, Kompeten",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 2,5,2,1,3 (sum=13). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_TIK_PHISHING_001_008",
+      "category": "TKP",
+      "subcategory": "TIK",
+      "topic": "Phishing",
+      "questionText": "Anda menerima email yang tampak dari atasan, meminta Anda mentransfer dana atau memberikan kode OTP dengan sangat mendesak. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Mengkonfirmasi langsung kepada atasan via saluran lain (telepon/tatap muka) sebelum mengambil tindakan apa pun, dan jika mencurigakan laporkan ke unit IT/CSIRT"
+        },
+        {
+          "label": "B",
+          "text": "Langsung memenuhi permintaan karena dari atasan"
+        },
+        {
+          "label": "C",
+          "text": "Membalas email untuk meminta klarifikasi"
+        },
+        {
+          "label": "D",
+          "text": "Mengabaikan email"
+        },
+        {
+          "label": "E",
+          "text": "Memforward email ke rekan untuk menanyakan pendapat"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 5,
+        "B": 1,
+        "C": 2,
+        "D": 2,
+        "E": 3
+      },
+      "difficulty": 4,
+      "tags": [
+        "tkp",
+        "tik",
+        "phishing",
+        "keamanan-siber"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_TIK_PHISHING_001",
+      "imagePrompt": null,
+      "explanation": "Email yang mendesak dan meminta transfer/OTP adalah ciri klasik phishing. Konfirmasi via saluran alternatif (out-of-band verification) adalah standar keamanan siber.",
+      "explanationLong": "Pilihan A (skor 5) menerapkan out-of-band verification yang menjadi standar emas keamanan siber. Tindakan ditambah pelaporan ke CSIRT (Computer Security Incident Response Team) instansi atau BSSN. Pilihan E (skor 3) cukup tetapi tidak otoritatif. Pilihan C (skor 2) berbahaya — phisher akan membalas dengan meyakinkan. Pilihan D (skor 2) aman untuk Anda tetapi tidak menyelamatkan rekan lain. Pilihan B (skor 1) korban phishing.",
+      "source": "UU 19/2016 ITE; Pedoman BSSN tentang Keamanan Siber Sektor Pemerintah",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 5,1,2,2,3 (sum=13). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_TIK_MEDSOS_KANTOR_001_009",
+      "category": "TKP",
+      "subcategory": "TIK",
+      "topic": "Medsos Kantor",
+      "questionText": "Anda diberi akses ke akun media sosial resmi kantor untuk membantu publikasi. Suatu hari Anda menerima komentar negatif dari netizen. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Menghapus komentar agar tidak terlihat"
+        },
+        {
+          "label": "B",
+          "text": "Membalas dengan defensif dan menyangkal"
+        },
+        {
+          "label": "C",
+          "text": "Membalas dengan profesional, akui jika ada kekurangan, beri klarifikasi/tindak lanjut, dan jika eskalasi koordinasi dengan tim humas atau atasan"
+        },
+        {
+          "label": "D",
+          "text": "Mendiamkan komentar saja"
+        },
+        {
+          "label": "E",
+          "text": "Memblokir akun netizen tersebut"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 2,
+        "B": 1,
+        "C": 5,
+        "D": 2,
+        "E": 1
+      },
+      "difficulty": 3,
+      "tags": [
+        "tkp",
+        "tik",
+        "medsos-kantor",
+        "komunikasi-publik"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_TIK_MEDSOS_KANTOR_001",
+      "imagePrompt": null,
+      "explanation": "Komunikasi publik di medsos resmi menuntut respon profesional dan transparan. Mengakui kekurangan dan memberi tindak lanjut adalah crisis communication best practice.",
+      "explanationLong": "Pilihan C (skor 5) menerapkan prinsip transparency + accountability di komunikasi publik. Sesuai dengan UU 14/2008 KIP. Pilihan A (skor 2) menghapus = kontroversi lebih besar saat tertangkap screenshot. Pilihan D (skor 2) silence dapat diinterpretasi negatif. Pilihan B dan E (skor 1) memperburuk citra instansi.",
+      "source": "UU 14/2008 KIP; Pedoman Pengelolaan Media Sosial Pemerintah (Kominfo)",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 2,1,5,2,1 (sum=11). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_TIK_BACKUP_001_010",
+      "category": "TKP",
+      "subcategory": "TIK",
+      "topic": "Backup Data",
+      "questionText": "Anda bekerja dengan dokumen penting yang tersimpan di laptop kantor. Sikap Anda dalam mengelola data tersebut adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Melakukan backup berkala ke server kantor atau penyimpanan cloud resmi instansi yang aman"
+        },
+        {
+          "label": "B",
+          "text": "Menyimpan saja di laptop, toh laptop selalu Anda bawa"
+        },
+        {
+          "label": "C",
+          "text": "Membackup ke flashdisk pribadi untuk amannya"
+        },
+        {
+          "label": "D",
+          "text": "Mengirim copy ke email pribadi sebagai cadangan"
+        },
+        {
+          "label": "E",
+          "text": "Membackup hanya jika diingatkan oleh unit IT"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 5,
+        "B": 2,
+        "C": 2,
+        "D": 1,
+        "E": 2
+      },
+      "difficulty": 2,
+      "tags": [
+        "tkp",
+        "tik",
+        "backup",
+        "data-management"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_TIK_BACKUP_001",
+      "imagePrompt": null,
+      "explanation": "Backup berkala ke media resmi instansi adalah kewajiban data management. Dokumen kerja tidak boleh disimpan di media pribadi karena risiko keamanan dan kebocoran.",
+      "explanationLong": "Pilihan A (skor 5) memenuhi prinsip data resilience + security: data terlindungi dari hardware failure dan tetap dalam kontrol instansi. Pilihan C, D (skor 1-2) penyimpanan di media pribadi adalah pelanggaran kebijakan keamanan informasi — risiko hilang/dicuri/disalahgunakan. Pilihan B (skor 2) single point of failure. Pilihan E (skor 2) reaktif bukan proaktif.",
+      "source": "ISO 27001; Permen Kominfo tentang Tata Kelola Keamanan Informasi",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 5,2,2,1,2 (sum=12). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_TIK_WA_PRIBADI_001_011",
+      "category": "TKP",
+      "subcategory": "TIK",
+      "topic": "WhatsApp Pribadi",
+      "questionText": "Atasan meminta Anda mengirimkan dokumen kerja kepada rekan via WhatsApp pribadi karena kebutuhan mendesak. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Mengirim langsung karena perintah atasan"
+        },
+        {
+          "label": "B",
+          "text": "Mengkomunikasikan kepada atasan bahwa dokumen sebaiknya dikirim via saluran resmi (email kantor / sistem dokumen instansi), dan jika urgent gunakan link berbatas waktu"
+        },
+        {
+          "label": "C",
+          "text": "Mengirim setelah meminta penerima menghapus segera setelah dibaca"
+        },
+        {
+          "label": "D",
+          "text": "Mengirim dengan password agar terlindungi"
+        },
+        {
+          "label": "E",
+          "text": "Tidak mengirim sama sekali dan menyarankan tunda"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 2,
+        "B": 5,
+        "C": 1,
+        "D": 2,
+        "E": 1
+      },
+      "difficulty": 4,
+      "tags": [
+        "tkp",
+        "tik",
+        "whatsapp",
+        "data-resmi"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_TIK_WA_PRIBADI_001",
+      "imagePrompt": null,
+      "explanation": "WhatsApp pribadi adalah saluran tidak resmi yang tidak punya jejak audit, retensi, atau enkripsi instansi. Edukasi atasan tentang risiko keamanan adalah profesionalisme TIK.",
+      "explanationLong": "Pilihan B (skor 5) menjalankan tata kelola informasi yang tepat: edukasi tanpa konfrontasi, beri solusi alternatif. Beberapa instansi punya sistem dokumen dengan link berbatas waktu (expired link) yang aman. Pilihan D (skor 2) password tidak menetralkan masalah retensi/audit. Pilihan A (skor 2) ikut serta dalam praktik tidak aman. Pilihan C (skor 1) request hapus tidak menjamin (forensik bisa recover). Pilihan E (skor 1) menolak tanpa solusi.",
+      "source": "UU 27/2022 PDP; UU 14/2008 KIP; Pedoman Tata Naskah Dinas Elektronik",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 2,5,1,2,1 (sum=11). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_TIK_HOAKS_001_012",
+      "category": "TKP",
+      "subcategory": "TIK",
+      "topic": "Hoaks",
+      "questionText": "Di grup WhatsApp kantor, salah seorang rekan membagikan informasi yang Anda yakini hoaks dan dapat menimbulkan keresahan. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Memberikan klarifikasi dengan link sumber kredibel di grup yang sama, dan secara pribadi mengingatkan rekan tentang bahaya menyebarkan hoaks"
+        },
+        {
+          "label": "B",
+          "text": "Membiarkan saja karena bukan tugas Anda"
+        },
+        {
+          "label": "C",
+          "text": "Mengingatkan secara japri saja agar tidak mempermalukan rekan"
+        },
+        {
+          "label": "D",
+          "text": "Mengeluar dari grup"
+        },
+        {
+          "label": "E",
+          "text": "Memforward ke grup lain agar dicek bersama"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 5,
+        "B": 1,
+        "C": 3,
+        "D": 1,
+        "E": 1
+      },
+      "difficulty": 4,
+      "tags": [
+        "tkp",
+        "tik",
+        "hoaks",
+        "literasi-digital"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_TIK_HOAKS_001",
+      "imagePrompt": null,
+      "explanation": "ASN harus aktif berliterasi digital dan menentang penyebaran hoaks. Klarifikasi terbuka di grup yang sama menyelamatkan banyak orang sekaligus, sambil pendekatan pribadi tetap menjaga rekan.",
+      "explanationLong": "Pilihan A (skor 5) two-pronged: klarifikasi publik (cegah viral hoaks lebih jauh) + pendekatan pribadi (edukasi rekan tanpa mempermalukan di publik). Pilihan C (skor 3) baik tetapi hoaks tetap viral. Pilihan E (skor 1) menyebarkan hoaks lebih luas — bisa dijerat UU 19/2016 ITE Pasal 28. Pilihan B (skor 1) acuh tak acuh terhadap disinformasi. Pilihan D (skor 1) menghindar tanpa solusi.",
+      "source": "UU 11/2008 jo. UU 19/2016 ITE Pasal 28; Pedoman Literasi Digital Kominfo",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 5,1,3,1,1 (sum=11). Consider rebalancing to 1-5 unique for production."
+      ]
+    }
+  ]
+}

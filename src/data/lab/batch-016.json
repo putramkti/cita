@@ -1,0 +1,288 @@
+{
+  "batch_id": "batch-016",
+  "topic": "Batch 016 — TWK Top-up: Pancasila + UUD 1945",
+  "source_file": "docs/content/drafts/batch-016-twk-topup.md",
+  "generated_at": "2026-05-21T10:12:20.210Z",
+  "stats": {
+    "total_soal": 6,
+    "by_difficulty": {
+      "1": 0,
+      "2": 2,
+      "3": 2,
+      "4": 2,
+      "5": 0
+    },
+    "warnings_total": 0
+  },
+  "questions": [
+    {
+      "id": "PANCASILA_PENERAPAN_SILA2_001",
+      "category": "TWK",
+      "subcategory": "Pancasila",
+      "topic": "Sila ke-2",
+      "questionText": "Sebagai ASN yang melayani masyarakat dari berbagai latar belakang, sikap yang paling mencerminkan pengamalan Sila ke-2 Pancasila adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Memprioritaskan masyarakat yang seagama atau sesuku"
+        },
+        {
+          "label": "B",
+          "text": "Memperlakukan setiap warga negara dengan adil dan beradab tanpa membedakan latar belakang"
+        },
+        {
+          "label": "C",
+          "text": "Memberikan pelayanan ekstra hanya kepada pejabat"
+        },
+        {
+          "label": "D",
+          "text": "Memberikan pelayanan sesuai SOP saja tanpa memperhatikan kondisi khusus"
+        },
+        {
+          "label": "E",
+          "text": "Mendahulukan masyarakat yang vokal atau berisik"
+        }
+      ],
+      "correctAnswer": "B",
+      "optionWeights": null,
+      "difficulty": 3,
+      "tags": [
+        "twk",
+        "pancasila",
+        "kemanusiaan",
+        "pelayanan"
+      ],
+      "familyId": "TWK_PANCASILA_FAMILY",
+      "enemyGroupId": "PANCASILA_PENERAPAN_SILA2",
+      "imagePrompt": null,
+      "explanation": "Sila ke-2 \"Kemanusiaan yang Adil dan Beradab\" menuntut perlakuan adil dan beradab kepada semua manusia tanpa diskriminasi. Pelayanan publik yang adil adalah perwujudan konkret sila ini.",
+      "explanationLong": "Sila ke-2 mengandung prinsip non-diskriminasi (universalitas kemanusiaan) dan keberadaban (treatment yang menghargai martabat). Aplikasi di pelayanan publik: setiap warga negara mendapat akses dan perlakuan yang setara, sambil tetap mempertimbangkan kondisi khusus (lansia, disabilitas, dll). Pilihan A bertentangan dengan universalitas. Pilihan C diskriminasi positif terhadap kekuasaan. Pilihan D rigid dan tidak beradab. Pilihan E favoritisme yang tidak adil.",
+      "source": "Pancasila Sila ke-2; Permenpan-RB tentang Pelayanan Publik",
+      "warnings": []
+    },
+    {
+      "id": "PANCASILA_HIERARKIS_002",
+      "category": "TWK",
+      "subcategory": "Pancasila",
+      "topic": "Hubungan Sila",
+      "questionText": "Hubungan antar sila Pancasila bersifat hierarkis-piramidal, artinya…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Sila pertama lebih penting dari sila lain"
+        },
+        {
+          "label": "B",
+          "text": "Sila kelima merupakan tujuan akhir yang harus dicapai dengan mengorbankan sila lain"
+        },
+        {
+          "label": "C",
+          "text": "Setiap sila menjiwai dan dijiwai sila lain, di mana sila yang ada di atas memayungi sila di bawahnya, dan sila di bawah mengkhususkan sila di atasnya"
+        },
+        {
+          "label": "D",
+          "text": "Sila-sila Pancasila dapat dilaksanakan secara terpisah satu per satu"
+        },
+        {
+          "label": "E",
+          "text": "Sila ketiga merupakan pusat dari Pancasila"
+        }
+      ],
+      "correctAnswer": "C",
+      "optionWeights": null,
+      "difficulty": 4,
+      "tags": [
+        "twk",
+        "pancasila",
+        "hierarkis",
+        "piramidal"
+      ],
+      "familyId": "TWK_PANCASILA_FAMILY",
+      "enemyGroupId": "PANCASILA_HIERARKIS",
+      "imagePrompt": null,
+      "explanation": "Hierarkis-piramidal Pancasila berarti tiap sila saling menjiwai — sila atas memayungi (bersifat universal), sila bawah mengkhususkan (bersifat lebih konkret). Tidak ada sila yang berdiri sendiri.",
+      "explanationLong": "Konsep hierarkis-piramidal dijelaskan oleh Notonagoro: Sila pertama (Ketuhanan) sebagai pondasi paling universal, menjiwai sila ke-2 (Kemanusiaan) yang menjiwai sila ke-3 (Persatuan), seterusnya. Sila bawah mengkhususkan: sila ke-5 (Keadilan Sosial) adalah aplikasi konkret dari semua sila di atasnya. Sila atas memayungi: prinsip Ketuhanan ada dalam Kemanusiaan, Persatuan, dst. Pilihan A salah karena hierarkis bukan berarti supremasi. Pilihan B salah — tidak ada pengorbanan antar sila. Pilihan D salah — sila tidak terpisah. Pilihan E salah — pusatnya bukan sila ke-3.",
+      "source": "Notonagoro, Pancasila Secara Ilmiah Populer; Tap MPR No. XVIII/MPR/1998",
+      "warnings": []
+    },
+    {
+      "id": "PANCASILA_KEADILAN_SOSIAL_003",
+      "category": "TWK",
+      "subcategory": "Pancasila",
+      "topic": "Sila ke-5",
+      "questionText": "Pengamalan Sila ke-5 \"Keadilan Sosial bagi Seluruh Rakyat Indonesia\" tercermin dalam contoh berikut, kecuali…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Pemerataan pembangunan dari Sabang sampai Merauke"
+        },
+        {
+          "label": "B",
+          "text": "Pemberian beasiswa kepada anak dari keluarga kurang mampu"
+        },
+        {
+          "label": "C",
+          "text": "Membagi rata kekayaan negara secara mutlak kepada semua warga"
+        },
+        {
+          "label": "D",
+          "text": "Layanan kesehatan yang dapat diakses semua lapisan masyarakat"
+        },
+        {
+          "label": "E",
+          "text": "Subsidi BBM untuk masyarakat berpenghasilan rendah"
+        }
+      ],
+      "correctAnswer": "C",
+      "optionWeights": null,
+      "difficulty": 2,
+      "tags": [
+        "twk",
+        "pancasila",
+        "keadilan-sosial"
+      ],
+      "familyId": "TWK_PANCASILA_FAMILY",
+      "enemyGroupId": "PANCASILA_KEADILAN_SOSIAL",
+      "imagePrompt": null,
+      "explanation": "Keadilan sosial berarti perlakuan proporsional menurut hak dan kebutuhan, BUKAN pembagian mutlak yang sama rata. Konsep ini menghargai diferensiasi kebutuhan setiap individu.",
+      "explanationLong": "Keadilan dalam Pancasila adalah keadilan distributif — adil = sesuai porsi yang patut, bukan sama rata mutlak. Sila ke-5 menekankan: (1) pemerataan akses (A, D, E), (2) afirmasi terhadap yang lemah (B), dan (3) kesempatan setara untuk berkembang. Pilihan C adalah konsep komunisme/sama-rata mutlak yang justru bertentangan dengan keadilan proporsional Pancasila.",
+      "source": "Pancasila Sila ke-5; Tap MPR No. XVIII/MPR/1998",
+      "warnings": []
+    },
+    {
+      "id": "UUD_HAK_WARGA_004",
+      "category": "TWK",
+      "subcategory": "UUD 1945",
+      "topic": "Hak Warga Negara",
+      "questionText": "Hak setiap orang untuk hidup serta mempertahankan hidup dan kehidupannya diatur dalam Pasal 28A UUD 1945. Hak ini termasuk dalam kategori…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Hak ekonomi"
+        },
+        {
+          "label": "B",
+          "text": "Hak asasi manusia"
+        },
+        {
+          "label": "C",
+          "text": "Hak politik"
+        },
+        {
+          "label": "D",
+          "text": "Hak sosial"
+        },
+        {
+          "label": "E",
+          "text": "Hak budaya"
+        }
+      ],
+      "correctAnswer": "B",
+      "optionWeights": null,
+      "difficulty": 3,
+      "tags": [
+        "twk",
+        "uud",
+        "hak-warga-negara",
+        "pasal-28"
+      ],
+      "familyId": "TWK_UUD_FAMILY",
+      "enemyGroupId": "UUD_HAK_WARGA",
+      "imagePrompt": null,
+      "explanation": "Pasal 28A \"Setiap orang berhak untuk hidup serta berhak mempertahankan hidup dan kehidupannya\" adalah pengakuan paling fundamental dari Hak Asasi Manusia, dimulai dari hak hidup itu sendiri.",
+      "explanationLong": "Pasal 28A masuk dalam Bab XA \"Hak Asasi Manusia\" UUD 1945 (hasil amandemen ke-2 tahun 2000). HAM dalam UUD 1945 mencakup hak hidup, hak atas kebebasan, hak atas keadilan, hak atas pengakuan, dll. Hak ekonomi (A) berada di Pasal 27 ayat 2 (pekerjaan dan penghidupan layak). Hak politik (C) di Pasal 28D ayat 3 (pemerintahan). Hak sosial dan budaya (D, E) lebih spesifik dan tidak menggambarkan hak hidup yang fundamental.",
+      "source": "UUD 1945 Pasal 28A; Bab XA UUD 1945 (HAM); UU 39/1999 tentang HAM",
+      "warnings": []
+    },
+    {
+      "id": "UUD_LEMBAGA_INDEPENDEN_005",
+      "category": "TWK",
+      "subcategory": "UUD 1945",
+      "topic": "Lembaga Independen",
+      "questionText": "Lembaga negara di bawah ini yang KEBERADAANNYA secara langsung diatur dalam UUD 1945 dan bersifat independen adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "KPK (Komisi Pemberantasan Korupsi)"
+        },
+        {
+          "label": "B",
+          "text": "Bawaslu (Badan Pengawas Pemilu)"
+        },
+        {
+          "label": "C",
+          "text": "BPK (Badan Pemeriksa Keuangan)"
+        },
+        {
+          "label": "D",
+          "text": "Komnas HAM (Komisi Nasional Hak Asasi Manusia)"
+        },
+        {
+          "label": "E",
+          "text": "Ombudsman RI"
+        }
+      ],
+      "correctAnswer": "C",
+      "optionWeights": null,
+      "difficulty": 4,
+      "tags": [
+        "twk",
+        "uud",
+        "lembaga-independen",
+        "kpu",
+        "bpk"
+      ],
+      "familyId": "TWK_UUD_FAMILY",
+      "enemyGroupId": "UUD_LEMBAGA_INDEPENDEN",
+      "imagePrompt": null,
+      "explanation": "BPK satu-satunya lembaga di antara opsi yang keberadaannya diatur langsung dalam UUD 1945, yaitu Pasal 23E-G hasil amandemen ke-3 (2001). Lembaga lain dibentuk melalui UU.",
+      "explanationLong": "Lembaga negara yang langsung disebut UUD 1945 mencakup: MPR, DPR, DPD, Presiden/Wakil Presiden, MA, MK, KY, dan BPK. Pasal 23E UUD 1945 menyatakan \"Untuk memeriksa pengelolaan dan tanggung jawab tentang keuangan negara diadakan satu Badan Pemeriksa Keuangan yang bebas dan mandiri.\" KPK dibentuk oleh UU 30/2002 (kemudian diubah). Bawaslu di UU Pemilu. Komnas HAM di UU 39/1999. Ombudsman di UU 37/2008. Walaupun semua independen, hanya BPK yang setingkat lembaga negara konstitusional.",
+      "source": "UUD 1945 Pasal 23E-G (Bab VIIIA); Tap MPR amandemen ke-3 tahun 2001",
+      "warnings": []
+    },
+    {
+      "id": "UUD_AMANDEMEN_006",
+      "category": "TWK",
+      "subcategory": "UUD 1945",
+      "topic": "Amandemen",
+      "questionText": "UUD 1945 telah mengalami empat kali amandemen oleh MPR pada tahun…",
+      "options": [
+        {
+          "label": "A",
+          "text": "1998, 1999, 2000, 2001"
+        },
+        {
+          "label": "B",
+          "text": "1999, 2000, 2001, 2002"
+        },
+        {
+          "label": "C",
+          "text": "2000, 2001, 2002, 2003"
+        },
+        {
+          "label": "D",
+          "text": "1998, 2000, 2002, 2004"
+        },
+        {
+          "label": "E",
+          "text": "1999, 2001, 2003, 2005"
+        }
+      ],
+      "correctAnswer": "B",
+      "optionWeights": null,
+      "difficulty": 2,
+      "tags": [
+        "twk",
+        "uud",
+        "amandemen"
+      ],
+      "familyId": "TWK_UUD_FAMILY",
+      "enemyGroupId": "UUD_AMANDEMEN",
+      "imagePrompt": null,
+      "explanation": "Empat amandemen UUD 1945 dilakukan berturut-turut pada Sidang Tahunan MPR: 19 Oktober 1999, 18 Agustus 2000, 9 November 2001, dan 10 Agustus 2002.",
+      "explanationLong": "Amandemen UUD 1945:\n- **Pertama** — 19 Oktober 1999: pembatasan kekuasaan Presiden, masa jabatan\n- **Kedua** — 18 Agustus 2000: HAM (Bab XA), pemerintahan daerah, pertahanan keamanan\n- **Ketiga** — 9 November 2001: kedaulatan rakyat, pemilu, kekuasaan kehakiman, BPK, MK\n- **Keempat** — 10 Agustus 2002: penghapusan DPA, transisi pemerintahan, pendidikan\n\nKaidah pengingat: amandemen mulai 1999 (1 tahun setelah Reformasi 1998), berlangsung 4 tahun berturut-turut sampai 2002.",
+      "source": "Tap MPR amandemen UUD 1945 (1999-2002)",
+      "warnings": []
+    }
+  ]
+}

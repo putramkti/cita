@@ -42,3 +42,4 @@ next-env.d.ts
 
 # Hermes plans (local docs only)
 .hermes/
+/tmp/cita-build/

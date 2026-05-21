@@ -1,0 +1,655 @@
+{
+  "batch_id": "batch-014",
+  "topic": "Batch 014 — TKP Profesionalisme",
+  "source_file": "docs/content/drafts/batch-014-tkp-profesionalisme.md",
+  "generated_at": "2026-05-21T10:12:20.200Z",
+  "stats": {
+    "total_soal": 12,
+    "by_difficulty": {
+      "1": 0,
+      "2": 4,
+      "3": 3,
+      "4": 5,
+      "5": 0
+    },
+    "warnings_total": 12
+  },
+  "questions": [
+    {
+      "id": "TKP_PROF_MENDADAK_001_001",
+      "category": "TKP",
+      "subcategory": "Profesionalisme",
+      "topic": "Tugas Mendadak",
+      "questionText": "Atasan memberikan tugas mendadak yang harus selesai hari ini, sementara Anda sudah memiliki agenda yang juga penting. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Menolak dengan sopan karena agenda Anda sudah penuh"
+        },
+        {
+          "label": "B",
+          "text": "Mengerjakan keduanya seadanya tanpa komunikasi"
+        },
+        {
+          "label": "C",
+          "text": "Mengkomunikasikan agenda Anda kepada atasan, mendiskusikan prioritas, dan menyusun ulang jadwal yang realistis"
+        },
+        {
+          "label": "D",
+          "text": "Mengerjakan tugas mendadak dulu dan menggeser agenda lain"
+        },
+        {
+          "label": "E",
+          "text": "Meminta rekan menggantikan agenda Anda"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 1,
+        "B": 2,
+        "C": 5,
+        "D": 3,
+        "E": 3
+      },
+      "difficulty": 2,
+      "tags": [
+        "tkp",
+        "profesionalisme",
+        "tugas-mendadak",
+        "prioritas"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_PROF_MENDADAK_001",
+      "imagePrompt": null,
+      "explanation": "Komunikasi terbuka dengan atasan untuk menyusun prioritas adalah pendekatan paling profesional. Anda tidak menolak tugas, tetapi juga tidak mengorbankan agenda penting tanpa diskusi.",
+      "explanationLong": "Pilihan C (skor 5) menerapkan prinsip \"managing up\" yang sehat: atasan diberi visibilitas tentang beban kerja Anda, lalu sama-sama menentukan prioritas. Pilihan D (skor 3) cukup solutif tetapi tanpa komunikasi yang eksplisit. Pilihan E (skor 3) memindahkan beban tanpa konfirmasi rekan. Pilihan B (skor 2) berisiko hasil tidak optimal di kedua sisi. Pilihan A (skor 1) menolak tugas atasan tanpa upaya negosiasi.",
+      "source": "BerAKHLAK — Akuntabel, Kolaboratif",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 1,2,5,3,3 (sum=14). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_PROF_LUAR_DESKRIPSI_001_002",
+      "category": "TKP",
+      "subcategory": "Profesionalisme",
+      "topic": "Di Luar Deskripsi",
+      "questionText": "Anda diminta mengerjakan tugas yang sebenarnya bukan tanggung jawab unit Anda, tetapi situasi mendesak. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Menolak dengan tegas karena bukan tanggung jawab unit"
+        },
+        {
+          "label": "B",
+          "text": "Menerima tetapi mengerjakan seadanya"
+        },
+        {
+          "label": "C",
+          "text": "Membantu sebatas kemampuan, sambil mengkonfirmasi ke atasan agar tetap terdokumentasi dengan baik dan tidak menjadi preseden permanen"
+        },
+        {
+          "label": "D",
+          "text": "Menerima dan mengerjakan tanpa konfirmasi atasan"
+        },
+        {
+          "label": "E",
+          "text": "Mengarahkan permintaan ke unit yang seharusnya bertanggung jawab"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 1,
+        "B": 2,
+        "C": 5,
+        "D": 3,
+        "E": 3
+      },
+      "difficulty": 3,
+      "tags": [
+        "tkp",
+        "profesionalisme",
+        "tugas-tambahan",
+        "fleksibilitas"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_PROF_LUAR_DESKRIPSI_001",
+      "imagePrompt": null,
+      "explanation": "Fleksibilitas dengan dokumentasi adalah ideal. Membantu situasi mendesak menunjukkan kolaborasi, sambil konfirmasi atasan menjaga akuntabilitas dan struktur kerja.",
+      "explanationLong": "Pilihan C (skor 5) memenuhi tiga prinsip: solidaritas (membantu), batasan sehat (sebatas kemampuan), dan akuntabilitas (konfirmasi atasan + cegah preseden permanen). Pilihan D (skor 3) baik tetapi tanpa dokumentasi bisa menyulitkan kedua unit di kemudian hari. Pilihan E (skor 3) tepat jika tidak mendesak. Pilihan B (skor 2) hasil suboptimal. Pilihan A (skor 1) tidak adaptif.",
+      "source": "BerAKHLAK — Adaptif, Akuntabel, Kolaboratif",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 1,2,5,3,3 (sum=14). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_PROF_GRATIFIKASI_001_003",
+      "category": "TKP",
+      "subcategory": "Profesionalisme",
+      "topic": "Gratifikasi",
+      "questionText": "Seorang klien yang Anda layani dengan baik mengirim parsel berisi makanan dan barang elektronik bernilai cukup besar ke kantor sebagai ungkapan terima kasih. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Menerima parsel karena hanya ungkapan terima kasih"
+        },
+        {
+          "label": "B",
+          "text": "Menerima makanan saja karena cepat habis"
+        },
+        {
+          "label": "C",
+          "text": "Menolak parsel dengan sopan, jelaskan alasan etika ASN, dan jika sudah terlanjur diterima laporkan ke UPG (Unit Pengendalian Gratifikasi) atau KPK"
+        },
+        {
+          "label": "D",
+          "text": "Menerima parsel tetapi membaginya ke seluruh staf"
+        },
+        {
+          "label": "E",
+          "text": "Mengembalikan parsel kepada klien tanpa keterangan apa-apa"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 1,
+        "B": 1,
+        "C": 5,
+        "D": 1,
+        "E": 3
+      },
+      "difficulty": 4,
+      "tags": [
+        "tkp",
+        "profesionalisme",
+        "gratifikasi",
+        "integritas"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_PROF_GRATIFIKASI_001",
+      "imagePrompt": null,
+      "explanation": "Penerimaan gratifikasi adalah pelanggaran integritas yang berat. Menolak dengan sopan + lapor UPG/KPK adalah standar emas etika ASN.",
+      "explanationLong": "Pilihan C (skor 5) memenuhi standar UU 20/2001 tentang Tipikor. Setiap pegawai negeri yang menerima gratifikasi wajib melaporkan ke KPK dalam 30 hari kerja (Pasal 12C). UPG (Unit Pengendalian Gratifikasi) ada di setiap instansi sebagai unit pertama yang menerima laporan. Pilihan E (skor 3) niat baik tetapi tanpa edukasi/dokumentasi. Pilihan A, B, D (skor 1) semua bentuk penerimaan gratifikasi yang sama-sama salah. Membagi parsel ke staf tidak menetralkan pelanggaran — justru memperluas pelanggaran ke kolega.",
+      "source": "UU 20/2001 tentang Pemberantasan Tipikor (Pasal 12B & 12C); UU 5/2014 ASN; Permenpan-RB tentang UPG",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 1,1,5,1,3 (sum=11). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_PROF_VENDOR_001_004",
+      "category": "TKP",
+      "subcategory": "Profesionalisme",
+      "topic": "Vendor",
+      "questionText": "Salah satu vendor yang menjadi rekanan kantor mengundang Anda makan malam untuk \"membahas teknis kerjasama\" dan menyiratkan akan menanggung biayanya. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Menerima karena hanya makan biasa, tidak ada uang"
+        },
+        {
+          "label": "B",
+          "text": "Menolak undangan dan menyarankan diskusi teknis dilakukan di kantor pada jam kerja, dengan dihadiri rekan agar transparan"
+        },
+        {
+          "label": "C",
+          "text": "Menerima undangan tetapi membayar makanan sendiri"
+        },
+        {
+          "label": "D",
+          "text": "Mengajak atasan ikut serta agar tidak sendirian"
+        },
+        {
+          "label": "E",
+          "text": "Menerima asal hasil diskusi dilaporkan ke kantor"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 1,
+        "B": 5,
+        "C": 3,
+        "D": 2,
+        "E": 1
+      },
+      "difficulty": 4,
+      "tags": [
+        "tkp",
+        "profesionalisme",
+        "vendor",
+        "konflik-kepentingan"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_PROF_VENDOR_001",
+      "imagePrompt": null,
+      "explanation": "Pertemuan profesional dengan vendor harus dilakukan di kantor pada jam kerja dengan saksi — bukan di ruang privat dengan biaya ditanggung vendor. Ini mencegah persepsi konflik kepentingan.",
+      "explanationLong": "Pilihan B (skor 5) menerapkan prinsip transparansi proses pengadaan: lokasi netral (kantor), waktu netral (jam kerja), saksi netral (rekan). Pilihan C (skor 3) integritas finansial terjaga tetapi setting privat masih beresiko. Pilihan D (skor 2) lebih baik dari sendirian, tetapi setting tetap tidak ideal. Pilihan A dan E (skor 1) bentuk gratifikasi terselubung — biaya makan ditanggung vendor adalah benefit yang dikategorikan suap dalam regulasi pengadaan.",
+      "source": "Perpres 16/2018 tentang Pengadaan Barang/Jasa Pemerintah; UU 20/2001 tentang Tipikor",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 1,5,3,2,1 (sum=12). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_PROF_DILEMA_MORAL_001_005",
+      "category": "TKP",
+      "subcategory": "Profesionalisme",
+      "topic": "Tugas Bertentangan Moral",
+      "questionText": "Atasan meminta Anda menyetujui dokumen yang menurut Anda tidak sesuai dengan ketentuan yang berlaku. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Menyetujui karena perintah atasan harus dijalankan"
+        },
+        {
+          "label": "B",
+          "text": "Menolak dengan sopan, sampaikan alasan teknis dan regulasi yang dilanggar, lalu mintakan keputusan tertulis dari atasan jika tetap diminta menyetujui"
+        },
+        {
+          "label": "C",
+          "text": "Menyetujui tetapi mencatat keberatan secara pribadi"
+        },
+        {
+          "label": "D",
+          "text": "Lapor langsung ke Inspektorat tanpa berbicara dengan atasan"
+        },
+        {
+          "label": "E",
+          "text": "Mengabaikan permintaan tanpa memberi jawaban"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 1,
+        "B": 5,
+        "C": 2,
+        "D": 3,
+        "E": 1
+      },
+      "difficulty": 4,
+      "tags": [
+        "tkp",
+        "profesionalisme",
+        "dilema-moral",
+        "whistleblowing"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_PROF_DILEMA_MORAL_001",
+      "imagePrompt": null,
+      "explanation": "ASN wajib menolak perintah yang melanggar hukum (UU 5/2014 Pasal 5), dengan tetap profesional dalam komunikasi. Permintaan keputusan tertulis melindungi diri Anda dan mendorong atasan berpikir ulang.",
+      "explanationLong": "Pilihan B (skor 5) menerapkan tiga prinsip: keberanian (menolak), edukasi (jelaskan regulasi), dan dokumentasi (keputusan tertulis). UU 5/2014 Pasal 5 ayat (2) menyatakan ASN dapat menolak perintah atasan jika perintah tersebut bertentangan dengan ketentuan peraturan perundang-undangan. Pilihan D (skor 3) lompat eskalasi tanpa beri kesempatan atasan memperbaiki. Pilihan C (skor 2) tidak melindungi Anda jika kemudian dipersoalkan. Pilihan A dan E (skor 1) keduanya pelanggaran disiplin — menyetujui yang salah, atau mengabaikan tugas tanpa komunikasi.",
+      "source": "UU 5/2014 ASN Pasal 5; PP 53/2010 tentang Disiplin PNS",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 1,5,2,3,1 (sum=12). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_PROF_INOVASI_001_006",
+      "category": "TKP",
+      "subcategory": "Profesionalisme",
+      "topic": "Inovasi",
+      "questionText": "Pekerjaan rutin yang Anda lakukan ternyata bisa diefisienkan dengan teknologi sederhana. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Tetap bekerja seperti biasa karena prosedur sudah ada"
+        },
+        {
+          "label": "B",
+          "text": "Mencoba sendiri tanpa memberitahu siapa-siapa"
+        },
+        {
+          "label": "C",
+          "text": "Menyusun usulan tertulis kepada atasan, jelaskan manfaat efisiensi, dan tawarkan untuk mengembangkan/uji coba"
+        },
+        {
+          "label": "D",
+          "text": "Membicarakan dengan rekan saja"
+        },
+        {
+          "label": "E",
+          "text": "Menunggu instruksi dari atasan tentang efisiensi"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 2,
+        "B": 3,
+        "C": 5,
+        "D": 2,
+        "E": 1
+      },
+      "difficulty": 2,
+      "tags": [
+        "tkp",
+        "profesionalisme",
+        "inovasi",
+        "improvement"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_PROF_INOVASI_001",
+      "imagePrompt": null,
+      "explanation": "Inisiatif inovasi yang tertulis dan terstruktur adalah kontribusi positif yang sangat dihargai dalam ASN modern (BerAKHLAK — Adaptif).",
+      "explanationLong": "Pilihan C (skor 5) menyalurkan inisiatif lewat jalur formal yang konstruktif. Usulan tertulis mempermudah atasan mengevaluasi dan mendokumentasikan. Pilihan B (skor 3) inisiatif tetapi tanpa transparansi — bisa dianggap menggunakan resource tanpa izin. Pilihan A dan D (skor 2) pasif dengan rekan saja tidak menghasilkan perubahan. Pilihan E (skor 1) bertentangan langsung dengan nilai Adaptif BerAKHLAK.",
+      "source": "BerAKHLAK — Adaptif, Kompeten",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 2,3,5,2,1 (sum=13). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_PROF_PENILAIAN_001_007",
+      "category": "TKP",
+      "subcategory": "Profesionalisme",
+      "topic": "Penilaian Kinerja",
+      "questionText": "Penilaian kinerja Anda lebih rendah dari yang Anda harapkan, padahal Anda merasa sudah bekerja maksimal. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Memprotes hasil penilaian kepada atasan dengan tegas"
+        },
+        {
+          "label": "B",
+          "text": "Mendiskusikan hasil penilaian dengan atasan secara terbuka, mintakan masukan konkret area perbaikan, dan susun rencana pengembangan diri"
+        },
+        {
+          "label": "C",
+          "text": "Menerima saja walau merasa tidak adil"
+        },
+        {
+          "label": "D",
+          "text": "Bekerja seperti biasa dan berharap tahun depan lebih baik"
+        },
+        {
+          "label": "E",
+          "text": "Mencari kesempatan pindah unit"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 2,
+        "B": 5,
+        "C": 2,
+        "D": 2,
+        "E": 1
+      },
+      "difficulty": 3,
+      "tags": [
+        "tkp",
+        "profesionalisme",
+        "kinerja",
+        "feedback"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_PROF_PENILAIAN_001",
+      "imagePrompt": null,
+      "explanation": "Diskusi terbuka dengan permintaan masukan konkret adalah growth mindset profesional. Penilaian kinerja adalah kesempatan belajar, bukan ajang protes atau pasrah.",
+      "explanationLong": "Pilihan B (skor 5) memenuhi prinsip growth mindset: terbuka pada feedback, konkretkan area perbaikan, dan susun rencana aksi. Pilihan A (skor 2) emosional dan tidak konstruktif. Pilihan C dan D (skor 2) pasif tanpa pembelajaran. Pilihan E (skor 1) eskalasi negatif yang tidak menyelesaikan apa pun.",
+      "source": "BerAKHLAK — Kompeten, Akuntabel; Permen PANRB tentang Penilaian Kinerja PNS",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 2,5,2,2,1 (sum=12). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_PROF_DISIPLIN_001_008",
+      "category": "TKP",
+      "subcategory": "Profesionalisme",
+      "topic": "Disiplin Waktu",
+      "questionText": "Karena situasi tertentu, Anda kemungkinan akan terlambat masuk kantor pada hari tertentu. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Datang terlambat tanpa memberi tahu"
+        },
+        {
+          "label": "B",
+          "text": "Mengirim pesan singkat ke teman dekat saja"
+        },
+        {
+          "label": "C",
+          "text": "Memberitahukan atasan langsung sesegera mungkin via pesan resmi, jelaskan alasan, dan estimasi waktu kedatangan"
+        },
+        {
+          "label": "D",
+          "text": "Mengambil cuti mendadak agar tidak masuk"
+        },
+        {
+          "label": "E",
+          "text": "Memberi tahu setelah tiba di kantor"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 1,
+        "B": 2,
+        "C": 5,
+        "D": 2,
+        "E": 3
+      },
+      "difficulty": 2,
+      "tags": [
+        "tkp",
+        "profesionalisme",
+        "disiplin",
+        "waktu"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_PROF_DISIPLIN_001",
+      "imagePrompt": null,
+      "explanation": "Komunikasi proaktif kepada atasan adalah dasar disiplin profesional. Memberi tahu sedini mungkin memungkinkan tim merencanakan ulang jika perlu.",
+      "explanationLong": "Pilihan C (skor 5) menjalankan etika ASN: transparansi waktu (kapan), substansi (alasan), dan ekspektasi (estimasi tiba). Pilihan E (skor 3) datang terlambat baru memberi tahu tidak ideal — tim tidak punya waktu adaptasi. Pilihan B (skor 2) memberi tahu teman bukan hierarki yang tepat. Pilihan D (skor 2) abuse cuti mendadak. Pilihan A (skor 1) pelanggaran disiplin yang dapat dikenakan sanksi PP 53/2010.",
+      "source": "PP 53/2010 tentang Disiplin PNS; BerAKHLAK — Akuntabel",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 1,2,5,2,3 (sum=13). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_PROF_KAPASITAS_001_009",
+      "category": "TKP",
+      "subcategory": "Profesionalisme",
+      "topic": "Kapasitas",
+      "questionText": "Anda mendapat tugas yang skalanya melebihi kapasitas pribadi Anda dan deadline ketat. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Menerima dan mencoba mengerjakan semuanya sendiri"
+        },
+        {
+          "label": "B",
+          "text": "Mengkomunikasikan ke atasan tentang kapasitas, ajukan opsi (perpanjang deadline, tambah personel, atau scope kerja)"
+        },
+        {
+          "label": "C",
+          "text": "Menolak tugas karena terlalu besar"
+        },
+        {
+          "label": "D",
+          "text": "Mengerjakan sebisanya tanpa komunikasi"
+        },
+        {
+          "label": "E",
+          "text": "Membagi diam-diam ke rekan tanpa otoritas formal"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 2,
+        "B": 5,
+        "C": 1,
+        "D": 1,
+        "E": 2
+      },
+      "difficulty": 3,
+      "tags": [
+        "tkp",
+        "profesionalisme",
+        "kapasitas",
+        "delegasi"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_PROF_KAPASITAS_001",
+      "imagePrompt": null,
+      "explanation": "Manajemen ekspektasi yang transparan adalah profesionalisme dewasa. Memberi opsi konkret kepada atasan menunjukkan inisiatif dan akuntabilitas.",
+      "explanationLong": "Pilihan B (skor 5) menerapkan negotiation maturity: tidak menolak tetapi memberi opsi konkret. Atasan punya pilihan untuk realokasi resource. Pilihan A (skor 2) sok mampu dan berisiko gagal. Pilihan E (skor 2) mendelegasikan tanpa otoritas. Pilihan C (skor 1) tanpa upaya. Pilihan D (skor 1) kerja tanpa komunikasi adalah resep failure.",
+      "source": "BerAKHLAK — Akuntabel, Kompeten, Kolaboratif",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 2,5,1,1,2 (sum=11). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_PROF_FASILITAS_001_010",
+      "category": "TKP",
+      "subcategory": "Profesionalisme",
+      "topic": "Fasilitas Kantor",
+      "questionText": "Anda mengetahui rekan kerja sering menggunakan kendaraan operasional kantor untuk kepentingan pribadi di luar jam kerja. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Membiarkan saja karena bukan kerugian besar"
+        },
+        {
+          "label": "B",
+          "text": "Mengikuti rekan tersebut karena banyak yang juga melakukannya"
+        },
+        {
+          "label": "C",
+          "text": "Mengingatkan rekan secara baik bahwa fasilitas kantor untuk dinas, jika tidak berhenti laporkan ke atasan/inspektorat"
+        },
+        {
+          "label": "D",
+          "text": "Lapor langsung ke inspektorat tanpa peringatan"
+        },
+        {
+          "label": "E",
+          "text": "Mendokumentasikan perilaku rekan untuk bukti suatu saat"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 1,
+        "B": 1,
+        "C": 5,
+        "D": 3,
+        "E": 2
+      },
+      "difficulty": 4,
+      "tags": [
+        "tkp",
+        "profesionalisme",
+        "fasilitas",
+        "pungutan"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_PROF_FASILITAS_001",
+      "imagePrompt": null,
+      "explanation": "Pendekatan bertahap (peringatkan dulu → eskalasi jika tidak berhenti) menyeimbangkan integritas dengan harmonis. Penyalahgunaan fasilitas kantor adalah pelanggaran disiplin.",
+      "explanationLong": "Pilihan C (skor 5) memberi rekan kesempatan memperbaiki diri sebelum masalah formal. Pilihan D (skor 3) langsung formal — sah tetapi kasar untuk pelanggaran kecil yang bisa diselesaikan dialog. Pilihan E (skor 2) data-collecting tanpa upaya prevensi. Pilihan A dan B (skor 1) membiarkan = ikut menjadi pelanggar dalam kategori \"ASN yang menutupi pelanggaran\" PP 53/2010.",
+      "source": "PP 53/2010 tentang Disiplin PNS; PMK tentang Pengelolaan Aset Negara",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 1,1,5,3,2 (sum=12). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_PROF_LAPORAN_001_011",
+      "category": "TKP",
+      "subcategory": "Profesionalisme",
+      "topic": "Manipulasi Laporan",
+      "questionText": "Atasan meminta Anda \"memodifikasi\" data laporan tahunan agar tampak lebih baik untuk presentasi ke pimpinan tertinggi. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Mengikuti permintaan karena perintah atasan"
+        },
+        {
+          "label": "B",
+          "text": "Memodifikasi data dengan margin kecil yang bisa dimaafkan"
+        },
+        {
+          "label": "C",
+          "text": "Menolak dengan sopan, jelaskan implikasi etis dan hukum, dan tawarkan alternatif penyajian yang jujur namun komprehensif"
+        },
+        {
+          "label": "D",
+          "text": "Memodifikasi data tetapi mendokumentasikan keberatan secara tertulis"
+        },
+        {
+          "label": "E",
+          "text": "Lapor langsung ke pimpinan tertinggi tanpa berbicara dengan atasan"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 1,
+        "B": 1,
+        "C": 5,
+        "D": 2,
+        "E": 3
+      },
+      "difficulty": 4,
+      "tags": [
+        "tkp",
+        "profesionalisme",
+        "manipulasi-data",
+        "integritas"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_PROF_LAPORAN_001",
+      "imagePrompt": null,
+      "explanation": "Manipulasi data adalah pelanggaran integritas serius. Menolak dengan menawarkan alternatif jujur (penyajian/framing yang baik tanpa mengubah data) adalah jalan profesional.",
+      "explanationLong": "Pilihan C (skor 5) menerapkan Akuntabel + Adaptif: tegas pada substansi (data tidak boleh diubah) tetapi fleksibel pada bentuk (penyajian bisa dibuat lebih komunikatif). Pilihan E (skor 3) lompat eskalasi yang merusak hubungan. Pilihan D (skor 2) co-conspirator dengan dokumentasi. Pilihan A dan B (skor 1) ikut serta dalam manipulasi yang dapat berujung pidana (Pasal 263 KUHP — pemalsuan dokumen).",
+      "source": "KUHP Pasal 263 (Pemalsuan); UU 5/2014 ASN; UU 14/2008 KIP (Keterbukaan Informasi Publik)",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 1,1,5,2,3 (sum=12). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_PROF_LEARNING_001_012",
+      "category": "TKP",
+      "subcategory": "Profesionalisme",
+      "topic": "Pengembangan Diri",
+      "questionText": "Lingkungan kerja Anda menuntut kompetensi baru yang belum Anda kuasai. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Mengambil inisiatif belajar mandiri (kursus, sertifikasi, atau praktik) sambil mendiskusikan kebutuhan pelatihan formal dengan atasan"
+        },
+        {
+          "label": "B",
+          "text": "Menunggu pelatihan resmi dari kantor"
+        },
+        {
+          "label": "C",
+          "text": "Mengandalkan rekan yang lebih kompeten untuk bagian yang tidak Anda kuasai"
+        },
+        {
+          "label": "D",
+          "text": "Mengusulkan pelatihan tetapi tidak belajar sendiri"
+        },
+        {
+          "label": "E",
+          "text": "Bekerja seadanya dengan kompetensi yang ada"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 5,
+        "B": 2,
+        "C": 2,
+        "D": 3,
+        "E": 1
+      },
+      "difficulty": 2,
+      "tags": [
+        "tkp",
+        "profesionalisme",
+        "lifelong-learning",
+        "kompetensi"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_PROF_LEARNING_001",
+      "imagePrompt": null,
+      "explanation": "Lifelong learning adalah inti kompeten BerAKHLAK. Inisiatif belajar mandiri + mengkomunikasikan kebutuhan formal adalah pendekatan dua arah yang ideal.",
+      "explanationLong": "Pilihan A (skor 5) menggabungkan dua jalur: bottom-up (inisiatif pribadi) dan top-down (formal training). ASN modern tidak menunggu — proaktif investasi dalam diri sendiri. Pilihan D (skor 3) usulan saja tanpa eksekusi pribadi tidak optimal. Pilihan B dan C (skor 2) pasif dan dependen. Pilihan E (skor 1) stagnan.",
+      "source": "UU 5/2014 ASN — Pengembangan Kompetensi; BerAKHLAK — Kompeten, Adaptif",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 5,2,2,3,1 (sum=13). Consider rebalancing to 1-5 unique for production."
+      ]
+    }
+  ]
+}

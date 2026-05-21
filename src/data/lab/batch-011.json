@@ -1,0 +1,646 @@
+{
+  "batch_id": "batch-011",
+  "topic": "Batch 011 — TKP Pelayanan Publik",
+  "source_file": "docs/content/drafts/batch-011-tkp-pelayanan.md",
+  "generated_at": "2026-05-21T10:12:20.190Z",
+  "stats": {
+    "total_soal": 12,
+    "by_difficulty": {
+      "1": 0,
+      "2": 4,
+      "3": 5,
+      "4": 3,
+      "5": 0
+    },
+    "warnings_total": 8
+  },
+  "questions": [
+    {
+      "id": "TKP_PELAYANAN_LANSIA_001_001",
+      "category": "TKP",
+      "subcategory": "Pelayanan Publik",
+      "topic": "Lansia",
+      "questionText": "Anda bertugas di loket pelayanan publik. Seorang lansia datang dan terlihat bingung tentang nomor antrean dan dokumen yang harus dibawa. Sikap yang akan Anda lakukan adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Menunjukkan tempat duduk dan meminta beliau menunggu giliran sesuai antrean"
+        },
+        {
+          "label": "B",
+          "text": "Mendekati beliau, menjelaskan alur antrean dengan sabar, dan membantu memeriksa kelengkapan dokumennya"
+        },
+        {
+          "label": "C",
+          "text": "Memanggil petugas keamanan untuk mendampingi beliau"
+        },
+        {
+          "label": "D",
+          "text": "Memberitahukan beliau bahwa pelayanan sudah ada prosedurnya, silakan ikuti dengan tertib"
+        },
+        {
+          "label": "E",
+          "text": "Menyarankan beliau untuk datang lain hari dengan ditemani keluarga"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 3,
+        "B": 5,
+        "C": 2,
+        "D": 1,
+        "E": 4
+      },
+      "difficulty": 2,
+      "tags": [
+        "tkp",
+        "pelayanan-publik",
+        "lansia",
+        "empati"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_PELAYANAN_LANSIA_001",
+      "imagePrompt": null,
+      "explanation": "Sikap paling profesional adalah pelayanan proaktif dengan empati: mendekati, menjelaskan dengan sabar, dan membantu pemeriksaan dokumen. Ini mencerminkan nilai BerAKHLAK terutama \"Berorientasi Pelayanan\" dan \"Harmonis\".",
+      "explanationLong": "ASN dituntut tidak hanya melayani sesuai prosedur, tetapi juga menyesuaikan dengan kebutuhan masyarakat — terutama golongan rentan seperti lansia. Pilihan B (skor 5) menunjukkan inisiatif untuk menjemput bola, kesabaran dalam menjelaskan, dan kepedulian dengan memeriksa kelengkapan dokumen agar tidak bolak-balik. Pilihan E (skor 4) bersifat protektif tetapi menunda layanan — kurang ideal. Pilihan A (skor 3) standar prosedural tanpa nilai tambah empati. Pilihan C (skor 2) menyerahkan tanggung jawab ke pihak lain. Pilihan D (skor 1) tidak berempati dan kaku.",
+      "source": "BerAKHLAK — Berorientasi Pelayanan; Permenpan-RB No. 27/2021",
+      "warnings": []
+    },
+    {
+      "id": "TKP_PELAYANAN_KOMPLAIN_001_002",
+      "category": "TKP",
+      "subcategory": "Pelayanan Publik",
+      "topic": "Komplain",
+      "questionText": "Seorang masyarakat komplain dengan suara keras karena merasa antrean terlalu lama, padahal Anda telah melayani sesuai standar waktu yang ditetapkan. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Menenangkan diri, mendengarkan keluhannya dengan baik, lalu memberikan penjelasan tentang standar waktu pelayanan"
+        },
+        {
+          "label": "B",
+          "text": "Membalas dengan suara tegas bahwa pelayanan sudah sesuai standar"
+        },
+        {
+          "label": "C",
+          "text": "Memanggil atasan untuk menangani keluhan tersebut"
+        },
+        {
+          "label": "D",
+          "text": "Mempersilakan beliau menulis keluhan di buku saran"
+        },
+        {
+          "label": "E",
+          "text": "Meminta maaf dan memberi tahu bahwa antrean memang ramai hari ini"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 5,
+        "B": 1,
+        "C": 3,
+        "D": 2,
+        "E": 4
+      },
+      "difficulty": 3,
+      "tags": [
+        "tkp",
+        "pelayanan-publik",
+        "komplain",
+        "pengendalian-emosi"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_PELAYANAN_KOMPLAIN_001",
+      "imagePrompt": null,
+      "explanation": "Mendengarkan dengan tenang dan menjelaskan dengan jelas adalah respons paling profesional terhadap komplain. ASN harus bisa mengendalikan emosi dan memberikan penjelasan rasional tanpa defensif berlebihan.",
+      "explanationLong": "Pilihan A (skor 5) mencerminkan kemampuan komunikasi profesional: pengendalian diri (menenangkan), empati (mendengarkan), dan transparansi (menjelaskan standar). Pilihan E (skor 4) sudah baik dengan permintaan maaf, tetapi lebih mengarah ke sikap defensif tanpa edukasi standar. Pilihan C (skor 3) memindahkan tanggung jawab ke atasan, hanya tepat untuk kasus eskalasi. Pilihan D (skor 2) terlalu pasif. Pilihan B (skor 1) konfrontatif dan tidak menyelesaikan masalah.",
+      "source": "BerAKHLAK — Harmonis; pengendalian emosi profesional",
+      "warnings": []
+    },
+    {
+      "id": "TKP_PELAYANAN_BAHASA_001_003",
+      "category": "TKP",
+      "subcategory": "Pelayanan Publik",
+      "topic": "Lintas Bahasa",
+      "questionText": "Seorang klien yang lebih nyaman berbicara dalam bahasa daerah datang ke kantor Anda. Anda tidak fasih berbahasa daerah tersebut. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Menjelaskan bahwa pelayanan menggunakan Bahasa Indonesia"
+        },
+        {
+          "label": "B",
+          "text": "Berbicara pelan-pelan dalam Bahasa Indonesia dengan kosakata sederhana"
+        },
+        {
+          "label": "C",
+          "text": "Berbicara dengan Bahasa Indonesia sederhana sambil meminta bantuan rekan yang fasih bahasa daerah tersebut"
+        },
+        {
+          "label": "D",
+          "text": "Menyuruh klien membawa pendamping yang bisa Bahasa Indonesia"
+        },
+        {
+          "label": "E",
+          "text": "Mencoba berbicara sedikit bahasa daerah yang Anda ketahui"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 1,
+        "B": 3,
+        "C": 5,
+        "D": 1,
+        "E": 4
+      },
+      "difficulty": 2,
+      "tags": [
+        "tkp",
+        "pelayanan-publik",
+        "bahasa-lokal",
+        "keberagaman"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_PELAYANAN_BAHASA_001",
+      "imagePrompt": null,
+      "explanation": "Solusi terbaik adalah kombinasi: tetap berusaha komunikasi sambil memanfaatkan sumber daya kantor (rekan kerja) untuk memfasilitasi pelayanan. Ini menunjukkan kolaborasi dan adaptasi keberagaman.",
+      "explanationLong": "Pilihan C (skor 5) menggambarkan sikap proaktif yang melibatkan kerjasama tim untuk memberikan pelayanan terbaik kepada masyarakat lintas bahasa. Pilihan E (skor 4) menunjukkan upaya pribadi yang baik, tetapi terbatas. Pilihan B (skor 3) hanya solusi parsial. Pilihan A dan D (skor 1) menutup akses pelayanan dan tidak adaptif terhadap keberagaman bangsa.",
+      "source": "BerAKHLAK — Kolaboratif, Adaptif; Bhinneka Tunggal Ika dalam pelayanan",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 1,3,5,1,4 (sum=14). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_PELAYANAN_KEWENANGAN_001_004",
+      "category": "TKP",
+      "subcategory": "Pelayanan Publik",
+      "topic": "Kewenangan",
+      "questionText": "Seorang klien mengajukan permintaan layanan yang ternyata bukan kewenangan unit Anda. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Menolak permintaan dengan menyebutkan bahwa hal itu bukan kewenangan unit Anda"
+        },
+        {
+          "label": "B",
+          "text": "Mempersilakan klien mencari sendiri unit yang tepat"
+        },
+        {
+          "label": "C",
+          "text": "Mencatat permintaan dan menjanjikan akan dipertimbangkan"
+        },
+        {
+          "label": "D",
+          "text": "Menjelaskan bahwa permintaan tersebut bukan kewenangan unit Anda dan menunjukkan unit/instansi yang tepat untuk dituju"
+        },
+        {
+          "label": "E",
+          "text": "Mencoba membantu sebisa mungkin walaupun di luar kewenangan"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 2,
+        "B": 1,
+        "C": 2,
+        "D": 5,
+        "E": 3
+      },
+      "difficulty": 3,
+      "tags": [
+        "tkp",
+        "pelayanan-publik",
+        "kewenangan",
+        "arah"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_PELAYANAN_KEWENANGAN_001",
+      "imagePrompt": null,
+      "explanation": "Sikap yang tepat adalah memberi penjelasan jelas dan mengarahkan klien ke unit/instansi yang tepat. Ini menjaga akuntabilitas (tidak menjalankan di luar kewenangan) sekaligus tetap memberi pelayanan informatif.",
+      "explanationLong": "Pilihan D (skor 5) memenuhi dua aspek penting: integritas (tidak melampaui kewenangan) dan empati layanan (memberi panduan agar klien tidak tersesat). Pilihan E (skor 3) bermaksud baik tetapi melanggar batas kewenangan — bisa menimbulkan masalah lain. Pilihan A (skor 2) memberi penjelasan tetapi tidak membantu mengarahkan. Pilihan C (skor 2) menjanjikan tanpa kepastian. Pilihan B (skor 1) tidak menunjukkan kepedulian sama sekali.",
+      "source": "BerAKHLAK — Akuntabel, Berorientasi Pelayanan",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 2,1,2,5,3 (sum=13). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_PELAYANAN_TERBURU_001_005",
+      "category": "TKP",
+      "subcategory": "Pelayanan Publik",
+      "topic": "Klien Terburu-buru",
+      "questionText": "Seorang klien meminta diprioritaskan karena terburu-buru, sementara di belakangnya masih ada beberapa orang yang sedang menunggu giliran. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Memberikan prioritas kepada klien tersebut karena alasan mendesak"
+        },
+        {
+          "label": "B",
+          "text": "Menjelaskan bahwa pelayanan harus berurutan dan menyarankan klien menunggu sesuai antrean"
+        },
+        {
+          "label": "C",
+          "text": "Meminta persetujuan klien lain di antrean apakah boleh diprioritaskan"
+        },
+        {
+          "label": "D",
+          "text": "Memanggil atasan untuk memutuskan"
+        },
+        {
+          "label": "E",
+          "text": "Menolak secara tegas dan tidak memberikan penjelasan"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 1,
+        "B": 5,
+        "C": 4,
+        "D": 2,
+        "E": 2
+      },
+      "difficulty": 2,
+      "tags": [
+        "tkp",
+        "pelayanan-publik",
+        "klien-mendesak"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_PELAYANAN_TERBURU_001",
+      "imagePrompt": null,
+      "explanation": "Keadilan dalam pelayanan publik berarti melayani sesuai antrean. Sikap profesional adalah menjelaskan dengan tegas tetapi sopan bahwa antrean harus dihormati untuk semua klien.",
+      "explanationLong": "Pilihan B (skor 5) menjaga prinsip keadilan dan transparansi — semua klien diperlakukan sesuai urutan. Pilihan C (skor 4) menunjukkan upaya kompromis yang etis, tetapi membebani klien lain dengan keputusan. Pilihan D (skor 2) menyerahkan keputusan ke atasan, padahal ini hal yang bisa diatasi sendiri. Pilihan E (skor 2) tegas tapi tidak edukatif. Pilihan A (skor 1) merusak prinsip keadilan dan membuka pintu manipulasi (semua bisa mengaku terburu-buru).",
+      "source": "BerAKHLAK — Akuntabel; prinsip keadilan layanan publik",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 1,5,4,2,2 (sum=14). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_PELAYANAN_TIDAK_PUAS_001_006",
+      "category": "TKP",
+      "subcategory": "Pelayanan Publik",
+      "topic": "Tidak Puas",
+      "questionText": "Seorang klien menunjukkan ketidakpuasan terhadap hasil layanan yang Anda berikan, padahal Anda telah bekerja sesuai SOP. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Membela diri dengan menjelaskan bahwa Anda telah bekerja sesuai SOP"
+        },
+        {
+          "label": "B",
+          "text": "Mendengarkan keluhannya, mengucapkan terima kasih atas masukan, dan menjelaskan SOP yang dijalankan dengan baik"
+        },
+        {
+          "label": "C",
+          "text": "Meminta maaf walaupun Anda merasa sudah benar"
+        },
+        {
+          "label": "D",
+          "text": "Mengarahkan klien untuk melapor ke kotak saran"
+        },
+        {
+          "label": "E",
+          "text": "Mengabaikan keluhan dan melanjutkan tugas"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 2,
+        "B": 5,
+        "C": 3,
+        "D": 2,
+        "E": 1
+      },
+      "difficulty": 3,
+      "tags": [
+        "tkp",
+        "pelayanan-publik",
+        "ketidakpuasan",
+        "feedback"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_PELAYANAN_TIDAK_PUAS_001",
+      "imagePrompt": null,
+      "explanation": "Sikap profesional adalah mendengarkan tanpa defensif, menerima feedback sebagai input perbaikan, dan tetap menjelaskan SOP secara obyektif. Ini menunjukkan kemampuan komunikasi dan kerendahan hati profesional.",
+      "explanationLong": "Pilihan B (skor 5) memenuhi multi-aspek: aktif mendengar, menghargai feedback (terima kasih), dan transparansi (menjelaskan SOP). Pilihan C (skor 3) menunjukkan kerendahan hati tetapi bisa salah ditafsirkan sebagai pengakuan kesalahan yang bukan kesalahan Anda. Pilihan A (skor 2) terlalu defensif. Pilihan D (skor 2) menggugurkan tanggung jawab personal. Pilihan E (skor 1) tidak peduli sama sekali.",
+      "source": "BerAKHLAK — Berorientasi Pelayanan, Adaptif",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 2,5,3,2,1 (sum=13). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_PELAYANAN_DOKUMEN_001_007",
+      "category": "TKP",
+      "subcategory": "Pelayanan Publik",
+      "topic": "Dokumen",
+      "questionText": "Seorang klien membawa banyak dokumen yang berserakan dan Anda kesulitan menemukan yang sesuai persyaratan. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Meminta klien untuk merapikan sendiri dan kembali nanti"
+        },
+        {
+          "label": "B",
+          "text": "Membantu menyortir bersama klien dan menjelaskan dokumen mana yang relevan"
+        },
+        {
+          "label": "C",
+          "text": "Mengembalikan semua dokumen dan menyuruh klien menyiapkan ulang"
+        },
+        {
+          "label": "D",
+          "text": "Memilih dokumen yang relevan secara cepat tanpa diskusi"
+        },
+        {
+          "label": "E",
+          "text": "Memanggil rekan untuk membantu menyortir"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 2,
+        "B": 5,
+        "C": 1,
+        "D": 3,
+        "E": 4
+      },
+      "difficulty": 2,
+      "tags": [
+        "tkp",
+        "pelayanan-publik",
+        "dokumen",
+        "efisiensi"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_PELAYANAN_DOKUMEN_001",
+      "imagePrompt": null,
+      "explanation": "Bantuan langsung dengan menyortir bersama sambil mengedukasi klien adalah sikap pelayanan terbaik. Ini menunjukkan empati, efisiensi, dan transfer pengetahuan.",
+      "explanationLong": "Pilihan B (skor 5) mengkombinasikan pelayanan langsung dengan edukasi, sehingga klien belajar untuk lain kali. Pilihan E (skor 4) baik tetapi memanfaatkan rekan ketika sebenarnya bisa diatasi sendiri. Pilihan D (skor 3) efisien tetapi tidak edukatif — klien tidak belajar apa-apa. Pilihan A (skor 2) menunda pelayanan dan menambah beban klien. Pilihan C (skor 1) tidak peduli dan tidak membantu.",
+      "source": "BerAKHLAK — Berorientasi Pelayanan, Kompeten",
+      "warnings": []
+    },
+    {
+      "id": "TKP_PELAYANAN_DISABILITAS_001_008",
+      "category": "TKP",
+      "subcategory": "Pelayanan Publik",
+      "topic": "Disabilitas",
+      "questionText": "Seorang klien penyandang disabilitas tunarungu datang dan kesulitan berkomunikasi karena Anda belum fasih bahasa isyarat. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Meminta beliau menulis di kertas saja"
+        },
+        {
+          "label": "B",
+          "text": "Memanggil rekan yang lebih familiar dengan komunikasi tunarungu"
+        },
+        {
+          "label": "C",
+          "text": "Bertanya bagaimana cara komunikasi yang paling nyaman bagi beliau, dan kombinasikan tulisan, gerakan, serta ekspresi wajah"
+        },
+        {
+          "label": "D",
+          "text": "Mempersilakan beliau membawa pendamping"
+        },
+        {
+          "label": "E",
+          "text": "Menolak melayani karena terbatas kemampuan komunikasi"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 3,
+        "B": 4,
+        "C": 5,
+        "D": 2,
+        "E": 1
+      },
+      "difficulty": 3,
+      "tags": [
+        "tkp",
+        "pelayanan-publik",
+        "disabilitas",
+        "aksesibilitas"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_PELAYANAN_DISABILITAS_001",
+      "imagePrompt": null,
+      "explanation": "Komunikasi inklusif adalah dengan menanyakan preferensi langsung kepada penyandang disabilitas dan beradaptasi. Ini menghormati otonomi mereka dan memberikan layanan yang setara.",
+      "explanationLong": "Pilihan C (skor 5) sangat menghormati otonomi disabilitas — bertanya dulu cara komunikasi yang nyaman bagi mereka, baru beradaptasi. Pilihan B (skor 4) baik tetapi tidak inisiatif personal. Pilihan A (skor 3) solusi standar yang umum dipakai. Pilihan D (skor 2) memindahkan tanggung jawab pelayanan ke pendamping. Pilihan E (skor 1) bertentangan dengan UU Disabilitas dan prinsip pelayanan publik inklusif.",
+      "source": "UU 8/2016 tentang Penyandang Disabilitas; BerAKHLAK — Harmonis, Adaptif",
+      "warnings": []
+    },
+    {
+      "id": "TKP_PELAYANAN_INFOKOMPLEKS_001_009",
+      "category": "TKP",
+      "subcategory": "Pelayanan Publik",
+      "topic": "Informasi Kompleks",
+      "questionText": "Klien menanyakan informasi yang membutuhkan koordinasi dengan beberapa unit/instansi lain dan kemungkinan butuh waktu beberapa hari. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Mencatat permintaan dengan jelas, memberikan estimasi waktu, kontak person, dan janji tindak lanjut yang konkret"
+        },
+        {
+          "label": "B",
+          "text": "Memberi tahu bahwa hal itu membutuhkan waktu lama, sehingga sebaiknya klien datang lagi nanti"
+        },
+        {
+          "label": "C",
+          "text": "Mencoba memberikan jawaban kasar berdasarkan pengetahuan yang dimiliki"
+        },
+        {
+          "label": "D",
+          "text": "Mengarahkan klien langsung ke unit atau instansi terkait"
+        },
+        {
+          "label": "E",
+          "text": "Mencatat permintaan dan memberi nomor telepon umum kantor"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 5,
+        "B": 2,
+        "C": 1,
+        "D": 3,
+        "E": 3
+      },
+      "difficulty": 4,
+      "tags": [
+        "tkp",
+        "pelayanan-publik",
+        "koordinasi",
+        "kompleksitas"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_PELAYANAN_INFOKOMPLEKS_001",
+      "imagePrompt": null,
+      "explanation": "Pelayanan profesional terhadap permintaan kompleks: catat dengan jelas, beri estimasi waktu, kontak person, dan rencana follow-up. Ini menunjukkan akuntabilitas dan kepercayaan dapat dibangun.",
+      "explanationLong": "Pilihan A (skor 5) memenuhi semua elemen layanan profesional kompleks: dokumentasi (mencatat), transparansi (estimasi waktu), aksesibilitas (kontak person), dan komitmen (janji follow-up). Pilihan D dan E (skor 3) lebih sederhana tetapi melepaskan klien tanpa support. Pilihan B (skor 2) memindahkan beban ke klien. Pilihan C (skor 1) berbahaya — informasi kasar bisa salah dan menyesatkan.",
+      "source": "BerAKHLAK — Akuntabel, Kolaboratif, Berorientasi Pelayanan",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 5,2,1,3,3 (sum=14). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_PELAYANAN_NEPOTISME_001_010",
+      "category": "TKP",
+      "subcategory": "Pelayanan Publik",
+      "topic": "Etika",
+      "questionText": "Seorang teman dekat menelepon dan menitipkan urusan saudaranya yang akan Anda layani agar dipercepat. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Memenuhi permintaan teman karena demi pertemanan"
+        },
+        {
+          "label": "B",
+          "text": "Menjelaskan kepada teman bahwa pelayanan harus mengikuti antrean dan SOP yang berlaku, lalu memperlakukan saudaranya seperti klien lain"
+        },
+        {
+          "label": "C",
+          "text": "Mempercepat sedikit asal tidak mencolok"
+        },
+        {
+          "label": "D",
+          "text": "Memberitahu teman akan diusahakan, tetapi tetap mengikuti antrean"
+        },
+        {
+          "label": "E",
+          "text": "Meminta saudara teman datang langsung agar bisa diberi pengarahan"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 1,
+        "B": 5,
+        "C": 1,
+        "D": 3,
+        "E": 4
+      },
+      "difficulty": 4,
+      "tags": [
+        "tkp",
+        "pelayanan-publik",
+        "nepotisme",
+        "etika"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_PELAYANAN_NEPOTISME_001",
+      "imagePrompt": null,
+      "explanation": "Sikap paling profesional adalah menjaga integritas dengan menolak diskresi yang tidak adil, sekaligus memperlakukan klien (saudara teman) sama dengan klien lain. Ini menjaga prinsip non-diskriminasi.",
+      "explanationLong": "Pilihan B (skor 5) tegas namun tetap profesional — menjelaskan posisi dengan baik kepada teman dan tetap memperlakukan klien dengan adil. Pilihan E (skor 4) cukup baik karena memberi info kepada saudara teman, tapi tidak secara eksplisit menolak. Pilihan D (skor 3) menjaga prosedur tapi memberi kesan yang membingungkan. Pilihan A dan C (skor 1) bertentangan dengan prinsip integritas dan keadilan layanan publik. Sikap ini adalah salah satu indikator integritas ASN dalam menolak nepotisme.",
+      "source": "UU 5/2014 tentang ASN; BerAKHLAK — Akuntabel, Loyal",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 1,5,1,3,4 (sum=14). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_PELAYANAN_KELUHAN_FORMAL_001_011",
+      "category": "TKP",
+      "subcategory": "Pelayanan Publik",
+      "topic": "Keluhan Layanan",
+      "questionText": "Seorang klien melaporkan keluhan tentang layanan rekan kerja Anda yang dianggap tidak profesional. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Membela rekan kerja Anda"
+        },
+        {
+          "label": "B",
+          "text": "Menyalahkan rekan tersebut di hadapan klien"
+        },
+        {
+          "label": "C",
+          "text": "Mendengarkan keluhan dengan baik, mencatatnya, dan memastikan akan diteruskan ke pihak terkait sesuai mekanisme yang berlaku"
+        },
+        {
+          "label": "D",
+          "text": "Menyarankan klien menulis keluhan resmi di kotak saran"
+        },
+        {
+          "label": "E",
+          "text": "Mengabaikan karena bukan urusan unit Anda"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 1,
+        "B": 1,
+        "C": 5,
+        "D": 3,
+        "E": 1
+      },
+      "difficulty": 3,
+      "tags": [
+        "tkp",
+        "pelayanan-publik",
+        "keluhan-formal",
+        "feedback"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_PELAYANAN_KELUHAN_FORMAL_001",
+      "imagePrompt": null,
+      "explanation": "Sikap netral dan profesional: mendengarkan, mendokumentasikan, dan memproses sesuai mekanisme. Hindari membela atau menyalahkan rekan secara langsung di depan klien.",
+      "explanationLong": "Pilihan C (skor 5) menghadapkan keluhan secara objektif — mendengar, mencatat, dan menjamin proses lanjutan tanpa menjatuhkan rekan di depan klien. Ini menjaga reputasi institusi sekaligus memberi kepastian kepada klien. Pilihan D (skor 3) mengarahkan ke saluran formal yang tepat tetapi terkesan tidak peduli pribadi. Pilihan A dan B (skor 1) bertentangan dengan prinsip profesional. Pilihan E (skor 1) acuh tak acuh.",
+      "source": "BerAKHLAK — Akuntabel, Harmonis; tata kelola keluhan layanan",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 1,1,5,3,1 (sum=11). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_PELAYANAN_DAERAH_TERPENCIL_001_012",
+      "category": "TKP",
+      "subcategory": "Pelayanan Publik",
+      "topic": "Daerah Terpencil",
+      "questionText": "Seorang klien yang berasal dari daerah terpencil sudah menempuh perjalanan jauh ke kantor Anda. Setibanya di kantor, ternyata salah satu dokumen persyaratan kurang. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Mengkomunikasikan dengan jelas dokumen yang kurang, mengeksplorasi solusi alternatif (kirim dokumen via email/scan), dan jika tidak memungkinkan, menjelaskan dengan empati cara melengkapinya"
+        },
+        {
+          "label": "B",
+          "text": "Menyuruh klien pulang dan kembali setelah dokumen lengkap"
+        },
+        {
+          "label": "C",
+          "text": "Memanggil atasan untuk meminta diskresi pengecualian"
+        },
+        {
+          "label": "D",
+          "text": "Memproses sebagian permintaan yang bisa diproses tanpa dokumen tersebut"
+        },
+        {
+          "label": "E",
+          "text": "Memberi tahu klien untuk mengirim dokumen via pos saja"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 5,
+        "B": 2,
+        "C": 3,
+        "D": 4,
+        "E": 3
+      },
+      "difficulty": 4,
+      "tags": [
+        "tkp",
+        "pelayanan-publik",
+        "geografis",
+        "efisiensi"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_PELAYANAN_DAERAH_TERPENCIL_001",
+      "imagePrompt": null,
+      "explanation": "Sikap empati + solutif paling tepat: menjelaskan kekurangan dokumen, mengeksplorasi alternatif modern (email/scan), dan memberi opsi terbaik bagi situasi klien yang sudah berusaha keras datang.",
+      "explanationLong": "Pilihan A (skor 5) menggambarkan ASN modern yang memanfaatkan teknologi untuk solusi praktis dan empatik kepada situasi unik klien terpencil. Pilihan D (skor 4) bermaksud baik dengan memproses sebagian, tetapi belum mempertimbangkan opsi alternatif untuk dokumen yang kurang. Pilihan C dan E (skor 3) cukup memadai. Pilihan B (skor 2) tidak empatik mengingat jauhnya perjalanan klien.",
+      "source": "BerAKHLAK — Adaptif, Berorientasi Pelayanan, Kolaboratif",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 5,2,3,4,3 (sum=17). Consider rebalancing to 1-5 unique for production."
+      ]
+    }
+  ]
+}
