@@ -13,7 +13,8 @@ Saat marathon authoring, ada topik atau soal yang gw skip karena:
 
 ## Entries
 
-(belum ada)
+- [2026-05-21 16:26 WIB] [batch-009] [TIU Numerik] — Soal 9 punya 2 opsi sama (A & B = 0). Perlu salah satu diganti saat review.
+- [2026-05-21 16:26 WIB] [batch-009] [TIU Numerik] — Soal 11 punya 2 opsi sama (B & C = 13/28). Perlu salah satu diganti saat review (suggest B → 11/28).
 
 ## Aksi pasca review
 
