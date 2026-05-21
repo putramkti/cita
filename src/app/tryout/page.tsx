@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { Clock, Target, Sparkles } from "lucide-react";
+import { Clock, Zap, Copy } from "lucide-react";
 import { startTryout } from "./actions";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
@@ -70,7 +70,7 @@ export default async function TryoutLandingPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <ModeCard
               mode="MINI"
-              icon={<Target className="size-5" strokeWidth={1.5} />}
+              icon={<Zap className="size-5" strokeWidth={1.5} />}
               eyebrow="DRILL HARIAN"
               title={mini.labelId}
               tagline={mini.taglineId}
@@ -82,7 +82,7 @@ export default async function TryoutLandingPage() {
             />
             <ModeCard
               mode="FULL"
-              icon={<Sparkles className="size-5" strokeWidth={1.5} />}
+              icon={<Copy className="size-5" strokeWidth={1.5} />}
               eyebrow="MIRROR SKD ASLI"
               title={full.labelId}
               tagline={full.taglineId}

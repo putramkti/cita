@@ -212,8 +212,8 @@ const dictionaries = {
         "Tanpa daftar. Tanpa biaya. Langsung kerjakan.",
     },
     tryout: {
-      briefingTitle: "Siap untuk 30 menit fokus?",
-      briefingSubtitle: "Sebelum mulai, baca poin-poin berikut:",
+      briefingTitle: "Pilih mode tryout Anda",
+      briefingSubtitle: "Sesi singkat untuk latihan harian, atau simulasi penuh sebelum hari H. Pilih salah satu lalu baca petunjuk di bawah.",
       rule1: "30 soal dalam 30 menit (10 TWK, 10 TIU, 10 TKP).",
       rule2: "Anda bisa lompat antar soal dan mengubah jawaban kapan saja sebelum waktu habis.",
       rule3: "Jawaban tersimpan otomatis. Tutup tab? Tenang, lanjut nanti masih bisa.",
@@ -685,8 +685,8 @@ const dictionaries = {
       bottomCtaSubtitle: "No signup. No payment. Just start.",
     },
     tryout: {
-      briefingTitle: "Ready to focus for 30 minutes?",
-      briefingSubtitle: "Before you begin, please read the following:",
+      briefingTitle: "Pick your tryout mode",
+      briefingSubtitle: "A short session for daily practice, or a full simulation before exam day. Pick one then read the guidelines below.",
       rule1: "30 questions in 30 minutes (10 TWK, 10 TIU, 10 TKP).",
       rule2:
         "You can jump between questions and change answers anytime before the timer ends.",
