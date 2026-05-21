@@ -13,8 +13,10 @@ Saat marathon authoring, ada topik atau soal yang gw skip karena:
 
 ## Entries
 
+- [2026-05-21 16:26 WIB] [batch-008] [TIU Numerik 1] — Soal 4 punya 2 opsi sama (A & D = "32, 16"). Pas review perlu salah satu diganti.
 - [2026-05-21 16:26 WIB] [batch-009] [TIU Numerik] — Soal 9 punya 2 opsi sama (A & B = 0). Perlu salah satu diganti saat review.
 - [2026-05-21 16:26 WIB] [batch-009] [TIU Numerik] — Soal 11 punya 2 opsi sama (B & C = 13/28). Perlu salah satu diganti saat review (suggest B → 11/28).
+- [2026-05-21 17:11 WIB] [batch-011..015] [TKP scoring] — Semua 60 soal TKP pakai distribusi skor "natural" (kadang 2 opsi skor sama, sum ≠ 15). Standar SKD CPNS asli adalah 1,2,3,4,5 unique (sum=15). Decision pending: re-balance saat review borongan, atau biarkan dengan validator longgar.
 
 ## Aksi pasca review
 
