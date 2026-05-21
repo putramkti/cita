@@ -4,6 +4,9 @@ import { ArrowLeft, ArrowRight, Lightbulb, Check } from "lucide-react";
 import { cookies } from "next/headers";
 import { prisma } from "@/lib/db/prisma";
 import { getCurrentUser } from "@/lib/auth/get-user";
+import { getCurrentPlan } from "@/lib/billing/get-plan";
+import { quota } from "@/lib/billing/entitlements";
+import { checkTutorQuota } from "@/lib/billing/usage";
 import { SiteHeader } from "@/components/layout/site-header";
 import { TutorChat } from "./tutor-chat";
 import { AnonBlurOverlay } from "@/components/billing/anon-blur-overlay";
@@ -112,7 +115,15 @@ export default async function StudyPage({ params }: PageProps) {
     role: m.role as "user" | "assistant",
     content: m.content,
   }));
-  const userMsgCount = initialMessages.filter((m) => m.role === "user").length;
+
+  // Tutor quota — per-account daily, plan-aware (Phase 7).
+  // FREE = 5/day, PREMIUM = 50/day, ANON = 0 (gated to login earlier upstream).
+  // Source of truth: lib/billing/plans.ts → tutorDailyQuota.
+  const plan = supabaseUser?.id ? await getCurrentPlan(supabaseUser.id) : "ANON";
+  const dailyLimit = quota(plan, "tutorDailyQuota");
+  const quotaCheck = supabaseUser?.id
+    ? await checkTutorQuota(supabaseUser.id, dailyLimit)
+    : { allowed: false, used: 0, limit: dailyLimit, remaining: dailyLimit };
 
   // Build prev/next nav — sort by category order then position
   const ordered = [...attempt.items].sort((a, b) => {
@@ -248,8 +259,8 @@ export default async function StudyPage({ params }: PageProps) {
                 attemptId={attemptId}
                 questionId={questionId}
                 initialMessages={initialMessages}
-                initialUserMsgCount={userMsgCount}
-                maxUserMsgs={5}
+                initialUserMsgCount={quotaCheck.used}
+                maxUserMsgs={quotaCheck.limit}
                 dict={t.study}
               />
               <p className="mt-3 text-center text-xs text-muted-foreground">
