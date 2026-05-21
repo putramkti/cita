@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "motion/react"
-import { Check, Loader2, Clock } from "lucide-react"
+import { Check, Clock } from "lucide-react"
 import { useMemo } from "react"
 
 /**
@@ -268,12 +268,22 @@ function StageNode({ stage }: { stage: Stage }) {
         aria-label="active"
         className="relative size-8 rounded-full bg-accent text-accent-foreground inline-flex items-center justify-center"
       >
-        <Loader2 className="size-3.5 animate-spin" strokeWidth={2.5} />
-        {/* Pulse ring */}
+        {/* Soft blink dot — signals 'in progress' without reading as loading */}
         <motion.span
           aria-hidden="true"
-          className="absolute inset-0 rounded-full ring-2 ring-accent/60"
-          animate={{ scale: [1, 1.45, 1.45], opacity: [0.55, 0, 0] }}
+          className="size-2 rounded-full bg-accent-foreground"
+          animate={{ opacity: [1, 0.35, 1] }}
+          transition={{
+            duration: 1.6,
+            ease: "easeInOut",
+            repeat: Infinity,
+          }}
+        />
+        {/* Outer glow halo — slow expand-fade, complements the blink */}
+        <motion.span
+          aria-hidden="true"
+          className="absolute inset-0 rounded-full ring-2 ring-accent/50"
+          animate={{ scale: [1, 1.35, 1.35], opacity: [0.45, 0, 0] }}
           transition={{
             duration: 2.4,
             ease: "easeOut",
