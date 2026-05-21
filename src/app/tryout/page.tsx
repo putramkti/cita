@@ -57,7 +57,7 @@ export default async function TryoutLandingPage() {
         <div className="mx-auto max-w-4xl">
           {/* Header */}
           <div className="mb-12 text-center">
-            <p className="label-caps mb-4">SKD MOCK TEST</p>
+            <p className="label-caps mb-4">TRYOUT SKD CPNS</p>
             <h1 className="serif text-4xl sm:text-5xl tracking-tight text-foreground leading-tight">
               {t.tryout.briefingTitle}
             </h1>
@@ -95,13 +95,13 @@ export default async function TryoutLandingPage() {
 
           {/* Rules */}
           <div className="mt-10 rounded-xl border border-border bg-card p-7 sm:p-9">
-            <p className="label-caps mb-5">SEBELUM MULAI, INGAT</p>
+            <p className="label-caps mb-5">PETUNJUK SEBELUM MEMULAI</p>
             <ul className="space-y-3.5 text-sm">
               <Bullet>{t.tryout.rule2}</Bullet>
               <Bullet>{t.tryout.rule3}</Bullet>
               <Bullet>{t.tryout.rule4}</Bullet>
               <Bullet>
-                Skor SKD CPNS: TWK ≥ 65 · TIU ≥ 80 · TKP ≥ 156. Untuk mode Drill Mini, ambang batas diskala proporsional.
+                Skor SKD CPNS: TWK ≥ 65 · TIU ≥ 80 · TKP ≥ 156. Untuk mode Tryout Singkat, ambang batas diskala proporsional.
               </Bullet>
             </ul>
 
@@ -223,7 +223,7 @@ function ModeCard({
           )}
           loadingLabel="Memulai…"
         >
-          {mode === "MINI" ? "Mulai Drill Mini" : "Mulai Simulasi Penuh"}
+          {mode === "MINI" ? "Mulai Tryout Singkat" : "Mulai Tryout Penuh"}
         </PendingButton>
       </form>
     </div>

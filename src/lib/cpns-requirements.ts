@@ -588,8 +588,8 @@ const en: RequirementsContent = {
   finalNoteEyebrow: "NEXT STEP",
   finalNoteTitle: "While you wait for the official announcement",
   finalNoteBody:
-    "While preparing your documents, use Cita's SKD mock test to sharpen the TWK, TIU, and TKP material. Each question comes with an AI explanation aligned with the official curriculum.",
-  ctaTryout: "Try the Mock Test",
+    "While preparing your documents, use Cita's SKD tryout to sharpen the TWK, TIU, and TKP material. Each question comes with an AI explanation aligned with the official curriculum.",
+  ctaTryout: "Try the Tryout",
   ctaSscasn: "Open SSCASN Portal",
 
   sourcesTitle: "Sources",

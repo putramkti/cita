@@ -33,14 +33,14 @@ export const MODE_CONFIG: Record<AttemptMode, ModeConfig> = {
     totalSoal: 30,
     durationMin: 30,
     perCategory: { TWK: 10, TIU: 10, TKP: 10 },
-    labelId: "Drill Mini",
+    labelId: "Tryout Singkat",
     taglineId: "30 soal · 30 menit · cocok untuk latihan harian",
   },
   FULL: {
     totalSoal: 110,
     durationMin: 100,
     perCategory: { TWK: 30, TIU: 35, TKP: 45 },
-    labelId: "Simulasi Penuh",
+    labelId: "Tryout Penuh",
     taglineId: "110 soal · 100 menit · mirror SKD CPNS resmi",
   },
 };

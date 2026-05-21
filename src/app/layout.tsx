@@ -8,7 +8,7 @@ import "./globals.css"
 
 const titles = {
   id: "Cita — Tryout SKD CPNS dengan AI Explainer",
-  en: "Cita — AI-powered Indonesian Civil Service Exam Mock Test",
+  en: "Cita — AI-powered Indonesian Civil Service Exam Tryout",
 }
 const descriptions = {
   id: "Latihan SKD CPNS dengan penjelasan AI per soal. TWK, TIU, TKP. Tenang, fokus, akurat.",
