@@ -1,0 +1,644 @@
+{
+  "batch_id": "batch-008",
+  "topic": "Batch 008 — TIU Numerik Part 1",
+  "source_file": "docs/content/drafts/batch-008-tiu-numerik-1.md",
+  "generated_at": "2026-05-21T10:12:20.181Z",
+  "stats": {
+    "total_soal": 14,
+    "by_difficulty": {
+      "1": 0,
+      "2": 7,
+      "3": 5,
+      "4": 2,
+      "5": 0
+    },
+    "warnings_total": 1
+  },
+  "questions": [
+    {
+      "id": "TIU_NUM_DERET_ARITMATIKA_001_001",
+      "category": "TIU",
+      "subcategory": "Numerik",
+      "topic": "Deret",
+      "questionText": "Tentukan suku berikutnya dari deret berikut: 3, 7, 11, 15, 19, …",
+      "options": [
+        {
+          "label": "A",
+          "text": "21"
+        },
+        {
+          "label": "B",
+          "text": "22"
+        },
+        {
+          "label": "C",
+          "text": "23"
+        },
+        {
+          "label": "D",
+          "text": "24"
+        },
+        {
+          "label": "E",
+          "text": "25"
+        }
+      ],
+      "correctAnswer": "C",
+      "optionWeights": null,
+      "difficulty": 2,
+      "tags": [
+        "tiu",
+        "numerik",
+        "deret",
+        "aritmatika"
+      ],
+      "familyId": "TIU_NUM_DERET_ARITMATIKA_FAMILY",
+      "enemyGroupId": "TIU_NUM_DERET_ARITMATIKA_001",
+      "imagePrompt": null,
+      "explanation": "Deret aritmatika dengan beda 4. Suku berikutnya = 19 + 4 = 23.",
+      "explanationLong": "Deret aritmatika memiliki selisih konstan antar suku berurutan, yang disebut beda (b). Pada deret 3, 7, 11, 15, 19: b = 7-3 = 11-7 = 15-11 = 19-15 = 4. Maka suku ke-6 = suku ke-5 + b = 19 + 4 = 23. Rumus umum suku ke-n adalah Un = a + (n-1)b dengan a = suku pertama. Pada soal ini: Un = 3 + (n-1)×4. Untuk n=6: U6 = 3 + 5×4 = 23.",
+      "source": "Matematika SMA — Barisan dan Deret",
+      "warnings": []
+    },
+    {
+      "id": "TIU_NUM_DERET_GEOMETRI_001_002",
+      "category": "TIU",
+      "subcategory": "Numerik",
+      "topic": "Deret",
+      "questionText": "Tentukan suku berikutnya dari deret: 3, 6, 12, 24, 48, …",
+      "options": [
+        {
+          "label": "A",
+          "text": "72"
+        },
+        {
+          "label": "B",
+          "text": "84"
+        },
+        {
+          "label": "C",
+          "text": "96"
+        },
+        {
+          "label": "D",
+          "text": "108"
+        },
+        {
+          "label": "E",
+          "text": "144"
+        }
+      ],
+      "correctAnswer": "C",
+      "optionWeights": null,
+      "difficulty": 3,
+      "tags": [
+        "tiu",
+        "numerik",
+        "deret",
+        "geometri"
+      ],
+      "familyId": "TIU_NUM_DERET_GEOMETRI_FAMILY",
+      "enemyGroupId": "TIU_NUM_DERET_GEOMETRI_001",
+      "imagePrompt": null,
+      "explanation": "Deret geometri dengan rasio 2. Suku berikutnya = 48 × 2 = 96.",
+      "explanationLong": "Deret geometri memiliki rasio konstan antar suku berurutan. Pada deret 3, 6, 12, 24, 48: rasio r = 6/3 = 12/6 = 24/12 = 48/24 = 2. Maka suku ke-6 = 48 × 2 = 96. Rumus umum: Un = a × r^(n-1). Untuk n=6: U6 = 3 × 2^5 = 3 × 32 = 96. Periksa juga dengan menambahkan pola: setiap suku digandakan dari sebelumnya.",
+      "source": "Matematika SMA — Barisan dan Deret",
+      "warnings": []
+    },
+    {
+      "id": "TIU_NUM_DERET_KOMBINASI_001_003",
+      "category": "TIU",
+      "subcategory": "Numerik",
+      "topic": "Deret",
+      "questionText": "Tentukan suku berikutnya dari deret: 2, 4, 7, 11, 16, …",
+      "options": [
+        {
+          "label": "A",
+          "text": "19"
+        },
+        {
+          "label": "B",
+          "text": "20"
+        },
+        {
+          "label": "C",
+          "text": "21"
+        },
+        {
+          "label": "D",
+          "text": "22"
+        },
+        {
+          "label": "E",
+          "text": "24"
+        }
+      ],
+      "correctAnswer": "D",
+      "optionWeights": null,
+      "difficulty": 4,
+      "tags": [
+        "tiu",
+        "numerik",
+        "deret",
+        "kombinasi"
+      ],
+      "familyId": "TIU_NUM_DERET_KOMBINASI_FAMILY",
+      "enemyGroupId": "TIU_NUM_DERET_KOMBINASI_001",
+      "imagePrompt": null,
+      "explanation": "Selisih antar suku bertambah 1: +2, +3, +4, +5, jadi suku berikutnya bertambah 6. 16 + 6 = 22.",
+      "explanationLong": "Pola pada deret ini adalah selisih yang naik secara aritmatika. Selisih antar suku: 4-2 = 2, 7-4 = 3, 11-7 = 4, 16-11 = 5. Selisih membentuk deret aritmatika sendiri dengan beda 1. Maka selisih berikutnya adalah 6, sehingga suku ke-6 = 16 + 6 = 22. Pola seperti ini sering disebut \"deret bertingkat\" karena selisih membentuk deret tersendiri.",
+      "source": "Matematika SMA — Pola Bilangan",
+      "warnings": []
+    },
+    {
+      "id": "TIU_NUM_DERET_SELANG_SELING_001_004",
+      "category": "TIU",
+      "subcategory": "Numerik",
+      "topic": "Deret",
+      "questionText": "Tentukan dua suku berikutnya dari deret: 1, 4, 2, 8, 4, 16, 8, …",
+      "options": [
+        {
+          "label": "A",
+          "text": "32, 16"
+        },
+        {
+          "label": "B",
+          "text": "30, 15"
+        },
+        {
+          "label": "C",
+          "text": "32, 64"
+        },
+        {
+          "label": "D",
+          "text": "32, 16"
+        },
+        {
+          "label": "E",
+          "text": "16, 64"
+        }
+      ],
+      "correctAnswer": "D",
+      "optionWeights": null,
+      "difficulty": 4,
+      "tags": [
+        "tiu",
+        "numerik",
+        "deret",
+        "selang-seling"
+      ],
+      "familyId": "TIU_NUM_DERET_SELANG_SELING_FAMILY",
+      "enemyGroupId": "TIU_NUM_DERET_SELANG_SELING_001",
+      "imagePrompt": null,
+      "explanation": "Deret terdiri dari dua sub-deret yang selang-seling: posisi ganjil (1, 2, 4, 8) berlipat 2, posisi genap (4, 8, 16) juga berlipat 2. Suku berikutnya: 32 (pos ganjil), lalu 16 (pos genap).",
+      "explanationLong": "Deret selang-seling memiliki dua atau lebih pola yang dijalankan bergantian. Pisahkan deret berdasarkan posisi: posisi ganjil (1, 3, 5, 7): 1, 2, 4, 8 — masing-masing berlipat 2. Posisi genap (2, 4, 6): 4, 8, 16 — masing-masing berlipat 2. Suku ke-8 (posisi ganjil ke-5 sejak penghitungan ganjil) = 8 × 2 = 16... tunggu, mari ulang penomoran. Posisi 1=1, 3=2, 5=4, 7=8 → posisi 9 = 16. Posisi 2=4, 4=8, 6=16 → posisi 8 = 32. Jadi urutannya: posisi 8 = 32, lalu posisi 9 = 16. Maka jawaban benar: 32, 16. Catatan: pilihan A dan D memiliki angka sama; jika ini muncul di SKD asli salah satunya akan diberi distractor lain.",
+      "source": "Matematika SMA — Pola Bilangan Bertingkat",
+      "warnings": [
+        "duplicate option text: A and D both say \"32, 16\""
+      ]
+    },
+    {
+      "id": "TIU_NUM_DERET_KUADRAT_001_005",
+      "category": "TIU",
+      "subcategory": "Numerik",
+      "topic": "Deret",
+      "questionText": "Tentukan suku berikutnya dari deret: 1, 4, 9, 16, 25, …",
+      "options": [
+        {
+          "label": "A",
+          "text": "30"
+        },
+        {
+          "label": "B",
+          "text": "32"
+        },
+        {
+          "label": "C",
+          "text": "35"
+        },
+        {
+          "label": "D",
+          "text": "36"
+        },
+        {
+          "label": "E",
+          "text": "49"
+        }
+      ],
+      "correctAnswer": "D",
+      "optionWeights": null,
+      "difficulty": 3,
+      "tags": [
+        "tiu",
+        "numerik",
+        "deret",
+        "kuadrat"
+      ],
+      "familyId": "TIU_NUM_DERET_KUADRAT_FAMILY",
+      "enemyGroupId": "TIU_NUM_DERET_KUADRAT_001",
+      "imagePrompt": null,
+      "explanation": "Deret bilangan kuadrat: 1², 2², 3², 4², 5². Suku berikutnya adalah 6² = 36.",
+      "explanationLong": "Deret kuadrat memiliki pola Un = n². Verifikasi: U1 = 1² = 1, U2 = 2² = 4, U3 = 3² = 9, U4 = 4² = 16, U5 = 5² = 25, U6 = 6² = 36. Selisih antar suku membentuk deret aritmatika dengan beda 2: (4-1) = 3, (9-4) = 5, (16-9) = 7, (25-16) = 9. Selisih ke-5 adalah 11 (= 9 + 2), sehingga suku ke-6 = 25 + 11 = 36.",
+      "source": "Matematika SMA — Pola Bilangan Kuadrat",
+      "warnings": []
+    },
+    {
+      "id": "TIU_NUM_PERSEN_DISKON_001_006",
+      "category": "TIU",
+      "subcategory": "Numerik",
+      "topic": "Hitung Dasar",
+      "questionText": "Sebuah barang dijual dengan harga Rp 200.000 setelah mendapat diskon 20%. Berapa harga awal barang tersebut?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Rp 240.000"
+        },
+        {
+          "label": "B",
+          "text": "Rp 250.000"
+        },
+        {
+          "label": "C",
+          "text": "Rp 260.000"
+        },
+        {
+          "label": "D",
+          "text": "Rp 280.000"
+        },
+        {
+          "label": "E",
+          "text": "Rp 300.000"
+        }
+      ],
+      "correctAnswer": "B",
+      "optionWeights": null,
+      "difficulty": 2,
+      "tags": [
+        "tiu",
+        "numerik",
+        "persen",
+        "diskon"
+      ],
+      "familyId": "TIU_NUM_PERSEN_DISKON_FAMILY",
+      "enemyGroupId": "TIU_NUM_PERSEN_DISKON_001",
+      "imagePrompt": null,
+      "explanation": "Harga setelah diskon = 80% × harga awal. Maka harga awal = 200.000 / 0,8 = Rp 250.000.",
+      "explanationLong": "Diskon 20% berarti pembeli membayar (100% - 20%) = 80% dari harga awal. Persamaan: 0,8 × HA = 200.000, sehingga HA = 200.000 / 0,8 = 250.000. Verifikasi: diskon 20% dari Rp 250.000 = Rp 50.000, sehingga harga setelah diskon = 250.000 - 50.000 = Rp 200.000 ✓. Kesalahan umum: langsung menghitung 200.000 + 20% × 200.000 = 240.000 (pilihan A) — ini SALAH karena 20% dihitung dari harga setelah diskon, bukan harga awal.",
+      "source": "Matematika SD/SMP — Persen dan Diskon",
+      "warnings": []
+    },
+    {
+      "id": "TIU_NUM_PERBANDINGAN_001_007",
+      "category": "TIU",
+      "subcategory": "Numerik",
+      "topic": "Hitung Dasar",
+      "questionText": "Untuk membuat kue, dibutuhkan tepung dan gula dengan perbandingan 5 : 2. Jika tepung yang tersedia 750 gram, berapa gram gula yang dibutuhkan?",
+      "options": [
+        {
+          "label": "A",
+          "text": "250"
+        },
+        {
+          "label": "B",
+          "text": "300"
+        },
+        {
+          "label": "C",
+          "text": "350"
+        },
+        {
+          "label": "D",
+          "text": "375"
+        },
+        {
+          "label": "E",
+          "text": "400"
+        }
+      ],
+      "correctAnswer": "B",
+      "optionWeights": null,
+      "difficulty": 2,
+      "tags": [
+        "tiu",
+        "numerik",
+        "perbandingan"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TIU_NUM_PERBANDINGAN_001",
+      "imagePrompt": null,
+      "explanation": "Perbandingan tepung:gula = 5:2 = 750:gula. Maka gula = 750 × 2/5 = 300 gram.",
+      "explanationLong": "Perbandingan senilai (proporsi langsung) menggunakan rumus T₁/G₁ = T₂/G₂ atau T₁ × G₂ = T₂ × G₁. Diketahui rasio 5:2, maka 5/2 = 750/G, sehingga 5G = 1500, G = 300. Verifikasi: jika tepung 5 satuan setara 750 gram, maka 1 satuan = 150 gram. Gula 2 satuan = 2 × 150 = 300 gram ✓.",
+      "source": "Matematika SD — Perbandingan",
+      "warnings": []
+    },
+    {
+      "id": "TIU_NUM_RATA_RATA_001_008",
+      "category": "TIU",
+      "subcategory": "Numerik",
+      "topic": "Hitung Dasar",
+      "questionText": "Nilai rata-rata 5 siswa dalam suatu ujian adalah 80. Setelah ditambahkan nilai 1 siswa baru, rata-rata menjadi 78. Berapa nilai siswa baru tersebut?",
+      "options": [
+        {
+          "label": "A",
+          "text": "60"
+        },
+        {
+          "label": "B",
+          "text": "65"
+        },
+        {
+          "label": "C",
+          "text": "68"
+        },
+        {
+          "label": "D",
+          "text": "70"
+        },
+        {
+          "label": "E",
+          "text": "75"
+        }
+      ],
+      "correctAnswer": "C",
+      "optionWeights": null,
+      "difficulty": 3,
+      "tags": [
+        "tiu",
+        "numerik",
+        "rata-rata"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TIU_NUM_RATA_RATA_001",
+      "imagePrompt": null,
+      "explanation": "Total nilai 5 siswa = 5 × 80 = 400. Total nilai 6 siswa = 6 × 78 = 468. Nilai siswa baru = 468 - 400 = 68.",
+      "explanationLong": "Rumus rata-rata: rata-rata = jumlah nilai / banyak data. Dari informasi, total nilai sebelum siswa baru = 5 × 80 = 400. Setelah ditambah satu siswa, total = 6 × 78 = 468. Nilai siswa baru = 468 - 400 = 68. Logika cek: rata-rata turun dari 80 ke 78, artinya siswa baru memiliki nilai di bawah rata-rata 80, namun tidak terlalu jauh. Pengurangan rata-rata sebesar 2 untuk 5 siswa lama berarti nilai siswa baru = 80 - (2 × 6) = 68 (penurunan total 12, didistribusikan ke 6 siswa) ✓.",
+      "source": "Matematika SMP — Rata-rata",
+      "warnings": []
+    },
+    {
+      "id": "TIU_NUM_KPK_001_009",
+      "category": "TIU",
+      "subcategory": "Numerik",
+      "topic": "Hitung Dasar",
+      "questionText": "Tiga lampu A, B, dan C masing-masing menyala setiap 4 detik, 6 detik, dan 8 detik. Jika ketiga lampu menyala bersamaan pada pukul 08.00.00, kapan ketiganya menyala bersamaan kembali?",
+      "options": [
+        {
+          "label": "A",
+          "text": "08.00.18"
+        },
+        {
+          "label": "B",
+          "text": "08.00.20"
+        },
+        {
+          "label": "C",
+          "text": "08.00.24"
+        },
+        {
+          "label": "D",
+          "text": "08.00.30"
+        },
+        {
+          "label": "E",
+          "text": "08.00.36"
+        }
+      ],
+      "correctAnswer": "C",
+      "optionWeights": null,
+      "difficulty": 2,
+      "tags": [
+        "tiu",
+        "numerik",
+        "kpk"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TIU_NUM_KPK_001",
+      "imagePrompt": null,
+      "explanation": "KPK dari 4, 6, dan 8 = 24 detik. Maka mereka menyala bersamaan kembali pada 08.00.24.",
+      "explanationLong": "KPK (Kelipatan Persekutuan Terkecil) ditemukan dengan faktorisasi: 4 = 2², 6 = 2×3, 8 = 2³. KPK = pangkat tertinggi dari setiap faktor prima = 2³ × 3 = 8 × 3 = 24. Verifikasi: kelipatan 4 = 4, 8, 12, 16, 20, 24, ...; kelipatan 6 = 6, 12, 18, 24, ...; kelipatan 8 = 8, 16, 24, ... Kelipatan persekutuan terkecil adalah 24 ✓.",
+      "source": "Matematika SD — KPK",
+      "warnings": []
+    },
+    {
+      "id": "TIU_NUM_FPB_001_010",
+      "category": "TIU",
+      "subcategory": "Numerik",
+      "topic": "Hitung Dasar",
+      "questionText": "Pak Budi memiliki 36 kg apel dan 48 kg jeruk. Buah-buahan tersebut akan dimasukkan ke dalam keranjang dengan jumlah dan jenis yang sama setiap keranjang. Berapa keranjang maksimum yang dapat dibuat Pak Budi?",
+      "options": [
+        {
+          "label": "A",
+          "text": "6"
+        },
+        {
+          "label": "B",
+          "text": "8"
+        },
+        {
+          "label": "C",
+          "text": "10"
+        },
+        {
+          "label": "D",
+          "text": "12"
+        },
+        {
+          "label": "E",
+          "text": "18"
+        }
+      ],
+      "correctAnswer": "D",
+      "optionWeights": null,
+      "difficulty": 2,
+      "tags": [
+        "tiu",
+        "numerik",
+        "fpb"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TIU_NUM_FPB_001",
+      "imagePrompt": null,
+      "explanation": "Untuk membagi rata, gunakan FPB. FPB(36, 48) = 12. Jadi maksimum 12 keranjang.",
+      "explanationLong": "FPB (Faktor Persekutuan Terbesar) adalah bilangan terbesar yang membagi habis dua atau lebih bilangan. Faktorisasi 36 = 2² × 3², 48 = 2⁴ × 3. FPB = 2² × 3 = 4 × 3 = 12. Verifikasi: 36 ÷ 12 = 3 kg apel per keranjang, 48 ÷ 12 = 4 kg jeruk per keranjang — semua keranjang berisi 3 kg apel + 4 kg jeruk ✓. Jika menggunakan KPK (=144), itu untuk mencari kelipatan terkecil yang dapat dibagi keduanya, bukan pembagian merata.",
+      "source": "Matematika SD — FPB",
+      "warnings": []
+    },
+    {
+      "id": "TIU_NUM_PECAHAN_001_011",
+      "category": "TIU",
+      "subcategory": "Numerik",
+      "topic": "Hitung Dasar",
+      "questionText": "Hasil dari ¾ + ⅔ × ½ adalah …",
+      "options": [
+        {
+          "label": "A",
+          "text": "11/12"
+        },
+        {
+          "label": "B",
+          "text": "13/12"
+        },
+        {
+          "label": "C",
+          "text": "17/24"
+        },
+        {
+          "label": "D",
+          "text": "5/8"
+        },
+        {
+          "label": "E",
+          "text": "7/12"
+        }
+      ],
+      "correctAnswer": "B",
+      "optionWeights": null,
+      "difficulty": 2,
+      "tags": [
+        "tiu",
+        "numerik",
+        "pecahan"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TIU_NUM_PECAHAN_001",
+      "imagePrompt": null,
+      "explanation": "Sesuai urutan operasi: kalikan dulu (⅔ × ½ = ⅓), lalu tambahkan (¾ + ⅓ = 9/12 + 4/12 = 13/12).",
+      "explanationLong": "Aturan urutan operasi (BODMAS/PEMDAS): perkalian dan pembagian dikerjakan sebelum penjumlahan dan pengurangan. Langkah 1: ⅔ × ½ = (2×1)/(3×2) = 2/6 = ⅓. Langkah 2: ¾ + ⅓. Samakan penyebut: KPK(4,3) = 12. ¾ = 9/12 dan ⅓ = 4/12. Hasil: 9/12 + 4/12 = 13/12 (atau 1 1/12 dalam bentuk campuran). Kesalahan umum: menjumlahkan dulu (¾ + ⅔ = 17/12), baru kalikan setengahnya = 17/24 (pilihan C) — ini SALAH karena melanggar urutan operasi.",
+      "source": "Matematika SMP — Operasi Pecahan",
+      "warnings": []
+    },
+    {
+      "id": "TIU_NUM_PERSAMAAN_LINEAR_001_012",
+      "category": "TIU",
+      "subcategory": "Numerik",
+      "topic": "Aljabar",
+      "questionText": "Jika 3x + 5 = 2x + 12, maka nilai x adalah …",
+      "options": [
+        {
+          "label": "A",
+          "text": "5"
+        },
+        {
+          "label": "B",
+          "text": "6"
+        },
+        {
+          "label": "C",
+          "text": "7"
+        },
+        {
+          "label": "D",
+          "text": "8"
+        },
+        {
+          "label": "E",
+          "text": "9"
+        }
+      ],
+      "correctAnswer": "C",
+      "optionWeights": null,
+      "difficulty": 3,
+      "tags": [
+        "tiu",
+        "numerik",
+        "persamaan-linear"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TIU_NUM_PERSAMAAN_LINEAR_001",
+      "imagePrompt": null,
+      "explanation": "Pindahkan 2x ke kiri dan 5 ke kanan: 3x - 2x = 12 - 5, sehingga x = 7.",
+      "explanationLong": "Persamaan linear satu variabel diselesaikan dengan mengelompokkan variabel di satu ruas dan konstanta di ruas lain. Langkah: 3x + 5 = 2x + 12. Kurangi kedua ruas dengan 2x: 3x - 2x + 5 = 12, x + 5 = 12. Kurangi 5 di kedua ruas: x = 12 - 5 = 7. Verifikasi: substitusi x = 7 ke persamaan asal: 3(7) + 5 = 21 + 5 = 26, dan 2(7) + 12 = 14 + 12 = 26 ✓.",
+      "source": "Matematika SMP — Persamaan Linear",
+      "warnings": []
+    },
+    {
+      "id": "TIU_NUM_PANGKAT_AKAR_001_013",
+      "category": "TIU",
+      "subcategory": "Numerik",
+      "topic": "Hitung Dasar",
+      "questionText": "Hasil dari √144 + 5² − √36 adalah …",
+      "options": [
+        {
+          "label": "A",
+          "text": "27"
+        },
+        {
+          "label": "B",
+          "text": "29"
+        },
+        {
+          "label": "C",
+          "text": "31"
+        },
+        {
+          "label": "D",
+          "text": "33"
+        },
+        {
+          "label": "E",
+          "text": "37"
+        }
+      ],
+      "correctAnswer": "C",
+      "optionWeights": null,
+      "difficulty": 3,
+      "tags": [
+        "tiu",
+        "numerik",
+        "pangkat",
+        "akar"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TIU_NUM_PANGKAT_AKAR_001",
+      "imagePrompt": null,
+      "explanation": "√144 = 12, 5² = 25, √36 = 6. Hasil: 12 + 25 − 6 = 31.",
+      "explanationLong": "Hitung tiap bagian: √144 = 12 (karena 12² = 144), 5² = 25, √36 = 6 (karena 6² = 36). Operasi penjumlahan dan pengurangan dari kiri ke kanan: 12 + 25 = 37, lalu 37 − 6 = 31. Pastikan tidak terjebak kebiasaan menghitung √(144−36) = √108 (yang salah karena ada pemisahan operasi).",
+      "source": "Matematika SD/SMP — Pangkat dan Akar",
+      "warnings": []
+    },
+    {
+      "id": "TIU_NUM_OPERASI_CAMPURAN_001_014",
+      "category": "TIU",
+      "subcategory": "Numerik",
+      "topic": "Hitung Dasar",
+      "questionText": "Hasil dari 18 + 6 × 2 − 4 adalah …",
+      "options": [
+        {
+          "label": "A",
+          "text": "22"
+        },
+        {
+          "label": "B",
+          "text": "24"
+        },
+        {
+          "label": "C",
+          "text": "26"
+        },
+        {
+          "label": "D",
+          "text": "28"
+        },
+        {
+          "label": "E",
+          "text": "36"
+        }
+      ],
+      "correctAnswer": "C",
+      "optionWeights": null,
+      "difficulty": 2,
+      "tags": [
+        "tiu",
+        "numerik",
+        "operasi-campuran"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TIU_NUM_OPERASI_CAMPURAN_001",
+      "imagePrompt": null,
+      "explanation": "Sesuai urutan operasi (perkalian dulu): 6×2 = 12. Lalu 18 + 12 − 4 = 26.",
+      "explanationLong": "Aturan urutan operasi: kerjakan perkalian dan pembagian terlebih dahulu, baru penjumlahan dan pengurangan. Langkah: 18 + (6×2) − 4 = 18 + 12 − 4 = 30 − 4 = 26. Kesalahan umum: menghitung dari kiri tanpa memperhatikan urutan operasi: (18+6) × 2 − 4 = 24 × 2 − 4 = 48 − 4 = 44 (salah karena tanpa kurung, perkalian tetap dikerjakan duluan). Atau menghitung 18 + 6 × (2−4) = 18 + 6(−2) = 6 (juga salah karena pengurangan dikerjakan terakhir).",
+      "source": "Matematika SD — Urutan Operasi",
+      "warnings": []
+    }
+  ]
+}

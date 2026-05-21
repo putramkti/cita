@@ -1,0 +1,553 @@
+{
+  "batch_id": "batch-007",
+  "topic": "Batch 007 — TIU Verbal Part 2",
+  "source_file": "docs/content/drafts/batch-007-tiu-verbal-2.md",
+  "generated_at": "2026-05-21T10:12:20.179Z",
+  "stats": {
+    "total_soal": 12,
+    "by_difficulty": {
+      "1": 0,
+      "2": 4,
+      "3": 4,
+      "4": 4,
+      "5": 0
+    },
+    "warnings_total": 0
+  },
+  "questions": [
+    {
+      "id": "TIU_VERBAL_SINONIM_VERIFIKASI_001",
+      "category": "TIU",
+      "subcategory": "Verbal",
+      "topic": "Sinonim",
+      "questionText": "VERIFIKASI = …",
+      "options": [
+        {
+          "label": "A",
+          "text": "Pengiriman"
+        },
+        {
+          "label": "B",
+          "text": "Penghapusan"
+        },
+        {
+          "label": "C",
+          "text": "Pemeriksaan kebenaran"
+        },
+        {
+          "label": "D",
+          "text": "Pencatatan ulang"
+        },
+        {
+          "label": "E",
+          "text": "Pemberitahuan"
+        }
+      ],
+      "correctAnswer": "C",
+      "optionWeights": null,
+      "difficulty": 2,
+      "tags": [
+        "tiu",
+        "verbal",
+        "sinonim"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TIU_VERBAL_SINONIM_VERIFIKASI",
+      "imagePrompt": null,
+      "explanation": "Verifikasi adalah pemeriksaan untuk membuktikan kebenaran suatu hal, dokumen, atau data. Istilah ini sering digunakan dalam administrasi, ilmu pengetahuan, dan teknologi.",
+      "explanationLong": "KBBI mendefinisikan verifikasi sebagai pemeriksaan tentang kebenaran laporan, pernyataan, atau dokumen, yang dilakukan untuk memastikan keaslian atau ketepatannya. Contoh konteks: verifikasi data peserta seleksi, verifikasi dokumen persyaratan, verifikasi hasil eksperimen. Pilihan A \"pengiriman\" lebih dekat ke \"transmisi\". Pilihan B \"penghapusan\" lebih dekat ke \"delisi\". Pilihan D \"pencatatan ulang\" lebih dekat ke \"registrasi ulang\". Pilihan E \"pemberitahuan\" lebih dekat ke \"notifikasi\".",
+      "source": "KBBI Daring entri \"verifikasi\"",
+      "warnings": []
+    },
+    {
+      "id": "TIU_VERBAL_SINONIM_INTRODUKSI_002",
+      "category": "TIU",
+      "subcategory": "Verbal",
+      "topic": "Sinonim",
+      "questionText": "INTRODUKSI = …",
+      "options": [
+        {
+          "label": "A",
+          "text": "Penutup"
+        },
+        {
+          "label": "B",
+          "text": "Ringkasan"
+        },
+        {
+          "label": "C",
+          "text": "Pengantar"
+        },
+        {
+          "label": "D",
+          "text": "Lampiran"
+        },
+        {
+          "label": "E",
+          "text": "Catatan kaki"
+        }
+      ],
+      "correctAnswer": "C",
+      "optionWeights": null,
+      "difficulty": 3,
+      "tags": [
+        "tiu",
+        "verbal",
+        "sinonim"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TIU_VERBAL_SINONIM_INTRODUKSI",
+      "imagePrompt": null,
+      "explanation": "Introduksi adalah pengantar atau bagian awal yang memperkenalkan suatu topik, karya, atau pertemuan. Lawan katanya adalah penutup atau konklusi.",
+      "explanationLong": "Dalam KBBI, introduksi diartikan sebagai pengantar atau pendahuluan. Kata ini sering muncul dalam konteks: introduksi buku (kata pengantar penulis), introduksi acara (sambutan pembuka), introduksi spesies (pengenalan spesies baru ke ekosistem). Pilihan A \"penutup\" adalah lawan kata. Pilihan B \"ringkasan\" lebih dekat ke \"abstrak\" atau \"summary\". Pilihan D \"lampiran\" adalah bagian tambahan di akhir. Pilihan E \"catatan kaki\" adalah keterangan tambahan di bawah halaman.",
+      "source": "KBBI Daring entri \"introduksi\"",
+      "warnings": []
+    },
+    {
+      "id": "TIU_VERBAL_SINONIM_KOMPETEN_003",
+      "category": "TIU",
+      "subcategory": "Verbal",
+      "topic": "Sinonim",
+      "questionText": "KOMPETEN = …",
+      "options": [
+        {
+          "label": "A",
+          "text": "Berani"
+        },
+        {
+          "label": "B",
+          "text": "Cakap"
+        },
+        {
+          "label": "C",
+          "text": "Berlimpah"
+        },
+        {
+          "label": "D",
+          "text": "Lihai bersaing"
+        },
+        {
+          "label": "E",
+          "text": "Bersemangat"
+        }
+      ],
+      "correctAnswer": "B",
+      "optionWeights": null,
+      "difficulty": 2,
+      "tags": [
+        "tiu",
+        "verbal",
+        "sinonim"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TIU_VERBAL_SINONIM_KOMPETEN",
+      "imagePrompt": null,
+      "explanation": "Kompeten berarti cakap, berkemampuan, atau memiliki wewenang untuk menjalankan suatu pekerjaan. Sinonim paling tepat adalah \"cakap\".",
+      "explanationLong": "KBBI mengartikan kompeten sebagai (1) cakap atau (mampu) menentukan, memutuskan sesuatu; (2) berwenang atau berkuasa memutuskan, menentukan sesuatu. Dalam konteks ASN, kompetensi adalah salah satu nilai dasar yang menekankan kemampuan profesional. Pilihan A \"berani\" lebih dekat ke \"kurang gentar\". Pilihan C \"berlimpah\" lebih dekat ke \"abundance\". Pilihan D \"lihai bersaing\" lebih dekat ke \"kompetitif\" — kata ini sering disalah-tukarkan dengan \"kompeten\". Pilihan E \"bersemangat\" lebih dekat ke \"antusias\".",
+      "source": "KBBI Daring entri \"kompeten\"",
+      "warnings": []
+    },
+    {
+      "id": "TIU_VERBAL_ANTONIM_ABSTRAK_004",
+      "category": "TIU",
+      "subcategory": "Verbal",
+      "topic": "Antonim",
+      "questionText": "ABSTRAK >< …",
+      "options": [
+        {
+          "label": "A",
+          "text": "Kompleks"
+        },
+        {
+          "label": "B",
+          "text": "Konkret"
+        },
+        {
+          "label": "C",
+          "text": "Sulit"
+        },
+        {
+          "label": "D",
+          "text": "Imajiner"
+        },
+        {
+          "label": "E",
+          "text": "Universal"
+        }
+      ],
+      "correctAnswer": "B",
+      "optionWeights": null,
+      "difficulty": 2,
+      "tags": [
+        "tiu",
+        "verbal",
+        "antonim"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TIU_VERBAL_ANTONIM_ABSTRAK",
+      "imagePrompt": null,
+      "explanation": "Abstrak berarti tidak berwujud atau tidak nyata; tidak dapat ditangkap oleh panca indra. Lawan katanya adalah konkret, yaitu nyata dan berwujud.",
+      "explanationLong": "\"Abstrak\" berasal dari bahasa Latin \"abstrahere\" (ditarik dari, dipisahkan), berarti gagasan/konsep yang tidak dapat dilihat atau diraba. \"Konkret\" berasal dari \"concretus\" (tumbuh bersama, menjadi padat), berarti nyata, berwujud, dan dapat diindra. Pasangan abstrak-konkret adalah pasangan antonim klasik dalam filsafat dan logika. Pilihan A \"kompleks\" tidak tepat — sesuatu bisa abstrak sekaligus kompleks atau abstrak sekaligus sederhana. Pilihan C \"sulit\" tidak terkait. Pilihan D \"imajiner\" justru sinonim. Pilihan E \"universal\" tidak berlawanan dimensi.",
+      "source": "KBBI Daring entri \"abstrak\" dan \"konkret\"",
+      "warnings": []
+    },
+    {
+      "id": "TIU_VERBAL_ANTONIM_DOMINAN_005",
+      "category": "TIU",
+      "subcategory": "Verbal",
+      "topic": "Antonim",
+      "questionText": "DOMINAN >< …",
+      "options": [
+        {
+          "label": "A",
+          "text": "Lemah"
+        },
+        {
+          "label": "B",
+          "text": "Kalah"
+        },
+        {
+          "label": "C",
+          "text": "Inferior"
+        },
+        {
+          "label": "D",
+          "text": "Patuh"
+        },
+        {
+          "label": "E",
+          "text": "Sederhana"
+        }
+      ],
+      "correctAnswer": "C",
+      "optionWeights": null,
+      "difficulty": 3,
+      "tags": [
+        "tiu",
+        "verbal",
+        "antonim"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TIU_VERBAL_ANTONIM_DOMINAN",
+      "imagePrompt": null,
+      "explanation": "Dominan berarti yang lebih unggul, lebih banyak, atau lebih berpengaruh. Lawan katanya yang paling tepat adalah \"inferior\" yang berarti rendah, lebih bawah.",
+      "explanationLong": "\"Dominan\" dari bahasa Latin \"dominari\" (menguasai), berarti yang menonjol atau berkuasa. \"Inferior\" dari \"inferus\" (rendah, lebih bawah). Pasangan ini adalah antonim langsung dalam dimensi tingkat keunggulan/posisi. Pilihan A \"lemah\" lebih dekat ke kekuatan fisik, bukan dimensi dominasi/superioritas. Pilihan B \"kalah\" lebih dekat ke hasil pertandingan. Pilihan D \"patuh\" lebih dekat ke \"submisif\" yang merupakan akibat dari dominan-inferior, bukan antonim langsung. Pilihan E \"sederhana\" tidak terkait dimensi dominasi.",
+      "source": "KBBI Daring entri \"dominan\" dan \"inferior\"",
+      "warnings": []
+    },
+    {
+      "id": "TIU_VERBAL_ANTONIM_REPRESIF_006",
+      "category": "TIU",
+      "subcategory": "Verbal",
+      "topic": "Antonim",
+      "questionText": "REPRESIF >< …",
+      "options": [
+        {
+          "label": "A",
+          "text": "Pasif"
+        },
+        {
+          "label": "B",
+          "text": "Asertif"
+        },
+        {
+          "label": "C",
+          "text": "Persuasif"
+        },
+        {
+          "label": "D",
+          "text": "Preventif"
+        },
+        {
+          "label": "E",
+          "text": "Protektif"
+        }
+      ],
+      "correctAnswer": "D",
+      "optionWeights": null,
+      "difficulty": 4,
+      "tags": [
+        "tiu",
+        "verbal",
+        "antonim"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TIU_VERBAL_ANTONIM_REPRESIF",
+      "imagePrompt": null,
+      "explanation": "Represif berarti tindakan menahan/menindas yang dilakukan setelah masalah terjadi. Lawan katanya adalah preventif, yaitu pencegahan sebelum masalah terjadi.",
+      "explanationLong": "Dalam ilmu hukum dan kebijakan publik, dikenal dua pendekatan berlawanan: represif (penegakan setelah pelanggaran) dan preventif (pencegahan sebelum pelanggaran). Misalnya, di kepolisian: tindakan represif adalah penangkapan pelaku setelah kejahatan terjadi; tindakan preventif adalah patroli dan sosialisasi untuk mencegah kejahatan. Pilihan A \"pasif\" tidak tepat. Pilihan B \"asertif\" lebih dekat ke \"tegas\". Pilihan C \"persuasif\" lebih dekat ke \"membujuk\". Pilihan E \"protektif\" lebih dekat ke \"melindungi\" namun tidak persis berlawanan dengan represif yang fokus pada timing tindakan.",
+      "source": "KBBI Daring; doktrin penegakan hukum represif vs preventif",
+      "warnings": []
+    },
+    {
+      "id": "TIU_VERBAL_ANALOGI_ANGGOTA_KELOMPOK_007",
+      "category": "TIU",
+      "subcategory": "Verbal",
+      "topic": "Analogi",
+      "questionText": "KAMBING : MAMALIA = … : …",
+      "options": [
+        {
+          "label": "A",
+          "text": "Mawar : Vas"
+        },
+        {
+          "label": "B",
+          "text": "Hiu : Ikan"
+        },
+        {
+          "label": "C",
+          "text": "Kayu : Pohon"
+        },
+        {
+          "label": "D",
+          "text": "Bunga : Lebah"
+        },
+        {
+          "label": "E",
+          "text": "Buah : Pohon"
+        }
+      ],
+      "correctAnswer": "B",
+      "optionWeights": null,
+      "difficulty": 2,
+      "tags": [
+        "tiu",
+        "verbal",
+        "analogi",
+        "anggota-kelompok"
+      ],
+      "familyId": "TIU_VERBAL_ANALOGI_FAMILY",
+      "enemyGroupId": "TIU_VERBAL_ANALOGI_ANGGOTA_KELOMPOK",
+      "imagePrompt": null,
+      "explanation": "Kambing adalah anggota dari kelompok mamalia. Hiu-ikan mengikuti pola yang sama: hiu adalah anggota dari kelompok ikan.",
+      "explanationLong": "Pola analogi adalah hubungan anggota-kelompok di dunia hewan. Kambing termasuk dalam kelas mamalia (memiliki kelenjar susu, beranak), dan hiu termasuk dalam kelas ikan (bernapas dengan insang, hidup di air). Pilihan A \"mawar-vas\" adalah hubungan objek-wadah, bukan anggota-kelompok. Pilihan C \"kayu-pohon\" terbalik (kayu adalah bahan dari pohon, bukan jenis pohon). Pilihan D \"bunga-lebah\" adalah hubungan ekologis interaksi, bukan kelompok. Pilihan E \"buah-pohon\" adalah hubungan bagian-keseluruhan, bukan anggota-kelompok.",
+      "source": "Pola analogi anggota-kelompok SKD CPNS",
+      "warnings": []
+    },
+    {
+      "id": "TIU_VERBAL_ANALOGI_FUNGSI_OBJEK_008",
+      "category": "TIU",
+      "subcategory": "Verbal",
+      "topic": "Analogi",
+      "questionText": "GUNTING : MEMOTONG = … : …",
+      "options": [
+        {
+          "label": "A",
+          "text": "Buku : Membaca"
+        },
+        {
+          "label": "B",
+          "text": "Sapu : Membersihkan"
+        },
+        {
+          "label": "C",
+          "text": "Kursi : Duduk"
+        },
+        {
+          "label": "D",
+          "text": "Lampu : Listrik"
+        },
+        {
+          "label": "E",
+          "text": "Pintu : Kayu"
+        }
+      ],
+      "correctAnswer": "B",
+      "optionWeights": null,
+      "difficulty": 3,
+      "tags": [
+        "tiu",
+        "verbal",
+        "analogi",
+        "fungsi-objek"
+      ],
+      "familyId": "TIU_VERBAL_ANALOGI_FAMILY",
+      "enemyGroupId": "TIU_VERBAL_ANALOGI_FUNGSI_OBJEK",
+      "imagePrompt": null,
+      "explanation": "Gunting digunakan untuk memotong (alat-fungsi). Sapu-membersihkan mengikuti pola yang sama: sapu digunakan untuk membersihkan.",
+      "explanationLong": "Pola analogi adalah alat dengan fungsi utamanya — alat (subjek aktif) dengan kata kerja yang menggambarkan fungsinya. Pilihan A \"buku-membaca\" tidak sejajar; buku bukan alat, melainkan objek yang dibaca. Pilihan C \"kursi-duduk\" hampir tepat tapi struktur kalimatnya beda — kursi untuk diduduki (objek pasif), bukan kursi yang menduduki. Pilihan D \"lampu-listrik\" adalah alat dengan sumber energi, bukan dengan fungsi. Pilihan E \"pintu-kayu\" adalah objek dengan bahan, bukan dengan fungsi.",
+      "source": "Pola analogi fungsi-objek SKD CPNS",
+      "warnings": []
+    },
+    {
+      "id": "TIU_VERBAL_ANALOGI_TINGKAT_009",
+      "category": "TIU",
+      "subcategory": "Verbal",
+      "topic": "Analogi",
+      "questionText": "HANGAT : PANAS = … : …",
+      "options": [
+        {
+          "label": "A",
+          "text": "Sehat : Bugar"
+        },
+        {
+          "label": "B",
+          "text": "Pintar : Cerdas"
+        },
+        {
+          "label": "C",
+          "text": "Dingin : Beku"
+        },
+        {
+          "label": "D",
+          "text": "Senang : Tertawa"
+        },
+        {
+          "label": "E",
+          "text": "Tinggi : Atas"
+        }
+      ],
+      "correctAnswer": "C",
+      "optionWeights": null,
+      "difficulty": 4,
+      "tags": [
+        "tiu",
+        "verbal",
+        "analogi",
+        "tingkat"
+      ],
+      "familyId": "TIU_VERBAL_ANALOGI_FAMILY",
+      "enemyGroupId": "TIU_VERBAL_ANALOGI_TINGKAT",
+      "imagePrompt": null,
+      "explanation": "Hangat adalah tingkat lebih ringan dari panas (intensitas suhu meningkat). Dingin-beku mengikuti pola yang sama: dingin adalah tingkat lebih ringan dari beku.",
+      "explanationLong": "Pola analogi adalah tingkat intensitas pada skala yang sama, dari ringan ke ekstrem. Hangat → panas adalah peningkatan intensitas suhu ke arah panas; dingin → beku adalah peningkatan intensitas suhu ke arah dingin. Pilihan A \"sehat-bugar\" lebih ke sinonim/dekat, bukan tingkat. Pilihan B \"pintar-cerdas\" juga lebih ke sinonim. Pilihan D \"senang-tertawa\" adalah hubungan emosi-ekspresi, bukan tingkat. Pilihan E \"tinggi-atas\" adalah hubungan sifat-arah, bukan tingkat. Hanya C yang menunjukkan eskalasi intensitas pada dimensi yang sama (suhu rendah).",
+      "source": "Pola analogi tingkat intensitas SKD CPNS",
+      "warnings": []
+    },
+    {
+      "id": "TIU_VERBAL_SILOGISME_UU_010",
+      "category": "TIU",
+      "subcategory": "Verbal",
+      "topic": "Silogisme",
+      "questionText": "- Semua ASN harus menjaga integritas.\n- Semua pegawai Kementerian Keuangan adalah ASN.\n\nKesimpulan yang paling tepat adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Sebagian pegawai Kementerian Keuangan harus menjaga integritas"
+        },
+        {
+          "label": "B",
+          "text": "Semua pegawai Kementerian Keuangan harus menjaga integritas"
+        },
+        {
+          "label": "C",
+          "text": "Semua orang yang menjaga integritas adalah ASN"
+        },
+        {
+          "label": "D",
+          "text": "Sebagian ASN tidak menjaga integritas"
+        },
+        {
+          "label": "E",
+          "text": "Tidak ada kesimpulan yang dapat ditarik"
+        }
+      ],
+      "correctAnswer": "B",
+      "optionWeights": null,
+      "difficulty": 3,
+      "tags": [
+        "tiu",
+        "verbal",
+        "silogisme",
+        "universal-universal"
+      ],
+      "familyId": "TIU_VERBAL_SILOGISME_FAMILY",
+      "enemyGroupId": "TIU_VERBAL_SILOGISME_UU",
+      "imagePrompt": null,
+      "explanation": "Dari \"Semua A adalah B\" dan \"Semua C adalah A\", kesimpulan valid adalah \"Semua C adalah B\" (modus barbara). Maka semua pegawai Kemenkeu harus menjaga integritas.",
+      "explanationLong": "Pola silogisme universal-universal (modus barbara) adalah salah satu pola silogisme paling klasik. Strukturnya: (1) Semua A adalah B, (2) Semua C adalah A, kesimpulan: Semua C adalah B. Penjelasan logis: jika semua ASN harus menjaga integritas, dan semua pegawai Kemenkeu adalah ASN, maka semua pegawai Kemenkeu juga harus menjaga integritas. Pilihan A terlalu lemah — kesimpulan partikular tidak salah tetapi tidak optimal. Pilihan C adalah konvers yang tidak valid. Pilihan D bertentangan dengan premis 1.",
+      "source": "Logika silogisme modus barbara; pola SKD CPNS",
+      "warnings": []
+    },
+    {
+      "id": "TIU_VERBAL_SILOGISME_KHUSUS_011",
+      "category": "TIU",
+      "subcategory": "Verbal",
+      "topic": "Silogisme",
+      "questionText": "- Beberapa peserta SKD adalah lulusan akuntansi.\n- Semua lulusan akuntansi memahami pembukuan.\n\nKesimpulan yang paling tepat adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Semua peserta SKD memahami pembukuan"
+        },
+        {
+          "label": "B",
+          "text": "Sebagian peserta SKD memahami pembukuan"
+        },
+        {
+          "label": "C",
+          "text": "Semua yang memahami pembukuan adalah peserta SKD"
+        },
+        {
+          "label": "D",
+          "text": "Sebagian lulusan akuntansi adalah peserta SKD"
+        },
+        {
+          "label": "E",
+          "text": "Tidak ada kesimpulan yang dapat ditarik"
+        }
+      ],
+      "correctAnswer": "B",
+      "optionWeights": null,
+      "difficulty": 4,
+      "tags": [
+        "tiu",
+        "verbal",
+        "silogisme",
+        "khusus"
+      ],
+      "familyId": "TIU_VERBAL_SILOGISME_FAMILY",
+      "enemyGroupId": "TIU_VERBAL_SILOGISME_KHUSUS",
+      "imagePrompt": null,
+      "explanation": "Dari \"Sebagian A adalah B\" dan \"Semua B adalah C\", kesimpulan valid adalah \"Sebagian A adalah C\" (modus darii). Maka sebagian peserta SKD memahami pembukuan.",
+      "explanationLong": "Pola silogisme partikular-universal (modus darii). Strukturnya: (1) Sebagian A adalah B, (2) Semua B adalah C, kesimpulan: Sebagian A adalah C. Aturan kunci: kesimpulan tidak boleh lebih kuat dari premis terlemah. Karena premis 1 partikular (\"beberapa\"), kesimpulan tidak bisa universal (\"semua\"). Pilihan A salah karena terlalu kuat. Pilihan C adalah konvers tidak valid. Pilihan D adalah penyusunan ulang premis 1 (bukan kesimpulan baru). Pilihan E salah karena silogisme ini valid.",
+      "source": "Logika silogisme modus darii; pola SKD CPNS",
+      "warnings": []
+    },
+    {
+      "id": "TIU_VERBAL_SILOGISME_NEG_012",
+      "category": "TIU",
+      "subcategory": "Verbal",
+      "topic": "Silogisme",
+      "questionText": "- Semua dokumen rahasia harus disimpan di brankas.\n- Sebagian dokumen di meja kerja bukan dokumen rahasia.\n\nKesimpulan yang paling tepat adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Semua dokumen di meja kerja tidak harus disimpan di brankas"
+        },
+        {
+          "label": "B",
+          "text": "Semua dokumen rahasia berada di brankas"
+        },
+        {
+          "label": "C",
+          "text": "Semua dokumen di meja kerja adalah dokumen rahasia"
+        },
+        {
+          "label": "D",
+          "text": "Tidak ada dokumen di meja kerja yang harus disimpan di brankas"
+        },
+        {
+          "label": "E",
+          "text": "Tidak ada kesimpulan yang dapat ditarik dari kedua premis"
+        }
+      ],
+      "correctAnswer": "E",
+      "optionWeights": null,
+      "difficulty": 4,
+      "tags": [
+        "tiu",
+        "verbal",
+        "silogisme",
+        "negatif"
+      ],
+      "familyId": "TIU_VERBAL_SILOGISME_FAMILY",
+      "enemyGroupId": "TIU_VERBAL_SILOGISME_NEG",
+      "imagePrompt": null,
+      "explanation": "Premis 1 mengatur dokumen rahasia; premis 2 mengatur dokumen di meja kerja yang bukan rahasia. Kedua premis tidak memberi informasi tentang status semua dokumen di meja kerja, sehingga tidak ada kesimpulan valid.",
+      "explanationLong": "Untuk menarik kesimpulan valid, kedua premis harus memiliki \"term tengah\" yang menghubungkan. Premis 1 berbicara tentang \"dokumen rahasia → brankas\", premis 2 menyatakan \"sebagian dokumen di meja kerja BUKAN dokumen rahasia\". Premis 2 tidak menjelaskan status sebagian dokumen lain yang di meja kerja (mungkin sebagian rahasia, mungkin tidak), sehingga tidak bisa ditarik kesimpulan tentang seluruh dokumen di meja kerja. Pilihan A terlalu kuat. Pilihan B hanya pengulangan premis 1. Pilihan C bertentangan dengan premis 2. Pilihan D terlalu absolut. Pilihan E adalah jawaban yang tepat — silogisme ini tidak valid karena tidak ada term tengah yang konsisten.",
+      "source": "Logika silogisme; pola SKD CPNS",
+      "warnings": []
+    }
+  ]
+}

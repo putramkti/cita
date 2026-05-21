@@ -1,0 +1,829 @@
+{
+  "batch_id": "batch-010",
+  "topic": "Batch 010 — TIU Figural",
+  "source_file": "docs/content/drafts/batch-010-tiu-figural.md",
+  "generated_at": "2026-05-21T10:12:20.187Z",
+  "stats": {
+    "total_soal": 18,
+    "by_difficulty": {
+      "1": 0,
+      "2": 2,
+      "3": 10,
+      "4": 6,
+      "5": 0
+    },
+    "warnings_total": 0
+  },
+  "questions": [
+    {
+      "id": "TIU_FIGURAL_ROTASI_001_001",
+      "category": "TIU",
+      "subcategory": "Figural",
+      "topic": "Analogi",
+      "questionText": "Perhatikan analogi gambar berikut. Pilihlah gambar yang paling tepat menggantikan tanda tanya.\n\n> ▲ : ▶ = ◆ : ?\n\n```image_prompt\nLayout: row of 4 cells with arrow A:B = C:?\nCell 1 (A): equilateral triangle pointing up, black outline, white fill\nCell 2 (B): equilateral triangle pointing right (rotated 90° clockwise), black outline, white fill\nCell 3 (C): rhombus / diamond shape (square rotated 45°), black outline, white fill\nCell 4 (?): empty placeholder with question mark\nStyle: clean line art, simple geometry, equal cell size, white background, no labels\n```",
+      "options": [
+        {
+          "label": "A",
+          "text": "◆ (sama persis dengan C, tidak berubah)"
+        },
+        {
+          "label": "B",
+          "text": "◇ (rhombus/diamond putih dengan outline saja)"
+        },
+        {
+          "label": "C",
+          "text": "◇ rotasi 90° = bentuk baru (rhombus diputar)"
+        },
+        {
+          "label": "D",
+          "text": "◆ ke kiri (refleksi horizontal)"
+        },
+        {
+          "label": "E",
+          "text": "lingkaran ●"
+        }
+      ],
+      "correctAnswer": "C",
+      "optionWeights": null,
+      "difficulty": 2,
+      "tags": [
+        "tiu",
+        "figural",
+        "analogi",
+        "rotasi"
+      ],
+      "familyId": "TIU_FIGURAL_ROTASI_FAMILY",
+      "enemyGroupId": "TIU_FIGURAL_ROTASI_001",
+      "imagePrompt": "Layout: row of 4 cells with arrow A:B = C:?\nCell 1 (A): equilateral triangle pointing up, black outline, white fill\nCell 2 (B): equilateral triangle pointing right (rotated 90° clockwise), black outline, white fill\nCell 3 (C): rhombus / diamond shape (square rotated 45°), black outline, white fill\nCell 4 (?): empty placeholder with question mark\nStyle: clean line art, simple geometry, equal cell size, white background, no labels",
+      "explanation": "Pola dari A ke B adalah rotasi 90° searah jarum jam. Maka C → ? juga rotasi 90° searah jarum jam. Rhombus (◆) yang diputar 90° searah jarum jam menghasilkan rhombus dalam orientasi yang berbeda (terlihat sebagai persegi miring di sumbu lain).",
+      "explanationLong": "Pola transformasi dari A ke B harus diidentifikasi terlebih dahulu. Segitiga sama sisi yang awalnya menunjuk ke atas (▲) bertransformasi menjadi segitiga yang menunjuk ke kanan (▶) — rotasi 90° searah jarum jam. Pola yang sama harus diaplikasikan ke C: rhombus (◆) diputar 90° searah jarum jam menghasilkan rhombus dengan orientasi yang berbeda (sumbu vertikal panjangnya bergeser ke horizontal). Pilihan C paling tepat.",
+      "source": "Pola figural rotasi SKD CPNS",
+      "warnings": []
+    },
+    {
+      "id": "TIU_FIGURAL_REFLEKSI_001_002",
+      "category": "TIU",
+      "subcategory": "Figural",
+      "topic": "Analogi",
+      "questionText": "Perhatikan analogi gambar berikut. Pilihlah gambar yang paling tepat menggantikan tanda tanya.\n\n> [F] : [Ⅎ] = [P] : ?\n\n```image_prompt\nLayout: row of 4 cells with arrow A:B = C:?\nCell 1 (A): letter F in capital, black, sans-serif, simple\nCell 2 (B): letter F mirrored horizontally (looks like a reverse-F)\nCell 3 (C): letter P in capital, black, sans-serif\nCell 4 (?): empty placeholder\nStyle: clean black-and-white text font, equal cell size\n```",
+      "options": [
+        {
+          "label": "A",
+          "text": "P (sama)"
+        },
+        {
+          "label": "B",
+          "text": "p (huruf kecil)"
+        },
+        {
+          "label": "C",
+          "text": "d (huruf d)"
+        },
+        {
+          "label": "D",
+          "text": "q (huruf q)"
+        },
+        {
+          "label": "E",
+          "text": "b (huruf b)"
+        }
+      ],
+      "correctAnswer": "D",
+      "optionWeights": null,
+      "difficulty": 3,
+      "tags": [
+        "tiu",
+        "figural",
+        "analogi",
+        "refleksi"
+      ],
+      "familyId": "TIU_FIGURAL_REFLEKSI_FAMILY",
+      "enemyGroupId": "TIU_FIGURAL_REFLEKSI_001",
+      "imagePrompt": "Layout: row of 4 cells with arrow A:B = C:?\nCell 1 (A): letter F in capital, black, sans-serif, simple\nCell 2 (B): letter F mirrored horizontally (looks like a reverse-F)\nCell 3 (C): letter P in capital, black, sans-serif\nCell 4 (?): empty placeholder\nStyle: clean black-and-white text font, equal cell size",
+      "explanation": "Pola transformasi A ke B adalah refleksi horizontal (cermin kiri-kanan). P yang direfleksikan secara horizontal akan terlihat seperti huruf \"q\".",
+      "explanationLong": "Refleksi horizontal artinya gambar dibalik di sepanjang sumbu vertikal — kiri menjadi kanan dan sebaliknya. Huruf F yang direfleksikan secara horizontal menghasilkan bentuk seperti F terbalik (Ⅎ atau bentuk seperti \"huruf F dengan kaki di kiri\"). Pola yang sama diterapkan ke huruf P: bagian \"kepala P\" yang biasanya di kanan atas akan berpindah ke kiri atas, menghasilkan bentuk yang menyerupai huruf \"q\". Pilihan B (p kecil) tidak tepat karena hanya perubahan ukuran, bukan refleksi. Pilihan C (d) lebih dekat ke refleksi vertikal P, bukan horizontal.",
+      "source": "Pola figural refleksi SKD CPNS",
+      "warnings": []
+    },
+    {
+      "id": "TIU_FIGURAL_PENGHILANGAN_001_003",
+      "category": "TIU",
+      "subcategory": "Figural",
+      "topic": "Analogi",
+      "questionText": "Perhatikan analogi gambar berikut. Pilihlah gambar yang paling tepat menggantikan tanda tanya.\n\n```image_prompt\nLayout: row of 4 cells, A:B = C:?\nCell 1 (A): square containing 4 small circles arranged in a 2x2 grid\nCell 2 (B): square containing 3 small circles (top-right one removed, so bottom-left, top-left, bottom-right circles remain)\nCell 3 (C): triangle containing 3 small circles arranged like an upward triangle (top, bottom-left, bottom-right)\nCell 4 (?): empty placeholder\nStyle: clean black outline shapes, white fill background, simple geometry\n```",
+      "options": [
+        {
+          "label": "A",
+          "text": "Triangle dengan 3 lingkaran (sama dengan C)"
+        },
+        {
+          "label": "B",
+          "text": "Triangle dengan 2 lingkaran (lingkaran di puncak dihilangkan)"
+        },
+        {
+          "label": "C",
+          "text": "Triangle dengan 4 lingkaran"
+        },
+        {
+          "label": "D",
+          "text": "Square dengan 3 lingkaran"
+        },
+        {
+          "label": "E",
+          "text": "Triangle kosong"
+        }
+      ],
+      "correctAnswer": "B",
+      "optionWeights": null,
+      "difficulty": 3,
+      "tags": [
+        "tiu",
+        "figural",
+        "analogi",
+        "penghilangan"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TIU_FIGURAL_PENGHILANGAN_001",
+      "imagePrompt": "Layout: row of 4 cells, A:B = C:?\nCell 1 (A): square containing 4 small circles arranged in a 2x2 grid\nCell 2 (B): square containing 3 small circles (top-right one removed, so bottom-left, top-left, bottom-right circles remain)\nCell 3 (C): triangle containing 3 small circles arranged like an upward triangle (top, bottom-left, bottom-right)\nCell 4 (?): empty placeholder\nStyle: clean black outline shapes, white fill background, simple geometry",
+      "explanation": "Pola dari A ke B adalah pengurangan satu lingkaran. C → ? juga harus dikurangi satu lingkaran. Triangle dengan 3 lingkaran menjadi triangle dengan 2 lingkaran.",
+      "explanationLong": "Pola transformasi: A memiliki 4 lingkaran, B memiliki 3 lingkaran (turun 1). Maka C dengan 3 lingkaran harus berubah menjadi gambar dengan 2 lingkaran. Bentuk dasar (triangle) dipertahankan. Pilihan B paling tepat. Pilihan A tidak ada perubahan (salah pola). Pilihan C bertambah (kebalikan pola). Pilihan D mengubah bentuk dasar (tidak konsisten). Pilihan E menghilangkan terlalu banyak.",
+      "source": "Pola figural penghilangan elemen",
+      "warnings": []
+    },
+    {
+      "id": "TIU_FIGURAL_PENAMBAHAN_001_004",
+      "category": "TIU",
+      "subcategory": "Figural",
+      "topic": "Analogi",
+      "questionText": "Perhatikan analogi gambar berikut.\n\n```image_prompt\nLayout: row of 4 cells, A:B = C:?\nCell 1 (A): single horizontal line\nCell 2 (B): plus sign (horizontal line + vertical line crossing)\nCell 3 (C): single circle\nCell 4 (?): empty\n```",
+      "options": [
+        {
+          "label": "A",
+          "text": "Lingkaran kosong"
+        },
+        {
+          "label": "B",
+          "text": "Lingkaran dengan garis vertikal menembusnya (◐ tanpa arsiran, hanya outline + garis tengah)"
+        },
+        {
+          "label": "C",
+          "text": "Lingkaran dengan garis horizontal di atas"
+        },
+        {
+          "label": "D",
+          "text": "Dua lingkaran terpisah"
+        },
+        {
+          "label": "E",
+          "text": "Lingkaran yang lebih besar"
+        }
+      ],
+      "correctAnswer": "B",
+      "optionWeights": null,
+      "difficulty": 3,
+      "tags": [
+        "tiu",
+        "figural",
+        "analogi",
+        "penambahan"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TIU_FIGURAL_PENAMBAHAN_001",
+      "imagePrompt": "Layout: row of 4 cells, A:B = C:?\nCell 1 (A): single horizontal line\nCell 2 (B): plus sign (horizontal line + vertical line crossing)\nCell 3 (C): single circle\nCell 4 (?): empty",
+      "explanation": "Pola A→B: ditambahkan garis vertikal. Maka C→? juga ditambahkan garis vertikal yang menembus lingkaran.",
+      "explanationLong": "Transformasi A ke B: menambahkan elemen garis vertikal yang memotong garis horizontal (membentuk plus). Aplikasi ke C: lingkaran ditambahi garis vertikal yang menembusnya (atau menyilang). Pilihan B paling sesuai dengan pola penambahan elemen yang sama. Pilihan A tidak ada perubahan. Pilihan C menambahkan elemen yang berbeda. Pilihan D dan E mengubah karakteristik dasar lingkaran.",
+      "source": "Pola figural penambahan elemen",
+      "warnings": []
+    },
+    {
+      "id": "TIU_FIGURAL_ARSIRAN_001_005",
+      "category": "TIU",
+      "subcategory": "Figural",
+      "topic": "Analogi",
+      "questionText": "Perhatikan analogi gambar berikut.\n\n```image_prompt\nLayout: row of 4 cells, A:B = C:?\nCell 1 (A): square white (outline only, no fill)\nCell 2 (B): square fully black (filled)\nCell 3 (C): circle white (outline only, no fill)\nCell 4 (?): empty\n```",
+      "options": [
+        {
+          "label": "A",
+          "text": "Lingkaran kosong (sama dengan C)"
+        },
+        {
+          "label": "B",
+          "text": "Lingkaran terisi penuh hitam"
+        },
+        {
+          "label": "C",
+          "text": "Lingkaran berarsiran horizontal"
+        },
+        {
+          "label": "D",
+          "text": "Setengah lingkaran terisi"
+        },
+        {
+          "label": "E",
+          "text": "Lingkaran dengan titik di tengah"
+        }
+      ],
+      "correctAnswer": "B",
+      "optionWeights": null,
+      "difficulty": 3,
+      "tags": [
+        "tiu",
+        "figural",
+        "analogi",
+        "arsiran"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TIU_FIGURAL_ARSIRAN_001",
+      "imagePrompt": "Layout: row of 4 cells, A:B = C:?\nCell 1 (A): square white (outline only, no fill)\nCell 2 (B): square fully black (filled)\nCell 3 (C): circle white (outline only, no fill)\nCell 4 (?): empty",
+      "explanation": "Pola A→B: dari putih (kosong) menjadi hitam (terisi penuh). Maka C→? juga harus berubah dari putih ke hitam terisi.",
+      "explanationLong": "Transformasi yang konsisten: pengisian (warna) tanpa mengubah bentuk dasar. Square putih menjadi square hitam, maka circle putih harus menjadi circle hitam (terisi penuh). Bentuk dasar (lingkaran) dipertahankan, hanya warna/arsiran yang berubah. Pilihan B paling tepat. Pilihan A tidak ada perubahan. Pilihan C, D, E menggunakan jenis pengisian yang berbeda dari pola.",
+      "source": "Pola figural perubahan warna/arsiran",
+      "warnings": []
+    },
+    {
+      "id": "TIU_FIGURAL_SERI_ROTASI_001_006",
+      "category": "TIU",
+      "subcategory": "Figural",
+      "topic": "Seri",
+      "questionText": "Lanjutkan pola gambar berikut.\n\n```image_prompt\nLayout: row of 5 cells (4 known + 1 unknown)\nCell 1: arrow pointing up ↑\nCell 2: arrow pointing right → (rotated 90° clockwise from cell 1)\nCell 3: arrow pointing down ↓ (rotated 90° clockwise from cell 2)\nCell 4: arrow pointing left ← (rotated 90° clockwise from cell 3)\nCell 5 (?): empty placeholder\nStyle: clean arrows, simple line art, equal cell size\n```",
+      "options": [
+        {
+          "label": "A",
+          "text": "Panah ke kanan ditangahnya"
+        },
+        {
+          "label": "B",
+          "text": "Panah ke atas ↑"
+        },
+        {
+          "label": "C",
+          "text": "Panah ke kanan-atas (diagonal)"
+        },
+        {
+          "label": "D",
+          "text": "Panah putus-putus"
+        },
+        {
+          "label": "E",
+          "text": "Lingkaran tanpa panah"
+        }
+      ],
+      "correctAnswer": "B",
+      "optionWeights": null,
+      "difficulty": 3,
+      "tags": [
+        "tiu",
+        "figural",
+        "seri",
+        "rotasi-90"
+      ],
+      "familyId": "TIU_FIGURAL_ROTASI_FAMILY",
+      "enemyGroupId": "TIU_FIGURAL_SERI_ROTASI_001",
+      "imagePrompt": "Layout: row of 5 cells (4 known + 1 unknown)\nCell 1: arrow pointing up ↑\nCell 2: arrow pointing right → (rotated 90° clockwise from cell 1)\nCell 3: arrow pointing down ↓ (rotated 90° clockwise from cell 2)\nCell 4: arrow pointing left ← (rotated 90° clockwise from cell 3)\nCell 5 (?): empty placeholder\nStyle: clean arrows, simple line art, equal cell size",
+      "explanation": "Pola: rotasi 90° searah jarum jam tiap langkah. Setelah ←, rotasi berikutnya kembali ke ↑.",
+      "explanationLong": "Setiap langkah, panah berputar 90° searah jarum jam. Urutan: atas → kanan → bawah → kiri → atas (kembali ke awal). Pola siklik dengan periode 4. Maka cell ke-5 = ↑ (kembali ke posisi awal). Pilihan B paling tepat. Pemahaman kunci: kenali bahwa rotasi siklik akhirnya kembali ke titik awal — ini sering muncul di SKD figural.",
+      "source": "Pola figural seri rotasi siklik",
+      "warnings": []
+    },
+    {
+      "id": "TIU_FIGURAL_SERI_PENAMBAHAN_001_007",
+      "category": "TIU",
+      "subcategory": "Figural",
+      "topic": "Seri",
+      "questionText": "Lanjutkan pola.\n\n```image_prompt\nLayout: row of 5 cells\nCell 1: 1 small dot in center\nCell 2: 2 small dots side by side\nCell 3: 3 small dots in a row\nCell 4: 4 small dots in a row\nCell 5 (?): empty\nStyle: simple black dots on white background\n```",
+      "options": [
+        {
+          "label": "A",
+          "text": "4 titik (sama dengan cell 4)"
+        },
+        {
+          "label": "B",
+          "text": "5 titik berderet"
+        },
+        {
+          "label": "C",
+          "text": "6 titik"
+        },
+        {
+          "label": "D",
+          "text": "4 titik dalam pola berbeda (vertikal)"
+        },
+        {
+          "label": "E",
+          "text": "5 titik dalam grid 2x2 + 1"
+        }
+      ],
+      "correctAnswer": "B",
+      "optionWeights": null,
+      "difficulty": 3,
+      "tags": [
+        "tiu",
+        "figural",
+        "seri",
+        "penambahan-elemen"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TIU_FIGURAL_SERI_PENAMBAHAN_001",
+      "imagePrompt": "Layout: row of 5 cells\nCell 1: 1 small dot in center\nCell 2: 2 small dots side by side\nCell 3: 3 small dots in a row\nCell 4: 4 small dots in a row\nCell 5 (?): empty\nStyle: simple black dots on white background",
+      "explanation": "Pola: tiap langkah menambah 1 titik. Maka cell ke-5 = 5 titik berderet.",
+      "explanationLong": "Pola pertambahan +1 titik per langkah: 1, 2, 3, 4, → 5. Susunan dipertahankan (deretan horizontal). Pilihan B paling tepat. Pilihan A tidak ada perubahan. Pilihan C terlalu banyak. Pilihan D dan E menggunakan jumlah benar tapi pola susunan berubah, sedangkan pola asli mempertahankan susunan deretan.",
+      "source": "Pola figural seri penambahan elemen",
+      "warnings": []
+    },
+    {
+      "id": "TIU_FIGURAL_SERI_POSISI_001_008",
+      "category": "TIU",
+      "subcategory": "Figural",
+      "topic": "Seri",
+      "questionText": "Lanjutkan pola.\n\n```image_prompt\nLayout: row of 5 cells, each cell contains a 3x3 grid\nCell 1: 3x3 grid with a black dot in top-left position\nCell 2: 3x3 grid with a black dot in top-middle position\nCell 3: 3x3 grid with a black dot in top-right position\nCell 4: 3x3 grid with a black dot in middle-right position\nCell 5 (?): empty placeholder\nStyle: clean black 3x3 grid lines on white, single black dot per cell\n```",
+      "options": [
+        {
+          "label": "A",
+          "text": "Titik di posisi tengah-tengah grid"
+        },
+        {
+          "label": "B",
+          "text": "Titik di posisi bawah-kanan grid"
+        },
+        {
+          "label": "C",
+          "text": "Titik di posisi tengah-kiri grid"
+        },
+        {
+          "label": "D",
+          "text": "Titik di posisi bawah-tengah grid"
+        },
+        {
+          "label": "E",
+          "text": "Tidak ada titik (grid kosong)"
+        }
+      ],
+      "correctAnswer": "B",
+      "optionWeights": null,
+      "difficulty": 4,
+      "tags": [
+        "tiu",
+        "figural",
+        "seri",
+        "posisi"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TIU_FIGURAL_SERI_POSISI_001",
+      "imagePrompt": "Layout: row of 5 cells, each cell contains a 3x3 grid\nCell 1: 3x3 grid with a black dot in top-left position\nCell 2: 3x3 grid with a black dot in top-middle position\nCell 3: 3x3 grid with a black dot in top-right position\nCell 4: 3x3 grid with a black dot in middle-right position\nCell 5 (?): empty placeholder\nStyle: clean black 3x3 grid lines on white, single black dot per cell",
+      "explanation": "Pola: titik bergerak searah jarum jam mengelilingi tepi grid. Setelah middle-right, titik berpindah ke bottom-right.",
+      "explanationLong": "Pola pergerakan titik mengikuti pinggiran grid 3x3 searah jarum jam. Urutan: top-left → top-middle → top-right → middle-right → bottom-right (cell ke-5) → bottom-middle → bottom-left → middle-left → kembali ke top-left. Pilihan B paling sesuai dengan langkah ke-5 dalam pola siklik tersebut. Pilihan A salah karena tengah grid bukan bagian pinggiran. Pilihan C, D melompati posisi.",
+      "source": "Pola figural seri posisi siklik",
+      "warnings": []
+    },
+    {
+      "id": "TIU_FIGURAL_SERI_KOMBINASI_001_009",
+      "category": "TIU",
+      "subcategory": "Figural",
+      "topic": "Seri",
+      "questionText": "Lanjutkan pola.\n\n```image_prompt\nLayout: row of 5 cells\nCell 1: 1 vertical line\nCell 2: 2 horizontal lines (rotated 90° + 1 added)\nCell 3: 3 vertical lines (rotated 90° + 1 added)\nCell 4: 4 horizontal lines\nCell 5 (?): empty placeholder\nStyle: simple parallel line strokes, equal cell size\n```",
+      "options": [
+        {
+          "label": "A",
+          "text": "4 garis vertikal"
+        },
+        {
+          "label": "B",
+          "text": "5 garis vertikal"
+        },
+        {
+          "label": "C",
+          "text": "5 garis horizontal"
+        },
+        {
+          "label": "D",
+          "text": "6 garis vertikal"
+        },
+        {
+          "label": "E",
+          "text": "4 garis horizontal"
+        }
+      ],
+      "correctAnswer": "B",
+      "optionWeights": null,
+      "difficulty": 4,
+      "tags": [
+        "tiu",
+        "figural",
+        "seri",
+        "kombinasi",
+        "rotasi-jumlah"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TIU_FIGURAL_SERI_KOMBINASI_001",
+      "imagePrompt": "Layout: row of 5 cells\nCell 1: 1 vertical line\nCell 2: 2 horizontal lines (rotated 90° + 1 added)\nCell 3: 3 vertical lines (rotated 90° + 1 added)\nCell 4: 4 horizontal lines\nCell 5 (?): empty placeholder\nStyle: simple parallel line strokes, equal cell size",
+      "explanation": "Pola dua dimensi: jumlah garis bertambah +1 tiap langkah, dan orientasi berputar 90° (vertikal-horizontal-vertikal-horizontal). Cell 5: jumlah=5, orientasi=vertikal.",
+      "explanationLong": "Identifikasi dua pola yang berjalan bersamaan: (1) jumlah garis: 1, 2, 3, 4 → 5 (selisih +1); (2) orientasi: vertikal, horizontal, vertikal, horizontal → vertikal (alternasi). Cell ke-5 harus memiliki 5 garis vertikal. Pilihan B paling tepat. Pilihan C jumlahnya benar tapi orientasi salah (alternasi seharusnya kembali ke vertikal). Pilihan D jumlah salah.",
+      "source": "Pola figural seri kombinasi (jumlah + orientasi)",
+      "warnings": []
+    },
+    {
+      "id": "TIU_FIGURAL_KETIDAKSAMAAN_JUMLAH_001_010",
+      "category": "TIU",
+      "subcategory": "Figural",
+      "topic": "Ketidaksamaan",
+      "questionText": "Manakah yang tidak masuk dalam pola yang sama?\n\n```image_prompt\nLayout: row of 5 cells (5 options)\nCell A: square with 4 dots inside (one at each corner)\nCell B: triangle with 3 dots inside (one at each vertex)\nCell C: pentagon with 5 dots inside (one at each vertex)\nCell D: hexagon with 6 dots inside (one at each vertex)\nCell E: circle with 4 dots arranged at 0°, 90°, 180°, 270°\nStyle: clean line art shapes, equal-size cells\n```",
+      "options": [
+        {
+          "label": "A",
+          "text": "Kotak (4 sudut, 4 titik)"
+        },
+        {
+          "label": "B",
+          "text": "Segitiga (3 sudut, 3 titik)"
+        },
+        {
+          "label": "C",
+          "text": "Segi-5 (5 sudut, 5 titik)"
+        },
+        {
+          "label": "D",
+          "text": "Segi-6 (6 sudut, 6 titik)"
+        },
+        {
+          "label": "E",
+          "text": "Lingkaran (tanpa sudut, tapi punya 4 titik)"
+        }
+      ],
+      "correctAnswer": "E",
+      "optionWeights": null,
+      "difficulty": 2,
+      "tags": [
+        "tiu",
+        "figural",
+        "ketidaksamaan",
+        "jumlah-elemen"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TIU_FIGURAL_KETIDAKSAMAAN_JUMLAH_001",
+      "imagePrompt": "Layout: row of 5 cells (5 options)\nCell A: square with 4 dots inside (one at each corner)\nCell B: triangle with 3 dots inside (one at each vertex)\nCell C: pentagon with 5 dots inside (one at each vertex)\nCell D: hexagon with 6 dots inside (one at each vertex)\nCell E: circle with 4 dots arranged at 0°, 90°, 180°, 270°\nStyle: clean line art shapes, equal-size cells",
+      "explanation": "Pola: titik diletakkan di tiap sudut bentuk. Lingkaran tidak memiliki sudut tetapi tetap punya titik — beda dengan yang lain.",
+      "explanationLong": "Pola yang konsisten antara A, B, C, dan D: jumlah titik sama dengan jumlah sudut bentuk geometri tersebut. Lingkaran (E) tidak memiliki sudut, sehingga aturan \"1 titik per sudut\" tidak berlaku. Meskipun titik diletakkan di posisi 0°, 90°, 180°, 270°, ini bukan \"sudut\" dalam arti geometri — lingkaran tidak punya vertex. Pilihan E adalah anomali.",
+      "source": "Pola figural ketidaksamaan kategori bentuk",
+      "warnings": []
+    },
+    {
+      "id": "TIU_FIGURAL_KETIDAKSAMAAN_BENTUK_001_011",
+      "category": "TIU",
+      "subcategory": "Figural",
+      "topic": "Ketidaksamaan",
+      "questionText": "Manakah yang tidak masuk dalam pola yang sama?\n\n```image_prompt\nLayout: row of 5 cells\nCell A: square divided diagonally (2 triangles)\nCell B: rectangle divided horizontally (2 rectangles)\nCell C: square divided vertically (2 rectangles)\nCell D: triangle divided horizontally (2 trapezoids? or two triangles?)\nCell E: hexagon divided into 6 equal triangles (radial)\nStyle: clean line art, simple division lines\n```",
+      "options": [
+        {
+          "label": "A",
+          "text": "Kotak dibagi 2 (diagonal)"
+        },
+        {
+          "label": "B",
+          "text": "Persegi panjang dibagi 2 (horizontal)"
+        },
+        {
+          "label": "C",
+          "text": "Kotak dibagi 2 (vertikal)"
+        },
+        {
+          "label": "D",
+          "text": "Segitiga dibagi 2 (horizontal)"
+        },
+        {
+          "label": "E",
+          "text": "Segi-6 dibagi 6 (radial)"
+        }
+      ],
+      "correctAnswer": "E",
+      "optionWeights": null,
+      "difficulty": 3,
+      "tags": [
+        "tiu",
+        "figural",
+        "ketidaksamaan",
+        "bentuk"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TIU_FIGURAL_KETIDAKSAMAAN_BENTUK_001",
+      "imagePrompt": "Layout: row of 5 cells\nCell A: square divided diagonally (2 triangles)\nCell B: rectangle divided horizontally (2 rectangles)\nCell C: square divided vertically (2 rectangles)\nCell D: triangle divided horizontally (2 trapezoids? or two triangles?)\nCell E: hexagon divided into 6 equal triangles (radial)\nStyle: clean line art, simple division lines",
+      "explanation": "Pola: bentuk dibagi menjadi 2 bagian. Segi-6 dibagi 6 — beda dari pola \"dibagi 2\".",
+      "explanationLong": "A, B, C, dan D sama-sama membagi bentuk menjadi **2** bagian (apapun arah pembaginya). Segi-6 di pilihan E dibagi menjadi **6** bagian — pengecualian dari pola. Pilihan E adalah anomali. Catatan: jika lo terbalik fokus pada \"berapa banyak garis pembagi\", semua bentuk A-D punya 1 garis pembagi, sedangkan E punya banyak garis pembagi (radial).",
+      "source": "Pola figural ketidaksamaan jumlah bagian",
+      "warnings": []
+    },
+    {
+      "id": "TIU_FIGURAL_KETIDAKSAMAAN_ROTASI_001_012",
+      "category": "TIU",
+      "subcategory": "Figural",
+      "topic": "Ketidaksamaan",
+      "questionText": "Manakah yang tidak masuk dalam pola yang sama?\n\n```image_prompt\nLayout: row of 5 cells, each containing a letter\nCell A: letter L pointing up-left (standard L orientation)\nCell B: letter L rotated 90° clockwise (looks like inverted L pointing right)\nCell C: letter L rotated 180° (upside down)\nCell D: letter L rotated 270° (mirror reflected, like J without curve)\nCell E: letter L mirrored horizontally (looks like backward L)\nStyle: clean sans-serif L letters in different orientations\n```",
+      "options": [
+        {
+          "label": "A",
+          "text": "L tegak"
+        },
+        {
+          "label": "B",
+          "text": "L diputar 90°"
+        },
+        {
+          "label": "C",
+          "text": "L diputar 180°"
+        },
+        {
+          "label": "D",
+          "text": "L diputar 270°"
+        },
+        {
+          "label": "E",
+          "text": "L direfleksi (cermin)"
+        }
+      ],
+      "correctAnswer": "E",
+      "optionWeights": null,
+      "difficulty": 4,
+      "tags": [
+        "tiu",
+        "figural",
+        "ketidaksamaan",
+        "rotasi"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TIU_FIGURAL_KETIDAKSAMAAN_ROTASI_001",
+      "imagePrompt": "Layout: row of 5 cells, each containing a letter\nCell A: letter L pointing up-left (standard L orientation)\nCell B: letter L rotated 90° clockwise (looks like inverted L pointing right)\nCell C: letter L rotated 180° (upside down)\nCell D: letter L rotated 270° (mirror reflected, like J without curve)\nCell E: letter L mirrored horizontally (looks like backward L)\nStyle: clean sans-serif L letters in different orientations",
+      "explanation": "A, B, C, D semua adalah rotasi (tanpa cermin). E adalah refleksi/cermin — bentuk yang tidak bisa dicapai dengan rotasi 2D saja.",
+      "explanationLong": "Rotasi vs refleksi adalah dua transformasi berbeda. A, B, C, D semua dapat saling diubah hanya dengan rotasi (tanpa membalik bentuk). Sedangkan refleksi cermin (E) menghasilkan bentuk yang tidak bisa didapat hanya dengan rotasi 2D — perlu dilipat di sumbu cermin. Untuk mengeceknya: bentuk asli L bisa diputar berapa kali pun tetap memiliki kaidah arah yang sama (chirality), sedangkan cerminnya berbeda. Pilihan E adalah anomali.",
+      "source": "Pola figural ketidaksamaan rotasi vs refleksi",
+      "warnings": []
+    },
+    {
+      "id": "TIU_FIGURAL_KETIDAKSAMAAN_KATEGORI_001_013",
+      "category": "TIU",
+      "subcategory": "Figural",
+      "topic": "Ketidaksamaan",
+      "questionText": "Manakah yang tidak masuk dalam pola yang sama?\n\n```image_prompt\nLayout: row of 5 cells\nCell A: square (4 sides)\nCell B: rectangle (4 sides)\nCell C: rhombus (4 sides)\nCell D: trapezoid (4 sides)\nCell E: pentagon (5 sides)\nStyle: clean line art quadrilaterals + pentagon, equal cell size\n```",
+      "options": [
+        {
+          "label": "A",
+          "text": "Kotak (4 sisi)"
+        },
+        {
+          "label": "B",
+          "text": "Persegi panjang (4 sisi)"
+        },
+        {
+          "label": "C",
+          "text": "Belah ketupat (4 sisi)"
+        },
+        {
+          "label": "D",
+          "text": "Trapesium (4 sisi)"
+        },
+        {
+          "label": "E",
+          "text": "Segi-5 (5 sisi)"
+        }
+      ],
+      "correctAnswer": "E",
+      "optionWeights": null,
+      "difficulty": 3,
+      "tags": [
+        "tiu",
+        "figural",
+        "ketidaksamaan",
+        "kategori"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TIU_FIGURAL_KETIDAKSAMAAN_KATEGORI_001",
+      "imagePrompt": "Layout: row of 5 cells\nCell A: square (4 sides)\nCell B: rectangle (4 sides)\nCell C: rhombus (4 sides)\nCell D: trapezoid (4 sides)\nCell E: pentagon (5 sides)\nStyle: clean line art quadrilaterals + pentagon, equal cell size",
+      "explanation": "A, B, C, D semua punya 4 sisi (segi-empat). Segi-5 (E) berbeda kategori — bukan segi-empat.",
+      "explanationLong": "Segi-empat (quadrilateral) memiliki 4 sisi dan 4 sudut. Square, rectangle, rhombus, dan trapezoid semuanya termasuk dalam kategori ini, dengan variasi panjang sisi dan sudut. Pentagon memiliki 5 sisi sehingga keluar dari kategori segi-empat. Pilihan E adalah anomali. Soal seperti ini menguji kemampuan klasifikasi geometri.",
+      "source": "Pola figural ketidaksamaan kategori geometri",
+      "warnings": []
+    },
+    {
+      "id": "TIU_FIGURAL_REFLEKSI_002_014",
+      "category": "TIU",
+      "subcategory": "Figural",
+      "topic": "Refleksi",
+      "questionText": "Manakah yang merupakan refleksi cermin (refleksi vertikal) dari gambar berikut?\n\n```image_prompt\nOriginal: Capital letter R in standard orientation\nCell A: Letter R standard (no change)\nCell B: Letter R mirrored horizontally (left-right flip)\nCell C: Letter R rotated 180°\nCell D: Letter R rotated 90° clockwise\nCell E: Letter R rotated 90° counter-clockwise\nLayout: original shown above; 5 options as labeled cells below\nStyle: clean sans-serif font\n```",
+      "options": [
+        {
+          "label": "A",
+          "text": "R standar (sama dengan asal)"
+        },
+        {
+          "label": "B",
+          "text": "R direfleksi horizontal (cermin kiri-kanan)"
+        },
+        {
+          "label": "C",
+          "text": "R diputar 180°"
+        },
+        {
+          "label": "D",
+          "text": "R diputar 90° searah jarum jam"
+        },
+        {
+          "label": "E",
+          "text": "R diputar 90° berlawanan arah jarum jam"
+        }
+      ],
+      "correctAnswer": "B",
+      "optionWeights": null,
+      "difficulty": 3,
+      "tags": [
+        "tiu",
+        "figural",
+        "refleksi",
+        "cermin"
+      ],
+      "familyId": "TIU_FIGURAL_REFLEKSI_FAMILY",
+      "enemyGroupId": "TIU_FIGURAL_REFLEKSI_002",
+      "imagePrompt": "Original: Capital letter R in standard orientation\nCell A: Letter R standard (no change)\nCell B: Letter R mirrored horizontally (left-right flip)\nCell C: Letter R rotated 180°\nCell D: Letter R rotated 90° clockwise\nCell E: Letter R rotated 90° counter-clockwise\nLayout: original shown above; 5 options as labeled cells below\nStyle: clean sans-serif font",
+      "explanation": "Refleksi vertikal artinya gambar dibalik di sumbu vertikal — bagian kiri menjadi kanan dan sebaliknya. R yang direfleksi vertikal akan terlihat seperti R-terbalik kiri-kanan (kepala R ke kiri).",
+      "explanationLong": "Refleksi vertikal (atau \"horizontal flip\" — istilah ini bertukar tergantung referensi) adalah transformasi yang membalik gambar di sepanjang sumbu vertikal. Untuk huruf R, \"tangan\" R yang biasanya menghadap kanan akan berpindah ke kiri. Pilihan B paling tepat. Pilihan C (rotasi 180°) menghasilkan R yang juga terbalik atas-bawah. Pilihan D dan E adalah rotasi yang berbeda dari refleksi.",
+      "source": "Pola figural refleksi cermin",
+      "warnings": []
+    },
+    {
+      "id": "TIU_FIGURAL_ROTASI_180_001_015",
+      "category": "TIU",
+      "subcategory": "Figural",
+      "topic": "Rotasi",
+      "questionText": "Berikut gambar awal. Manakah pilihan yang merupakan hasil rotasi 180°?\n\n```image_prompt\nOriginal: arrow pointing up-right diagonal (45°)\nCell A: arrow pointing up-right (same as original)\nCell B: arrow pointing down-left (180° rotation)\nCell C: arrow pointing up-left (mirrored)\nCell D: arrow pointing down-right\nCell E: arrow pointing right (90° rotation only)\nStyle: clean simple arrows\n```",
+      "options": [
+        {
+          "label": "A",
+          "text": "Panah ke atas-kanan (sama)"
+        },
+        {
+          "label": "B",
+          "text": "Panah ke bawah-kiri"
+        },
+        {
+          "label": "C",
+          "text": "Panah ke atas-kiri"
+        },
+        {
+          "label": "D",
+          "text": "Panah ke bawah-kanan"
+        },
+        {
+          "label": "E",
+          "text": "Panah ke kanan"
+        }
+      ],
+      "correctAnswer": "B",
+      "optionWeights": null,
+      "difficulty": 3,
+      "tags": [
+        "tiu",
+        "figural",
+        "rotasi",
+        "180-derajat"
+      ],
+      "familyId": "TIU_FIGURAL_ROTASI_FAMILY",
+      "enemyGroupId": "TIU_FIGURAL_ROTASI_180_001",
+      "imagePrompt": "Original: arrow pointing up-right diagonal (45°)\nCell A: arrow pointing up-right (same as original)\nCell B: arrow pointing down-left (180° rotation)\nCell C: arrow pointing up-left (mirrored)\nCell D: arrow pointing down-right\nCell E: arrow pointing right (90° rotation only)\nStyle: clean simple arrows",
+      "explanation": "Rotasi 180° membalik arah panah ke kebalikan persis. Panah ke atas-kanan → panah ke bawah-kiri.",
+      "explanationLong": "Rotasi 180° (atau \"putaran setengah lingkaran\") membalik orientasi gambar 180° — semua arah dibalik ke kebalikan. Untuk panah diagonal yang menunjuk ke atas-kanan (45°), rotasi 180° menghasilkan panah ke bawah-kiri (225°). Pilihan B paling tepat. Pilihan C dan D adalah refleksi (membalik di salah satu sumbu saja, bukan keduanya). Pilihan E hanya rotasi 90° atau 45°.",
+      "source": "Pola figural rotasi 180°",
+      "warnings": []
+    },
+    {
+      "id": "TIU_FIGURAL_SIMETRI_001_016",
+      "category": "TIU",
+      "subcategory": "Figural",
+      "topic": "Simetri",
+      "questionText": "Bentuk berikut memiliki sumbu simetri sebanyak…\n\n```image_prompt\nShow: equilateral triangle (all sides and angles equal)\nStyle: clean black outline, white fill\n```",
+      "options": [
+        {
+          "label": "A",
+          "text": "1"
+        },
+        {
+          "label": "B",
+          "text": "2"
+        },
+        {
+          "label": "C",
+          "text": "3"
+        },
+        {
+          "label": "D",
+          "text": "4"
+        },
+        {
+          "label": "E",
+          "text": "Tak terhingga"
+        }
+      ],
+      "correctAnswer": "C",
+      "optionWeights": null,
+      "difficulty": 4,
+      "tags": [
+        "tiu",
+        "figural",
+        "simetri"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TIU_FIGURAL_SIMETRI_001",
+      "imagePrompt": "Show: equilateral triangle (all sides and angles equal)\nStyle: clean black outline, white fill",
+      "explanation": "Segitiga sama sisi memiliki 3 sumbu simetri yang masing-masing menghubungkan satu sudut ke titik tengah sisi di seberangnya.",
+      "explanationLong": "Sumbu simetri adalah garis yang membagi bentuk menjadi dua bagian yang merupakan refleksi cermin satu sama lain. Untuk segitiga sama sisi (equilateral), terdapat 3 sumbu simetri: setiap sudut segitiga memiliki garis yang menghubungkannya ke titik tengah sisi yang berseberangan, dan garis ini membagi segitiga menjadi dua bagian yang sebangun. Bandingkan dengan: persegi (4 sumbu), persegi panjang (2 sumbu), lingkaran (tak terhingga sumbu), segitiga sembarang (umumnya 0 sumbu).",
+      "source": "Geometri SMP — Sumbu simetri",
+      "warnings": []
+    },
+    {
+      "id": "TIU_FIGURAL_LIPATAN_KERTAS_001_017",
+      "category": "TIU",
+      "subcategory": "Figural",
+      "topic": "Logika Visual",
+      "questionText": "Sehelai kertas dilipat dua kali (sekali horizontal lalu sekali vertikal). Kemudian dilubangi dengan satu lubang di sudut kanan atas hasil lipatan. Saat dibuka, berapa lubang yang muncul?\n\n```image_prompt\nStep 1: rectangular paper unfolded\nStep 2: paper folded in half horizontally\nStep 3: paper folded again vertically (now 1/4 of original)\nStep 4: a small circle (hole) drawn in the top-right corner of the folded paper\nQuestion mark on the unfolded final state\nStyle: simple line art showing fold lines and hole positions\n```",
+      "options": [
+        {
+          "label": "A",
+          "text": "1 lubang"
+        },
+        {
+          "label": "B",
+          "text": "2 lubang"
+        },
+        {
+          "label": "C",
+          "text": "3 lubang"
+        },
+        {
+          "label": "D",
+          "text": "4 lubang"
+        },
+        {
+          "label": "E",
+          "text": "8 lubang"
+        }
+      ],
+      "correctAnswer": "D",
+      "optionWeights": null,
+      "difficulty": 4,
+      "tags": [
+        "tiu",
+        "figural",
+        "lipatan-kertas",
+        "logika-visual"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TIU_FIGURAL_LIPATAN_KERTAS_001",
+      "imagePrompt": "Step 1: rectangular paper unfolded\nStep 2: paper folded in half horizontally\nStep 3: paper folded again vertically (now 1/4 of original)\nStep 4: a small circle (hole) drawn in the top-right corner of the folded paper\nQuestion mark on the unfolded final state\nStyle: simple line art showing fold lines and hole positions",
+      "explanation": "Setiap kali kertas dilipat, jumlah lapisan menjadi 2x. Dua lipatan → 4 lapisan. Satu lubang menembus 4 lapisan = 4 lubang saat dibuka.",
+      "explanationLong": "Saat kertas dilipat horizontal, terbentuk 2 lapisan. Dilipat lagi vertikal, terbentuk 4 lapisan (2 × 2). Satu lubang yang dibuat menembus semua lapisan, sehingga saat kertas dibuka kembali, akan ada 4 lubang yang terdistribusi simetris (di 4 sudut \"kuadran\" yang dibentuk oleh garis lipatan). Aturan umum: jika kertas dilipat n kali, lapisan = 2^n. Satu lubang akan menjadi 2^n lubang saat dibuka. Untuk 2 lipatan: 2² = 4 lubang.",
+      "source": "Logika visual — Lipatan kertas",
+      "warnings": []
+    },
+    {
+      "id": "TIU_FIGURAL_KELIPATAN_001_018",
+      "category": "TIU",
+      "subcategory": "Figural",
+      "topic": "Pola Kelipatan",
+      "questionText": "Lanjutkan pola.\n\n```image_prompt\nLayout: row of 5 cells, each containing dots in a triangular arrangement\nCell 1: 1 dot (top)\nCell 2: 3 dots (1 top + 2 bottom forming a triangle)\nCell 3: 6 dots (1 + 2 + 3 forming a larger triangle)\nCell 4: 10 dots (1 + 2 + 3 + 4 forming an even larger triangle)\nCell 5 (?): empty placeholder\nStyle: black dots arranged in triangular pattern, clean white background\n```",
+      "options": [
+        {
+          "label": "A",
+          "text": "12 titik"
+        },
+        {
+          "label": "B",
+          "text": "13 titik"
+        },
+        {
+          "label": "C",
+          "text": "14 titik"
+        },
+        {
+          "label": "D",
+          "text": "15 titik"
+        },
+        {
+          "label": "E",
+          "text": "16 titik"
+        }
+      ],
+      "correctAnswer": "D",
+      "optionWeights": null,
+      "difficulty": 4,
+      "tags": [
+        "tiu",
+        "figural",
+        "pola-kelipatan",
+        "seri-grid"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TIU_FIGURAL_KELIPATAN_001",
+      "imagePrompt": "Layout: row of 5 cells, each containing dots in a triangular arrangement\nCell 1: 1 dot (top)\nCell 2: 3 dots (1 top + 2 bottom forming a triangle)\nCell 3: 6 dots (1 + 2 + 3 forming a larger triangle)\nCell 4: 10 dots (1 + 2 + 3 + 4 forming an even larger triangle)\nCell 5 (?): empty placeholder\nStyle: black dots arranged in triangular pattern, clean white background",
+      "explanation": "Pola bilangan segitiga: 1, 3, 6, 10, … rumus n(n+1)/2. Cell 5: 5×6/2 = 15.",
+      "explanationLong": "Pola yang muncul adalah bilangan segitiga (triangular numbers). Rumus untuk bilangan segitiga ke-n: T_n = n(n+1)/2. Verifikasi: T_1 = 1, T_2 = 3, T_3 = 6, T_4 = 10, T_5 = 15. Atau pola tambahan: cell n berisi cell sebelumnya + n. T_5 = 10 + 5 = 15. Pola ini muncul di banyak konteks: hitungan domino, susunan bowling pin, segitiga Pascal baris pertama setelah 1.",
+      "source": "Matematika SMA — Bilangan segitiga; pola figural",
+      "warnings": []
+    }
+  ]
+}
