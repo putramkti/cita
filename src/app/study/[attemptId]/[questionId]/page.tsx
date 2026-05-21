@@ -1,18 +1,21 @@
-import Link from "next/link"
-import { notFound, redirect } from "next/navigation"
-import { ArrowLeft, ArrowRight, Lightbulb, Check } from "lucide-react"
-import { cookies } from "next/headers"
-import { getServiceClient } from "@/utils/supabase/admin"
-import { SiteHeader } from "@/components/layout/site-header"
-import { TutorChat } from "./tutor-chat"
-import type { AttemptItem, Category, Question } from "@/lib/types"
-import { cn } from "@/lib/utils"
-import { getDict } from "@/lib/i18n"
+import Link from "next/link";
+import { notFound, redirect } from "next/navigation";
+import { ArrowLeft, ArrowRight, Lightbulb, Check } from "lucide-react";
+import { cookies } from "next/headers";
+import { prisma } from "@/lib/db/prisma";
+import { getCurrentUser } from "@/lib/auth/get-user";
+import { SiteHeader } from "@/components/layout/site-header";
+import { TutorChat } from "./tutor-chat";
+import type { Category } from "@prisma/client";
+import { cn } from "@/lib/utils";
+import { getDict } from "@/lib/i18n";
 
-export const dynamic = "force-dynamic"
+export const dynamic = "force-dynamic";
+
+const ANON_COOKIE = "cita_anon_id";
 
 interface PageProps {
-  params: Promise<{ attemptId: string; questionId: string }>
+  params: Promise<{ attemptId: string; questionId: string }>;
 }
 
 const CATEGORY_NAMES: Record<Category, { id: string; en: string }> = {
@@ -28,87 +31,100 @@ const CATEGORY_NAMES: Record<Category, { id: string; en: string }> = {
     id: "Tes Karakteristik Pribadi",
     en: "Personality Test",
   },
+};
+
+const CATEGORY_ORDER: Record<Category, number> = { TWK: 0, TIU: 1, TKP: 2 };
+
+interface QuestionOption {
+  label: string;
+  text: string;
 }
 
 export default async function StudyPage({ params }: PageProps) {
-  const { attemptId, questionId } = await params
-  const t = await getDict()
+  const { attemptId, questionId } = await params;
+  const t = await getDict();
 
-  // Auth: must own the attempt via cookie
-  const cookieStore = await cookies()
-  const userId = cookieStore.get("cita_anon_id")?.value
-  if (!userId) redirect(`/tryout`)
+  // Auth: dual — Supabase user OR anon cookie. Mirror result page pattern.
+  const supabaseUser = await getCurrentUser();
+  const cookieStore = await cookies();
+  const viewerId =
+    supabaseUser?.id ?? cookieStore.get(ANON_COOKIE)?.value ?? null;
 
-  const sb = getServiceClient()
+  if (!viewerId) redirect("/tryout");
 
-  const { data: attempt } = await sb
-    .from("attempts")
-    .select("id, userId, status")
-    .eq("id", attemptId)
-    .single()
+  // Load attempt with item + question + all sibling items for prev/next nav
+  const attempt = await prisma.attempt.findUnique({
+    where: { id: attemptId },
+    select: {
+      id: true,
+      userId: true,
+      status: true,
+      items: {
+        select: {
+          id: true,
+          questionId: true,
+          userAnswer: true,
+          isCorrect: true,
+          scoreEarned: true,
+          position: true,
+          question: {
+            select: {
+              id: true,
+              category: true,
+              subcategory: true,
+              topic: true,
+              questionText: true,
+              options: true,
+              correctAnswer: true,
+              optionWeights: true,
+              difficulty: true,
+              explanation: true,
+              source: true,
+            },
+          },
+        },
+      },
+    },
+  });
 
-  if (!attempt) notFound()
-  if (attempt.userId !== userId) redirect("/tryout")
-  if (attempt.status !== "SUBMITTED") redirect(`/tryout/${attemptId}`)
+  if (!attempt) notFound();
+  if (attempt.userId !== viewerId) notFound();
 
-  // Load attempt item + question
-  const { data: itemRaw } = await sb
-    .from("attempt_items")
-    .select(
-      "id, attemptId, questionId, userAnswer, isCorrect, scoreEarned, question:questions(id, category, subcategory, questionText, options, correctAnswer, optionWeights, difficulty, explanation, source, createdAt)",
-    )
-    .eq("attemptId", attemptId)
-    .eq("questionId", questionId)
-    .single()
+  // Tutor only available after attempt is terminal (SUBMITTED or EXPIRED)
+  if (attempt.status === "IN_PROGRESS") redirect(`/tryout/${attemptId}`);
 
-  if (!itemRaw) notFound()
+  // Find target item
+  const item = attempt.items.find((it) => it.questionId === questionId);
+  if (!item) notFound();
+  const question = item.question;
 
-  const item = itemRaw as unknown as AttemptItem & {
-    question: Question | Question[] | null
-  }
-  const question: Question | null = Array.isArray(item.question)
-    ? item.question[0]
-    : item.question ?? null
+  // Chat history for this (attempt, question) pair
+  const historyRows = await prisma.explainerMessage.findMany({
+    where: { attemptId, questionId },
+    orderBy: { createdAt: "asc" },
+    select: { id: true, role: true, content: true },
+  });
 
-  if (!question) notFound()
-
-  // Chat history
-  const { data: msgsRaw } = await sb
-    .from("explainer_messages")
-    .select("id, role, content, createdAt")
-    .eq("attemptId", attemptId)
-    .eq("questionId", questionId)
-    .order("createdAt", { ascending: true })
-
-  const initialMessages = (msgsRaw ?? []).map((m) => ({
-    id: m.id as string,
+  const initialMessages = historyRows.map((m) => ({
+    id: m.id,
     role: m.role as "user" | "assistant",
-    content: m.content as string,
-  }))
-  const userMsgCount = initialMessages.filter((m) => m.role === "user").length
+    content: m.content,
+  }));
+  const userMsgCount = initialMessages.filter((m) => m.role === "user").length;
 
-  // Find this question's index for prev/next nav
-  const { data: allItems } = await sb
-    .from("attempt_items")
-    .select("questionId, question:questions(category)")
-    .eq("attemptId", attemptId)
+  // Build prev/next nav — sort by category order then position
+  const ordered = [...attempt.items].sort((a, b) => {
+    const ca = CATEGORY_ORDER[a.question.category];
+    const cb = CATEGORY_ORDER[b.question.category];
+    if (ca !== cb) return ca - cb;
+    return a.position - b.position;
+  });
+  const idx = ordered.findIndex((it) => it.questionId === questionId);
+  const prevQ = idx > 0 ? ordered[idx - 1].questionId : null;
+  const nextQ =
+    idx >= 0 && idx < ordered.length - 1 ? ordered[idx + 1].questionId : null;
 
-  const ordered = (allItems ?? []) as Array<{
-    questionId: string
-    question: { category: Category } | { category: Category }[] | null
-  }>
-  const catOrder = { TWK: 0, TIU: 1, TKP: 2 } as const
-  ordered.sort((a, b) => {
-    const ca = Array.isArray(a.question) ? a.question[0]?.category : a.question?.category
-    const cb = Array.isArray(b.question) ? b.question[0]?.category : b.question?.category
-    const av = ca ? catOrder[ca] : 99
-    const bv = cb ? catOrder[cb] : 99
-    if (av !== bv) return av - bv
-    return a.questionId.localeCompare(b.questionId)
-  })
-  const idx = ordered.findIndex((it) => it.questionId === questionId)
-  const prevQ = idx > 0 ? ordered[idx - 1].questionId : null
-  const nextQ = idx >= 0 && idx < ordered.length - 1 ? ordered[idx + 1].questionId : null
+  const options = (question.options as unknown as QuestionOption[]) ?? [];
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -154,10 +170,12 @@ export default async function StudyPage({ params }: PageProps) {
                 {t.locale === "en" ? "QUESTION RECAP" : "RINGKASAN SOAL"}
               </p>
               <h1 className="serif text-3xl text-foreground leading-tight mb-1.5">
-                {CATEGORY_NAMES[question.category][t.locale]} ({question.category})
+                {CATEGORY_NAMES[question.category][t.locale]} (
+                {question.category})
               </h1>
               <p className="text-sm text-muted-foreground mb-7">
                 {t.locale === "en" ? "Topic" : "Topik"}: {question.subcategory}
+                {question.topic ? ` · ${question.topic}` : ""}
               </p>
 
               <article className="rounded-xl border border-border bg-card p-6 sm:p-7 mb-6">
@@ -166,9 +184,9 @@ export default async function StudyPage({ params }: PageProps) {
                 </p>
 
                 <ul className="space-y-2.5">
-                  {question.options.map((opt) => {
-                    const userPicked = item.userAnswer === opt.label
-                    const isAnsKey = opt.label === question.correctAnswer
+                  {options.map((opt) => {
+                    const userPicked = item.userAnswer === opt.label;
+                    const isAnsKey = opt.label === question.correctAnswer;
                     return (
                       <li key={opt.label}>
                         <div
@@ -204,7 +222,7 @@ export default async function StudyPage({ params }: PageProps) {
                           )}
                         </div>
                       </li>
-                    )
+                    );
                   })}
                 </ul>
               </article>
@@ -242,5 +260,5 @@ export default async function StudyPage({ params }: PageProps) {
         </div>
       </main>
     </div>
-  )
+  );
 }
