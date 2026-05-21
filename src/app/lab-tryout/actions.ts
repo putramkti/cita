@@ -237,32 +237,39 @@ export async function submitAttempt(attemptId: string): Promise<void> {
     (finishedAt.getTime() - attempt.startedAt.getTime()) / 1000,
   );
 
-  await prisma.$transaction(async (tx) => {
-    await tx.attempt.update({
-      where: { id: attemptId },
-      data: {
-        status: "SUBMITTED",
-        finishedAt,
-        durationSec,
-        scoreTWK,
-        scoreTIU,
-        scoreTKP,
-        totalScore,
-        passingStatus,
-      },
-    });
+  // Persist scores. Avoid 30-50 serial UPDATE round-trips inside a single
+  // transaction (Vercel iad1 → Supabase Singapore ≈ 250ms each = >5s default
+  // Prisma transaction timeout → P2028). Strategy:
+  //   1) Update Attempt totals first (one round-trip).
+  //   2) Update each item OUTSIDE transaction in parallel (Promise.all).
+  // Both writes are idempotent, and submitAttempt is itself guarded by
+  // `attempt.status === SUBMITTED` early-return → safe even on partial retry.
+  await prisma.attempt.update({
+    where: { id: attemptId },
+    data: {
+      status: "SUBMITTED",
+      finishedAt,
+      durationSec,
+      scoreTWK,
+      scoreTIU,
+      scoreTKP,
+      totalScore,
+      passingStatus,
+    },
+  });
 
-    // Bulk update items
-    for (const u of itemUpdates) {
-      await tx.attemptItem.update({
+  // Bulk update items in parallel — 30-50 updates resolve in ~1 RTT instead of N.
+  await Promise.all(
+    itemUpdates.map((u) =>
+      prisma.attemptItem.update({
         where: { id: u.id },
         data: {
           scoreEarned: u.earned,
           isCorrect: u.isCorrect,
         },
-      });
-    }
-  });
+      }),
+    ),
+  );
 
   console.log(
     `[submitAttempt] PERSISTED scores TWK=${scoreTWK} TIU=${scoreTIU} TKP=${scoreTKP} total=${totalScore} status=${passingStatus}`,
