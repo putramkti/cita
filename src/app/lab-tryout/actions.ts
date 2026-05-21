@@ -188,7 +188,7 @@ export async function submitAttempt(attemptId: string): Promise<void> {
   }
 
   if (attempt.status === "SUBMITTED") {
-    redirect(`/tryout/${attemptId}/result`);
+    redirect(`/lab-tryout/${attemptId}/result`);
   }
 
   // Score per category
@@ -254,8 +254,8 @@ export async function submitAttempt(attemptId: string): Promise<void> {
     }
   });
 
-  revalidatePath(`/tryout/${attemptId}`);
-  redirect(`/tryout/${attemptId}/result`);
+  revalidatePath(`/lab-tryout/${attemptId}`);
+  redirect(`/lab-tryout/${attemptId}/result`);
 }
 
 /**
