@@ -1,5 +1,6 @@
-import Link from "next/link"
-import { notFound, redirect } from "next/navigation"
+import Link from "next/link";
+import { notFound, redirect } from "next/navigation";
+import { cookies } from "next/headers";
 import {
   Sparkles,
   Clock,
@@ -8,28 +9,34 @@ import {
   Users,
   Bot,
   ArrowRight,
-} from "lucide-react"
-import { getServiceClient } from "@/utils/supabase/admin"
-import { SiteHeader } from "@/components/layout/site-header"
-import { SiteFooter } from "@/components/layout/site-footer"
-import { TRYOUT_CONFIG } from "@/lib/types"
-import type { AttemptItem, Category, Question } from "@/lib/types"
-import { formatDuration } from "@/lib/tryout"
-import { getDict } from "@/lib/i18n"
-import { cn } from "@/lib/utils"
+} from "lucide-react";
+import { prisma } from "@/lib/db/prisma";
+import { getCurrentUser } from "@/lib/auth/get-user";
+import { SiteHeader } from "@/components/layout/site-header";
+import { SiteFooter } from "@/components/layout/site-footer";
+import {
+  MODE_CONFIG,
+  thresholdFor,
+  formatDuration,
+} from "@/lib/tryout/config";
+import { getDict } from "@/lib/i18n";
+import { cn } from "@/lib/utils";
+import type { Category } from "@prisma/client";
 
-export const dynamic = "force-dynamic"
+export const dynamic = "force-dynamic";
+
+const ANON_COOKIE = "cita_anon_id";
 
 interface PageProps {
-  params: Promise<{ attemptId: string }>
+  params: Promise<{ attemptId: string }>;
 }
 
 interface SubtestRow {
-  cat: Category
-  scored: number
-  max: number
-  pass: boolean
-  passing: number
+  cat: Category;
+  scored: number;
+  max: number;
+  pass: boolean;
+  passing: number;
 }
 
 const CATEGORY_NAMES: Record<Category, { id: string; en: string }> = {
@@ -45,77 +52,90 @@ const CATEGORY_NAMES: Record<Category, { id: string; en: string }> = {
     id: "Tes Karakteristik Pribadi",
     en: "Personality Test",
   },
-}
+};
 
 const CATEGORY_ICONS: Record<Category, React.ComponentType<{ className?: string }>> = {
   TWK: Flag,
   TIU: Brain,
   TKP: Users,
-}
+};
 
 export default async function ResultPage({ params }: PageProps) {
-  const { attemptId } = await params
-  const sb = getServiceClient()
-  const t = await getDict()
+  const { attemptId } = await params;
+  const t = await getDict();
 
-  const { data: attempt } = await sb
-    .from("attempts")
-    .select(
-      "id, status, startedAt, finishedAt, durationSec, scoreTWK, scoreTIU, scoreTKP, totalScore, passingStatus",
-    )
-    .eq("id", attemptId)
-    .single()
+  const supabaseUser = await getCurrentUser();
+  const cookieStore = await cookies();
+  const viewerId =
+    supabaseUser?.id ?? cookieStore.get(ANON_COOKIE)?.value ?? null;
 
-  if (!attempt) notFound()
-  if (attempt.status !== "SUBMITTED") {
-    redirect(`/tryout/${attemptId}`)
+  if (!viewerId) redirect("/tryout");
+
+  const attempt = await prisma.attempt.findUnique({
+    where: { id: attemptId },
+    include: {
+      items: {
+        orderBy: { position: "asc" },
+        include: {
+          question: {
+            select: {
+              id: true,
+              category: true,
+              subcategory: true,
+              topic: true,
+              questionText: true,
+              options: true,
+              correctAnswer: true,
+              optionWeights: true,
+              difficulty: true,
+              explanation: true,
+            },
+          },
+        },
+      },
+    },
+  });
+
+  if (!attempt) notFound();
+  if (attempt.userId !== viewerId) notFound();
+
+  // Result page only renders for terminal states
+  if (attempt.status === "IN_PROGRESS") {
+    redirect(`/tryout/${attemptId}`);
   }
 
-  const { data: rawItems } = await sb
-    .from("attempt_items")
-    .select(
-      "id, attemptId, questionId, userAnswer, isCorrect, scoreEarned, timeSpentMs, answeredAt, question:questions(id, category, subcategory, questionText, options, correctAnswer, optionWeights, difficulty, explanation, source, createdAt)",
-    )
-    .eq("attemptId", attemptId)
+  const cfg = MODE_CONFIG[attempt.mode];
+  const threshold = thresholdFor(attempt.mode);
 
-  const items: AttemptItem[] = ((rawItems ?? []) as unknown as Array<
-    AttemptItem & { question: Question | Question[] | null }
-  >).map((r) => ({
-    ...r,
-    question: Array.isArray(r.question) ? r.question[0] : r.question ?? undefined,
-  }))
+  // Per-category max possible score (depends on mode)
+  const maxScore = {
+    TWK: cfg.perCategory.TWK * 5,
+    TIU: cfg.perCategory.TIU * 5,
+    TKP: cfg.perCategory.TKP * 5,
+  } as const;
 
-  const catOrder = { TWK: 0, TIU: 1, TKP: 2 } as const
-  items.sort((a, b) => {
-    const av = a.question ? catOrder[a.question.category] : 99
-    const bv = b.question ? catOrder[b.question.category] : 99
-    if (av !== bv) return av - bv
-    return a.id.localeCompare(b.id)
-  })
-
-  const passing = TRYOUT_CONFIG.passing_grade
   const rows: SubtestRow[] = (
     [
-      { cat: "TWK" as const, score: attempt.scoreTWK ?? 0, target: passing.TWK },
-      { cat: "TIU" as const, score: attempt.scoreTIU ?? 0, target: passing.TIU },
-      { cat: "TKP" as const, score: attempt.scoreTKP ?? 0, target: passing.TKP },
+      { cat: "TWK" as const, score: attempt.scoreTWK ?? 0, target: threshold.TWK, max: maxScore.TWK },
+      { cat: "TIU" as const, score: attempt.scoreTIU ?? 0, target: threshold.TIU, max: maxScore.TIU },
+      { cat: "TKP" as const, score: attempt.scoreTKP ?? 0, target: threshold.TKP, max: maxScore.TKP },
     ]
-  ).map(({ cat, score, target }) => ({
+  ).map(({ cat, score, target, max }) => ({
     cat,
     scored: score,
-    max: 50,
+    max,
     passing: target,
     pass: score >= target,
-  }))
+  }));
 
-  const lulus = attempt.passingStatus === "lulus"
-  const totalAnswered = items.filter((i) => i.userAnswer).length
-  const totalCorrect = items.filter((i) => i.isCorrect === true).length
+  const lulus = attempt.passingStatus === "lulus";
+  const totalAnswered = attempt.items.filter((i) => i.userAnswer).length;
+  const totalCorrect = attempt.items.filter((i) => i.isCorrect === true).length;
 
   // Pick first wrong/skipped question for the AI Insight panel target
-  const firstWrongIdx = items.findIndex(
+  const firstWrong = attempt.items.find(
     (it) => !it.userAnswer || it.isCorrect === false,
-  )
+  );
 
   return (
     <>
@@ -125,11 +145,14 @@ export default async function ResultPage({ params }: PageProps) {
           {/* ─── Hero score card ─── */}
           <HeroSection
             t={t}
+            mode={attempt.mode}
+            modeLabel={cfg.labelId}
+            wasExpired={attempt.status === "EXPIRED"}
             lulus={lulus}
             totalScore={attempt.totalScore ?? 0}
             durationSec={attempt.durationSec ?? 0}
             totalAnswered={totalAnswered}
-            totalQuestions={items.length}
+            totalQuestions={attempt.items.length}
             totalCorrect={totalCorrect}
           />
 
@@ -137,19 +160,35 @@ export default async function ResultPage({ params }: PageProps) {
           <BreakdownSection t={t} rows={rows} locale={t.locale} />
 
           {/* ─── AI Insight banner ─── */}
-          <AiInsightBanner
-            t={t}
-            attemptId={attemptId}
-            firstWrongQuestion={
-              firstWrongIdx >= 0 ? items[firstWrongIdx].question : undefined
-            }
-          />
+          {firstWrong && (
+            <AiInsightBanner
+              t={t}
+              attemptId={attemptId}
+              firstWrongQuestion={{
+                id: firstWrong.question.id,
+                category: firstWrong.question.category,
+                subcategory: firstWrong.question.subcategory,
+              }}
+            />
+          )}
 
           {/* ─── Item analysis ─── */}
           <ItemAnalysisSection
             t={t}
             attemptId={attemptId}
-            items={items}
+            items={attempt.items.map((it) => ({
+              id: it.id,
+              userAnswer: it.userAnswer,
+              isCorrect: it.isCorrect,
+              question: {
+                id: it.question.id,
+                category: it.question.category,
+                subcategory: it.question.subcategory,
+                questionText: it.question.questionText,
+                options: it.question.options as { label: string; text: string }[],
+                correctAnswer: it.question.correctAnswer,
+              },
+            }))}
           />
 
           {/* ─── CTA next ─── */}
@@ -158,7 +197,7 @@ export default async function ResultPage({ params }: PageProps) {
       </main>
       <SiteFooter />
     </>
-  )
+  );
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
@@ -167,6 +206,9 @@ export default async function ResultPage({ params }: PageProps) {
 
 function HeroSection({
   t,
+  mode,
+  modeLabel,
+  wasExpired,
   lulus,
   totalScore,
   durationSec,
@@ -174,19 +216,22 @@ function HeroSection({
   totalQuestions,
   totalCorrect,
 }: {
-  t: Awaited<ReturnType<typeof getDict>>
-  lulus: boolean
-  totalScore: number
-  durationSec: number
-  totalAnswered: number
-  totalQuestions: number
-  totalCorrect: number
+  t: Awaited<ReturnType<typeof getDict>>;
+  mode: "MINI" | "FULL";
+  modeLabel: string;
+  wasExpired: boolean;
+  lulus: boolean;
+  totalScore: number;
+  durationSec: number;
+  totalAnswered: number;
+  totalQuestions: number;
+  totalCorrect: number;
 }) {
   return (
     <section className="text-center">
       <span className="inline-flex items-center gap-2 rounded-full border border-[var(--gold)]/40 bg-[var(--review-amber)] text-[var(--review-amber-fg)] px-3 py-1 text-[11px] font-bold uppercase tracking-[0.12em]">
         <span className="size-1.5 rounded-full bg-[var(--gold)]" />
-        {t.result.eyebrow}
+        {wasExpired ? "WAKTU HABIS" : t.result.eyebrow} · {modeLabel}
       </span>
 
       <h1 className="serif mt-6 text-3xl sm:text-5xl leading-tight tracking-tight">
@@ -226,7 +271,7 @@ function HeroSection({
         </span>
       </div>
     </section>
-  )
+  );
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
@@ -238,9 +283,9 @@ function BreakdownSection({
   rows,
   locale,
 }: {
-  t: Awaited<ReturnType<typeof getDict>>
-  rows: SubtestRow[]
-  locale: "id" | "en"
+  t: Awaited<ReturnType<typeof getDict>>;
+  rows: SubtestRow[];
+  locale: "id" | "en";
 }) {
   return (
     <section>
@@ -253,7 +298,7 @@ function BreakdownSection({
         ))}
       </div>
     </section>
-  )
+  );
 }
 
 function SubtestCard({
@@ -261,12 +306,12 @@ function SubtestCard({
   t,
   locale,
 }: {
-  row: SubtestRow
-  t: Awaited<ReturnType<typeof getDict>>
-  locale: "id" | "en"
+  row: SubtestRow;
+  t: Awaited<ReturnType<typeof getDict>>;
+  locale: "id" | "en";
 }) {
-  const Icon = CATEGORY_ICONS[row.cat]
-  const fillPct = Math.min(100, Math.max(0, (row.scored / row.max) * 100))
+  const Icon = CATEGORY_ICONS[row.cat];
+  const fillPct = Math.min(100, Math.max(0, (row.scored / row.max) * 100));
   return (
     <article
       className={cn(
@@ -310,7 +355,7 @@ function SubtestCard({
         </p>
       )}
     </article>
-  )
+  );
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
@@ -322,13 +367,15 @@ function AiInsightBanner({
   attemptId,
   firstWrongQuestion,
 }: {
-  t: Awaited<ReturnType<typeof getDict>>
-  attemptId: string
-  firstWrongQuestion?: Question
+  t: Awaited<ReturnType<typeof getDict>>;
+  attemptId: string;
+  firstWrongQuestion: {
+    id: string;
+    category: Category;
+    subcategory: string;
+  };
 }) {
-  if (!firstWrongQuestion) return null
-  const subcat = firstWrongQuestion.subcategory
-  const cat = firstWrongQuestion.category
+  const { subcategory: subcat, category: cat } = firstWrongQuestion;
 
   return (
     <section className="rounded-xl border border-[#1f2a3a] bg-[#0c1018] text-[#e7e8e9] px-7 py-8 sm:px-10 sm:py-10 relative overflow-hidden">
@@ -365,26 +412,40 @@ function AiInsightBanner({
         className="pointer-events-none absolute -top-20 -right-20 size-60 rounded-full bg-[var(--gold)]/10 blur-3xl"
       />
     </section>
-  )
+  );
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
  *  ITEM ANALYSIS — list of question result cards
  * ───────────────────────────────────────────────────────────────────────── */
 
+interface ItemAnalysisItem {
+  id: string;
+  userAnswer: string | null;
+  isCorrect: boolean | null;
+  question: {
+    id: string;
+    category: Category;
+    subcategory: string;
+    questionText: string;
+    options: { label: string; text: string }[];
+    correctAnswer: string | null;
+  };
+}
+
 function ItemAnalysisSection({
   t,
   attemptId,
   items,
 }: {
-  t: Awaited<ReturnType<typeof getDict>>
-  attemptId: string
-  items: AttemptItem[]
+  t: Awaited<ReturnType<typeof getDict>>;
+  attemptId: string;
+  items: ItemAnalysisItem[];
 }) {
   // Show first 6, then a 'view all' link
-  const previewLimit = 6
-  const previewItems = items.slice(0, previewLimit)
-  const hasMore = items.length > previewLimit
+  const previewLimit = 6;
+  const previewItems = items.slice(0, previewLimit);
+  const hasMore = items.length > previewLimit;
 
   return (
     <section>
@@ -428,8 +489,7 @@ function ItemAnalysisSection({
             href={`#all`}
             className="text-sm text-foreground hover:underline underline-offset-2"
           >
-            {t.result.viewAllPrefix} {items.length} {t.result.viewAllSuffix}{" "}
-            →
+            {t.result.viewAllPrefix} {items.length} {t.result.viewAllSuffix} →
           </Link>
         </p>
       )}
@@ -449,7 +509,7 @@ function ItemAnalysisSection({
         </div>
       )}
     </section>
-  )
+  );
 }
 
 function ItemRow({
@@ -458,29 +518,28 @@ function ItemRow({
   t,
   attemptId,
 }: {
-  item: AttemptItem
-  idx: number
-  t: Awaited<ReturnType<typeof getDict>>
-  attemptId: string
+  item: ItemAnalysisItem;
+  idx: number;
+  t: Awaited<ReturnType<typeof getDict>>;
+  attemptId: string;
 }) {
-  const q = item.question
-  if (!q) return null
-  const skipped = !item.userAnswer
-  const isCorrect = item.isCorrect === true
+  const q = item.question;
+  const skipped = !item.userAnswer;
+  const isCorrect = item.isCorrect === true;
 
   const tagClass = skipped
     ? "bg-secondary text-muted-foreground border-border"
     : isCorrect
       ? "bg-[var(--success-soft)] text-[var(--success-fg)] border-[var(--success-fg)]/20"
-      : "bg-[var(--error-soft)] text-[var(--error-fg)] border-[var(--error-fg)]/20"
+      : "bg-[var(--error-soft)] text-[var(--error-fg)] border-[var(--error-fg)]/20";
 
   const tagLabel = skipped
     ? t.result.tagSkipped
     : isCorrect
       ? t.result.tagCorrect
-      : t.result.tagWrong
+      : t.result.tagWrong;
 
-  const numberPrefix = String(idx + 1).padStart(2, "0")
+  const numberPrefix = String(idx + 1).padStart(2, "0");
 
   return (
     <article className="rounded-xl border border-border bg-card px-5 py-5 flex flex-col sm:flex-row sm:items-center gap-4">
@@ -500,14 +559,33 @@ function ItemRow({
         <p className="label-caps mb-1.5">
           {q.category} · {q.subcategory}
         </p>
-        <p className="text-sm text-foreground leading-relaxed line-clamp-2">
+        <p className="serif text-base text-foreground line-clamp-2 leading-relaxed">
           {q.questionText}
         </p>
+        <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
+          <span>
+            {t.result.yourAnswer}:{" "}
+            <span className="font-mono font-semibold text-foreground">
+              {item.userAnswer ?? "—"}
+            </span>
+          </span>
+          {q.correctAnswer && (
+            <>
+              <span className="text-border">·</span>
+              <span>
+                {t.result.correctAnswer}:{" "}
+                <span className="font-mono font-semibold text-foreground">
+                  {q.correctAnswer}
+                </span>
+              </span>
+            </>
+          )}
+        </div>
       </div>
-      <div className="flex items-center gap-3 shrink-0">
+      <div className="flex items-center gap-2 sm:flex-col sm:items-end">
         <span
           className={cn(
-            "inline-flex items-center rounded-md border px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.1em]",
+            "inline-flex items-center rounded-full border px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-[0.08em]",
             tagClass,
           )}
         >
@@ -515,54 +593,42 @@ function ItemRow({
         </span>
         <Link
           href={`/study/${attemptId}/${q.id}`}
-          className={cn(
-            "inline-flex items-center justify-center gap-1.5 rounded-md text-xs font-medium px-3 py-1.5 transition-colors",
-            !isCorrect && !skipped
-              ? "bg-primary text-primary-foreground hover:bg-primary/90"
-              : "border border-border bg-card text-foreground hover:bg-secondary",
-          )}
+          className="text-xs text-muted-foreground hover:text-foreground underline underline-offset-2"
         >
-          {t.result.askTutorCta}
+          {t.result.askTutor} →
         </Link>
       </div>
     </article>
-  )
+  );
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
- *  CTA NEXT
+ *  CTA — bottom call to action
  * ───────────────────────────────────────────────────────────────────────── */
 
-function CtaNextSection({
-  t,
-}: {
-  t: Awaited<ReturnType<typeof getDict>>
-}) {
+function CtaNextSection({ t }: { t: Awaited<ReturnType<typeof getDict>> }) {
   return (
-    <section className="text-center pt-4">
+    <section className="text-center border-t border-border pt-10">
       <h2 className="serif text-2xl sm:text-3xl text-foreground">
         {t.result.ctaNextTitle}
       </h2>
-      <p className="mt-3 text-sm text-muted-foreground max-w-md mx-auto">
+      <p className="mt-3 text-sm text-muted-foreground max-w-md mx-auto leading-relaxed">
         {t.result.ctaNextSubtitle}
       </p>
-      <div className="mt-6 flex items-center justify-center gap-3 flex-wrap">
+      <div className="mt-7 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3">
         <Link
           href="/tryout"
-          className="inline-flex items-center justify-center rounded-md bg-primary text-primary-foreground text-sm font-medium px-5 py-2.5 hover:bg-primary/90 transition-colors"
+          className="inline-flex items-center justify-center gap-2 rounded-md bg-primary text-primary-foreground text-sm font-medium px-5 py-3 hover:bg-primary/90 transition-colors"
         >
           {t.result.ctaStartNew}
         </Link>
         <Link
           href="/"
-          className="inline-flex items-center justify-center rounded-md border border-border bg-card text-foreground text-sm font-medium px-5 py-2.5 hover:bg-secondary transition-colors"
+          className="inline-flex items-center justify-center gap-2 rounded-md border border-border bg-card text-foreground text-sm font-medium px-5 py-3 hover:bg-secondary transition-colors"
         >
           {t.result.ctaBackHome}
         </Link>
       </div>
-      <p className="text-xs text-muted-foreground mt-6 max-w-lg mx-auto leading-relaxed">
-        {t.result.disclaimer}
-      </p>
     </section>
-  )
+  );
 }

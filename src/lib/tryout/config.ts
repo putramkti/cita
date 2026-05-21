@@ -1,5 +1,3 @@
-import "server-only";
-
 /**
  * Tryout configuration — dual-mode for SKD CPNS practice.
  *

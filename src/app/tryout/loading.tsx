@@ -1,37 +1,28 @@
-import { SiteHeader } from "@/components/layout/site-header"
-import {
-  SkeletonCard,
-  SkeletonHeading,
-  SkeletonLine,
-} from "@/components/feedback/skeleton"
+import { SiteHeader } from "@/components/layout/site-header";
+import { SiteFooter } from "@/components/layout/site-footer";
 
-/**
- * Tryout briefing loading fallback. Briefing is a lightweight DB
- * read (resume-attempt lookup) so the visible time is short, but the
- * skeleton prevents a blank flash on slow networks.
- */
-export default function TryoutBriefingLoading() {
+export default function TryoutLoading() {
   return (
     <>
       <SiteHeader />
       <main className="flex-1 px-4 sm:px-8 py-16 sm:py-24">
-        <div className="mx-auto max-w-2xl space-y-10">
-          <div className="text-center space-y-4">
-            <div className="mx-auto zen-skeleton h-3 w-32" />
-            <SkeletonHeading className="mx-auto w-3/4" />
-            <SkeletonLine className="mx-auto w-1/2" />
+        <div className="mx-auto max-w-4xl">
+          <div className="mb-12 text-center space-y-4">
+            <div className="mx-auto h-3 w-32 rounded bg-secondary animate-pulse" />
+            <div className="mx-auto h-12 w-2/3 rounded bg-secondary animate-pulse" />
+            <div className="mx-auto h-4 w-1/2 rounded bg-secondary animate-pulse" />
           </div>
-          <SkeletonCard>
-            <div className="space-y-4">
-              <SkeletonLine className="w-3/4" />
-              <SkeletonLine className="w-full" />
-              <SkeletonLine className="w-5/6" />
-              <SkeletonLine className="w-4/5" />
-              <div className="zen-skeleton h-11 w-full mt-3" />
-            </div>
-          </SkeletonCard>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {[0, 1].map((i) => (
+              <div
+                key={i}
+                className="rounded-xl border border-border bg-card p-7 h-80 animate-pulse"
+              />
+            ))}
+          </div>
         </div>
       </main>
+      <SiteFooter />
     </>
-  )
+  );
 }

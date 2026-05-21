@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState, useTransition } from "react"
+import { useCallback, useEffect, useMemo, useRef, useState, useTransition } from "react";
 import {
   ChevronLeft,
   ChevronRight,
@@ -10,140 +10,162 @@ import {
   StickyNote,
   Calculator,
   Clock,
-} from "lucide-react"
-import { cn } from "@/lib/utils"
-import { formatDuration } from "@/lib/tryout"
-import type { AttemptItem, Category } from "@/lib/types"
-import { answerQuestion, submitTryout } from "../actions"
+} from "lucide-react";
+import type { AttemptMode, Category } from "@prisma/client";
+import { cn } from "@/lib/utils";
+import { formatDuration } from "@/lib/tryout/config";
+import { saveAnswer, submitAttempt } from "../actions";
 
 export interface TryoutClientDict {
-  modeLabel: string
-  timeRemainingLabel: string
-  overview: string
-  questionPanelLabel: string
-  ofLabel: string
-  previous: string
-  next: string
-  markReview: string
-  submit: string
-  submitting: string
-  questionUnavailable: string
-  retry: string
-  tools: string
-  toolAi: string
-  toolNotes: string
-  toolCalc: string
-  toolsComingSoon: string
-  motivationalQuote: string
-  answeredCount: string
+  modeLabel: string;
+  timeRemainingLabel: string;
+  overview: string;
+  questionPanelLabel: string;
+  ofLabel: string;
+  previous: string;
+  next: string;
+  markReview: string;
+  submit: string;
+  submitting: string;
+  questionUnavailable: string;
+  retry: string;
+  tools: string;
+  toolAi: string;
+  toolNotes: string;
+  toolCalc: string;
+  toolsComingSoon: string;
+  motivationalQuote: string;
+  answeredCount: string;
+}
+
+interface ClientItem {
+  id: string;
+  questionId: string;
+  userAnswer: string | null;
+  question: {
+    id: string;
+    category: Category;
+    subcategory: string;
+    topic: string;
+    questionText: string;
+    options: { label: string; text: string }[];
+    difficulty: number;
+    imagePrompt: string | null;
+  };
 }
 
 interface Props {
-  attemptId: string
-  items: AttemptItem[]
-  startedAt: number
-  durationMin: number
-  dict: TryoutClientDict
+  attemptId: string;
+  items: ClientItem[];
+  startedAtMs: number;
+  durationMin: number;
+  mode: AttemptMode;
+  modeLabelId: string;
+  dict: TryoutClientDict;
 }
 
 /**
- * Tryout in-progress — Academic Zen 3-column layout.
+ * Tryout in-progress — Academic Zen 3-column layout (visual-port from old).
  *
- *   Left sidebar:  mode label, big timer, subject tabs, 5×6 question grid,
+ *   Left sidebar:  mode label, big timer, subject tabs, question grid,
  *                  submit button anchored to the bottom.
  *   Centre:        breadcrumb subcategory, question stem in serif,
  *                  vertical answer cards with letter badges, action row,
  *                  motivational footer quote.
- *   Right rail:    cosmetic tools rail (AI tutor / Notes / Calculator),
- *                  all rendered as "Coming soon" placeholders per spec.
+ *   Right rail:    cosmetic tools rail (AI tutor / Notes / Calculator).
+ *
+ * Data layer is Prisma (via server actions saveAnswer + submitAttempt).
  */
 export function TryoutClient({
   attemptId,
   items: initialItems,
-  startedAt,
+  startedAtMs,
   durationMin,
+  mode,
+  modeLabelId,
   dict,
 }: Props) {
-  const [items, setItems] = useState<AttemptItem[]>(initialItems)
-  const [currentIdx, setCurrentIdx] = useState(0)
-  const [pending, startTransition] = useTransition()
-  const [marked, setMarked] = useState<Set<number>>(new Set())
-  const [activeTab, setActiveTab] = useState<"all" | Category>("all")
+  const [items, setItems] = useState<ClientItem[]>(initialItems);
+  const [currentIdx, setCurrentIdx] = useState(0);
+  const [pending, startTransition] = useTransition();
+  const [marked, setMarked] = useState<Set<number>>(new Set());
+  const [activeTab, setActiveTab] = useState<"all" | Category>("all");
 
   // Track time spent per question
-  const enteredAtRef = useRef<number>(Date.now())
+  const enteredAtRef = useRef<number>(Date.now());
   useEffect(() => {
-    enteredAtRef.current = Date.now()
-  }, [currentIdx])
+    enteredAtRef.current = Date.now();
+  }, [currentIdx]);
 
-  // Timer
-  const totalMs = durationMin * 60 * 1000
-  const [now, setNow] = useState<number>(Date.now())
+  // Timer — derived from server startedAt, ticked every second
+  const totalMs = durationMin * 60 * 1000;
+  const [now, setNow] = useState<number>(Date.now());
   useEffect(() => {
-    const id = setInterval(() => setNow(Date.now()), 1000)
-    return () => clearInterval(id)
-  }, [])
-  const elapsed = now - startedAt
-  const remaining = Math.max(0, totalMs - elapsed)
+    const id = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(id);
+  }, []);
+  const elapsed = now - startedAtMs;
+  const remaining = Math.max(0, totalMs - elapsed);
 
   // Auto-submit on timer expiry
-  const submittedRef = useRef(false)
+  const submittedRef = useRef(false);
   useEffect(() => {
     if (remaining === 0 && !submittedRef.current) {
-      submittedRef.current = true
+      submittedRef.current = true;
       startTransition(() => {
-        submitTryout(attemptId).catch(() => {})
-      })
+        submitAttempt(attemptId).catch(() => {});
+      });
     }
-  }, [remaining, attemptId])
+  }, [remaining, attemptId]);
 
-  const current = items[currentIdx]
-  const q = current?.question
+  const current = items[currentIdx];
+  const q = current?.question;
 
-  const answeredCount = items.filter((it) => it.userAnswer).length
+  const answeredCount = items.filter((it) => it.userAnswer).length;
 
   const setAnswer = useCallback(
     (label: string) => {
-      const timeSpentMs = Date.now() - enteredAtRef.current
       setItems((prev) =>
         prev.map((it, i) =>
           i === currentIdx ? { ...it, userAnswer: label } : it,
         ),
-      )
-      void answerQuestion(attemptId, current.questionId, label, timeSpentMs).catch(
-        () => {},
-      )
+      );
+      void saveAnswer({
+        attemptId,
+        questionId: current.questionId,
+        userAnswer: label,
+      }).catch(() => {});
     },
     [attemptId, currentIdx, current?.questionId],
-  )
+  );
 
-  const goPrev = () => setCurrentIdx((i) => Math.max(0, i - 1))
-  const goNext = () => setCurrentIdx((i) => Math.min(items.length - 1, i + 1))
+  const goPrev = () => setCurrentIdx((i) => Math.max(0, i - 1));
+  const goNext = () => setCurrentIdx((i) => Math.min(items.length - 1, i + 1));
 
   const toggleMark = () => {
     setMarked((prev) => {
-      const next = new Set(prev)
-      if (next.has(currentIdx)) next.delete(currentIdx)
-      else next.add(currentIdx)
-      return next
-    })
-  }
+      const next = new Set(prev);
+      if (next.has(currentIdx)) next.delete(currentIdx);
+      else next.add(currentIdx);
+      return next;
+    });
+  };
 
   const onSubmit = () => {
-    if (submittedRef.current) return
-    submittedRef.current = true
+    if (submittedRef.current) return;
+    submittedRef.current = true;
     startTransition(() => {
-      void submitTryout(attemptId)
-    })
-  }
+      void submitAttempt(attemptId);
+    });
+  };
 
   // Filter visible question grid by tab
   const gridItems = useMemo(() => {
-    if (activeTab === "all") return items.map((it, idx) => ({ idx, item: it }))
+    if (activeTab === "all") return items.map((it, idx) => ({ idx, item: it }));
     return items
       .map((it, idx) => ({ idx, item: it }))
-      .filter(({ item }) => item.question?.category === activeTab)
-  }, [items, activeTab])
+      .filter(({ item }) => item.question.category === activeTab);
+  }, [items, activeTab]);
 
   if (!q) {
     return (
@@ -156,11 +178,15 @@ export function TryoutClient({
           .
         </div>
       </main>
-    )
+    );
   }
 
-  const isLast = currentIdx === items.length - 1
-  const timerCritical = remaining < 60_000
+  const isLast = currentIdx === items.length - 1;
+  const timerCritical = remaining < 60_000;
+
+  // Adapt grid columns based on mode (MINI=30 fits 5×6, FULL=110 needs more cols)
+  const gridCols =
+    mode === "FULL" ? "grid-cols-10 sm:grid-cols-10" : "grid-cols-5";
 
   return (
     <main className="flex-1 px-4 sm:px-6 py-6 sm:py-8">
@@ -168,9 +194,14 @@ export function TryoutClient({
         {/* ─── LEFT SIDEBAR ─── */}
         <aside className="lg:col-span-3 order-2 lg:order-1">
           <div className="lg:sticky lg:top-20 rounded-xl border border-border bg-card p-5 flex flex-col gap-5">
-            {/* Timer */}
+            {/* Mode badge + timer */}
             <div>
-              <p className="label-caps mb-2">{dict.modeLabel}</p>
+              <div className="flex items-center justify-between mb-2">
+                <p className="label-caps">{dict.modeLabel}</p>
+                <span className="text-[10px] font-bold uppercase tracking-[0.08em] text-muted-foreground">
+                  {modeLabelId}
+                </span>
+              </div>
               <div
                 className={cn(
                   "flex items-center gap-2.5 font-mono tabular-nums text-3xl sm:text-[2rem] font-semibold tracking-tight",
@@ -207,11 +238,11 @@ export function TryoutClient({
             </div>
 
             {/* Question grid */}
-            <div className="grid grid-cols-5 gap-2">
+            <div className={cn("grid gap-2", gridCols)}>
               {gridItems.map(({ idx, item }) => {
-                const isCurrent = idx === currentIdx
-                const isMarked = marked.has(idx)
-                const isAnswered = !!item.userAnswer
+                const isCurrent = idx === currentIdx;
+                const isMarked = marked.has(idx);
+                const isAnswered = !!item.userAnswer;
                 return (
                   <button
                     key={idx}
@@ -231,7 +262,7 @@ export function TryoutClient({
                   >
                     {idx + 1}
                   </button>
-                )
+                );
               })}
             </div>
 
@@ -272,6 +303,9 @@ export function TryoutClient({
             {/* Breadcrumb */}
             <p className="label-caps mb-5">
               {q.category} · {q.subcategory}
+              {q.topic && q.topic !== q.subcategory && (
+                <span className="text-muted-foreground"> · {q.topic}</span>
+              )}
             </p>
 
             {/* Question stem */}
@@ -284,10 +318,23 @@ export function TryoutClient({
               </h1>
             </div>
 
+            {/* Image prompt placeholder for TIU Figural */}
+            {q.imagePrompt && (
+              <div className="mb-7 rounded-md border border-dashed border-border bg-muted/40 p-4 text-xs text-muted-foreground">
+                <span className="font-medium uppercase tracking-wide">
+                  ilustrasi:
+                </span>{" "}
+                <em>{q.imagePrompt}</em>
+                <p className="mt-2 text-[10px] text-muted-foreground/70">
+                  (Image generator belum aktif — abaikan placeholder ini.)
+                </p>
+              </div>
+            )}
+
             {/* Answer options */}
             <ul className="space-y-3 mb-10">
               {q.options.map((opt) => {
-                const selected = current.userAnswer === opt.label
+                const selected = current.userAnswer === opt.label;
                 return (
                   <li key={opt.label}>
                     <button
@@ -325,7 +372,7 @@ export function TryoutClient({
                       </div>
                     </button>
                   </li>
-                )
+                );
               })}
             </ul>
 
@@ -411,7 +458,7 @@ export function TryoutClient({
         </aside>
       </div>
     </main>
-  )
+  );
 }
 
 function ToolButton({
@@ -419,9 +466,9 @@ function ToolButton({
   label,
   hint,
 }: {
-  icon: React.ReactNode
-  label: string
-  hint: string
+  icon: React.ReactNode;
+  label: string;
+  hint: string;
 }) {
   return (
     <button
@@ -436,8 +483,5 @@ function ToolButton({
         {label}
       </span>
     </button>
-  )
+  );
 }
-
-// Re-export for the page-level wrapper to feed the dict.
-export type { Category }
