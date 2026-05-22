@@ -1,0 +1,191 @@
+// Cita — SKD CPNS Tryout (DRAFT v2 schema)
+//
+// ⚠️ DRAFT ONLY — file ini BUKAN schema aktif.
+// schema.prisma yang dipakai prod tetap.
+// File ini gambaran target setelah MIMO redesign clear + admin UI ready.
+//
+// Perubahan vs schema.prisma:
+//   1. Question: tambah subcategory hierarchy (TWK→Pancasila→Sila1)
+//   2. Question.tags string[] (untuk filter cepat)
+//   3. Question.imagePrompt — untuk TIU Figural (text → image gen later)
+//   4. Question.explanationLong — separate dari short cache, full text untuk tutor
+//   5. Tambah ItemFamily — untuk anti-clone (TIU template-based)
+//   6. Tambah EnemyGroup — untuk anti-cluster topic mirip dalam 1 paket
+//   7. Tambah QuestionImage — generated image hasil dari imagePrompt (lazy gen)
+//   8. AttemptItem.attemptNumber + cooldown via index (replace Cooldown table dgn flag)
+//
+// Migration plan: lihat docs/content/SCHEMA-OUTPUT.md
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
+}
+
+datasource db {
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  directUrl  = env("DIRECT_URL")
+  extensions = [pg_trgm] // untuk similarity check di admin UI nanti
+}
+
+enum Category {
+  TWK
+  TIU
+  TKP
+}
+
+enum AttemptStatus {
+  IN_PROGRESS
+  SUBMITTED
+  EXPIRED
+}
+
+enum QuestionStatus {
+  DRAFT
+  REVIEWED
+  PUBLISHED
+  ARCHIVED
+}
+
+model User {
+  id          String    @id @default(cuid())
+  email       String?   @unique
+  displayName String?
+  isAnonymous Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  attempts    Attempt[]
+
+  @@map("users")
+}
+
+model ItemFamily {
+  id        String     @id // human-readable, e.g. "TIU_NUM_DERETLINEAR_FAMILY"
+  category  Category
+  topic     String     // "Pancasila / Sila1" (display path)
+  notes     String?    @db.Text
+  questions Question[]
+
+  @@index([category])
+  @@map("item_families")
+}
+
+model EnemyGroup {
+  id        String     @id // human-readable, e.g. "PANCASILA_BUNYI_SILA1"
+  category  Category
+  topic     String
+  notes     String?    @db.Text
+  questions Question[]
+
+  @@index([category])
+  @@map("enemy_groups")
+}
+
+model Question {
+  id              String         @id // human-readable per konvensi (PANCASILA_BUNYI_SILA1_001)
+  category        Category
+  subcategory     String         // "Pancasila"
+  topic           String         // "Sila ke-1" — sub-subcategory
+  questionText    String         @db.Text
+  // [{label: 'A', text: '...'}, ...]
+  options         Json
+  // null untuk TKP (no single correct), set untuk TWK/TIU
+  correctAnswer   String?
+  // TKP only — 5 unique weights 1..5 keyed by label A..E
+  optionWeights   Json?
+  difficulty      Int            @default(2) // 1..5
+  tags            String[]       @default([])
+  // TIU Figural only — descriptive prompt for image gen
+  imagePrompt     String?        @db.Text
+  // Cached short explanation (1-2 paragraphs)
+  explanation     String?        @db.Text
+  // Full explanation untuk tutor — disimpan terpisah biar bisa lazy-load
+  explanationLong String?        @db.Text
+  source          String         @default("cita-original")
+  status          QuestionStatus @default(DRAFT)
+
+  familyId      String?
+  family        ItemFamily?  @relation(fields: [familyId], references: [id], onDelete: SetNull)
+  enemyGroupId  String?
+  enemyGroup    EnemyGroup?  @relation(fields: [enemyGroupId], references: [id], onDelete: SetNull)
+  images        QuestionImage[]
+  attemptItems  AttemptItem[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([category])
+  @@index([status])
+  @@index([familyId])
+  @@index([enemyGroupId])
+  @@map("questions")
+}
+
+model QuestionImage {
+  id          String   @id @default(cuid())
+  questionId  String
+  question    Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  // Storage: Supabase Storage atau Vercel Blob
+  url         String
+  // Provider yang generate (untuk audit + regen)
+  provider    String   // 'imagen-4', 'sd3', 'midjourney', dll
+  prompt      String   @db.Text // actual prompt yang dipakai (mungkin diedit dari imagePrompt asli)
+  createdAt   DateTime @default(now())
+
+  @@index([questionId])
+  @@map("question_images")
+}
+
+model Attempt {
+  id            String        @id @default(cuid())
+  userId        String
+  user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  status        AttemptStatus @default(IN_PROGRESS)
+  startedAt     DateTime      @default(now())
+  finishedAt    DateTime?
+  durationSec   Int?
+  scoreTWK      Int?
+  scoreTIU      Int?
+  scoreTKP      Int?
+  totalScore    Int?
+  passingStatus String?
+  items         AttemptItem[]
+
+  @@index([userId])
+  @@index([totalScore])
+  @@index([status])
+  @@map("attempts")
+}
+
+model AttemptItem {
+  id          String    @id @default(cuid())
+  attemptId   String
+  questionId  String
+  userAnswer  String? // 'A' | 'B' | 'C' | 'D' | 'E' | null (skipped)
+  isCorrect   Boolean? // null until graded; for TKP it's always null (always partial credit)
+  scoreEarned Int       @default(0)
+  timeSpentMs Int       @default(0)
+  answeredAt  DateTime?
+
+  attempt  Attempt  @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  question Question @relation(fields: [questionId], references: [id], onDelete: Restrict)
+
+  @@unique([attemptId, questionId])
+  @@index([attemptId])
+  @@index([questionId])
+  @@map("attempt_items")
+}
+
+model ExplainerMessage {
+  id         String   @id @default(cuid())
+  attemptId  String
+  questionId String
+  role       String   // 'user' | 'assistant'
+  content    String   @db.Text
+  tokens     Int?
+  createdAt  DateTime @default(now())
+
+  @@index([attemptId, questionId, createdAt])
+  @@index([attemptId])
+  @@map("explainer_messages")
+}

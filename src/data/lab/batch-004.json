@@ -1,0 +1,550 @@
+{
+  "batch_id": "batch-004",
+  "topic": "Batch 004 — TWK Bhinneka Tunggal Ika",
+  "source_file": "docs/content/drafts/batch-004-twk-bhinneka.md",
+  "generated_at": "2026-05-21T10:12:20.171Z",
+  "stats": {
+    "total_soal": 12,
+    "by_difficulty": {
+      "1": 1,
+      "2": 5,
+      "3": 4,
+      "4": 2,
+      "5": 0
+    },
+    "warnings_total": 0
+  },
+  "questions": [
+    {
+      "id": "BHINNEKA_ASAL_KARYA_001",
+      "category": "TWK",
+      "subcategory": "Bhinneka Tunggal Ika",
+      "topic": "Asal",
+      "questionText": "Frasa \"Bhinneka Tunggal Ika\" yang menjadi semboyan negara Republik Indonesia berasal dari kitab…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Negarakertagama"
+        },
+        {
+          "label": "B",
+          "text": "Sutasoma"
+        },
+        {
+          "label": "C",
+          "text": "Pararaton"
+        },
+        {
+          "label": "D",
+          "text": "Arjunawiwaha"
+        },
+        {
+          "label": "E",
+          "text": "Bharatayuddha"
+        }
+      ],
+      "correctAnswer": "B",
+      "optionWeights": null,
+      "difficulty": 2,
+      "tags": [
+        "bhinneka",
+        "sutasoma",
+        "asal-frasa"
+      ],
+      "familyId": null,
+      "enemyGroupId": "BHINNEKA_ASAL_KARYA",
+      "imagePrompt": null,
+      "explanation": "Bhinneka Tunggal Ika berasal dari Kakawin Sutasoma, sebuah karya sastra Jawa Kuno yang ditulis oleh Mpu Tantular pada abad ke-14 di masa kerajaan Majapahit.",
+      "explanationLong": "Kakawin Sutasoma berkisah tentang perjalanan spiritual Pangeran Sutasoma yang memilih jalan kebijaksanaan Buddha. Frasa \"Bhinneka Tunggal Ika\" tercantum dalam Pupuh 139 bait ke-5 yang menegaskan persamaan substansi antara ajaran Hindu Siwa dan Buddha. Negarakertagama (pilihan A) ditulis oleh Mpu Prapanca dan berisi catatan kerajaan Majapahit; Pararaton berisi sejarah raja-raja Singasari dan Majapahit; Arjunawiwaha karya Mpu Kanwa; Bharatayuddha karya Mpu Sedah dan Mpu Panuluh.",
+      "source": "Kakawin Sutasoma karya Mpu Tantular, Pupuh 139 bait 5",
+      "warnings": []
+    },
+    {
+      "id": "BHINNEKA_PENGARANG_002",
+      "category": "TWK",
+      "subcategory": "Bhinneka Tunggal Ika",
+      "topic": "Penulis",
+      "questionText": "Pengarang kitab yang menjadi sumber semboyan \"Bhinneka Tunggal Ika\" adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Mpu Prapanca"
+        },
+        {
+          "label": "B",
+          "text": "Mpu Tantular"
+        },
+        {
+          "label": "C",
+          "text": "Mpu Kanwa"
+        },
+        {
+          "label": "D",
+          "text": "Mpu Sedah"
+        },
+        {
+          "label": "E",
+          "text": "Mpu Panuluh"
+        }
+      ],
+      "correctAnswer": "B",
+      "optionWeights": null,
+      "difficulty": 2,
+      "tags": [
+        "bhinneka",
+        "mpu-tantular",
+        "pengarang"
+      ],
+      "familyId": null,
+      "enemyGroupId": "BHINNEKA_PENGARANG",
+      "imagePrompt": null,
+      "explanation": "Mpu Tantular adalah pujangga era Majapahit abad ke-14 yang mengarang Kakawin Sutasoma, sumber dari frasa Bhinneka Tunggal Ika.",
+      "explanationLong": "Mpu Tantular hidup pada masa pemerintahan Hayam Wuruk di kerajaan Majapahit. Selain Sutasoma, ia juga menulis Kakawin Arjunawijaya. Mpu Prapanca (pilihan A) menulis Negarakertagama; Mpu Kanwa menulis Arjunawiwaha pada masa Airlangga (abad 11); Mpu Sedah dan Mpu Panuluh menulis Bharatayuddha pada masa Jayabaya kerajaan Kediri (abad 12). Karya-karya kakawin ini menggunakan bahasa Jawa Kuno (Kawi) dengan struktur metrum yang ketat.",
+      "source": "Sejarah sastra Jawa Kuno; Kakawin Sutasoma",
+      "warnings": []
+    },
+    {
+      "id": "BHINNEKA_BAHASA_ASAL_003",
+      "category": "TWK",
+      "subcategory": "Bhinneka Tunggal Ika",
+      "topic": "Bahasa",
+      "questionText": "Frasa \"Bhinneka Tunggal Ika\" pada Kakawin Sutasoma ditulis dalam bahasa…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Sanskerta"
+        },
+        {
+          "label": "B",
+          "text": "Sunda Kuno"
+        },
+        {
+          "label": "C",
+          "text": "Jawa Kuno (Kawi)"
+        },
+        {
+          "label": "D",
+          "text": "Melayu Kuno"
+        },
+        {
+          "label": "E",
+          "text": "Bali Kuno"
+        }
+      ],
+      "correctAnswer": "C",
+      "optionWeights": null,
+      "difficulty": 3,
+      "tags": [
+        "bhinneka",
+        "bahasa-jawa-kuno",
+        "kawi"
+      ],
+      "familyId": null,
+      "enemyGroupId": "BHINNEKA_BAHASA_ASAL",
+      "imagePrompt": null,
+      "explanation": "Bhinneka Tunggal Ika ditulis dalam bahasa Jawa Kuno atau bahasa Kawi yang digunakan dalam karya sastra klasik di Jawa abad ke-9 hingga ke-15.",
+      "explanationLong": "Bahasa Jawa Kuno (Kawi) merupakan bahasa sastra utama di Jawa pada masa kerajaan Mataram Kuno hingga akhir Majapahit. Bahasa ini banyak menyerap kosakata Sanskerta dari pengaruh budaya India, namun memiliki tata bahasa sendiri. Kakawin sebagai bentuk puisi Jawa Kuno memiliki kaidah metrum (chanda) yang berasal dari tradisi Sanskerta. Setelah keruntuhan Majapahit, bahasa Jawa berkembang menjadi Jawa Pertengahan kemudian Jawa Modern. Bahasa Kawi sendiri masih dipelajari sebagai bahasa klasik dalam tradisi keagamaan di Bali.",
+      "source": "Linguistik historis bahasa Jawa; tradisi sastra Kawi",
+      "warnings": []
+    },
+    {
+      "id": "BHINNEKA_ABAD_PENULISAN_004",
+      "category": "TWK",
+      "subcategory": "Bhinneka Tunggal Ika",
+      "topic": "Sejarah",
+      "questionText": "Kakawin Sutasoma ditulis pada masa kerajaan Majapahit, yaitu sekitar abad…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Ke-12"
+        },
+        {
+          "label": "B",
+          "text": "Ke-13"
+        },
+        {
+          "label": "C",
+          "text": "Ke-14"
+        },
+        {
+          "label": "D",
+          "text": "Ke-15"
+        },
+        {
+          "label": "E",
+          "text": "Ke-16"
+        }
+      ],
+      "correctAnswer": "C",
+      "optionWeights": null,
+      "difficulty": 3,
+      "tags": [
+        "bhinneka",
+        "majapahit",
+        "abad-14",
+        "hayam-wuruk"
+      ],
+      "familyId": null,
+      "enemyGroupId": "BHINNEKA_ABAD_PENULISAN",
+      "imagePrompt": null,
+      "explanation": "Kakawin Sutasoma ditulis Mpu Tantular pada abad ke-14 di masa pemerintahan Hayam Wuruk (1350-1389), puncak kejayaan Majapahit.",
+      "explanationLong": "Majapahit didirikan oleh Raden Wijaya pada 1293 dan mencapai puncak kejayaannya di bawah Hayam Wuruk dengan Patih Gajah Mada. Pada masa ini banyak karya sastra Jawa Kuno yang dihasilkan, termasuk Negarakertagama (1365) oleh Mpu Prapanca dan Sutasoma serta Arjunawijaya oleh Mpu Tantular. Sutasoma diperkirakan ditulis sekitar 1365 atau sedikit setelahnya. Kerajaan Majapahit secara umum berada pada abad ke-13 hingga awal abad ke-16, namun puncak peradaban sastranya pada paruh kedua abad ke-14.",
+      "source": "Sejarah Majapahit; tarikh karya sastra Jawa Kuno",
+      "warnings": []
+    },
+    {
+      "id": "BHINNEKA_ARTI_005",
+      "category": "TWK",
+      "subcategory": "Bhinneka Tunggal Ika",
+      "topic": "Arti",
+      "questionText": "Arti harfiah dari semboyan \"Bhinneka Tunggal Ika\" adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Bersatu kita teguh, bercerai kita runtuh"
+        },
+        {
+          "label": "B",
+          "text": "Berbeda-beda tetapi tetap satu jua"
+        },
+        {
+          "label": "C",
+          "text": "Satu nusa, satu bangsa, satu bahasa"
+        },
+        {
+          "label": "D",
+          "text": "Dari Sabang sampai Merauke"
+        },
+        {
+          "label": "E",
+          "text": "Persatuan dan kesatuan adalah segalanya"
+        }
+      ],
+      "correctAnswer": "B",
+      "optionWeights": null,
+      "difficulty": 1,
+      "tags": [
+        "bhinneka",
+        "arti",
+        "harfiah"
+      ],
+      "familyId": null,
+      "enemyGroupId": "BHINNEKA_ARTI",
+      "imagePrompt": null,
+      "explanation": "\"Bhinneka Tunggal Ika\" secara harfiah berarti \"berbeda-beda tetapi tetap satu\" yang melambangkan persatuan dalam keberagaman bangsa Indonesia.",
+      "explanationLong": "Secara etimologis: \"Bhinneka\" = berbeda-beda (dari kata \"bhinna\" yang berarti berbeda dan akhiran \"ika\" untuk penegasan); \"Tunggal\" = satu; \"Ika\" = itu. Frasa ini menegaskan bahwa meskipun bangsa Indonesia memiliki keragaman suku, agama, bahasa, dan budaya, pada hakikatnya tetap merupakan satu kesatuan bangsa. Pilihan A adalah ungkapan motivasi umum, pilihan C adalah Sumpah Pemuda, pilihan D adalah ungkapan tentang luas wilayah Indonesia.",
+      "source": "Etimologi bahasa Jawa Kuno; Kakawin Sutasoma",
+      "warnings": []
+    },
+    {
+      "id": "BHINNEKA_PASAL_PENGATURAN_006",
+      "category": "TWK",
+      "subcategory": "Bhinneka Tunggal Ika",
+      "topic": "Pengaturan",
+      "questionText": "Bhinneka Tunggal Ika sebagai semboyan negara diatur dalam Undang-Undang Dasar 1945 pada pasal…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Pasal 36"
+        },
+        {
+          "label": "B",
+          "text": "Pasal 36A"
+        },
+        {
+          "label": "C",
+          "text": "Pasal 36B"
+        },
+        {
+          "label": "D",
+          "text": "Pasal 36C"
+        },
+        {
+          "label": "E",
+          "text": "Pasal 37"
+        }
+      ],
+      "correctAnswer": "B",
+      "optionWeights": null,
+      "difficulty": 3,
+      "tags": [
+        "bhinneka",
+        "uud-1945",
+        "pasal-36a"
+      ],
+      "familyId": null,
+      "enemyGroupId": "BHINNEKA_PASAL_PENGATURAN",
+      "imagePrompt": null,
+      "explanation": "Pasal 36A UUD 1945 menyatakan bahwa lambang negara ialah Garuda Pancasila dengan semboyan Bhinneka Tunggal Ika. Pasal ini ditambahkan saat amandemen kedua tahun 2000.",
+      "explanationLong": "Pasal 36 series mengatur identitas negara: Pasal 36 (bahasa negara — Bahasa Indonesia, sudah ada di UUD 1945 asli), Pasal 36A (lambang negara — Garuda Pancasila dengan semboyan Bhinneka Tunggal Ika, hasil amandemen kedua), Pasal 36B (lagu kebangsaan — Indonesia Raya, hasil amandemen kedua), Pasal 36C (ketentuan lebih lanjut diatur dalam undang-undang). Implementasi lebih lanjut tertuang dalam UU 24/2009 tentang Bendera, Bahasa, dan Lambang Negara, serta Lagu Kebangsaan.",
+      "source": "UUD 1945 Pasal 36A hasil amandemen kedua",
+      "warnings": []
+    },
+    {
+      "id": "BHINNEKA_LETAK_GARUDA_007",
+      "category": "TWK",
+      "subcategory": "Bhinneka Tunggal Ika",
+      "topic": "Lambang Negara",
+      "questionText": "Pada lambang negara Garuda Pancasila, semboyan \"Bhinneka Tunggal Ika\" tertulis pada…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Mahkota Garuda"
+        },
+        {
+          "label": "B",
+          "text": "Perisai bagian tengah"
+        },
+        {
+          "label": "C",
+          "text": "Sayap kanan Garuda"
+        },
+        {
+          "label": "D",
+          "text": "Pita yang dicengkeram kaki Garuda"
+        },
+        {
+          "label": "E",
+          "text": "Latar belakang lambang"
+        }
+      ],
+      "correctAnswer": "D",
+      "optionWeights": null,
+      "difficulty": 2,
+      "tags": [
+        "bhinneka",
+        "garuda-pancasila",
+        "letak"
+      ],
+      "familyId": "GARUDA_PANCASILA_FAMILY",
+      "enemyGroupId": "BHINNEKA_LETAK_GARUDA",
+      "imagePrompt": null,
+      "explanation": "Bhinneka Tunggal Ika tertulis pada pita putih yang dicengkeram oleh kedua kaki burung Garuda dengan tulisan berwarna hitam.",
+      "explanationLong": "Tata letak Garuda Pancasila memiliki beberapa elemen: (1) Burung Garuda dengan jumlah bulu sayap, ekor, dan leher yang melambangkan tanggal proklamasi 17-8-1945; (2) Perisai di dada Garuda yang berisi lima ruang dengan simbol kelima sila Pancasila; (3) Pita putih bertuliskan \"Bhinneka Tunggal Ika\" dalam huruf Latin yang dicengkeram oleh kedua kaki Garuda. Posisi semboyan pada pita yang dicengkeram menggambarkan bahwa keberagaman Indonesia dijaga oleh kekuatan dan keberanian (yang dilambangkan Garuda).",
+      "source": "PP No. 66/1951 tentang Lambang Negara; UU 24/2009",
+      "warnings": []
+    },
+    {
+      "id": "BHINNEKA_PENGUSUL_SEMBOYAN_008",
+      "category": "TWK",
+      "subcategory": "Bhinneka Tunggal Ika",
+      "topic": "Sejarah",
+      "questionText": "Tokoh yang mengusulkan agar frasa \"Bhinneka Tunggal Ika\" dijadikan semboyan negara dalam Sidang BPUPKI adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Ir. Soekarno"
+        },
+        {
+          "label": "B",
+          "text": "Drs. Mohammad Hatta"
+        },
+        {
+          "label": "C",
+          "text": "Mohammad Yamin"
+        },
+        {
+          "label": "D",
+          "text": "Ki Hajar Dewantara"
+        },
+        {
+          "label": "E",
+          "text": "Sultan Hamid II"
+        }
+      ],
+      "correctAnswer": "C",
+      "optionWeights": null,
+      "difficulty": 4,
+      "tags": [
+        "bhinneka",
+        "pengusul-semboyan",
+        "yamin"
+      ],
+      "familyId": null,
+      "enemyGroupId": "BHINNEKA_PENGUSUL_SEMBOYAN",
+      "imagePrompt": null,
+      "explanation": "Mohammad Yamin yang mengenal sastra Jawa Kuno mengusulkan frasa Bhinneka Tunggal Ika dari Kakawin Sutasoma sebagai semboyan negara dalam Sidang BPUPKI 1945.",
+      "explanationLong": "Mohammad Yamin (1903-1962) merupakan tokoh yang dikenal mendalam dalam sastra dan sejarah Nusantara. Dalam pidatonya di sidang BPUPKI 29 Mei 1945, Yamin tidak hanya menyampaikan rumusan dasar negara, tetapi juga banyak merujuk kearifan lokal Nusantara, termasuk frasa Bhinneka Tunggal Ika dari Sutasoma. Setelah kemerdekaan, frasa ini dimasukkan ke dalam lambang negara Garuda Pancasila yang dirancang oleh Sultan Hamid II. Pasca-amandemen UUD 1945, semboyan ini kemudian dikukuhkan secara konstitusional pada Pasal 36A.",
+      "source": "Risalah BPUPKI; biografi Mohammad Yamin",
+      "warnings": []
+    },
+    {
+      "id": "BHINNEKA_EMPAT_PILAR_009",
+      "category": "TWK",
+      "subcategory": "Bhinneka Tunggal Ika",
+      "topic": "Empat Pilar",
+      "questionText": "MPR merumuskan empat pilar berbangsa dan bernegara, yaitu Pancasila, UUD 1945, NKRI, dan…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Sumpah Pemuda"
+        },
+        {
+          "label": "B",
+          "text": "Bhinneka Tunggal Ika"
+        },
+        {
+          "label": "C",
+          "text": "Garuda Pancasila"
+        },
+        {
+          "label": "D",
+          "text": "Wawasan Nusantara"
+        },
+        {
+          "label": "E",
+          "text": "Pembukaan UUD 1945"
+        }
+      ],
+      "correctAnswer": "B",
+      "optionWeights": null,
+      "difficulty": 2,
+      "tags": [
+        "bhinneka",
+        "empat-pilar",
+        "mpr"
+      ],
+      "familyId": null,
+      "enemyGroupId": "BHINNEKA_EMPAT_PILAR",
+      "imagePrompt": null,
+      "explanation": "Empat pilar berbangsa dan bernegara terdiri dari Pancasila, UUD 1945, NKRI, dan Bhinneka Tunggal Ika. Konsep ini disosialisasikan MPR sebagai pegangan kehidupan berbangsa.",
+      "explanationLong": "Empat pilar berbangsa dan bernegara dirumuskan untuk memperkuat identitas nasional di tengah dinamika globalisasi dan tantangan integrasi pasca-Reformasi. Setiap pilar memiliki peran khas: Pancasila sebagai dasar negara dan ideologi; UUD 1945 sebagai konstitusi tertulis; NKRI sebagai bentuk negara; Bhinneka Tunggal Ika sebagai semangat persatuan dalam keberagaman. Konsep ini disosialisasikan secara berkesinambungan oleh MPR melalui program edukasi kepada masyarakat.",
+      "source": "Sosialisasi 4 Pilar MPR RI",
+      "warnings": []
+    },
+    {
+      "id": "BHINNEKA_NILAI_TOLERANSI_010",
+      "category": "TWK",
+      "subcategory": "Bhinneka Tunggal Ika",
+      "topic": "Implementasi",
+      "questionText": "Nilai utama yang terkandung dalam semboyan Bhinneka Tunggal Ika untuk diterapkan dalam kehidupan berbangsa adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Persaingan antar suku"
+        },
+        {
+          "label": "B",
+          "text": "Asimilasi budaya tunggal"
+        },
+        {
+          "label": "C",
+          "text": "Toleransi terhadap perbedaan"
+        },
+        {
+          "label": "D",
+          "text": "Pemerataan ekonomi"
+        },
+        {
+          "label": "E",
+          "text": "Penegakan hukum yang ketat"
+        }
+      ],
+      "correctAnswer": "C",
+      "optionWeights": null,
+      "difficulty": 2,
+      "tags": [
+        "bhinneka",
+        "toleransi",
+        "keberagaman"
+      ],
+      "familyId": null,
+      "enemyGroupId": "BHINNEKA_NILAI_TOLERANSI",
+      "imagePrompt": null,
+      "explanation": "Bhinneka Tunggal Ika menanamkan nilai toleransi terhadap perbedaan suku, agama, ras, dan antargolongan, sehingga keberagaman menjadi kekuatan bangsa, bukan sumber perpecahan.",
+      "explanationLong": "Implementasi Bhinneka Tunggal Ika dalam kehidupan sehari-hari mencakup: menghormati pemeluk agama lain dalam beribadah, menghargai bahasa dan adat istiadat suku lain, tidak membeda-bedakan dalam pelayanan publik, mengutamakan musyawarah dalam menyelesaikan perbedaan pendapat, serta menanggalkan sikap superioritas suku/golongan tertentu. Nilai ini sangat relevan bagi seorang ASN yang melayani masyarakat dari berbagai latar belakang. Asimilasi budaya tunggal (pilihan B) justru bertentangan dengan semangat Bhinneka karena menghapus keberagaman.",
+      "source": "Filosofi Bhinneka Tunggal Ika; nilai-nilai dasar ASN",
+      "warnings": []
+    },
+    {
+      "id": "BHINNEKA_KONTEKS_ASLI_011",
+      "category": "TWK",
+      "subcategory": "Bhinneka Tunggal Ika",
+      "topic": "Konteks Asli",
+      "questionText": "Dalam konteks aslinya pada Kakawin Sutasoma, frasa Bhinneka Tunggal Ika menggambarkan toleransi antara dua aliran kepercayaan, yaitu…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Islam dan Kristen"
+        },
+        {
+          "label": "B",
+          "text": "Hindu dan Islam"
+        },
+        {
+          "label": "C",
+          "text": "Hindu Siwa dan Buddha"
+        },
+        {
+          "label": "D",
+          "text": "Buddha dan Konghucu"
+        },
+        {
+          "label": "E",
+          "text": "Animisme dan Hindu"
+        }
+      ],
+      "correctAnswer": "C",
+      "optionWeights": null,
+      "difficulty": 4,
+      "tags": [
+        "bhinneka",
+        "sutasoma",
+        "konteks-asli",
+        "hindu-buddha"
+      ],
+      "familyId": null,
+      "enemyGroupId": "BHINNEKA_KONTEKS_ASLI",
+      "imagePrompt": null,
+      "explanation": "Dalam Kakawin Sutasoma, Bhinneka Tunggal Ika menegaskan bahwa ajaran Hindu Siwa dan Buddha pada hakikatnya adalah satu, meskipun terkesan berbeda di permukaan.",
+      "explanationLong": "Bait asli pada Pupuh 139 Sutasoma berbunyi: \"Mangkang Jinatwa kalawan Siwatatwa tunggal, Bhinneka Tunggal Ika tan hana dharma mangrwa\" yang berarti \"Demikianlah Buddha dan Siwa itu satu, berbeda-beda namun satu jua, tidak ada dharma yang mendua\". Pada masa Majapahit, masyarakat memang menganut Hindu Siwa dan Buddha secara berdampingan, dan Mpu Tantular menulis Sutasoma untuk menegaskan bahwa kedua jalan spiritual itu menuju kebenaran yang sama. Konteks ini kemudian diperluas pada masa modern menjadi semangat toleransi antar agama, suku, dan budaya di Indonesia.",
+      "source": "Kakawin Sutasoma Pupuh 139 bait 5; sejarah agama di Majapahit",
+      "warnings": []
+    },
+    {
+      "id": "GARUDA_TANGGAL_PENGESAHAN_012",
+      "category": "TWK",
+      "subcategory": "Bhinneka Tunggal Ika",
+      "topic": "Lambang Negara",
+      "questionText": "Lambang negara Garuda Pancasila yang memuat semboyan Bhinneka Tunggal Ika disahkan oleh pemerintah pada tanggal…",
+      "options": [
+        {
+          "label": "A",
+          "text": "17 Agustus 1945"
+        },
+        {
+          "label": "B",
+          "text": "18 Agustus 1945"
+        },
+        {
+          "label": "C",
+          "text": "27 Desember 1949"
+        },
+        {
+          "label": "D",
+          "text": "11 Februari 1950"
+        },
+        {
+          "label": "E",
+          "text": "17 Agustus 1950"
+        }
+      ],
+      "correctAnswer": "D",
+      "optionWeights": null,
+      "difficulty": 3,
+      "tags": [
+        "bhinneka",
+        "lambang-negara",
+        "pengesahan",
+        "1950"
+      ],
+      "familyId": "GARUDA_PANCASILA_FAMILY",
+      "enemyGroupId": "GARUDA_TANGGAL_PENGESAHAN",
+      "imagePrompt": null,
+      "explanation": "Lambang negara Garuda Pancasila disahkan pada 11 Februari 1950 oleh Pemerintah Republik Indonesia Serikat (RIS) dengan rancangan dari Sultan Hamid II.",
+      "explanationLong": "Sultan Hamid II Alkadrie ditunjuk sebagai Menteri Negara dan diberikan tugas merancang lambang negara. Setelah melalui beberapa revisi atas masukan Soekarno (terutama tentang detail Garuda) dan Mohammad Yamin (tentang semboyan), rancangan disetujui oleh Pemerintah RIS pada 11 Februari 1950. Pengaturan teknis tata cara penggunaan kemudian diatur dalam PP No. 66 Tahun 1951 tentang Lambang Negara, dan kemudian diperbarui melalui UU 24/2009. Pasal 36A UUD 1945 hasil amandemen kedua mengukuhkan kembali kedudukan Garuda Pancasila sebagai lambang negara secara konstitusional.",
+      "source": "Sejarah Garuda Pancasila; PP No. 66/1951",
+      "warnings": []
+    }
+  ]
+}

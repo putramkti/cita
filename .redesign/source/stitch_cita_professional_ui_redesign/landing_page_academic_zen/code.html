@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+
+<html class="light" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24
+    }
+.academic-zen-blur {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px)
+    }
+.grain-overlay {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuD9qqYciFypOmSNWV20voBkVxDV1JbwKkOuf_Z5t2NXCJchdMh-guaDWiQxe1eNwtW9BKR-Gvpvp1hQSRcDpAnk1CxwuxYV7pY6TaGHRSe1hKwoGxyiE-rE1hcypUc8Tq7WjSWU0MwFLfdZyUnSzusZHURRnLUpbktgcYbM4waSa_fi5CMal2Sced4xs9nBb-4w5ZsG3TDRkQpDxvUTxVIWavOU-wIr1dqSOMUdDLTqrVoOnwQz0YhwSk3uZTGBtVS8enZ51cYhOvrP);
+    opacity: 0.03;
+    pointer-events: none
+    }
+body {
+    background-color: #f8f9fa;
+    /* Parchment White */
+    }</style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface": "#f8f9fa",
+                      "primary": "#000000",
+                      "secondary-fixed-dim": "#b7c8e1",
+                      "tertiary-fixed-dim": "#e7c185",
+                      "primary-container": "#131b2e",
+                      "secondary-container": "#d0e1fb",
+                      "primary-fixed-dim": "#bec6e0",
+                      "surface-dim": "#d9dadb",
+                      "surface-variant": "#e1e3e4",
+                      "secondary": "#505f76",
+                      "inverse-on-surface": "#f0f1f2",
+                      "on-tertiary-container": "#9f7f49",
+                      "on-primary-container": "#7c839b",
+                      "on-primary-fixed-variant": "#3f465c",
+                      "error-container": "#ffdad6",
+                      "outline-variant": "#c6c6cd",
+                      "on-tertiary-fixed": "#271900",
+                      "on-tertiary": "#ffffff",
+                      "secondary-fixed": "#d3e4fe",
+                      "tertiary-container": "#271900",
+                      "surface-container-highest": "#e1e3e4",
+                      "on-secondary": "#ffffff",
+                      "on-secondary-container": "#54647a",
+                      "error": "#ba1a1a",
+                      "on-surface-variant": "#45464d",
+                      "surface-container": "#edeeef",
+                      "tertiary-fixed": "#ffdeab",
+                      "inverse-surface": "#2e3132",
+                      "surface-container-low": "#f3f4f5",
+                      "on-surface": "#191c1d",
+                      "tertiary": "#000000",
+                      "on-error": "#ffffff",
+                      "on-background": "#191c1d",
+                      "on-error-container": "#93000a",
+                      "primary-fixed": "#dae2fd",
+                      "outline": "#76777d",
+                      "surface-tint": "#565e74",
+                      "inverse-primary": "#bec6e0",
+                      "background": "#f8f9fa",
+                      "on-secondary-fixed": "#0b1c30",
+                      "on-primary": "#ffffff",
+                      "on-secondary-fixed-variant": "#38485d",
+                      "surface-bright": "#f8f9fa",
+                      "surface-container-lowest": "#ffffff",
+                      "on-tertiary-fixed-variant": "#5c4212",
+                      "surface-container-high": "#e7e8e9",
+                      "on-primary-fixed": "#131b2e"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "md": "16px",
+                      "margin-desktop": "32px",
+                      "xs": "4px",
+                      "max-reading-width": "768px",
+                      "gutter": "16px",
+                      "max-content-width": "1152px",
+                      "sm": "8px",
+                      "unit": "4px",
+                      "margin-mobile": "16px",
+                      "lg": "24px",
+                      "xl": "32px"
+              },
+              "fontFamily": {
+                      "display-lg": ["Instrument Serif"],
+                      "label-caps": ["Inter"],
+                      "headline-md-mobile": ["Instrument Serif"],
+                      "body-base": ["Inter"],
+                      "headline-md": ["Instrument Serif"],
+                      "body-bold": ["Inter"]
+              },
+              "fontSize": {
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "700"}],
+                      "headline-md-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "0", "fontWeight": "500"}],
+                      "body-base": ["16px", {"lineHeight": "24px", "letterSpacing": "0", "fontWeight": "400"}],
+                      "headline-md": ["28px", {"lineHeight": "36px", "letterSpacing": "0", "fontWeight": "500"}],
+                      "body-bold": ["16px", {"lineHeight": "24px", "letterSpacing": "0", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+      </script>
+</head>
+<body class="font-body-base text-on-surface selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<div class="grain-overlay fixed inset-0 z-50"></div>
+<!-- Navigation Header -->
+<nav class="bg-surface/80 academic-zen-blur border-b border-outline-variant/20 docked full-width top-0 sticky z-40 transition-all duration-300">
+<div class="flex justify-between items-center px-margin-desktop w-full max-w-max-content-width mx-auto h-16 md:h-20">
+<div class="flex items-center gap-md">
+<img alt="Cita Logo" class="h-8 md:h-10 w-auto" src="data:image/png;base64,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"/>
+<span class="font-headline-md text-headline-md font-bold text-primary">Cita</span>
+</div>
+<div class="hidden md:flex items-center space-x-xl">
+<a class="font-body-bold text-body-base text-primary border-b-2 border-primary transition-colors cursor-pointer" href="#">Tryouts</a>
+<a class="font-body-base text-body-base text-secondary hover:text-primary transition-colors cursor-pointer" href="#">Study</a>
+<a class="font-body-base text-body-base text-secondary hover:text-primary transition-colors cursor-pointer" href="#">AI Tutor</a>
+<a class="font-body-base text-body-base text-secondary hover:text-primary transition-colors cursor-pointer" href="#">Results</a>
+</div>
+<div class="flex items-center gap-md">
+<button class="hidden md:block font-body-base text-body-base text-secondary hover:text-primary px-md transition-opacity">Log In</button>
+<button class="bg-primary text-on-primary font-body-bold text-body-base px-xl py-sm rounded-sm hover:opacity-90 transition-all">Start Test</button>
+</div>
+</div>
+</nav>
+<main class="relative">
+<!-- Hero Section -->
+<section class="relative pt-24 pb-16 md:pt-32 md:pb-24 px-margin-mobile md:px-margin-desktop overflow-hidden">
+<div class="max-w-max-reading-width mx-auto text-center space-y-lg relative z-10">
+<div class="inline-flex items-center px-md py-1 rounded-full border border-outline-variant bg-surface-container-low text-on-surface-variant font-label-caps text-label-caps uppercase tracking-widest mb-md">
+<span class="material-symbols-outlined text-[14px] mr-2">security</span>
+                    Sesi Pendaftaran 2024 Dibuka
+                </div>
+<h1 class="font-display-lg text-display-lg md:text-[64px] md:leading-[1.1] text-on-surface tracking-tight">
+                    Kuasai SKD CPNS dengan <span class="italic font-normal">Ketenangan Kognitif.</span>
+</h1>
+<p class="font-body-base text-body-base md:text-xl text-secondary max-w-2xl mx-auto leading-relaxed">
+                    Platform persiapan ujian berbasis AI yang mengutamakan fokus, privasi anonim, dan bimbingan mendalam tanpa distraksi.
+                </p>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-md pt-lg">
+<button class="w-full sm:w-auto bg-primary text-on-primary px-xl py-md font-body-bold text-body-base rounded-sm hover:shadow-lg transition-all">Mulai Simulasi Gratis</button>
+<button class="w-full sm:w-auto border border-outline text-on-surface px-xl py-md font-body-bold text-body-base rounded-sm hover:bg-surface-container transition-all">Lihat Metodologi Kami</button>
+</div>
+</div>
+<!-- Subtle Decorative Elements -->
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none opacity-40">
+<div class="absolute top-20 left-10 w-64 h-64 border-[0.5px] border-outline-variant/30 rounded-full"></div>
+<div class="absolute bottom-10 right-10 w-96 h-96 border-[0.5px] border-outline-variant/30 rounded-full"></div>
+</div>
+</section>
+<!-- Feature Bento Grid -->
+<section class="py-xl px-margin-mobile md:px-margin-desktop max-w-max-content-width mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-lg">
+<!-- Anonymous-First Card -->
+<div class="md:col-span-5 bg-surface-container-lowest border border-outline-variant/20 p-xl rounded-sm flex flex-col justify-between group hover:border-primary/20 transition-all">
+<div>
+<div class="flex items-center justify-between mb-xl">
+<span class="material-symbols-outlined text-3xl text-primary" data-icon="fingerprint">fingerprint</span>
+<span class="font-label-caps text-label-caps text-outline uppercase">Privacy First</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-md">Anonymous-First Prep</h3>
+<p class="font-body-base text-body-base text-secondary leading-relaxed">
+                            Belajar tanpa tekanan kompetisi sosial yang berlebihan. Data Anda dienkripsi, identitas Anda terlindungi. Fokus hanya pada peningkatan skor Anda sendiri.
+                        </p>
+</div>
+<div class="mt-xl pt-lg border-t border-outline-variant/10">
+<ul class="space-y-sm">
+<li class="flex items-center gap-sm font-body-base text-sm text-secondary">
+<span class="material-symbols-outlined text-lg text-on-tertiary-container">check_circle</span>
+                                Tanpa pelacakan media sosial
+                            </li>
+<li class="flex items-center gap-sm font-body-base text-sm text-secondary">
+<span class="material-symbols-outlined text-lg text-on-tertiary-container">check_circle</span>
+                                Mode Guest untuk simulasi cepat
+                            </li>
+</ul>
+</div>
+</div>
+<!-- AI Tutor Preview Card -->
+<div class="md:col-span-7 bg-primary-container text-on-primary-container p-xl rounded-sm relative overflow-hidden group">
+<div class="relative z-10 h-full flex flex-col">
+<div class="flex items-center justify-between mb-xl">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-2xl text-on-primary-container/80" data-icon="psychology">psychology</span>
+<span class="font-label-caps text-label-caps uppercase">Mentor AI 24/7</span>
+</div>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-primary mb-md">Bimbingan Mendalam &amp; Personal</h3>
+<div class="mt-auto bg-surface/5 backdrop-blur-sm border border-white/10 p-md rounded-sm space-y-md">
+<div class="flex gap-md items-start">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed-dim/20 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-sm text-on-primary">person</span>
+</div>
+<div class="bg-white/5 p-sm rounded-sm text-sm italic font-body-base border-l-2 border-on-tertiary-container">
+                                    "Kenapa jawaban D salah di soal TIU Logika tadi?"
+                                </div>
+</div>
+<div class="flex gap-md items-start">
+<div class="w-8 h-8 rounded-full bg-on-tertiary-container/30 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-sm text-on-primary">smart_toy</span>
+</div>
+<div class="bg-white/10 p-sm rounded-sm text-sm font-body-base">
+                                    Opsi D mengasumsikan premis mayor bersifat universal, padahal konteks soal menyatakan 'sebagian'. Mari kita bedah struktur silogismenya...
+                                </div>
+</div>
+</div>
+</div>
+<!-- Abstract Background Pattern -->
+<div class="absolute right-[-10%] top-[-10%] w-64 h-64 bg-white/5 rounded-full blur-3xl group-hover:bg-white/10 transition-all"></div>
+</div>
+</div>
+</section>
+<!-- Realistic Simulation Section -->
+<section class="py-xl md:py-32 bg-surface-container-low border-y border-outline-variant/10">
+<div class="max-w-max-content-width mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-xl items-center">
+<div class="space-y-lg order-2 lg:order-1">
+<h2 class="font-display-lg text-display-lg text-on-surface leading-tight">
+                        Simulasi yang <span class="italic font-normal">Identik</span> dengan CAT BKN.
+                    </h2>
+<p class="font-body-base text-body-base text-secondary text-lg leading-relaxed">
+                        Kami mereplikasi setiap detail antarmuka Computer Assisted Test (CAT) asli untuk membangun memori otot dan mengurangi kecemasan saat hari ujian.
+                    </p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-md pt-md">
+<div class="flex items-start gap-md">
+<span class="material-symbols-outlined text-primary-container p-sm bg-secondary-container/30 rounded-sm">timer</span>
+<div>
+<h4 class="font-body-bold text-on-surface">Time Management</h4>
+<p class="text-sm text-on-surface-variant">Penghitung mundur real-time sesuai standar BKN.</p>
+</div>
+</div>
+<div class="flex items-start gap-md">
+<span class="material-symbols-outlined text-primary-container p-sm bg-secondary-container/30 rounded-sm">analytics</span>
+<div>
+<h4 class="font-body-bold text-on-surface">Live Scoring</h4>
+<p class="text-sm text-on-surface-variant">Hasil instan dengan pemetaan passing grade.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="order-1 lg:order-2">
+<div class="bg-surface-container-lowest p-md rounded-sm border border-outline shadow-sm relative group">
+<div class="bg-surface-dim h-6 w-full mb-md flex items-center px-sm gap-xs">
+<div class="w-2 h-2 rounded-full bg-red-400"></div>
+<div class="w-2 h-2 rounded-full bg-yellow-400"></div>
+<div class="w-2 h-2 rounded-full bg-green-400"></div>
+</div>
+<div class="space-y-md">
+<div class="flex justify-between items-center border-b border-outline-variant/30 pb-sm">
+<span class="font-label-caps text-label-caps text-outline">NOMOR SOAL: 42</span>
+<span class="font-label-caps text-label-caps text-error font-bold">45:00</span>
+</div>
+<div class="min-h-[200px] flex items-center justify-center border border-dashed border-outline-variant/40 bg-surface/50 rounded-sm">
+<div class="text-center p-xl">
+<span class="material-symbols-outlined text-4xl text-outline-variant mb-md">dashboard</span>
+<p class="font-headline-md text-headline-md text-on-surface-variant">Simulation Dashboard</p>
+<p class="text-sm text-outline">Click to Expand Preview</p>
+</div>
+</div>
+</div>
+<div class="absolute -bottom-4 -right-4 bg-tertiary-fixed text-on-tertiary-fixed px-md py-sm rounded-sm font-label-caps text-[10px] tracking-widest shadow-lg">
+                            IDENTICAL UI
+                        </div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-24 px-margin-mobile md:px-margin-desktop text-center">
+<div class="max-w-2xl mx-auto space-y-xl">
+<h2 class="font-display-lg text-display-lg text-on-surface italic">Mulai perjalanan menuju NIP Anda hari ini.</h2>
+<p class="font-body-base text-body-base text-secondary text-lg">
+                    Bergabunglah dengan ribuan calon abdi negara yang memilih ketenangan dan fokus sebagai kunci kesuksesan.
+                </p>
+<div class="pt-md">
+<button class="bg-primary text-on-primary px-32 py-md font-body-bold text-body-base rounded-sm hover:scale-[1.02] transition-transform w-full md:w-auto">
+                        Daftar Sekarang
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Component -->
+<footer class="bg-surface-container-highest border-t border-outline-variant/30 mt-auto">
+<div class="py-xl px-margin-desktop grid grid-cols-1 md:grid-cols-2 gap-lg max-w-max-content-width mx-auto">
+<div class="space-y-md">
+<div class="flex items-center gap-md">
+<img alt="Cita Logo Small" class="h-6 w-auto grayscale" src="data:image/png;base64,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"/>
+<span class="font-headline-md text-headline-md text-primary">Cita Academic</span>
+</div>
+<p class="text-secondary font-body-base max-w-sm">
+                    Excellence through discipline. Media persiapan CPNS paling fokus di Indonesia.
+                </p>
+<p class="text-secondary font-body-base text-sm">
+                    © 2024 Cita Academic. Excellence through discipline.
+                </p>
+</div>
+<div class="grid grid-cols-2 gap-md">
+<div class="flex flex-col gap-sm">
+<h5 class="font-body-bold text-on-surface">Resources</h5>
+<a class="text-secondary hover:text-primary transition-opacity duration-300 font-body-base" href="#">University Partnerships</a>
+<a class="text-secondary hover:text-primary transition-opacity duration-300 font-body-base" href="#">Methodology</a>
+</div>
+<div class="flex flex-col gap-sm">
+<h5 class="font-body-bold text-on-surface">Legal</h5>
+<a class="text-secondary hover:text-primary transition-opacity duration-300 font-body-base" href="#">Privacy Policy</a>
+<a class="text-secondary hover:text-primary transition-opacity duration-300 font-body-base" href="#">Terms of Service</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Simple micro-interactions for the navigation
+        let lastScroll = 0;
+        const nav = document.querySelector('nav');
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll > 100) {
+                nav.classList.add('py-2', 'shadow-sm');
+                nav.classList.remove('md:h-20');
+            } else {
+                nav.classList.remove('py-2', 'shadow-sm');
+                nav.classList.add('md:h-20');
+            }
+            lastScroll = currentScroll;
+        });
+
+        // Hover effect for feature cards
+        document.querySelectorAll('.group').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-4px)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body></html>

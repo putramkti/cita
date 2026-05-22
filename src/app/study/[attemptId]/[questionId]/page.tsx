@@ -1,254 +1,298 @@
-import Link from "next/link"
-import { notFound, redirect } from "next/navigation"
-import { ArrowLeft, Sparkles } from "lucide-react"
-import { cookies } from "next/headers"
-import { getServiceClient } from "@/utils/supabase/admin"
-import { SiteHeader } from "@/components/layout/site-header"
-import { Badge } from "@/components/ui/badge"
-import { TutorChat } from "./tutor-chat"
-import type { AttemptItem, Category, Question } from "@/lib/types"
-import { cn } from "@/lib/utils"
-import { getDict } from "@/lib/i18n"
+import Link from "next/link";
+import { notFound, redirect } from "next/navigation";
+import { ArrowLeft, ArrowRight, Lightbulb, Check } from "lucide-react";
+import { cookies } from "next/headers";
+import { prisma } from "@/lib/db/prisma";
+import { getCurrentUser } from "@/lib/auth/get-user";
+import { getCurrentPlan } from "@/lib/billing/get-plan";
+import { quota } from "@/lib/billing/entitlements";
+import { checkTutorQuota } from "@/lib/billing/usage";
+import { SiteHeader } from "@/components/layout/site-header";
+import { TutorChat } from "./tutor-chat";
+import { AnonBlurOverlay } from "@/components/billing/anon-blur-overlay";
+import { ReportButton } from "@/components/report/report-button";
+import type { Category } from "@prisma/client";
+import { cn } from "@/lib/utils";
+import { getDict } from "@/lib/i18n";
 
-export const dynamic = "force-dynamic"
+export const dynamic = "force-dynamic";
+
+const ANON_COOKIE = "cita_anon_id";
 
 interface PageProps {
-  params: Promise<{ attemptId: string; questionId: string }>
+  params: Promise<{ attemptId: string; questionId: string }>;
+}
+
+const CATEGORY_NAMES: Record<Category, { id: string; en: string }> = {
+  TWK: {
+    id: "Tes Wawasan Kebangsaan",
+    en: "National Insight Test",
+  },
+  TIU: {
+    id: "Tes Intelegensi Umum",
+    en: "General Intelligence Test",
+  },
+  TKP: {
+    id: "Tes Karakteristik Pribadi",
+    en: "Personality Test",
+  },
+};
+
+const CATEGORY_ORDER: Record<Category, number> = { TWK: 0, TIU: 1, TKP: 2 };
+
+interface QuestionOption {
+  label: string;
+  text: string;
 }
 
 export default async function StudyPage({ params }: PageProps) {
-  const { attemptId, questionId } = await params
-  const t = await getDict()
+  const { attemptId, questionId } = await params;
+  const t = await getDict();
 
-  // Auth: must own the attempt via cookie
-  const cookieStore = await cookies()
-  const userId = cookieStore.get("cita_anon_id")?.value
-  if (!userId) {
-    redirect(`/tryout`)
-  }
+  // Auth: dual — Supabase user OR anon cookie. Mirror result page pattern.
+  const supabaseUser = await getCurrentUser();
+  const cookieStore = await cookies();
+  const anonId = cookieStore.get(ANON_COOKIE)?.value ?? null;
+  const viewerId = supabaseUser?.id ?? anonId;
+  const isAnon = !supabaseUser && Boolean(anonId);
 
-  const sb = getServiceClient()
+  if (!viewerId) redirect("/tryout");
 
-  const { data: attempt } = await sb
-    .from("attempts")
-    .select("id, userId, status")
-    .eq("id", attemptId)
-    .single()
+  // Load attempt with item + question + all sibling items for prev/next nav
+  const attempt = await prisma.attempt.findUnique({
+    where: { id: attemptId },
+    select: {
+      id: true,
+      userId: true,
+      status: true,
+      items: {
+        select: {
+          id: true,
+          questionId: true,
+          userAnswer: true,
+          isCorrect: true,
+          scoreEarned: true,
+          position: true,
+          question: {
+            select: {
+              id: true,
+              category: true,
+              subcategory: true,
+              topic: true,
+              questionText: true,
+              options: true,
+              correctAnswer: true,
+              optionWeights: true,
+              difficulty: true,
+              explanation: true,
+              source: true,
+            },
+          },
+        },
+      },
+    },
+  });
 
-  if (!attempt) notFound()
-  if (attempt.userId !== userId) {
-    redirect("/tryout")
-  }
-  if (attempt.status !== "SUBMITTED") {
-    // Tutor only after submit
-    redirect(`/tryout/${attemptId}`)
-  }
+  if (!attempt) notFound();
+  if (attempt.userId !== viewerId) notFound();
 
-  // Load attempt item + question
-  const { data: itemRaw } = await sb
-    .from("attempt_items")
-    .select(
-      "id, attemptId, questionId, userAnswer, isCorrect, scoreEarned, question:questions(id, category, subcategory, questionText, options, correctAnswer, optionWeights, difficulty, explanation, source, createdAt)",
-    )
-    .eq("attemptId", attemptId)
-    .eq("questionId", questionId)
-    .single()
+  // Tutor only available after attempt is terminal (SUBMITTED or EXPIRED)
+  if (attempt.status === "IN_PROGRESS") redirect(`/tryout/${attemptId}`);
 
-  if (!itemRaw) notFound()
+  // Find target item
+  const item = attempt.items.find((it) => it.questionId === questionId);
+  if (!item) notFound();
+  const question = item.question;
 
-  const item = itemRaw as unknown as AttemptItem & {
-    question: Question | Question[] | null
-  }
-  const question: Question | null = Array.isArray(item.question)
-    ? item.question[0]
-    : item.question ?? null
+  // Chat history for this (attempt, question) pair
+  const historyRows = await prisma.explainerMessage.findMany({
+    where: { attemptId, questionId },
+    orderBy: { createdAt: "asc" },
+    select: { id: true, role: true, content: true },
+  });
 
-  if (!question) notFound()
-
-  // Load existing chat history
-  const { data: msgsRaw } = await sb
-    .from("explainer_messages")
-    .select("id, role, content, createdAt")
-    .eq("attemptId", attemptId)
-    .eq("questionId", questionId)
-    .order("createdAt", { ascending: true })
-
-  const initialMessages = (msgsRaw ?? []).map((m) => ({
-    id: m.id as string,
+  const initialMessages = historyRows.map((m) => ({
+    id: m.id,
     role: m.role as "user" | "assistant",
-    content: m.content as string,
-  }))
+    content: m.content,
+  }));
 
-  const userMsgCount = initialMessages.filter((m) => m.role === "user").length
+  // Tutor quota — per-account daily, plan-aware (Phase 7).
+  // FREE = 5/day, PREMIUM = 50/day, ANON = 0 (gated to login earlier upstream).
+  // Source of truth: lib/billing/plans.ts → tutorDailyQuota.
+  const plan = supabaseUser?.id ? await getCurrentPlan(supabaseUser.id) : "ANON";
+  const dailyLimit = quota(plan, "tutorDailyQuota");
+  const quotaCheck = supabaseUser?.id
+    ? await checkTutorQuota(supabaseUser.id, dailyLimit)
+    : { allowed: false, used: 0, limit: dailyLimit, remaining: dailyLimit };
 
-  // Find this question's index in the attempt for nav
-  const { data: allItems } = await sb
-    .from("attempt_items")
-    .select("questionId, question:questions(category)")
-    .eq("attemptId", attemptId)
+  // Build prev/next nav — sort by category order then position
+  const ordered = [...attempt.items].sort((a, b) => {
+    const ca = CATEGORY_ORDER[a.question.category];
+    const cb = CATEGORY_ORDER[b.question.category];
+    if (ca !== cb) return ca - cb;
+    return a.position - b.position;
+  });
+  const idx = ordered.findIndex((it) => it.questionId === questionId);
+  const prevQ = idx > 0 ? ordered[idx - 1].questionId : null;
+  const nextQ =
+    idx >= 0 && idx < ordered.length - 1 ? ordered[idx + 1].questionId : null;
 
-  const ordered = (allItems ?? []) as Array<{
-    questionId: string
-    question: { category: Category } | { category: Category }[] | null
-  }>
-  const catOrder = { TWK: 0, TIU: 1, TKP: 2 } as const
-  ordered.sort((a, b) => {
-    const ca = Array.isArray(a.question) ? a.question[0]?.category : a.question?.category
-    const cb = Array.isArray(b.question) ? b.question[0]?.category : b.question?.category
-    const av = ca ? catOrder[ca] : 99
-    const bv = cb ? catOrder[cb] : 99
-    if (av !== bv) return av - bv
-    return a.questionId.localeCompare(b.questionId)
-  })
-  const idx = ordered.findIndex((it) => it.questionId === questionId)
-  const prevQ = idx > 0 ? ordered[idx - 1].questionId : null
-  const nextQ = idx >= 0 && idx < ordered.length - 1 ? ordered[idx + 1].questionId : null
+  const options = (question.options as unknown as QuestionOption[]) ?? [];
 
   return (
     <div className="min-h-screen flex flex-col">
       <SiteHeader />
       <main className="flex-1">
-        <div className="mx-auto max-w-7xl px-4 py-6 sm:py-8">
-          <div className="mb-5 flex items-center justify-between gap-3 flex-wrap">
+        <div className="mx-auto max-w-7xl px-4 sm:px-8 py-6 sm:py-10">
+          {/* Top nav row */}
+          <div className="mb-8 flex items-center justify-between gap-3 flex-wrap">
             <Link
               href={`/tryout/${attemptId}/result`}
               className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
-              <ArrowLeft className="size-4" />
+              <ArrowLeft className="size-4" strokeWidth={1.5} />
               {t.study.backToResult}
             </Link>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1">
               {prevQ && (
                 <Link
                   href={`/study/${attemptId}/${prevQ}`}
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors px-2"
+                  className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors px-2 py-1.5"
                 >
-                  ← {t.study.prevQuestion}
+                  <ArrowLeft className="size-3.5" strokeWidth={1.5} />
+                  {t.study.prevQuestion}
                 </Link>
               )}
               {nextQ && (
                 <Link
                   href={`/study/${attemptId}/${nextQ}`}
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors px-2"
+                  className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors px-2 py-1.5"
                 >
-                  {t.study.nextQuestion} →
+                  {t.study.nextQuestion}
+                  <ArrowRight className="size-3.5" strokeWidth={1.5} />
                 </Link>
               )}
+              <ReportButton
+                surface="tutor"
+                questionId={question.id}
+                category={question.category}
+                subcategory={question.subcategory}
+                questionText={question.questionText}
+                userAnswer={item.userAnswer ?? null}
+                correctAnswer={question.correctAnswer ?? null}
+                attemptId={attemptId}
+                userEmail={supabaseUser?.email ?? null}
+                locale={t.locale as "id" | "en"}
+                variant="text"
+                className="ml-1"
+              />
             </div>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
+          {/* 2-col split */}
+          <div className="grid lg:grid-cols-2 gap-6 lg:gap-10">
             {/* LEFT: Question recap */}
             <section className="lg:sticky lg:top-20 lg:self-start lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto pr-1">
-              <div className="space-y-5">
-                <div className="flex items-center gap-2 text-xs">
-                  <CategoryBadge category={question.category} />
-                  <span className="text-muted-foreground">{question.subcategory}</span>
-                  <span className="text-muted-foreground">·</span>
-                  <span className="text-muted-foreground">
-                    {t.locale === "en"
-                      ? `Difficulty ${question.difficulty}/5`
-                      : `Tingkat ${question.difficulty}/5`}
-                  </span>
-                </div>
+              <p className="label-caps mb-3">
+                {t.locale === "en" ? "QUESTION RECAP" : "RINGKASAN SOAL"}
+              </p>
+              <h1 className="serif text-3xl text-foreground leading-tight mb-1.5">
+                {CATEGORY_NAMES[question.category][t.locale]} (
+                {question.category})
+              </h1>
+              <p className="text-sm text-muted-foreground mb-7">
+                {t.locale === "en" ? "Topic" : "Topik"}: {question.subcategory}
+                {question.topic ? ` · ${question.topic}` : ""}
+              </p>
 
-                <h1 className="text-xl sm:text-2xl font-semibold leading-relaxed">
+              <article className="rounded-xl border border-border bg-card p-6 sm:p-7 mb-6">
+                <p className="serif text-xl leading-relaxed text-foreground mb-7">
                   {question.questionText}
-                </h1>
+                </p>
 
-                <ul className="space-y-2">
-                  {question.options.map((opt) => {
-                    const userPicked = item.userAnswer === opt.label
-                    const isAnsKey = opt.label === question.correctAnswer
-                    const weight =
-                      question.category === "TKP" && question.optionWeights
-                        ? question.optionWeights[opt.label]
-                        : null
+                <ul className="space-y-2.5">
+                  {options.map((opt) => {
+                    const userPicked = item.userAnswer === opt.label;
+                    const isAnsKey = opt.label === question.correctAnswer;
                     return (
-                      <li
-                        key={opt.label}
-                        className={cn(
-                          "flex gap-3 rounded-md border px-3 py-2 text-sm",
-                          isAnsKey
-                            ? "border-emerald-500/40 bg-emerald-500/5"
-                            : userPicked
-                              ? "border-amber-500/40 bg-amber-500/5"
-                              : "border-border/40",
-                        )}
-                      >
-                        <span
+                      <li key={opt.label}>
+                        <div
                           className={cn(
-                            "shrink-0 inline-flex items-center justify-center size-6 rounded text-xs font-semibold",
+                            "flex items-start gap-3 rounded-lg border px-3.5 py-3 text-sm",
                             isAnsKey
-                              ? "bg-emerald-500/20 text-emerald-300"
+                              ? "border-foreground bg-foreground/[0.04]"
                               : userPicked
-                                ? "bg-amber-500/20 text-amber-300"
-                                : "bg-muted text-muted-foreground",
+                                ? "border-destructive/40 bg-[var(--error-soft)]"
+                                : "border-border",
                           )}
                         >
-                          {opt.label}
-                        </span>
-                        <span className="flex-1 leading-relaxed pt-0.5">{opt.text}</span>
-                        <span className="text-xs text-muted-foreground shrink-0 pt-1">
-                          {weight !== null && (
-                            <span>
-                              {t.locale === "en" ? `weight ${weight}` : `bobot ${weight}`}
-                            </span>
-                          )}
-                          {userPicked && !isAnsKey && (
-                            <span className="ml-2">{t.result.yourAnswer.toLowerCase()}</span>
-                          )}
+                          <span
+                            className={cn(
+                              "shrink-0 inline-flex items-center justify-center size-7 rounded-md text-xs font-semibold border",
+                              isAnsKey
+                                ? "bg-primary text-primary-foreground border-primary"
+                                : userPicked
+                                  ? "bg-card text-foreground border-border"
+                                  : "bg-card text-muted-foreground border-border",
+                            )}
+                          >
+                            {opt.label}
+                          </span>
+                          <span className="flex-1 leading-relaxed pt-0.5 text-foreground/90">
+                            {opt.text}
+                          </span>
                           {isAnsKey && (
-                            <span className="ml-2">
-                              {t.locale === "en" ? "correct" : "kunci"}
-                            </span>
+                            <Check
+                              className="size-4 text-foreground shrink-0 mt-1"
+                              strokeWidth={2}
+                            />
                           )}
-                        </span>
+                        </div>
                       </li>
-                    )
+                    );
                   })}
                 </ul>
+              </article>
 
-                {question.explanation && (
-                  <div className="rounded-md border border-primary/20 bg-primary/5 p-4 text-sm leading-relaxed">
-                    <div className="flex items-center gap-1.5 text-primary mb-2 text-xs uppercase tracking-widest font-semibold">
-                      <Sparkles className="size-3.5" />
-                      {t.study.explanationLabel}
-                    </div>
-                    <p className="text-foreground/90">{question.explanation}</p>
-                  </div>
-                )}
-              </div>
+              {question.explanation && (
+                <div className="rounded-xl border border-[var(--gold)]/40 bg-[var(--review-amber)] px-5 py-4 flex gap-3">
+                  <Lightbulb
+                    className="size-5 shrink-0 text-[var(--review-amber-fg)] mt-0.5"
+                    strokeWidth={1.5}
+                  />
+                  <p className="text-sm italic leading-relaxed text-[var(--review-amber-fg)]">
+                    {question.explanation}
+                  </p>
+                </div>
+              )}
             </section>
 
             {/* RIGHT: Tutor chat */}
-            <section className="min-h-[60vh]">
+            <section className="min-h-[60vh] relative">
               <TutorChat
                 attemptId={attemptId}
                 questionId={questionId}
                 initialMessages={initialMessages}
-                initialUserMsgCount={userMsgCount}
-                maxUserMsgs={5}
+                initialUserMsgCount={quotaCheck.used}
+                maxUserMsgs={quotaCheck.limit}
                 dict={t.study}
               />
+              <p className="mt-3 text-center text-xs text-muted-foreground">
+                {t.locale === "en"
+                  ? "Cita AI can make mistakes. Verify important information with the official syllabus."
+                  : "Cita AI dapat keliru. Mohon validasi informasi penting dengan silabus resmi."}
+              </p>
+              {isAnon && (
+                <AnonBlurOverlay
+                  locale={t.locale}
+                  nextPath={`/study/${attemptId}/${questionId}`}
+                />
+              )}
             </section>
           </div>
         </div>
       </main>
     </div>
-  )
-}
-
-function CategoryBadge({ category }: { category: Category }) {
-  const tone =
-    category === "TWK"
-      ? "bg-sky-500/15 text-sky-300 border-sky-500/30"
-      : category === "TIU"
-        ? "bg-violet-500/15 text-violet-300 border-violet-500/30"
-        : "bg-emerald-500/15 text-emerald-300 border-emerald-500/30"
-  return (
-    <Badge variant="outline" className={cn("text-[10px] font-semibold", tone)}>
-      {category}
-    </Badge>
-  )
+  );
 }

@@ -3,8 +3,6 @@ import { Trophy, Medal, Award, Clock } from "lucide-react"
 import { getServiceClient } from "@/utils/supabase/admin"
 import { SiteHeader } from "@/components/layout/site-header"
 import { SiteFooter } from "@/components/layout/site-footer"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
 import { formatDuration } from "@/lib/tryout"
 import { cn } from "@/lib/utils"
 
@@ -13,7 +11,6 @@ export const metadata = {
   description: "Top 10 skor tryout SKD CPNS di Cita.",
 }
 
-// Don't cache — always show fresh top scores
 export const dynamic = "force-dynamic"
 export const revalidate = 0
 
@@ -48,54 +45,63 @@ export default async function LeaderboardPage() {
   return (
     <>
       <SiteHeader />
-      <main className="flex-1 px-4 py-12 sm:py-16">
-        <div className="mx-auto max-w-3xl space-y-10">
+      <main className="flex-1 px-4 sm:px-8 py-16 sm:py-20">
+        <div className="mx-auto max-w-3xl space-y-12">
           {/* Header */}
           <header className="text-center">
-            <div className="inline-flex items-center justify-center size-14 rounded-full bg-primary/10 border border-primary/20 mb-4">
-              <Trophy className="size-7 text-primary" />
-            </div>
-            <h1 className="text-3xl sm:text-4xl font-bold tracking-tight">
+            <p className="label-caps mb-4">CITA · LEADERBOARD</p>
+            <h1 className="serif text-4xl sm:text-5xl tracking-tight text-foreground">
               Peringkat skor tertinggi
             </h1>
-            <p className="text-muted-foreground mt-3 text-balance max-w-prose mx-auto">
-              Top 10 skor tryout SKD di Cita, urut dari skor tertinggi. Kalau imbang,
-              yang lebih cepat selesai unggul.
+            <p className="text-base text-muted-foreground mt-5 leading-relaxed text-balance max-w-prose mx-auto">
+              Sepuluh skor tryout SKD CPNS tertinggi di Cita. Apabila skor
+              imbang, peserta yang menyelesaikan lebih cepat berada lebih
+              tinggi.
             </p>
           </header>
 
-          {/* Leaderboard table */}
+          {/* Leaderboard */}
           {hasError ? (
-            <div className="rounded-xl border border-destructive/30 bg-destructive/5 p-6 text-center">
-              <p className="text-sm">Gagal memuat peringkat. Coba refresh sebentar lagi.</p>
+            <div className="rounded-xl border border-destructive/40 bg-[var(--error-soft)] p-6 text-center">
+              <p className="text-sm text-[var(--error-fg)]">
+                Gagal memuat peringkat. Silakan muat ulang halaman.
+              </p>
             </div>
           ) : rows.length === 0 ? (
-            <div className="rounded-xl border border-border/60 bg-card/30 p-10 text-center">
-              <p className="text-base font-medium">Belum ada yang menyelesaikan tryout</p>
-              <p className="text-sm text-muted-foreground mt-2 mb-6">
-                Jadi yang pertama. Jangan lupa selesai sampai tombol Submit.
+            <div className="rounded-xl border border-border bg-card p-12 text-center">
+              <p className="serif text-xl text-foreground mb-2">
+                Belum ada peserta yang menyelesaikan tryout
               </p>
-              <Button asChild>
-                <Link href="/tryout">Mulai tryout</Link>
-              </Button>
+              <p className="text-sm text-muted-foreground mb-6">
+                Jadi yang pertama. Pastikan menekan tombol Submit hingga skor
+                tercatat.
+              </p>
+              <Link
+                href="/tryout"
+                className="inline-flex items-center justify-center rounded-md bg-primary text-primary-foreground text-sm font-medium px-5 py-2.5 hover:bg-primary/90 transition-colors"
+              >
+                Mulai tryout
+              </Link>
             </div>
           ) : (
-            <div className="rounded-2xl border border-border/60 bg-card/30 overflow-hidden">
+            <div className="rounded-xl border border-border bg-card overflow-hidden">
               <table className="w-full">
-                <thead className="bg-muted/40 text-xs uppercase tracking-wider text-muted-foreground">
+                <thead className="bg-secondary/60">
                   <tr>
-                    <th className="text-left px-4 py-3 font-semibold">#</th>
-                    <th className="text-left px-4 py-3 font-semibold">Peserta</th>
-                    <th className="text-right px-4 py-3 font-semibold">Skor</th>
-                    <th className="text-right px-4 py-3 font-semibold hidden sm:table-cell">
+                    <th className="text-left px-5 py-3.5 label-caps">#</th>
+                    <th className="text-left px-5 py-3.5 label-caps">
+                      Peserta
+                    </th>
+                    <th className="text-right px-5 py-3.5 label-caps">Skor</th>
+                    <th className="text-right px-5 py-3.5 label-caps hidden sm:table-cell">
                       Waktu
                     </th>
-                    <th className="text-right px-4 py-3 font-semibold hidden md:table-cell">
+                    <th className="text-right px-5 py-3.5 label-caps hidden md:table-cell">
                       Status
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-border/40">
+                <tbody className="divide-y divide-border">
                   {rows.map((r, idx) => (
                     <Row key={r.id} rank={idx + 1} r={r} />
                   ))}
@@ -105,25 +111,54 @@ export default async function LeaderboardPage() {
           )}
 
           {/* CTA */}
-          <section className="text-center">
-            <p className="text-sm text-muted-foreground mb-4">
-              Mau gabung ke daftar ini?
-            </p>
-            <Button asChild size="lg">
-              <Link href="/tryout">Mulai tryout</Link>
-            </Button>
-          </section>
+          {rows.length > 0 && (
+            <section className="text-center">
+              <p className="serif text-2xl text-foreground mb-5">
+                Tertarik bergabung di daftar ini?
+              </p>
+              <Link
+                href="/tryout"
+                className="inline-flex items-center justify-center rounded-md bg-primary text-primary-foreground text-sm font-medium px-6 py-3 hover:bg-primary/90 transition-colors"
+              >
+                Mulai tryout
+              </Link>
+            </section>
+          )}
 
           {/* Notes */}
-          <section className="rounded-xl border border-border/60 bg-card/30 p-5 text-sm text-muted-foreground">
-            <p className="font-semibold text-foreground/90 mb-2">Catatan</p>
-            <ul className="list-disc pl-5 space-y-1.5">
-              <li>Skor maksimal 150 (TWK 50 + TIU 50 + TKP 50).</li>
-              <li>
-                Lulus passing grade SKD: TWK ≥ 65, TIU ≥ 80, TKP ≥ 166. Karena Cita versi
-                MVP cuma 30 soal, badge "lulus" Cita pakai aturan internal proporsional.
+          <section className="rounded-xl border border-border bg-card p-6 text-sm text-muted-foreground">
+            <p className="label-caps text-foreground mb-3">Catatan</p>
+            <ul className="space-y-2">
+              <li className="flex gap-3">
+                <span
+                  aria-hidden="true"
+                  className="mt-2 size-1.5 rounded-full bg-[var(--gold)] shrink-0"
+                />
+                <span>
+                  Skor maksimum adalah 150 (TWK 50 + TIU 50 + TKP 50).
+                </span>
               </li>
-              <li>Peringkat di-reset berkala biar latihan terasa segar.</li>
+              <li className="flex gap-3">
+                <span
+                  aria-hidden="true"
+                  className="mt-2 size-1.5 rounded-full bg-[var(--gold)] shrink-0"
+                />
+                <span>
+                  Ambang batas resmi BKN: TWK ≥ 65, TIU ≥ 80, TKP ≥ 166. Karena
+                  Cita versi MVP hanya berisi 30 soal, label &ldquo;lulus&rdquo;
+                  pada Cita mengikuti aturan internal proporsional.
+                </span>
+              </li>
+              <li className="flex gap-3">
+                <span
+                  aria-hidden="true"
+                  className="mt-2 size-1.5 rounded-full bg-[var(--gold)] shrink-0"
+                />
+                <span>
+                  Peringkat di-reset secara berkala agar kompetisi tetap
+                  dinamis.
+                </span>
+              </li>
             </ul>
           </section>
         </div>
@@ -135,52 +170,50 @@ export default async function LeaderboardPage() {
 
 function Row({ rank, r }: { rank: number; r: LeaderRow }) {
   const display = displayName(r.userId)
-  const isPodium = rank <= 3
   const lulus = r.passingStatus === "lulus"
 
   return (
-    <tr
-      className={cn(
-        "transition-colors",
-        isPodium ? "bg-primary/5" : "hover:bg-muted/30",
-      )}
-    >
-      <td className="px-4 py-3">
+    <tr className="hover:bg-secondary/40 transition-colors">
+      <td className="px-5 py-4">
         <RankBadge rank={rank} />
       </td>
-      <td className="px-4 py-3">
+      <td className="px-5 py-4">
         <div className="flex flex-col">
-          <span className="font-medium">{display}</span>
+          <span className="font-medium text-foreground">{display}</span>
           <span className="text-xs text-muted-foreground sm:hidden">
-            <Clock className="inline size-3 -mt-0.5 mr-1" />
+            <Clock
+              className="inline size-3 -mt-0.5 mr-1"
+              strokeWidth={1.5}
+            />
             {formatDuration((r.durationSec ?? 0) * 1000)}
           </span>
         </div>
       </td>
-      <td className="px-4 py-3 text-right">
+      <td className="px-5 py-4 text-right">
         <div className="flex flex-col items-end">
-          <span className="font-bold text-base">{r.totalScore ?? 0}</span>
+          <span className="serif text-xl tabular-nums text-foreground">
+            {r.totalScore ?? 0}
+          </span>
           <span className="text-xs text-muted-foreground hidden sm:inline">
             {r.scoreTWK ?? 0} · {r.scoreTIU ?? 0} · {r.scoreTKP ?? 0}
           </span>
         </div>
       </td>
-      <td className="px-4 py-3 text-right text-muted-foreground hidden sm:table-cell">
-        <Clock className="inline size-3.5 -mt-0.5 mr-1" />
+      <td className="px-5 py-4 text-right text-sm text-muted-foreground hidden sm:table-cell">
+        <Clock className="inline size-3.5 -mt-0.5 mr-1" strokeWidth={1.5} />
         {formatDuration((r.durationSec ?? 0) * 1000)}
       </td>
-      <td className="px-4 py-3 text-right hidden md:table-cell">
-        <Badge
-          variant="outline"
+      <td className="px-5 py-4 text-right hidden md:table-cell">
+        <span
           className={cn(
-            "text-[10px] uppercase tracking-wider",
+            "inline-flex items-center rounded-md border px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.1em]",
             lulus
-              ? "border-emerald-500/40 text-emerald-300"
-              : "border-amber-500/40 text-amber-300",
+              ? "bg-[var(--success-soft)] text-[var(--success-fg)] border-[var(--success-fg)]/20"
+              : "bg-secondary text-muted-foreground border-border",
           )}
         >
           {lulus ? "Lulus" : "Belum"}
-        </Badge>
+        </span>
       </td>
     </tr>
   )
@@ -189,37 +222,32 @@ function Row({ rank, r }: { rank: number; r: LeaderRow }) {
 function RankBadge({ rank }: { rank: number }) {
   if (rank === 1) {
     return (
-      <span className="inline-flex items-center justify-center size-8 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40">
-        <Trophy className="size-4" />
+      <span className="inline-flex items-center justify-center size-9 rounded-full bg-[var(--review-amber)] text-[var(--review-amber-fg)] border border-[var(--gold)]/40">
+        <Trophy className="size-4" strokeWidth={1.5} />
       </span>
     )
   }
   if (rank === 2) {
     return (
-      <span className="inline-flex items-center justify-center size-8 rounded-full bg-slate-400/20 text-slate-300 border border-slate-400/40">
-        <Medal className="size-4" />
+      <span className="inline-flex items-center justify-center size-9 rounded-full bg-secondary text-foreground border border-border">
+        <Medal className="size-4" strokeWidth={1.5} />
       </span>
     )
   }
   if (rank === 3) {
     return (
-      <span className="inline-flex items-center justify-center size-8 rounded-full bg-orange-700/20 text-orange-300 border border-orange-700/40">
-        <Award className="size-4" />
+      <span className="inline-flex items-center justify-center size-9 rounded-full bg-secondary/60 text-foreground/80 border border-border">
+        <Award className="size-4" strokeWidth={1.5} />
       </span>
     )
   }
   return (
-    <span className="inline-flex items-center justify-center size-8 rounded-full bg-muted/40 text-muted-foreground text-sm font-semibold">
+    <span className="inline-flex items-center justify-center size-9 rounded-full bg-card text-muted-foreground border border-border serif text-sm tabular-nums">
       {rank}
     </span>
   )
 }
 
-/**
- * Turn a userId like "anon_mpdy6rg9liwui44" into a display handle.
- * Anonymous users get a friendly randomized display name based on their id hash,
- * so the leaderboard feels alive without exposing raw ids.
- */
 function displayName(userId: string): string {
   if (!userId.startsWith("anon_")) return userId.slice(0, 16)
   const adjectives = [

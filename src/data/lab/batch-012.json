@@ -1,0 +1,653 @@
+{
+  "batch_id": "batch-012",
+  "topic": "Batch 012 — TKP Jejaring Kerja",
+  "source_file": "docs/content/drafts/batch-012-tkp-jejaring.md",
+  "generated_at": "2026-05-21T10:12:20.195Z",
+  "stats": {
+    "total_soal": 12,
+    "by_difficulty": {
+      "1": 0,
+      "2": 3,
+      "3": 5,
+      "4": 4,
+      "5": 0
+    },
+    "warnings_total": 11
+  },
+  "questions": [
+    {
+      "id": "TKP_JEJARING_KONFLIK_001_001",
+      "category": "TKP",
+      "subcategory": "Jejaring Kerja",
+      "topic": "Konflik",
+      "questionText": "Dua rekan kerja Anda terlibat konflik berkepanjangan terkait pembagian tugas. Konflik ini mulai mengganggu produktivitas tim. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Membiarkan mereka menyelesaikan masalahnya sendiri"
+        },
+        {
+          "label": "B",
+          "text": "Memilih sisi yang menurut Anda lebih benar"
+        },
+        {
+          "label": "C",
+          "text": "Mengajak keduanya berdialog dengan tenang untuk mencari titik temu, dan jika perlu melibatkan atasan sebagai mediator"
+        },
+        {
+          "label": "D",
+          "text": "Melaporkan konflik ke atasan agar segera diselesaikan"
+        },
+        {
+          "label": "E",
+          "text": "Berbicara secara terpisah ke masing-masing untuk mendengar versi mereka"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 2,
+        "B": 1,
+        "C": 5,
+        "D": 3,
+        "E": 4
+      },
+      "difficulty": 3,
+      "tags": [
+        "tkp",
+        "jejaring-kerja",
+        "konflik",
+        "mediasi"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_JEJARING_KONFLIK_001",
+      "imagePrompt": null,
+      "explanation": "Mengajak dialog bersama adalah pendekatan paling efektif untuk konflik tim. Mediator yang netral membantu mencari solusi tanpa eskalasi.",
+      "explanationLong": "Pilihan C (skor 5) memenuhi prinsip mediasi modern: dialog terbuka, mencari titik temu, dengan eskalasi terstruktur jika perlu. Pilihan E (skor 4) baik untuk pemahaman awal, tetapi belum membawa ke resolusi. Pilihan D (skor 3) menyerahkan tanpa upaya pribadi. Pilihan A (skor 2) pasif dan membiarkan masalah membesar. Pilihan B (skor 1) merusak netralitas dan memperburuk konflik.",
+      "source": "BerAKHLAK — Harmonis, Kolaboratif",
+      "warnings": []
+    },
+    {
+      "id": "TKP_JEJARING_MENTORING_JUNIOR_001_002",
+      "category": "TKP",
+      "subcategory": "Jejaring Kerja",
+      "topic": "Mentoring",
+      "questionText": "Seorang pegawai baru ditempatkan di unit Anda dan terlihat bingung dengan alur kerja. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Membiarkan beliau belajar sendiri seperti Anda dulu"
+        },
+        {
+          "label": "B",
+          "text": "Memberi tahu hanya jika beliau bertanya"
+        },
+        {
+          "label": "C",
+          "text": "Menawarkan bantuan untuk menjelaskan alur kerja dan membantu adaptasinya secara proaktif"
+        },
+        {
+          "label": "D",
+          "text": "Menyarankan beliau bertanya ke pegawai lain yang lebih senior"
+        },
+        {
+          "label": "E",
+          "text": "Mengarahkan beliau ke modul pelatihan yang ada"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 2,
+        "B": 3,
+        "C": 5,
+        "D": 1,
+        "E": 3
+      },
+      "difficulty": 2,
+      "tags": [
+        "tkp",
+        "jejaring-kerja",
+        "mentoring",
+        "junior"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_JEJARING_MENTORING_JUNIOR_001",
+      "imagePrompt": null,
+      "explanation": "Mentoring proaktif kepada pegawai baru menunjukkan kolaborasi dan kepedulian. Investasi waktu untuk membantu adaptasi memperkuat tim secara keseluruhan.",
+      "explanationLong": "Pilihan C (skor 5) mencerminkan budaya knowledge-sharing dan onboarding yang sehat. Pilihan B dan E (skor 3) cukup memadai tetapi tidak optimal. Pilihan A (skor 2) bersifat pasif dan tidak ramah. Pilihan D (skor 1) menyerahkan tanggung jawab — Anda yang ada di unit yang sama justru tidak menawarkan bantuan.",
+      "source": "BerAKHLAK — Kolaboratif, Harmonis",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 2,3,5,1,3 (sum=14). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_JEJARING_SENIOR_001_003",
+      "category": "TKP",
+      "subcategory": "Jejaring Kerja",
+      "topic": "Senior Keras Kepala",
+      "questionText": "Anda memiliki ide perbaikan alur kerja, tetapi senior Anda yang sudah lama bekerja menolak perubahan dan menganggap cara lama lebih baik. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Mengikuti pendapat senior demi menghormati"
+        },
+        {
+          "label": "B",
+          "text": "Mempresentasikan ide secara terstruktur dengan data dan manfaat yang jelas, sambil menghargai pengalaman senior dan terbuka untuk diskusi"
+        },
+        {
+          "label": "C",
+          "text": "Melaporkan ide langsung ke atasan agar dieksekusi"
+        },
+        {
+          "label": "D",
+          "text": "Memaksa senior menerima ide karena lebih efektif"
+        },
+        {
+          "label": "E",
+          "text": "Mempresentasikan ide tanpa memperdulikan pendapat senior"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 2,
+        "B": 5,
+        "C": 2,
+        "D": 1,
+        "E": 2
+      },
+      "difficulty": 4,
+      "tags": [
+        "tkp",
+        "jejaring-kerja",
+        "senior",
+        "perubahan"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_JEJARING_SENIOR_001",
+      "imagePrompt": null,
+      "explanation": "Cara terbaik adalah komunikasi profesional dengan data, sambil menghargai pengalaman senior. Pendekatan yang menggabungkan respect dan rasionalitas menghasilkan kolaborasi efektif.",
+      "explanationLong": "Pilihan B (skor 5) memenuhi tiga aspek: persiapan (data dan manfaat), penghormatan (menghargai pengalaman), dan keterbukaan (siap diskusi). Pilihan A (skor 2) tidak adaptif dan menolak inovasi. Pilihan C (skor 2) by-pass yang merusak hubungan tim. Pilihan E (skor 2) tidak diplomatis. Pilihan D (skor 1) bertentangan dengan prinsip kerjasama.",
+      "source": "BerAKHLAK — Adaptif, Harmonis, Kolaboratif",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 2,5,2,1,2 (sum=12). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_JEJARING_PERFORMA_001_004",
+      "category": "TKP",
+      "subcategory": "Jejaring Kerja",
+      "topic": "Performa Rekan",
+      "questionText": "Seorang rekan kerja Anda sering tidak menyelesaikan tugas tepat waktu dan beban tugasnya sering jatuh ke Anda. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Melaporkan ke atasan tanpa berbicara dulu dengan rekan"
+        },
+        {
+          "label": "B",
+          "text": "Berbicara langsung dan baik-baik kepada rekan tersebut, mendengar kendalanya, dan jika belum membaik baru lapor ke atasan"
+        },
+        {
+          "label": "C",
+          "text": "Mengerjakan tugas yang menumpuk tanpa berkata apa-apa"
+        },
+        {
+          "label": "D",
+          "text": "Mengeluh ke rekan lain tentang situasi tersebut"
+        },
+        {
+          "label": "E",
+          "text": "Mengingatkan rekan dengan tegas di depan tim"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 2,
+        "B": 5,
+        "C": 1,
+        "D": 1,
+        "E": 2
+      },
+      "difficulty": 3,
+      "tags": [
+        "tkp",
+        "jejaring-kerja",
+        "performa",
+        "umpan-balik"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_JEJARING_PERFORMA_001",
+      "imagePrompt": null,
+      "explanation": "Komunikasi langsung yang konstruktif adalah pendekatan tepat. Setelah upaya diskusi, jika tidak ada perbaikan, baru eskalasi ke atasan.",
+      "explanationLong": "Pilihan B (skor 5) menjaga harmoni tim dengan bicara langsung secara baik dan empati (mendengar kendala), serta memberi kesempatan rekan memperbaiki diri. Eskalasi adalah opsi setelah upaya pribadi gagal. Pilihan A (skor 2) lompat ke eskalasi tanpa upaya. Pilihan E (skor 2) konfrontatif di publik. Pilihan C (skor 1) memendam masalah dan akan membakar diri Anda. Pilihan D (skor 1) gosip merusak tim.",
+      "source": "BerAKHLAK — Harmonis, Akuntabel",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 2,5,1,1,2 (sum=11). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_JEJARING_BAWAHAN_001_005",
+      "category": "TKP",
+      "subcategory": "Jejaring Kerja",
+      "topic": "Bawahan",
+      "questionText": "Seorang bawahan Anda melakukan kesalahan yang menyebabkan pekerjaan harus diulang. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Memarahi bawahan agar tidak mengulang kesalahan"
+        },
+        {
+          "label": "B",
+          "text": "Mengajak diskusi penyebab kesalahan, memberikan arahan perbaikan, dan menjadikannya pembelajaran tim"
+        },
+        {
+          "label": "C",
+          "text": "Menulis surat peringatan agar tegas"
+        },
+        {
+          "label": "D",
+          "text": "Mengerjakan ulang tanpa berkata apa-apa"
+        },
+        {
+          "label": "E",
+          "text": "Mempermalukan bawahan di rapat agar jera"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 2,
+        "B": 5,
+        "C": 2,
+        "D": 1,
+        "E": 1
+      },
+      "difficulty": 3,
+      "tags": [
+        "tkp",
+        "jejaring-kerja",
+        "bawahan",
+        "coaching"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_JEJARING_BAWAHAN_001",
+      "imagePrompt": null,
+      "explanation": "Coaching yang konstruktif lebih efektif daripada hukuman. Mengajak diskusi penyebab dan menjadikan pembelajaran membangun budaya belajar di tim.",
+      "explanationLong": "Pilihan B (skor 5) menerapkan model coaching modern: cari akar masalah, beri arahan, lalu jadikan pembelajaran kolektif (tanpa mempermalukan individu). Pilihan A (skor 2) menggunakan emosi sebagai motivator — kurang efektif jangka panjang. Pilihan C (skor 2) terlalu birokratis untuk kesalahan biasa. Pilihan D (skor 1) menutupi kesalahan tanpa pembelajaran. Pilihan E (skor 1) merusak harga diri dan moral tim.",
+      "source": "BerAKHLAK — Kompeten, Harmonis; manajemen kinerja",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 2,5,2,1,1 (sum=11). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_JEJARING_BEDA_PENDAPAT_001_006",
+      "category": "TKP",
+      "subcategory": "Jejaring Kerja",
+      "topic": "Beda Pendapat",
+      "questionText": "Dalam rapat tim, Anda memiliki pendapat yang berbeda dengan mayoritas anggota tim. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Menyampaikan pendapat dengan tegas tanpa peduli pendapat lain"
+        },
+        {
+          "label": "B",
+          "text": "Menyampaikan pendapat dengan jelas dan beralasan, sambil terbuka mendengar dan menghargai pendapat lain"
+        },
+        {
+          "label": "C",
+          "text": "Mengikuti suara mayoritas demi menjaga harmoni"
+        },
+        {
+          "label": "D",
+          "text": "Tidak menyampaikan apa-apa untuk menghindari konflik"
+        },
+        {
+          "label": "E",
+          "text": "Menulis pendapat di catatan dan menyampaikannya nanti secara pribadi"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 2,
+        "B": 5,
+        "C": 2,
+        "D": 1,
+        "E": 3
+      },
+      "difficulty": 2,
+      "tags": [
+        "tkp",
+        "jejaring-kerja",
+        "beda-pendapat",
+        "rapat"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_JEJARING_BEDA_PENDAPAT_001",
+      "imagePrompt": null,
+      "explanation": "ASN profesional menyampaikan pendapat dengan jelas dan beralasan, tetapi tetap terbuka pada pendapat lain. Diskusi sehat menghasilkan keputusan terbaik tim.",
+      "explanationLong": "Pilihan B (skor 5) memenuhi prinsip diskusi yang sehat: assertif (menyampaikan dengan jelas) tetapi tidak agresif (terbuka mendengar). Pilihan E (skor 3) terlambat — pendapat di rapat hilang manfaatnya. Pilihan A (skor 2) mengabaikan dimensi tim. Pilihan C (skor 2) groupthink yang berbahaya. Pilihan D (skor 1) tidak kontribusi sama sekali.",
+      "source": "BerAKHLAK — Kolaboratif, Adaptif; etika rapat",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 2,5,2,1,3 (sum=13). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_JEJARING_DEADLINE_001_007",
+      "category": "TKP",
+      "subcategory": "Jejaring Kerja",
+      "topic": "Deadline",
+      "questionText": "Tim Anda menghadapi deadline mendekati dan masih banyak pekerjaan tersisa. Beberapa rekan tampak panik. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Fokus pada bagian Anda saja agar tidak terlambat"
+        },
+        {
+          "label": "B",
+          "text": "Mengajak tim memetakan tugas yang tersisa, prioritaskan yang kritis, dan saling membantu yang membutuhkan"
+        },
+        {
+          "label": "C",
+          "text": "Memberi semangat saja kepada rekan yang panik"
+        },
+        {
+          "label": "D",
+          "text": "Mengajak tim lembur tanpa membicarakan strategi"
+        },
+        {
+          "label": "E",
+          "text": "Melaporkan ke atasan bahwa deadline tidak realistis"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 2,
+        "B": 5,
+        "C": 3,
+        "D": 3,
+        "E": 1
+      },
+      "difficulty": 3,
+      "tags": [
+        "tkp",
+        "jejaring-kerja",
+        "deadline",
+        "prioritas"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_JEJARING_DEADLINE_001",
+      "imagePrompt": null,
+      "explanation": "Pendekatan strategis: pemetaan tugas, prioritas, dan kolaborasi. Memberi rasa tenang sekaligus arah konkret kepada tim yang panik.",
+      "explanationLong": "Pilihan B (skor 5) memberi kepemimpinan informal yang efektif: bukan sekadar bekerja keras tetapi bekerja cerdas dengan tim. Pilihan C dan D (skor 3) baik tapi belum menyentuh prioritas yang kritis. Pilihan A (skor 2) egois saat tim membutuhkan. Pilihan E (skor 1) menyalahkan keadaan tanpa solusi.",
+      "source": "BerAKHLAK — Kolaboratif, Kompeten",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 2,5,3,3,1 (sum=14). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_JEJARING_LINTAS_INSTANSI_001_008",
+      "category": "TKP",
+      "subcategory": "Jejaring Kerja",
+      "topic": "Lintas Instansi",
+      "questionText": "Anda ditugaskan berkoordinasi dengan instansi lain untuk proyek lintas sektor. Mereka tampak enggan dan respons komunikasinya lambat. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Melapor ke atasan agar didorong oleh pejabat yang lebih tinggi"
+        },
+        {
+          "label": "B",
+          "text": "Menunggu sampai ada tindak lanjut dari mereka"
+        },
+        {
+          "label": "C",
+          "text": "Membangun komunikasi proaktif dengan kontak person, menjelaskan urgensi proyek, dan menjadwalkan pertemuan tatap muka jika perlu"
+        },
+        {
+          "label": "D",
+          "text": "Mengirim email pengingat berulang kali"
+        },
+        {
+          "label": "E",
+          "text": "Mencari jalur informal melalui kenalan di instansi tersebut"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 3,
+        "B": 1,
+        "C": 5,
+        "D": 3,
+        "E": 4
+      },
+      "difficulty": 4,
+      "tags": [
+        "tkp",
+        "jejaring-kerja",
+        "lintas-instansi",
+        "koordinasi"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_JEJARING_LINTAS_INSTANSI_001",
+      "imagePrompt": null,
+      "explanation": "Komunikasi proaktif dengan tatap muka adalah cara paling efektif untuk membangun trust dan menggerakkan koordinasi lintas instansi yang stuck.",
+      "explanationLong": "Pilihan C (skor 5) menerapkan strategi membangun hubungan profesional yang substantif. Pilihan E (skor 4) jalur informal kadang efektif tetapi punya risiko bias. Pilihan A dan D (skor 3) pendekatan formal yang kadang efektif tapi tidak optimal. Pilihan B (skor 1) pasif dan akan membuat proyek mandek.",
+      "source": "BerAKHLAK — Kolaboratif, Adaptif",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 3,1,5,3,4 (sum=16). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_JEJARING_LUARJAM_001_009",
+      "category": "TKP",
+      "subcategory": "Jejaring Kerja",
+      "topic": "Bantuan di Luar Jam",
+      "questionText": "Seorang rekan meminta bantuan di luar jam kerja untuk menyelesaikan tugasnya. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Menolak karena bukan tanggung jawab Anda"
+        },
+        {
+          "label": "B",
+          "text": "Menanyakan urgensinya. Jika benar mendesak dan Anda mampu, bantu sebatas waktu yang wajar; jika tidak, jelaskan dengan baik"
+        },
+        {
+          "label": "C",
+          "text": "Menerima tanpa berpikir panjang demi solidaritas"
+        },
+        {
+          "label": "D",
+          "text": "Mengarahkan ke rekan lain saja"
+        },
+        {
+          "label": "E",
+          "text": "Mempersilakan rekan menunggu sampai jam kerja besok"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 2,
+        "B": 5,
+        "C": 3,
+        "D": 2,
+        "E": 3
+      },
+      "difficulty": 2,
+      "tags": [
+        "tkp",
+        "jejaring-kerja",
+        "kontribusi",
+        "batasan"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_JEJARING_LUARJAM_001",
+      "imagePrompt": null,
+      "explanation": "Bantuan dengan pertimbangan adalah respons terbaik. Cek urgensi dan kapabilitas, lalu bantu jika wajar, atau jelaskan dengan baik jika tidak bisa.",
+      "explanationLong": "Pilihan B (skor 5) menyeimbangkan solidaritas tim dengan batasan personal yang sehat. ASN tidak harus selalu sedia 24/7, tetapi sigap saat ada urgensi nyata. Pilihan C (skor 3) niat baik tetapi tanpa filter — bisa exploitative jangka panjang. Pilihan E (skor 3) cukup tetapi tidak responsif untuk hal mendesak. Pilihan A (skor 2) tidak fleksibel. Pilihan D (skor 2) menggugurkan tanggung jawab tanpa explore.",
+      "source": "BerAKHLAK — Kolaboratif, Harmonis; work-life balance ASN",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 2,5,3,2,3 (sum=15). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_JEJARING_KONFLIK_KEPENTINGAN_001_010",
+      "category": "TKP",
+      "subcategory": "Jejaring Kerja",
+      "topic": "Konflik Kepentingan",
+      "questionText": "Anda menjadi anggota panitia pengadaan, dan salah satu peserta tender ternyata adalah saudara kandung Anda. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Segera mengundurkan diri dari panitia dan melaporkan konflik kepentingan kepada atasan"
+        },
+        {
+          "label": "B",
+          "text": "Tetap menjadi anggota panitia tetapi menjaga obyektivitas"
+        },
+        {
+          "label": "C",
+          "text": "Tidak memberikan suara saat penilaian saudara Anda"
+        },
+        {
+          "label": "D",
+          "text": "Tetap menjadi panitia tetapi memberitahu rekan panitia agar mereka mengawasi"
+        },
+        {
+          "label": "E",
+          "text": "Mengundurkan diri tanpa memberi alasan"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 5,
+        "B": 1,
+        "C": 2,
+        "D": 3,
+        "E": 2
+      },
+      "difficulty": 4,
+      "tags": [
+        "tkp",
+        "jejaring-kerja",
+        "konflik-kepentingan",
+        "etika"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_JEJARING_KONFLIK_KEPENTINGAN_001",
+      "imagePrompt": null,
+      "explanation": "Konflik kepentingan harus dihindari secara struktural dengan mengundurkan diri dan transparan ke atasan. Subjektivitas hampir pasti tidak bisa dihindari sepenuhnya jika tetap di panitia.",
+      "explanationLong": "Pilihan A (skor 5) adalah standar emas integritas: pengunduran diri terbuka dengan dokumentasi resmi. Ini menyelamatkan integritas Anda dan keputusan panitia. Pilihan D (skor 3) membagi beban tetapi tetap mengandung risiko. Pilihan C dan E (skor 2) bermaksud baik tetapi belum memenuhi standar full disclosure. Pilihan B (skor 1) bertentangan langsung dengan etika konflik kepentingan.",
+      "source": "UU 5/2014 tentang ASN; PP 53/2010 tentang Disiplin PNS; UU 28/1999 tentang Penyelenggaraan Negara Bersih",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 5,1,2,3,2 (sum=13). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_JEJARING_GENERASI_001_011",
+      "category": "TKP",
+      "subcategory": "Jejaring Kerja",
+      "topic": "Beda Generasi",
+      "questionText": "Anda lebih senior dari segi usia dan pengalaman, sementara junior baru di unit Anda lebih nyaman dengan teknologi digital. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Tetap menggunakan cara kerja Anda yang terbukti efektif"
+        },
+        {
+          "label": "B",
+          "text": "Saling belajar — Anda berbagi pengalaman dan pengetahuan domain, junior membantu Anda dengan teknologi terbaru"
+        },
+        {
+          "label": "C",
+          "text": "Mengikuti cara junior agar tampak modern"
+        },
+        {
+          "label": "D",
+          "text": "Membiarkan junior bekerja dengan caranya, Anda bekerja dengan cara Anda"
+        },
+        {
+          "label": "E",
+          "text": "Mengarahkan junior untuk menyesuaikan dengan cara unit"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 2,
+        "B": 5,
+        "C": 2,
+        "D": 3,
+        "E": 2
+      },
+      "difficulty": 3,
+      "tags": [
+        "tkp",
+        "jejaring-kerja",
+        "mentoring",
+        "generasi"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_JEJARING_GENERASI_001",
+      "imagePrompt": null,
+      "explanation": "Reverse mentoring — saling belajar antar generasi — adalah pendekatan modern yang menghasilkan tim sangat efektif. Setiap generasi punya kekuatan masing-masing.",
+      "explanationLong": "Pilihan B (skor 5) memanfaatkan kekuatan keberagaman usia: kebijaksanaan domain dari senior + ketangkasan teknologi dari junior. Hasilnya adalah tim yang adaptif dan produktif. Pilihan D (skor 3) co-existence tanpa sinergi — sayang kesempatan. Pilihan A, C, E (skor 2) terlalu memihak salah satu sisi tanpa pertukaran nilai.",
+      "source": "BerAKHLAK — Adaptif, Kolaboratif, Kompeten",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 2,5,2,3,2 (sum=14). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_JEJARING_INFOSHARING_001_012",
+      "category": "TKP",
+      "subcategory": "Jejaring Kerja",
+      "topic": "Information Hoarding",
+      "questionText": "Seorang rekan kerja terkesan enggan berbagi informasi yang Anda butuhkan untuk pekerjaan, padahal informasi itu seharusnya menjadi milik bersama tim. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Memaksa rekan untuk membagikan informasi"
+        },
+        {
+          "label": "B",
+          "text": "Melaporkan ke atasan tanpa berbicara dulu"
+        },
+        {
+          "label": "C",
+          "text": "Mendekati rekan dengan baik untuk memahami alasan keengganannya, lalu menyampaikan pentingnya information sharing untuk hasil tim"
+        },
+        {
+          "label": "D",
+          "text": "Mencari informasi dari sumber lain saja"
+        },
+        {
+          "label": "E",
+          "text": "Mengabaikan dan kerjakan tanpa informasi tersebut"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 1,
+        "B": 2,
+        "C": 5,
+        "D": 3,
+        "E": 1
+      },
+      "difficulty": 4,
+      "tags": [
+        "tkp",
+        "jejaring-kerja",
+        "information-sharing",
+        "kolaborasi"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_JEJARING_INFOSHARING_001",
+      "imagePrompt": null,
+      "explanation": "Pendekatan empatik untuk memahami akar penyebab (misal kurang trust, beban pribadi, atau ketakutan tertentu) lebih efektif daripada konfrontasi. Information sharing harus dibangun berbasis hubungan baik.",
+      "explanationLong": "Pilihan C (skor 5) berusaha menyelesaikan akar masalah, bukan sekadar gejalanya. Bisa jadi rekan punya alasan yang valid (data sensitif, bingung, atau pernah trauma sharing yang disalahgunakan). Pilihan D (skor 3) workaround yang efisien tetapi tidak menyelesaikan masalah jangka panjang. Pilihan B (skor 2) eskalasi prematur. Pilihan A (skor 1) memperburuk hubungan. Pilihan E (skor 1) membahayakan hasil pekerjaan.",
+      "source": "BerAKHLAK — Kolaboratif, Harmonis",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 1,2,5,3,1 (sum=12). Consider rebalancing to 1-5 unique for production."
+      ]
+    }
+  ]
+}

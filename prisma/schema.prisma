@@ -1,15 +1,32 @@
-// Cita — SKD CPNS Tryout
-// Prisma schema for Supabase Postgres
+// Cita — SKD CPNS Tryout (DRAFT v2 schema)
+//
+// ⚠️ DRAFT ONLY — file ini BUKAN schema aktif.
+// schema.prisma yang dipakai prod tetap.
+// File ini gambaran target setelah MIMO redesign clear + admin UI ready.
+//
+// Perubahan vs schema.prisma:
+//   1. Question: tambah subcategory hierarchy (TWK→Pancasila→Sila1)
+//   2. Question.tags string[] (untuk filter cepat)
+//   3. Question.imagePrompt — untuk TIU Figural (text → image gen later)
+//   4. Question.explanationLong — separate dari short cache, full text untuk tutor
+//   5. Tambah ItemFamily — untuk anti-clone (TIU template-based)
+//   6. Tambah EnemyGroup — untuk anti-cluster topic mirip dalam 1 paket
+//   7. Tambah QuestionImage — generated image hasil dari imagePrompt (lazy gen)
+//   8. AttemptItem.attemptNumber + cooldown via index (replace Cooldown table dgn flag)
+//
+// Migration plan: lihat docs/content/SCHEMA-OUTPUT.md
 
 generator client {
-  provider      = "prisma-client-js"
-  binaryTargets = ["native", "rhel-openssl-3.0.x"]
+  provider        = "prisma-client-js"
+  binaryTargets   = ["native", "rhel-openssl-3.0.x"]
+  previewFeatures = ["postgresqlExtensions"]
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  directUrl  = env("DIRECT_URL")
+  extensions = [pg_trgm] // untuk similarity check di admin UI nanti
 }
 
 enum Category {
@@ -24,38 +41,123 @@ enum AttemptStatus {
   EXPIRED
 }
 
+enum AttemptMode {
+  // Daily drill: 30 soal (10 TWK + 10 TIU + 10 TKP), 30 menit
+  MINI
+  // Full SKD simulation: 110 soal (30 TWK + 35 TIU + 45 TKP), 100 menit
+  FULL
+}
+
+enum QuestionStatus {
+  DRAFT
+  REVIEWED
+  PUBLISHED
+  ARCHIVED
+}
+
+// Cita Role hierarchy (Phase 8)
+//   REGISTERED  default after sign-up
+//   PREMIUM     subscription-driven (also tracked in Subscription, but mirrored here for fast filter)
+//   MODERATOR   read + edit content, no user/billing access
+//   ADMIN       full access; gates /admin/*
+//
+// Note: ANON is implicit — visitors without a Cita user row. Don't store ANON in DB.
+enum Role {
+  REGISTERED
+  PREMIUM
+  MODERATOR
+  ADMIN
+}
+
 model User {
   id          String    @id @default(cuid())
   email       String?   @unique
   displayName String?
-  // null = anonymous user (hybrid auth: anyone can try, login optional)
   isAnonymous Boolean   @default(true)
+  role        Role      @default(REGISTERED)
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
   attempts    Attempt[]
 
+  @@index([role])
   @@map("users")
 }
 
-model Question {
-  id            String        @id @default(cuid())
-  category      Category
-  subcategory   String
-  questionText  String        @db.Text
-  // [{label: 'A', text: '...'}, ...]
-  options       Json
-  correctAnswer String
-  // For TKP only — 5 unique weights 1..5 keyed by label A..E. Null for TWK/TIU.
-  optionWeights Json?
-  difficulty    Int           @default(2)
-  // Cached AI explanation (pre-generated; saves real-time API calls in prod)
-  explanation   String?       @db.Text
-  source        String        @default("original")
-  createdAt    DateTime       @default(now())
-  attemptItems  AttemptItem[]
+model ItemFamily {
+  id        String     @id // human-readable, e.g. "TIU_NUM_DERETLINEAR_FAMILY"
+  category  Category
+  topic     String // "Pancasila / Sila1" (display path)
+  notes     String?    @db.Text
+  questions Question[]
 
   @@index([category])
+  @@map("item_families")
+}
+
+model EnemyGroup {
+  id        String     @id // human-readable, e.g. "PANCASILA_BUNYI_SILA1"
+  category  Category
+  topic     String
+  notes     String?    @db.Text
+  questions Question[]
+
+  @@index([category])
+  @@map("enemy_groups")
+}
+
+model Question {
+  id              String         @id // human-readable per konvensi (PANCASILA_BUNYI_SILA1_001)
+  category        Category
+  subcategory     String // "Pancasila"
+  topic           String // "Sila ke-1" — sub-subcategory
+  questionText    String         @db.Text
+  // [{label: 'A', text: '...'}, ...]
+  options         Json
+  // null untuk TKP (no single correct), set untuk TWK/TIU
+  correctAnswer   String?
+  // TKP only — 5 unique weights 1..5 keyed by label A..E
+  optionWeights   Json?
+  difficulty      Int            @default(2) // 1..5
+  tags            String[]       @default([])
+  // TIU Figural only — descriptive prompt for image gen
+  imagePrompt     String?        @db.Text
+  // Cached short explanation (1-2 paragraphs)
+  explanation     String?        @db.Text
+  // Full explanation untuk tutor — disimpan terpisah biar bisa lazy-load
+  explanationLong String?        @db.Text
+  source          String         @default("cita-original")
+  status          QuestionStatus @default(DRAFT)
+
+  familyId     String?
+  family       ItemFamily?     @relation(fields: [familyId], references: [id], onDelete: SetNull)
+  enemyGroupId String?
+  enemyGroup   EnemyGroup?     @relation(fields: [enemyGroupId], references: [id], onDelete: SetNull)
+  images       QuestionImage[]
+  attemptItems AttemptItem[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([category])
+  @@index([status])
+  @@index([familyId])
+  @@index([enemyGroupId])
   @@map("questions")
+}
+
+model QuestionImage {
+  id         String   @id @default(cuid())
+  questionId String
+  question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  // Storage: Supabase Storage atau Vercel Blob
+  url        String
+  // Provider yang generate (untuk audit + regen)
+  provider   String // 'imagen-4', 'sd3', 'midjourney', dll
+  prompt     String   @db.Text // actual prompt yang dipakai (mungkin diedit dari imagePrompt asli)
+  createdAt  DateTime @default(now())
+
+  @@index([questionId])
+  @@map("question_images")
 }
 
 model Attempt {
@@ -63,52 +165,267 @@ model Attempt {
   userId        String
   user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
   status        AttemptStatus @default(IN_PROGRESS)
+  mode          AttemptMode   @default(MINI)
   startedAt     DateTime      @default(now())
   finishedAt    DateTime?
   durationSec   Int?
-  // Skor — per kategori (max TWK=50, TIU=50, TKP=50 untuk MVP 10 soal/kategori × 5)
   scoreTWK      Int?
   scoreTIU      Int?
   scoreTKP      Int?
   totalScore    Int?
-  // 'lulus' | 'tidak_lulus' — based on simplified MVP passing grade
   passingStatus String?
+  /// Cached personalized insight payload generated post-submit.
+  /// Schema lives in src/lib/insight/schema.ts. Null = not generated yet
+  /// (or generation deferred for IN_PROGRESS attempts).
+  aiInsight     Json?
+  insightStatus String? // PENDING | READY | FAILED — null = never requested
+  insightAt     DateTime?
   items         AttemptItem[]
+  share         ResultShare?
 
   @@index([userId])
   @@index([totalScore])
   @@index([status])
+  @@index([mode])
   @@map("attempts")
 }
 
 model AttemptItem {
-  id           String   @id
-  attemptId    String
-  questionId   String
-  userAnswer   String?  // 'A' | 'B' | 'C' | 'D' | 'E' | null (skipped)
-  isCorrect    Boolean? // null until graded; for TKP it's always null (always partial credit)
-  scoreEarned  Int      @default(0)
-  timeSpentMs  Int      @default(0)
-  answeredAt   DateTime?
+  id          String    @id @default(cuid())
+  attemptId   String
+  questionId  String
+  position    Int       @default(0) // sample order in attempt (0..n-1)
+  userAnswer  String? // 'A' | 'B' | 'C' | 'D' | 'E' | null (skipped)
+  isCorrect   Boolean? // null until graded; for TKP it's always null (always partial credit)
+  scoreEarned Int       @default(0)
+  timeSpentMs Int       @default(0)
+  answeredAt  DateTime?
 
   attempt  Attempt  @relation(fields: [attemptId], references: [id], onDelete: Cascade)
   question Question @relation(fields: [questionId], references: [id], onDelete: Restrict)
 
   @@unique([attemptId, questionId])
   @@index([attemptId])
+  @@index([questionId])
+  @@index([attemptId, position])
   @@map("attempt_items")
 }
 
 model ExplainerMessage {
-  id         String   @id
+  id         String   @id @default(cuid())
   attemptId  String
   questionId String
-  role       String   // 'user' | 'assistant'
-  content    String
+  role       String // 'user' | 'assistant'
+  content    String   @db.Text
   tokens     Int?
   createdAt  DateTime @default(now())
 
   @@index([attemptId, questionId, createdAt])
   @@index([attemptId])
   @@map("explainer_messages")
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// BILLING — Phase 7 (Subscription, Order, TutorUsage)
+//
+// Design notes:
+// - `Plan` is a simple enum so future tiers (TEAM, ENTERPRISE) just append.
+// - `Subscription` is one-per-user (unique userId). Lifecycle:
+//     PENDING → ACTIVE → (CANCELLED user-initiated, keeps access until expiresAt)
+//                      → EXPIRED (auto on cron / lazy on access check)
+// - `Order` is the audit trail. One-to-many per user; an Order pays for
+//   creating or extending a Subscription. Midtrans `orderId` is unique.
+// - `TutorUsage` is daily counter, keyed by (userId, date). Reset = new row.
+//   userId here is the Cita-internal user id — anon attempts use the
+//   `cita_anon_id` cookie value as userId (anon never reaches tutor due
+//   to gate, so this is mostly REGISTERED+).
+// ─────────────────────────────────────────────────────────────────────────
+
+enum Plan {
+  FREE
+  PREMIUM
+}
+
+enum SubscriptionStatus {
+  PENDING // checkout initiated, payment not yet confirmed
+  ACTIVE // paid, currently in valid period
+  CANCELLED // user stopped auto-renew, still ACTIVE access until expiresAt
+  EXPIRED // past expiresAt, no access
+}
+
+enum PaymentStatus {
+  PENDING // Midtrans transaction created, not paid yet
+  PAID // Midtrans confirmed via webhook
+  FAILED // Midtrans reported failure
+  EXPIRED // Midtrans transaction expired (24h default)
+  REFUNDED // manual refund
+  CANCELLED // user cancelled before paying
+}
+
+model Subscription {
+  id          String             @id @default(cuid())
+  userId      String             @unique
+  plan        Plan               @default(FREE)
+  status      SubscriptionStatus @default(ACTIVE)
+  startedAt   DateTime           @default(now())
+  expiresAt   DateTime? // null untuk FREE
+  cancelledAt DateTime?
+  autoRenew   Boolean            @default(true)
+  // Track which Order created/extended this subscription (last paid)
+  lastOrderId String?
+  createdAt   DateTime           @default(now())
+  updatedAt   DateTime           @updatedAt
+
+  orders Order[]
+
+  @@index([userId])
+  @@index([status])
+  @@index([expiresAt])
+  @@map("subscriptions")
+}
+
+model Order {
+  id                String        @id @default(cuid())
+  userId            String
+  plan              Plan
+  // Amount in IDR (smallest unit = rupiah, no fractional sen).
+  // 50000 = Rp 50.000 PREMIUM 1 month.
+  // This is the FINAL amount after voucher discount (what the user pays).
+  amount            Int
+  // Original list price before any discount, for audit / receipts.
+  originalAmount    Int?
+  // Voucher code applied at checkout, denormalized for audit (the
+  // VoucherRedemption row carries the relational link).
+  voucherCode       String?
+  // Discount amount in IDR (positive = discount applied). Stored so we
+  // don't have to derive from originalAmount - amount when reading orders.
+  discountAmount    Int           @default(0)
+  // Number of days this order grants. 30 for monthly. Future: 90, 180.
+  durationDays      Int           @default(30)
+  status            PaymentStatus @default(PENDING)
+  // Midtrans order_id (must be unique across the whole project).
+  // Generated server-side: `cita-${userId.slice(0,8)}-${ts}`
+  // For free orders (100% voucher), prefixed with `cita-free-` and
+  // never sent to Midtrans.
+  midtransOrderId   String        @unique
+  // Snap token returned from Midtrans, used by client SDK to open popup.
+  // Null for free orders (no Midtrans interaction).
+  midtransSnapToken String?
+  // Midtrans transaction_id (UUID) only available after first webhook event.
+  midtransTxId      String?
+  paidAt            DateTime?
+  expiredAt         DateTime?
+  // Raw last webhook payload for audit/debug.
+  raw               Json?
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+
+  subscription   Subscription? @relation(fields: [subscriptionId], references: [id], onDelete: SetNull)
+  subscriptionId String?
+
+  // Voucher redemption (nullable — most orders won't use a voucher).
+  voucherRedemption VoucherRedemption?
+
+  @@index([userId])
+  @@index([status])
+  @@index([createdAt])
+  @@map("orders")
+}
+
+model TutorUsage {
+  id        String   @id @default(cuid())
+  userId    String
+  // Date-only (YYYY-MM-DD at 00:00:00 UTC). Reset = new row.
+  date      DateTime @db.Date
+  count     Int      @default(0)
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, date])
+  @@index([userId])
+  @@index([date])
+  @@map("tutor_usage")
+}
+
+// ============================================================================
+//  Voucher / promo code system
+// ============================================================================
+
+enum DiscountType {
+  PERCENTAGE // 0-100, applied as % off list price
+  FIXED_AMOUNT // IDR amount knocked off list price
+}
+
+model Voucher {
+  id          String  @id @default(cuid())
+  // Public-facing code. Always uppercase, validated server-side.
+  // Up to 32 chars so admins can use mnemonic codes ('LAUNCH50', etc).
+  code        String  @unique
+  description String? // admin-only note ('Launch promo', 'Affiliate X')
+
+  discountType  DiscountType
+  // For PERCENTAGE: 0..100 (50 = 50% off).
+  // For FIXED_AMOUNT: IDR amount (10000 = Rp 10.000 off).
+  discountValue Int
+
+  validFrom       DateTime @default(now())
+  validUntil      DateTime
+  // Global redemption cap. Null = unlimited.
+  maxRedemptions  Int?
+  // Per-user cap (defense against one user burning all redemptions).
+  maxPerUser      Int      @default(1)
+  // Plans this voucher can be applied to. Default: PREMIUM only.
+  applicablePlans Plan[]   @default([PREMIUM])
+  // Optional minimum order amount (IDR) before discount applies.
+  minPurchase     Int?
+  // Manual kill switch — admin can disable a voucher without deleting it.
+  isActive        Boolean  @default(true)
+
+  // Audit
+  createdById String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  redemptions VoucherRedemption[]
+
+  @@index([code])
+  @@index([isActive])
+  @@index([validUntil])
+  @@map("vouchers")
+}
+
+model VoucherRedemption {
+  id             String   @id @default(cuid())
+  voucherId      String
+  voucher        Voucher  @relation(fields: [voucherId], references: [id], onDelete: Cascade)
+  userId         String
+  // The Order this redemption applied to. Nullable in case admin issues a
+  // manual redemption record (e.g. for refund tracking) without an order.
+  orderId        String?  @unique
+  order          Order?   @relation(fields: [orderId], references: [id], onDelete: SetNull)
+  // Snapshot of voucher state at redemption time, in case the voucher is
+  // edited later (audit guarantee).
+  discountAmount Int // IDR knocked off
+  originalAmount Int // list price at the moment of redemption
+  finalAmount    Int // amount actually charged
+  redeemedAt     DateTime @default(now())
+
+  @@index([voucherId])
+  @@index([userId])
+  @@index([redeemedAt])
+  @@map("voucher_redemptions")
+}
+
+/// Public share link for an Attempt result. One share per attempt (1:1).
+/// Holds the short public id and per-share privacy preferences.
+model ResultShare {
+  id        String    @id @default(cuid())
+  shareId   String    @unique // short public id, e.g. "abc12345"
+  attemptId String    @unique
+  attempt   Attempt   @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  showName  Boolean   @default(false)
+  revokedAt DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([shareId])
+  @@map("result_shares")
 }

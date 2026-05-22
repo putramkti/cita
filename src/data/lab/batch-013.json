@@ -1,0 +1,653 @@
+{
+  "batch_id": "batch-013",
+  "topic": "Batch 013 — TKP Sosial Budaya",
+  "source_file": "docs/content/drafts/batch-013-tkp-sosbud.md",
+  "generated_at": "2026-05-21T10:12:20.197Z",
+  "stats": {
+    "total_soal": 12,
+    "by_difficulty": {
+      "1": 0,
+      "2": 4,
+      "3": 5,
+      "4": 3,
+      "5": 0
+    },
+    "warnings_total": 11
+  },
+  "questions": [
+    {
+      "id": "TKP_SOSBUD_AGAMA_001_001",
+      "category": "TKP",
+      "subcategory": "Sosial Budaya",
+      "topic": "Beda Agama",
+      "questionText": "Rekan satu tim Anda berbeda agama dengan Anda. Pada saat istirahat siang, beliau ingin beribadah. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Mempersilakan dan menjaga lingkungan agar beliau dapat beribadah dengan tenang"
+        },
+        {
+          "label": "B",
+          "text": "Mempersilakan tanpa peduli berikan tempat yang tenang"
+        },
+        {
+          "label": "C",
+          "text": "Mengingatkan agar tidak terlalu lama ibadahnya"
+        },
+        {
+          "label": "D",
+          "text": "Mempersilakan tetapi sambil tetap mengajaknya berdiskusi pekerjaan"
+        },
+        {
+          "label": "E",
+          "text": "Bertanya kapan beliau akan mulai dan kembali bekerja"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 5,
+        "B": 3,
+        "C": 1,
+        "D": 2,
+        "E": 3
+      },
+      "difficulty": 2,
+      "tags": [
+        "tkp",
+        "sosial-budaya",
+        "agama",
+        "toleransi"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_SOSBUD_AGAMA_001",
+      "imagePrompt": null,
+      "explanation": "Toleransi beragama adalah kewajiban ASN. Mempersilakan dan secara aktif menjaga lingkungan agar tenang menunjukkan respect mendalam terhadap kebebasan beribadah.",
+      "explanationLong": "Pilihan A (skor 5) tidak hanya pasif mempersilakan tetapi juga aktif menjaga kondisi yang kondusif untuk ibadah rekan. Ini wujud konkret toleransi (Bhinneka Tunggal Ika). Pilihan B dan E (skor 3) cukup memadai. Pilihan D (skor 2) tidak sensitif terhadap kebutuhan ibadah yang fokus. Pilihan C (skor 1) bertentangan dengan kebebasan beragama yang dijamin Pasal 29 UUD 1945.",
+      "source": "Pasal 29 UUD 1945; BerAKHLAK — Harmonis",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 5,3,1,2,3 (sum=14). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_SOSBUD_SUKU_001_002",
+      "category": "TKP",
+      "subcategory": "Sosial Budaya",
+      "topic": "Beda Suku",
+      "questionText": "Anda bertugas di daerah dengan mayoritas suku tertentu yang berbeda dari latar belakang Anda. Sikap Anda dalam memberikan pelayanan adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Mempelajari sedikit bahasa dan adat istiadat lokal agar lebih bisa terhubung"
+        },
+        {
+          "label": "B",
+          "text": "Memberikan pelayanan dengan adil dan setara, sambil aktif belajar tentang adat istiadat lokal untuk pelayanan yang lebih efektif"
+        },
+        {
+          "label": "C",
+          "text": "Memberikan pelayanan sesuai SOP saja tanpa mempelajari budaya lokal"
+        },
+        {
+          "label": "D",
+          "text": "Meminta dipindah ke daerah dengan suku yang sama dengan Anda"
+        },
+        {
+          "label": "E",
+          "text": "Lebih akrab dengan rekan yang sesuai latar belakang Anda"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 4,
+        "B": 5,
+        "C": 3,
+        "D": 1,
+        "E": 1
+      },
+      "difficulty": 3,
+      "tags": [
+        "tkp",
+        "sosial-budaya",
+        "suku",
+        "pelayanan"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_SOSBUD_SUKU_001",
+      "imagePrompt": null,
+      "explanation": "Adaptasi budaya disertai pelayanan yang adil adalah ideal ASN. Belajar budaya lokal meningkatkan efektivitas tanpa mengubah prinsip non-diskriminasi.",
+      "explanationLong": "Pilihan B (skor 5) menggabungkan dua aspek penting: keadilan pelayanan (semua diperlakukan sama) dan adaptasi (belajar budaya untuk lebih efektif). Pilihan A (skor 4) baik tetapi belum eksplisit pada non-diskriminasi. Pilihan C (skor 3) standar prosedural saja tanpa nilai tambah. Pilihan D (skor 1) menolak penempatan adalah inkompatibel dengan tugas ASN. Pilihan E (skor 1) menciptakan klik yang merusak harmoni tim.",
+      "source": "Bhinneka Tunggal Ika; BerAKHLAK — Adaptif, Berorientasi Pelayanan",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 4,5,3,1,1 (sum=14). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_SOSBUD_STEREOTIP_001_003",
+      "category": "TKP",
+      "subcategory": "Sosial Budaya",
+      "topic": "Stereotip",
+      "questionText": "Seorang rekan kerja sering menyampaikan stereotip negatif tentang kelompok agama atau suku tertentu di lingkungan kantor. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Mengingatkan rekan dengan baik bahwa stereotip semacam itu tidak sesuai dengan nilai-nilai ASN dan dapat merusak harmoni"
+        },
+        {
+          "label": "B",
+          "text": "Menjauhi rekan tersebut agar tidak ikut tertular sikap negatif"
+        },
+        {
+          "label": "C",
+          "text": "Membiarkan saja karena bukan urusan Anda"
+        },
+        {
+          "label": "D",
+          "text": "Mengikuti pendapatnya agar tidak terjadi konflik"
+        },
+        {
+          "label": "E",
+          "text": "Melaporkan ke atasan tanpa berbicara dulu dengan rekan"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 5,
+        "B": 2,
+        "C": 1,
+        "D": 1,
+        "E": 3
+      },
+      "difficulty": 3,
+      "tags": [
+        "tkp",
+        "sosial-budaya",
+        "stereotip",
+        "prasangka"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_SOSBUD_STEREOTIP_001",
+      "imagePrompt": null,
+      "explanation": "ASN harus aktif menentang stereotip dan diskriminasi. Pendekatan terbaik adalah mengingatkan dengan baik secara langsung — bukan diam atau menghindar.",
+      "explanationLong": "Pilihan A (skor 5) menunjukkan keberanian moral profesional: menyampaikan ketidaksetujuan dengan baik, sekaligus mengedukasi. Pilihan E (skor 3) dilakukan langkah formal tanpa upaya pribadi. Pilihan B (skor 2) menghindar dari masalah. Pilihan C (skor 1) acuh tak acuh — diam terhadap diskriminasi adalah membiarkan diskriminasi tumbuh. Pilihan D (skor 1) co-conspirator dalam diskriminasi.",
+      "source": "Bhinneka Tunggal Ika; BerAKHLAK — Harmonis, Loyal",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 5,2,1,1,3 (sum=12). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_SOSBUD_ADAT_001_004",
+      "category": "TKP",
+      "subcategory": "Sosial Budaya",
+      "topic": "Adat Lokal",
+      "questionText": "Anda baru ditempatkan di kantor di daerah dengan adat istiadat yang sangat berbeda dari yang Anda kenal. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Mengamati, bertanya kepada rekan lokal, dan secara bertahap menyesuaikan diri dengan adat setempat"
+        },
+        {
+          "label": "B",
+          "text": "Bertahan dengan kebiasaan Anda karena toh tugas tetap bisa berjalan"
+        },
+        {
+          "label": "C",
+          "text": "Mengikuti semua adat lokal walaupun terkadang tidak nyaman"
+        },
+        {
+          "label": "D",
+          "text": "Mengubah cara kerja kantor menyesuaikan dengan kebiasaan Anda"
+        },
+        {
+          "label": "E",
+          "text": "Hanya bergaul dengan rekan yang berlatar belakang sama"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 5,
+        "B": 2,
+        "C": 3,
+        "D": 1,
+        "E": 1
+      },
+      "difficulty": 3,
+      "tags": [
+        "tkp",
+        "sosial-budaya",
+        "adat-lokal",
+        "adaptasi"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_SOSBUD_ADAT_001",
+      "imagePrompt": null,
+      "explanation": "Adaptasi proaktif (observe, ask, gradually adapt) adalah metode terbaik. Belajar dari rekan lokal mempercepat integrasi tanpa kehilangan diri.",
+      "explanationLong": "Pilihan A (skor 5) menerapkan teknik adaptasi yang sehat: pengamatan dulu (jangan judgment), klarifikasi (bertanya), lalu adopsi yang sesuai. Pilihan C (skor 3) niat baik tetapi tanpa filter — mengikuti yang tidak nyaman bisa menimbulkan stres dan inkonsistensi. Pilihan B (skor 2) ekstrem tidak adaptif. Pilihan D (skor 1) imperialistik. Pilihan E (skor 1) menutup diri dari komunitas baru.",
+      "source": "BerAKHLAK — Adaptif, Harmonis",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 5,2,3,1,1 (sum=12). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_SOSBUD_IBADAH_JAM_001_005",
+      "category": "TKP",
+      "subcategory": "Sosial Budaya",
+      "topic": "Ibadah Jam Kerja",
+      "questionText": "Anda berbeda agama dengan mayoritas rekan kerja. Saat waktu ibadah Anda bertepatan dengan jam pelayanan, sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Mengabaikan ibadah karena tugas pelayanan"
+        },
+        {
+          "label": "B",
+          "text": "Berkoordinasi dengan rekan agar pelayanan tetap berjalan saat Anda beribadah, dan begitu pula sebaliknya saat rekan beribadah"
+        },
+        {
+          "label": "C",
+          "text": "Beribadah saja tanpa memberitahu rekan"
+        },
+        {
+          "label": "D",
+          "text": "Meninggalkan loket dan kembali setelah ibadah"
+        },
+        {
+          "label": "E",
+          "text": "Meminta jam kerja yang fleksibel kepada atasan"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 1,
+        "B": 5,
+        "C": 2,
+        "D": 3,
+        "E": 3
+      },
+      "difficulty": 2,
+      "tags": [
+        "tkp",
+        "sosial-budaya",
+        "ibadah",
+        "jam-kerja"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_SOSBUD_IBADAH_JAM_001",
+      "imagePrompt": null,
+      "explanation": "Koordinasi shift internal adalah solusi profesional yang menghormati hak ibadah semua rekan tanpa mengganggu pelayanan publik.",
+      "explanationLong": "Pilihan B (skor 5) win-win: kewajiban ibadah ditunaikan, tugas pelayanan berlanjut, dan menumbuhkan kebiasaan saling menghormati di tim. Pilihan E (skor 3) baik untuk situasi sistemik. Pilihan D (skor 3) menyelesaikan kebutuhan pribadi tetapi mengganggu pelayanan publik. Pilihan A (skor 1) bertentangan dengan kebebasan beragama. Pilihan C (skor 2) tanpa koordinasi bisa membuat layanan tertinggal.",
+      "source": "Pasal 29 UUD 1945; BerAKHLAK — Kolaboratif, Harmonis",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 1,5,2,3,3 (sum=14). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_SOSBUD_BAHASA_001_006",
+      "category": "TKP",
+      "subcategory": "Sosial Budaya",
+      "topic": "Bahasa",
+      "questionText": "Dalam rapat tim, sebagian rekan berbicara dalam bahasa daerah yang tidak Anda kuasai, sehingga Anda kesulitan mengikuti pembicaraan. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Diam saja menunggu sampai mereka kembali ke Bahasa Indonesia"
+        },
+        {
+          "label": "B",
+          "text": "Mempelajari bahasa daerah tersebut secara cepat"
+        },
+        {
+          "label": "C",
+          "text": "Menyampaikan dengan baik bahwa Anda kurang memahami, dan meminta agar pembicaraan utama menggunakan Bahasa Indonesia agar semua bisa terlibat"
+        },
+        {
+          "label": "D",
+          "text": "Mengeluh kepada atasan setelah rapat"
+        },
+        {
+          "label": "E",
+          "text": "Pura-pura mengerti agar tidak terlihat asing"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 2,
+        "B": 3,
+        "C": 5,
+        "D": 1,
+        "E": 1
+      },
+      "difficulty": 3,
+      "tags": [
+        "tkp",
+        "sosial-budaya",
+        "bahasa",
+        "inklusi"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_SOSBUD_BAHASA_001",
+      "imagePrompt": null,
+      "explanation": "Inklusi dalam komunikasi adalah hak. Menyampaikan dengan baik adalah cara paling profesional, sambil tetap menghargai kesempatan rekan menggunakan bahasa daerah dalam konteks informal.",
+      "explanationLong": "Pilihan C (skor 5) assertif tetapi tidak konfrontatif. Bahasa Indonesia sebagai bahasa pemersatu (Sumpah Pemuda 1928) memang seharusnya menjadi default dalam rapat formal multi-suku. Pilihan B (skor 3) niat baik tetapi tidak realistis untuk satu rapat. Pilihan A (skor 2) pasif. Pilihan D (skor 1) gosip yang merusak. Pilihan E (skor 1) tidak otentik.",
+      "source": "Sumpah Pemuda 1928; BerAKHLAK — Kolaboratif",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 2,3,5,1,1 (sum=12). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_SOSBUD_PERAYAAN_001_007",
+      "category": "TKP",
+      "subcategory": "Sosial Budaya",
+      "topic": "Perayaan Budaya",
+      "questionText": "Kantor Anda mengadakan perayaan budaya yang berbeda dari latar belakang Anda. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Hadir dan berpartisipasi dengan terbuka untuk mengenal budaya rekan-rekan, sebatas yang sesuai dengan nilai pribadi Anda"
+        },
+        {
+          "label": "B",
+          "text": "Hadir tetapi hanya sebagai penonton tanpa berinteraksi"
+        },
+        {
+          "label": "C",
+          "text": "Tidak hadir karena bukan tradisi Anda"
+        },
+        {
+          "label": "D",
+          "text": "Hadir karena kewajiban, tanpa minat"
+        },
+        {
+          "label": "E",
+          "text": "Membantu persiapan walaupun belum mengerti budayanya"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 5,
+        "B": 3,
+        "C": 1,
+        "D": 2,
+        "E": 4
+      },
+      "difficulty": 2,
+      "tags": [
+        "tkp",
+        "sosial-budaya",
+        "perayaan",
+        "inklusi"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_SOSBUD_PERAYAAN_001",
+      "imagePrompt": null,
+      "explanation": "Partisipasi terbuka dengan tetap menjaga nilai pribadi adalah cara terbaik membangun harmoni multikultural. Belajar budaya rekan memperkaya wawasan ASN.",
+      "explanationLong": "Pilihan A (skor 5) sempurna karena openness + boundaries. Pilihan E (skor 4) inisiatif yang baik. Pilihan B (skor 3) hadir tetapi tidak benar-benar terlibat. Pilihan D (skor 2) hadir tanpa minat tidak membangun hubungan. Pilihan C (skor 1) menolak interaksi multikultural — bertentangan dengan nilai Bhinneka Tunggal Ika.",
+      "source": "Bhinneka Tunggal Ika; BerAKHLAK — Harmonis",
+      "warnings": []
+    },
+    {
+      "id": "TKP_SOSBUD_DISKRIMINASI_001_008",
+      "category": "TKP",
+      "subcategory": "Sosial Budaya",
+      "topic": "Diskriminasi Penampilan",
+      "questionText": "Anda mendengar rekan kerja membicarakan klien dengan menyinggung penampilan fisik atau cara berpakaiannya. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Mengingatkan rekan bahwa penilaian terhadap klien tidak boleh berdasarkan penampilan, dan setiap warga negara berhak diperlakukan setara"
+        },
+        {
+          "label": "B",
+          "text": "Mengabaikan karena bukan masalah serius"
+        },
+        {
+          "label": "C",
+          "text": "Mengikuti pembicaraan untuk mencairkan suasana"
+        },
+        {
+          "label": "D",
+          "text": "Menjauh dari pembicaraan tersebut"
+        },
+        {
+          "label": "E",
+          "text": "Melaporkan ke atasan tanpa berbicara dulu"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 5,
+        "B": 1,
+        "C": 1,
+        "D": 2,
+        "E": 3
+      },
+      "difficulty": 4,
+      "tags": [
+        "tkp",
+        "sosial-budaya",
+        "diskriminasi",
+        "penampilan"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_SOSBUD_DISKRIMINASI_001",
+      "imagePrompt": null,
+      "explanation": "Sikap aktif melawan diskriminasi adalah kewajiban ASN. Mengingatkan dengan baik secara langsung lebih konstruktif daripada diam atau eskalasi prematur.",
+      "explanationLong": "Pilihan A (skor 5) menunjukkan keberanian moral di tempat kerja: menegur dengan baik tanpa menjatuhkan. Ini adalah upstander mentality. Pilihan E (skor 3) prosedural tanpa upaya pribadi. Pilihan D (skor 2) menghindar. Pilihan B dan C (skor 1) membiarkan kultur diskriminasi tumbuh.",
+      "source": "UUD 1945 Pasal 28I (perlindungan dari diskriminasi); BerAKHLAK — Akuntabel, Harmonis",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 5,1,1,2,3 (sum=12). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_SOSBUD_ADAT_KEBIJAKAN_001_009",
+      "category": "TKP",
+      "subcategory": "Sosial Budaya",
+      "topic": "Adat vs Kebijakan",
+      "questionText": "Sebuah adat lokal yang dihormati masyarakat tampak bertentangan dengan kebijakan resmi yang harus Anda terapkan. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Tetap menerapkan kebijakan tanpa peduli adat"
+        },
+        {
+          "label": "B",
+          "text": "Mengikuti adat lokal demi menjaga harmoni"
+        },
+        {
+          "label": "C",
+          "text": "Menjalankan kebijakan dengan komunikasi yang sopan dan menjelaskan dasar hukumnya, sambil mencari titik temu dengan tokoh adat untuk implementasi yang tetap menghormati budaya"
+        },
+        {
+          "label": "D",
+          "text": "Melaporkan dilema ke atasan dan menunggu petunjuk"
+        },
+        {
+          "label": "E",
+          "text": "Menunda implementasi kebijakan sampai adat dapat menyesuaikan"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 2,
+        "B": 1,
+        "C": 5,
+        "D": 3,
+        "E": 2
+      },
+      "difficulty": 4,
+      "tags": [
+        "tkp",
+        "sosial-budaya",
+        "adat-kebijakan",
+        "kompromi"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_SOSBUD_ADAT_KEBIJAKAN_001",
+      "imagePrompt": null,
+      "explanation": "Sebagai ASN, kebijakan resmi adalah dasar hukum yang harus dijalankan, tetapi cara implementasi bisa kreatif menyesuaikan konteks lokal. Dialog dengan tokoh adat membangun penerimaan.",
+      "explanationLong": "Pilihan C (skor 5) menyeimbangkan tugas hukum dengan diplomasi budaya. ASN tidak boleh mengabaikan hukum demi adat (Pancasila + UUD), tetapi juga tidak boleh kasar dalam implementasi. Pilihan D (skor 3) safe tetapi pasif. Pilihan A (skor 2) memenuhi kebijakan tetapi merusak hubungan. Pilihan E (skor 2) menunda kebijakan adalah pelanggaran disiplin. Pilihan B (skor 1) mengabaikan kewajiban hukum.",
+      "source": "Pancasila — Pancasila sila ke-4 (musyawarah); BerAKHLAK — Adaptif, Akuntabel, Loyal",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 2,1,5,3,2 (sum=13). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_SOSBUD_MAKAN_001_010",
+      "category": "TKP",
+      "subcategory": "Sosial Budaya",
+      "topic": "Makan Bersama",
+      "questionText": "Tim Anda akan makan siang bersama, namun ada rekan dengan pantangan makanan tertentu karena agama. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Memilih restoran yang menyajikan menu beragam sehingga semua bisa makan dengan nyaman"
+        },
+        {
+          "label": "B",
+          "text": "Menyarankan rekan tersebut ikut tetapi tidak pesan"
+        },
+        {
+          "label": "C",
+          "text": "Mengikuti pilihan mayoritas saja"
+        },
+        {
+          "label": "D",
+          "text": "Bertanya kepada rekan apa yang dia kehendaki"
+        },
+        {
+          "label": "E",
+          "text": "Mengusulkan tiap orang makan sendiri-sendiri saja"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 5,
+        "B": 2,
+        "C": 2,
+        "D": 4,
+        "E": 1
+      },
+      "difficulty": 2,
+      "tags": [
+        "tkp",
+        "sosial-budaya",
+        "makan-bersama",
+        "agama"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_SOSBUD_MAKAN_001",
+      "imagePrompt": null,
+      "explanation": "Mempertimbangkan kebutuhan semua anggota tim dengan memilih opsi inklusif menunjukkan kepekaan terhadap keberagaman.",
+      "explanationLong": "Pilihan A (skor 5) proaktif memikirkan inklusi tanpa harus menanyakan rekan secara eksplisit (yang bisa membuat rekan tersebut merasa \"merepotkan\"). Pilihan D (skor 4) memang baik dan inklusif tetapi membebankan keputusan ke rekan. Pilihan B dan C (skor 2) mengabaikan kebutuhan rekan. Pilihan E (skor 1) merusak momentum tim building.",
+      "source": "BerAKHLAK — Harmonis; etika kebersamaan multi-agama",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 5,2,2,4,1 (sum=14). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_SOSBUD_MUTASI_001_011",
+      "category": "TKP",
+      "subcategory": "Sosial Budaya",
+      "topic": "Penempatan Baru",
+      "questionText": "Anda baru saja dimutasi ke daerah yang sangat berbeda dari tempat asal, dan keluarga belum bisa ikut. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Menerima sebagai bagian dari tugas, beradaptasi dengan tempat baru, dan menjaga komunikasi dengan keluarga"
+        },
+        {
+          "label": "B",
+          "text": "Mengeluh dan meminta dipindah ke tempat yang dekat keluarga"
+        },
+        {
+          "label": "C",
+          "text": "Bekerja seadanya karena fokus berkurang"
+        },
+        {
+          "label": "D",
+          "text": "Berusaha pulang setiap akhir pekan"
+        },
+        {
+          "label": "E",
+          "text": "Mengajukan pengunduran diri"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 5,
+        "B": 1,
+        "C": 1,
+        "D": 3,
+        "E": 1
+      },
+      "difficulty": 3,
+      "tags": [
+        "tkp",
+        "sosial-budaya",
+        "mutasi",
+        "daerah-baru"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_SOSBUD_MUTASI_001",
+      "imagePrompt": null,
+      "explanation": "Loyalitas dan adaptabilitas adalah inti tugas ASN. Mutasi adalah bagian dari karir yang harus diterima dengan profesional dan dijalankan dengan semangat.",
+      "explanationLong": "Pilihan A (skor 5) menampilkan kedewasaan profesional ASN: penerimaan tugas, adaptasi aktif, dan keseimbangan dengan keluarga. Pilihan D (skor 3) wajar untuk menjaga keluarga tetapi belum optimal jika menguras energi terlalu banyak. Pilihan B (skor 1) tidak loyal. Pilihan C (skor 1) merusak kinerja. Pilihan E (skor 1) ekstrem dan tidak profesional.",
+      "source": "UU 5/2014 ASN — Kewajiban menerima mutasi; BerAKHLAK — Loyal, Adaptif",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 5,1,1,3,1 (sum=11). Consider rebalancing to 1-5 unique for production."
+      ]
+    },
+    {
+      "id": "TKP_SOSBUD_POLITIK_001_012",
+      "category": "TKP",
+      "subcategory": "Sosial Budaya",
+      "topic": "Beda Politik",
+      "questionText": "Seorang rekan kerja sering membicarakan pilihan politiknya dan menjelek-jelekkan partai/calon yang berseberangan di lingkungan kantor. Sikap Anda adalah…",
+      "options": [
+        {
+          "label": "A",
+          "text": "Mengingatkan rekan bahwa ASN harus netral secara politik dan tidak pantas membicarakan politik praktis di lingkungan kerja"
+        },
+        {
+          "label": "B",
+          "text": "Mengikuti diskusi politik agar terlihat akrab"
+        },
+        {
+          "label": "C",
+          "text": "Mendengarkan saja tanpa menanggapi"
+        },
+        {
+          "label": "D",
+          "text": "Menjauhi rekan tersebut agar tidak ikut terjebak"
+        },
+        {
+          "label": "E",
+          "text": "Melaporkan ke Bawaslu jika sudah keterlaluan"
+        }
+      ],
+      "correctAnswer": null,
+      "optionWeights": {
+        "A": 5,
+        "B": 1,
+        "C": 2,
+        "D": 2,
+        "E": 3
+      },
+      "difficulty": 4,
+      "tags": [
+        "tkp",
+        "sosial-budaya",
+        "netralitas-politik",
+        "asn"
+      ],
+      "familyId": null,
+      "enemyGroupId": "TKP_SOSBUD_POLITIK_001",
+      "imagePrompt": null,
+      "explanation": "Netralitas politik adalah kewajiban ASN sesuai UU 5/2014. Mengingatkan rekan dengan baik adalah pendekatan paling tepat.",
+      "explanationLong": "Pilihan A (skor 5) menjalankan tugas pengingat sebagai sesama ASN. Netralitas politik bukan hanya saat pemilu tetapi sehari-hari di lingkungan kerja. Pilihan E (skor 3) langkah formal yang tepat untuk pelanggaran serius. Pilihan C dan D (skor 2) pasif. Pilihan B (skor 1) bisa dipersepsikan sebagai pelanggaran netralitas juga.",
+      "source": "UU 5/2014 ASN — Netralitas Politik; PP 42/2004 tentang Pembinaan Jiwa Korps dan Kode Etik PNS",
+      "warnings": [
+        "[INFO] TKP non-strict-SKD distribution: 5,1,2,2,3 (sum=13). Consider rebalancing to 1-5 unique for production."
+      ]
+    }
+  ]
+}

@@ -1,46 +1,35 @@
 import { cn } from "@/lib/utils"
 
+/**
+ * Cita academic logo — Academic Zen design source.
+ *
+ * Circle arc (Ink Blue) suggests scholarly cycle / continuity.
+ * Clock hand (Academic Gold) signals study-time discipline.
+ * Pin dot (gold) marks aspiration / a fixed cita-cita target.
+ */
 export function Logo({ className }: { className?: string }) {
   return (
     <svg
-      viewBox="0 0 64 64"
+      viewBox="0 0 40 40"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
       className={cn("size-8", className)}
     >
-      <defs>
-        <linearGradient
-          id="cita-logo-gradient"
-          x1="0"
-          y1="0"
-          x2="64"
-          y2="64"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop offset="0" stopColor="oklch(0.78 0.13 260)" />
-          <stop offset="1" stopColor="oklch(0.82 0.13 220)" />
-        </linearGradient>
-      </defs>
-      <circle
-        cx="32"
-        cy="32"
-        r="28"
-        stroke="url(#cita-logo-gradient)"
-        strokeWidth="2"
-        strokeOpacity="0.55"
+      <path
+        d="M20 5C11.7157 5 5 11.7157 5 20C5 28.2843 11.7157 35 20 35C28.2843 35 35 28.2843 35 20"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        strokeLinecap="round"
       />
       <path
-        d="M32 6 L36 28 L58 32 L36 36 L32 58 L28 36 L6 32 L28 28 Z"
-        fill="url(#cita-logo-gradient)"
-        fillOpacity="0.9"
+        d="M20 12V20L25 23"
+        stroke="var(--gold)"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
-      <path
-        d="M32 14 L34 30 L50 32 L34 34 L32 50 L30 34 L14 32 L30 30 Z"
-        fill="oklch(0.13 0.015 265)"
-        fillOpacity="0.7"
-      />
-      <circle cx="32" cy="32" r="3" fill="url(#cita-logo-gradient)" />
+      <circle cx="32" cy="12" r="3" fill="var(--gold)" />
     </svg>
   )
 }
