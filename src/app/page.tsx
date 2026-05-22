@@ -6,6 +6,9 @@ import { RevealOnView } from "@/components/feedback/reveal-on-view"
 import { MentorLiveCard } from "@/components/landing/mentor-live-card"
 import { SimulationDashboard } from "@/components/landing/simulation-dashboard"
 import { CpnsTimeline } from "@/components/landing/cpns-timeline"
+import { PricingSection } from "@/components/billing/pricing-section"
+import { getCurrentUser } from "@/lib/auth/get-user"
+import { getCurrentPlan } from "@/lib/billing/get-plan"
 import { getDict } from "@/lib/i18n"
 
 const SITE_URL =
@@ -36,6 +39,8 @@ const SITE_URL =
  */
 export default async function HomePage() {
   const t = await getDict()
+  const user = await getCurrentUser()
+  const currentPlan = await getCurrentPlan(user?.id ?? null)
 
   // JSON-LD — EducationalOrganization + WebApplication.
   // Two top-level objects in @graph so search engines treat them as
@@ -93,6 +98,11 @@ export default async function HomePage() {
           stages={t.landing.timelineStages}
         />
         <ShowcaseSection t={t.landing} />
+        <PricingHomeSection
+          locale={t.locale as "id" | "en"}
+          currentPlan={currentPlan}
+          authed={Boolean(user)}
+        />
         <FinalCtaSection t={t.landing} />
       </main>
       <SiteFooter />
@@ -295,6 +305,49 @@ function ShowcaseSection({
             <span className="absolute -bottom-3 right-4 inline-flex items-center rounded-full bg-[var(--gold)]/15 text-[var(--review-amber-fg)] border border-[var(--gold)]/30 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em]">
               {t.showcaseBadge}
             </span>
+          </div>
+        </RevealOnView>
+      </div>
+    </section>
+  )
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+ *  PRICING (embedded — full detail lives at /pricing)
+ * ───────────────────────────────────────────────────────────────────────── */
+
+function PricingHomeSection({
+  locale,
+  currentPlan,
+  authed,
+}: {
+  locale: "id" | "en"
+  currentPlan: "ANON" | "FREE" | "PREMIUM"
+  authed: boolean
+}) {
+  const isEn = locale === "en"
+  return (
+    <section className="border-t border-border px-4 sm:px-8 py-20 sm:py-28">
+      <div className="mx-auto max-w-5xl">
+        <RevealOnView>
+          <PricingSection
+            locale={locale}
+            currentPlan={currentPlan}
+            authed={authed}
+            variant="embed"
+          />
+        </RevealOnView>
+
+        <RevealOnView delay={150}>
+          <div className="mt-10 text-center">
+            <Link
+              href="/pricing"
+              className="inline-flex items-center gap-1.5 text-sm text-foreground/80 hover:text-foreground underline-offset-4 hover:underline"
+            >
+              {isEn
+                ? "See full pricing details and Premium roadmap →"
+                : "Lihat detail harga lengkap dan roadmap Premium →"}
+            </Link>
           </div>
         </RevealOnView>
       </div>
