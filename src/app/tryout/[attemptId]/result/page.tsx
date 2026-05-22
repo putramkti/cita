@@ -139,11 +139,18 @@ export default async function ResultPage({ params }: PageProps) {
     (it) => !it.userAnswer || it.isCorrect === false,
   );
 
-  // Resolve plan for personalized insight gating.
+  // Resolve plan tier for personalized insight gating.
+  //   - ANON viewer (anon cookie attempt): blurred preview + login CTA
+  //   - FREE: upsell teaser
+  //   - PREMIUM: real LLM insight
   const plan = supabaseUser?.id
     ? await getCurrentPlan(supabaseUser.id)
     : "ANON";
-  const isPremium = can(plan, "aiInsightPersonalized");
+  const insightTier: "ANON" | "FREE" | "PREMIUM" = !supabaseUser?.id
+    ? "ANON"
+    : can(plan, "aiInsightPersonalized")
+      ? "PREMIUM"
+      : "FREE";
 
   return (
     <>
@@ -182,8 +189,9 @@ export default async function ResultPage({ params }: PageProps) {
             initialPayload={
               (attempt.aiInsight as unknown as InsightPayload | null) ?? null
             }
-            isPremium={isPremium}
+            tier={insightTier}
             locale={t.locale as "id" | "en"}
+            loginNext={`/tryout/${attemptId}/result`}
             firstWrong={
               firstWrong
                 ? {
