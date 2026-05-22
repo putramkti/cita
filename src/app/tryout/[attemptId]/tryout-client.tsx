@@ -10,6 +10,7 @@ import {
   StickyNote,
   Calculator,
   Clock,
+  Loader2,
 } from "lucide-react";
 import type { AttemptMode, Category } from "@prisma/client";
 import { cn } from "@/lib/utils";
@@ -27,6 +28,8 @@ export interface TryoutClientDict {
   markReview: string;
   submit: string;
   submitting: string;
+  submittingTitle: string;
+  submittingHint: string;
   questionUnavailable: string;
   retry: string;
   tools: string;
@@ -457,6 +460,37 @@ export function TryoutClient({
           </div>
         </aside>
       </div>
+
+      {/* ─── FULLSCREEN SUBMIT OVERLAY ───
+       *
+       * Shown while the submit server action is in flight, so the user
+       * can't double-click, navigate, or interact with stale state.
+       * Backdrop blur sits over the whole tryout layout; the spinner
+       * card is centred. Auto-submit on timer expiry triggers the same
+       * overlay because both paths share `pending`.
+       */}
+      {pending ? (
+        <div
+          role="alertdialog"
+          aria-live="assertive"
+          aria-busy="true"
+          className="fixed inset-0 z-[60] flex items-center justify-center bg-background/70 backdrop-blur-md px-6"
+        >
+          <div className="flex flex-col items-center text-center max-w-md">
+            <Loader2
+              className="size-12 sm:size-14 text-foreground animate-spin"
+              strokeWidth={1.5}
+              aria-hidden="true"
+            />
+            <p className="serif mt-6 text-2xl sm:text-3xl text-foreground leading-tight">
+              {dict.submittingTitle}
+            </p>
+            <p className="mt-3 text-sm sm:text-base text-muted-foreground leading-relaxed">
+              {dict.submittingHint}
+            </p>
+          </div>
+        </div>
+      ) : null}
     </main>
   );
 }

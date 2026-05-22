@@ -113,6 +113,8 @@ export default async function TryoutPage({ params }: PageProps) {
           markReview: t.tryout.markReview,
           submit: t.tryout.submit,
           submitting: t.tryout.submitting,
+          submittingTitle: t.tryout.submittingTitle,
+          submittingHint: t.tryout.submittingHint,
           questionUnavailable: t.tryout.questionUnavailable,
           retry: t.tryout.retry,
           tools: t.tryout.tools,
