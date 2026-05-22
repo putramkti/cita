@@ -2,16 +2,16 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import {
-  Sparkles,
   Clock,
   Flag,
   Brain,
   Users,
-  Bot,
   ArrowRight,
 } from "lucide-react";
 import { prisma } from "@/lib/db/prisma";
 import { getCurrentUser } from "@/lib/auth/get-user";
+import { getCurrentPlan } from "@/lib/billing/get-plan";
+import { can } from "@/lib/billing/entitlements";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import {
@@ -22,6 +22,8 @@ import {
 import { getDict } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 import type { Category } from "@prisma/client";
+import { PersonalizedInsight } from "./personalized-insight";
+import type { InsightPayload } from "@/lib/insight/schema";
 
 export const dynamic = "force-dynamic";
 
@@ -137,6 +139,12 @@ export default async function ResultPage({ params }: PageProps) {
     (it) => !it.userAnswer || it.isCorrect === false,
   );
 
+  // Resolve plan for personalized insight gating.
+  const plan = supabaseUser?.id
+    ? await getCurrentPlan(supabaseUser.id)
+    : "ANON";
+  const isPremium = can(plan, "aiInsightPersonalized");
+
   return (
     <>
       <SiteHeader />
@@ -159,18 +167,33 @@ export default async function ResultPage({ params }: PageProps) {
           {/* ─── Subtest breakdown ─── */}
           <BreakdownSection t={t} rows={rows} locale={t.locale} />
 
-          {/* ─── AI Insight banner ─── */}
-          {firstWrong && (
-            <AiInsightBanner
-              t={t}
-              attemptId={attemptId}
-              firstWrongQuestion={{
-                id: firstWrong.question.id,
-                category: firstWrong.question.category,
-                subcategory: firstWrong.question.subcategory,
-              }}
-            />
-          )}
+          {/* ─── Personalized Insight (Premium) / FREE upsell ─── */}
+          <PersonalizedInsight
+            attemptId={attemptId}
+            initialStatus={
+              attempt.insightStatus === "READY"
+                ? "READY"
+                : attempt.insightStatus === "FAILED"
+                ? "FAILED"
+                : attempt.insightStatus === "PENDING"
+                ? "PENDING"
+                : "NOT_REQUESTED"
+            }
+            initialPayload={
+              (attempt.aiInsight as unknown as InsightPayload | null) ?? null
+            }
+            isPremium={isPremium}
+            locale={t.locale as "id" | "en"}
+            firstWrong={
+              firstWrong
+                ? {
+                    id: firstWrong.question.id,
+                    category: firstWrong.question.category,
+                    subcategory: firstWrong.question.subcategory,
+                  }
+                : null
+            }
+          />
 
           {/* ─── Item analysis ─── */}
           <ItemAnalysisSection
@@ -355,63 +378,6 @@ function SubtestCard({
         </p>
       )}
     </article>
-  );
-}
-
-/* ─────────────────────────────────────────────────────────────────────────
- *  AI INSIGHT — dark navy banner with editorial copy
- * ───────────────────────────────────────────────────────────────────────── */
-
-function AiInsightBanner({
-  t,
-  attemptId,
-  firstWrongQuestion,
-}: {
-  t: Awaited<ReturnType<typeof getDict>>;
-  attemptId: string;
-  firstWrongQuestion: {
-    id: string;
-    category: Category;
-    subcategory: string;
-  };
-}) {
-  const { subcategory: subcat, category: cat } = firstWrongQuestion;
-
-  return (
-    <section className="rounded-xl border border-[#1f2a3a] bg-[#0c1018] text-[#e7e8e9] px-7 py-8 sm:px-10 sm:py-10 relative overflow-hidden">
-      <div className="flex items-start gap-3 mb-5">
-        <Sparkles
-          className="size-5 text-[var(--gold-soft)]"
-          strokeWidth={1.5}
-        />
-        <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-white/60">
-          AI Intelligence Insight
-        </span>
-      </div>
-
-      <p className="serif text-xl sm:text-2xl leading-relaxed text-white/90 max-w-3xl">
-        {t.locale === "id"
-          ? `Anda paling membutuhkan latihan tambahan pada subtes ${cat} — khususnya topik ${subcat}. Mari mulai dengan soal yang baru saja terlewat dan kupas alasannya bersama tutor.`
-          : `You would benefit most from extra practice on the ${cat} subtest — particularly on ${subcat}. Let's start with the question you just missed and unpack the reasoning together.`}
-      </p>
-
-      <div className="mt-6 flex items-center gap-2">
-        <Bot className="size-4 text-[var(--gold-soft)]" strokeWidth={1.5} />
-        <Link
-          href={`/study/${attemptId}/${firstWrongQuestion.id}`}
-          className="text-sm text-white/80 hover:text-white inline-flex items-center gap-1 underline-offset-2 hover:underline"
-        >
-          {t.result.askTutorCta}
-          <ArrowRight className="size-3.5" strokeWidth={2} />
-        </Link>
-      </div>
-
-      {/* Decorative accent — top-right gold glow */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -top-20 -right-20 size-60 rounded-full bg-[var(--gold)]/10 blur-3xl"
-      />
-    </section>
   );
 }
 
