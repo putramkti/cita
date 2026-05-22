@@ -86,16 +86,32 @@ export default async function AkunPage() {
           </div>
 
           {/* Tryout history */}
-          <div className="rounded-xl border border-border bg-card p-6 sm:p-8">
-            <p className="label-caps mb-2">
-              {t.locale === "en" ? "ATTEMPT HISTORY" : "RIWAYAT TRYOUT"}
-            </p>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              {t.locale === "en"
-                ? "Full attempt history will appear here. For now, your last attempt is reachable from /tryout."
-                : "Riwayat lengkap tryout akan tampil di sini. Sementara ini, percobaan terakhir bisa diakses dari /tryout."}
-            </p>
-          </div>
+          <Link
+            href="/akun/history"
+            className="block rounded-xl border border-border bg-card p-6 sm:p-8 hover:bg-secondary/50 transition-colors group"
+          >
+            <div className="flex items-start justify-between gap-3">
+              <div className="flex-1 min-w-0">
+                <p className="label-caps mb-2">
+                  {t.locale === "en" ? "ATTEMPT HISTORY" : "RIWAYAT TRYOUT"}
+                </p>
+                <p className="serif text-2xl tracking-tight text-foreground">
+                  {t.locale === "en"
+                    ? "Review every tryout"
+                    : "Tinjau seluruh tryout"}
+                </p>
+                <p className="text-sm text-muted-foreground leading-relaxed mt-2">
+                  {t.locale === "en"
+                    ? "See your scores, pass rate, and progress across MINI and FULL attempts."
+                    : "Lihat skor, tingkat lulus, dan perkembangan Anda dari tryout MINI maupun FULL."}
+                </p>
+              </div>
+              <ArrowRight
+                className="size-4 text-muted-foreground group-hover:text-foreground transition-colors flex-shrink-0 mt-1"
+                strokeWidth={1.5}
+              />
+            </div>
+          </Link>
         </div>
       </main>
       <SiteFooter />
