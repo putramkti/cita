@@ -23,6 +23,7 @@ import {
   midtransStatusToPaymentStatus,
   verifyWebhookSignature,
 } from "@/lib/billing/midtrans";
+import { activateSubscriptionForOrder } from "@/lib/billing/activate-subscription";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -124,59 +125,16 @@ export async function POST(request: NextRequest) {
     },
   });
 
-  // PAID transition → upsert Subscription (extend if existing PREMIUM, else create)
+  // PAID transition → upsert Subscription via shared activator.
   if (newStatus === "PAID") {
-    const now = new Date();
-    const durationMs = order.durationDays * 24 * 60 * 60 * 1000;
-
-    const existing = await prisma.subscription.findUnique({
-      where: { userId: order.userId },
-      select: { id: true, plan: true, status: true, expiresAt: true },
+    await activateSubscriptionForOrder({
+      order: {
+        id: order.id,
+        userId: order.userId,
+        plan: order.plan,
+        durationDays: order.durationDays,
+      },
     });
-
-    const baseExpiry =
-      existing?.plan === order.plan &&
-      existing.expiresAt &&
-      existing.expiresAt > now
-        ? existing.expiresAt // extend from current expiry
-        : now;
-    const newExpiry = new Date(baseExpiry.getTime() + durationMs);
-
-    if (existing) {
-      await prisma.subscription.update({
-        where: { id: existing.id },
-        data: {
-          plan: order.plan,
-          status: "ACTIVE",
-          startedAt: existing.status === "ACTIVE" ? undefined : now,
-          expiresAt: newExpiry,
-          cancelledAt: null,
-          autoRenew: true,
-          lastOrderId: order.id,
-        },
-      });
-      // Link order to subscription
-      await prisma.order.update({
-        where: { id: order.id },
-        data: { subscriptionId: existing.id },
-      });
-    } else {
-      const created = await prisma.subscription.create({
-        data: {
-          userId: order.userId,
-          plan: order.plan,
-          status: "ACTIVE",
-          startedAt: now,
-          expiresAt: newExpiry,
-          autoRenew: true,
-          lastOrderId: order.id,
-        },
-      });
-      await prisma.order.update({
-        where: { id: order.id },
-        data: { subscriptionId: created.id },
-      });
-    }
   }
 
   return ok("processed", {

@@ -86,7 +86,7 @@ model User {
 model ItemFamily {
   id        String     @id // human-readable, e.g. "TIU_NUM_DERETLINEAR_FAMILY"
   category  Category
-  topic     String     // "Pancasila / Sila1" (display path)
+  topic     String // "Pancasila / Sila1" (display path)
   notes     String?    @db.Text
   questions Question[]
 
@@ -108,8 +108,8 @@ model EnemyGroup {
 model Question {
   id              String         @id // human-readable per konvensi (PANCASILA_BUNYI_SILA1_001)
   category        Category
-  subcategory     String         // "Pancasila"
-  topic           String         // "Sila ke-1" — sub-subcategory
+  subcategory     String // "Pancasila"
+  topic           String // "Sila ke-1" — sub-subcategory
   questionText    String         @db.Text
   // [{label: 'A', text: '...'}, ...]
   options         Json
@@ -128,12 +128,12 @@ model Question {
   source          String         @default("cita-original")
   status          QuestionStatus @default(DRAFT)
 
-  familyId      String?
-  family        ItemFamily?  @relation(fields: [familyId], references: [id], onDelete: SetNull)
-  enemyGroupId  String?
-  enemyGroup    EnemyGroup?  @relation(fields: [enemyGroupId], references: [id], onDelete: SetNull)
-  images        QuestionImage[]
-  attemptItems  AttemptItem[]
+  familyId     String?
+  family       ItemFamily?     @relation(fields: [familyId], references: [id], onDelete: SetNull)
+  enemyGroupId String?
+  enemyGroup   EnemyGroup?     @relation(fields: [enemyGroupId], references: [id], onDelete: SetNull)
+  images       QuestionImage[]
+  attemptItems AttemptItem[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -146,15 +146,15 @@ model Question {
 }
 
 model QuestionImage {
-  id          String   @id @default(cuid())
-  questionId  String
-  question    Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  id         String   @id @default(cuid())
+  questionId String
+  question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
   // Storage: Supabase Storage atau Vercel Blob
-  url         String
+  url        String
   // Provider yang generate (untuk audit + regen)
-  provider    String   // 'imagen-4', 'sd3', 'midjourney', dll
-  prompt      String   @db.Text // actual prompt yang dipakai (mungkin diedit dari imagePrompt asli)
-  createdAt   DateTime @default(now())
+  provider   String // 'imagen-4', 'sd3', 'midjourney', dll
+  prompt     String   @db.Text // actual prompt yang dipakai (mungkin diedit dari imagePrompt asli)
+  createdAt  DateTime @default(now())
 
   @@index([questionId])
   @@map("question_images")
@@ -214,7 +214,7 @@ model ExplainerMessage {
   id         String   @id @default(cuid())
   attemptId  String
   questionId String
-  role       String   // 'user' | 'assistant'
+  role       String // 'user' | 'assistant'
   content    String   @db.Text
   tokens     Int?
   createdAt  DateTime @default(now())
@@ -246,19 +246,19 @@ enum Plan {
 }
 
 enum SubscriptionStatus {
-  PENDING       // checkout initiated, payment not yet confirmed
-  ACTIVE        // paid, currently in valid period
-  CANCELLED     // user stopped auto-renew, still ACTIVE access until expiresAt
-  EXPIRED       // past expiresAt, no access
+  PENDING // checkout initiated, payment not yet confirmed
+  ACTIVE // paid, currently in valid period
+  CANCELLED // user stopped auto-renew, still ACTIVE access until expiresAt
+  EXPIRED // past expiresAt, no access
 }
 
 enum PaymentStatus {
-  PENDING       // Midtrans transaction created, not paid yet
-  PAID          // Midtrans confirmed via webhook
-  FAILED        // Midtrans reported failure
-  EXPIRED       // Midtrans transaction expired (24h default)
-  REFUNDED      // manual refund
-  CANCELLED     // user cancelled before paying
+  PENDING // Midtrans transaction created, not paid yet
+  PAID // Midtrans confirmed via webhook
+  FAILED // Midtrans reported failure
+  EXPIRED // Midtrans transaction expired (24h default)
+  REFUNDED // manual refund
+  CANCELLED // user cancelled before paying
 }
 
 model Subscription {
@@ -267,7 +267,7 @@ model Subscription {
   plan        Plan               @default(FREE)
   status      SubscriptionStatus @default(ACTIVE)
   startedAt   DateTime           @default(now())
-  expiresAt   DateTime?          // null untuk FREE
+  expiresAt   DateTime? // null untuk FREE
   cancelledAt DateTime?
   autoRenew   Boolean            @default(true)
   // Track which Order created/extended this subscription (last paid)
@@ -284,31 +284,46 @@ model Subscription {
 }
 
 model Order {
-  id                 String        @id @default(cuid())
-  userId             String
-  plan               Plan
+  id                String        @id @default(cuid())
+  userId            String
+  plan              Plan
   // Amount in IDR (smallest unit = rupiah, no fractional sen).
   // 50000 = Rp 50.000 PREMIUM 1 month.
-  amount             Int
+  // This is the FINAL amount after voucher discount (what the user pays).
+  amount            Int
+  // Original list price before any discount, for audit / receipts.
+  originalAmount    Int?
+  // Voucher code applied at checkout, denormalized for audit (the
+  // VoucherRedemption row carries the relational link).
+  voucherCode       String?
+  // Discount amount in IDR (positive = discount applied). Stored so we
+  // don't have to derive from originalAmount - amount when reading orders.
+  discountAmount    Int           @default(0)
   // Number of days this order grants. 30 for monthly. Future: 90, 180.
-  durationDays       Int           @default(30)
-  status             PaymentStatus @default(PENDING)
+  durationDays      Int           @default(30)
+  status            PaymentStatus @default(PENDING)
   // Midtrans order_id (must be unique across the whole project).
   // Generated server-side: `cita-${userId.slice(0,8)}-${ts}`
-  midtransOrderId    String        @unique
+  // For free orders (100% voucher), prefixed with `cita-free-` and
+  // never sent to Midtrans.
+  midtransOrderId   String        @unique
   // Snap token returned from Midtrans, used by client SDK to open popup.
-  midtransSnapToken  String?
+  // Null for free orders (no Midtrans interaction).
+  midtransSnapToken String?
   // Midtrans transaction_id (UUID) only available after first webhook event.
-  midtransTxId       String?
-  paidAt             DateTime?
-  expiredAt          DateTime?
+  midtransTxId      String?
+  paidAt            DateTime?
+  expiredAt         DateTime?
   // Raw last webhook payload for audit/debug.
-  raw                Json?
-  createdAt          DateTime      @default(now())
-  updatedAt          DateTime      @updatedAt
+  raw               Json?
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
 
   subscription   Subscription? @relation(fields: [subscriptionId], references: [id], onDelete: SetNull)
   subscriptionId String?
+
+  // Voucher redemption (nullable — most orders won't use a voucher).
+  voucherRedemption VoucherRedemption?
 
   @@index([userId])
   @@index([status])
@@ -317,15 +332,84 @@ model Order {
 }
 
 model TutorUsage {
-  id      String   @id @default(cuid())
-  userId  String
+  id        String   @id @default(cuid())
+  userId    String
   // Date-only (YYYY-MM-DD at 00:00:00 UTC). Reset = new row.
-  date    DateTime @db.Date
-  count   Int      @default(0)
+  date      DateTime @db.Date
+  count     Int      @default(0)
   updatedAt DateTime @updatedAt
 
   @@unique([userId, date])
   @@index([userId])
   @@index([date])
   @@map("tutor_usage")
+}
+
+// ============================================================================
+//  Voucher / promo code system
+// ============================================================================
+
+enum DiscountType {
+  PERCENTAGE // 0-100, applied as % off list price
+  FIXED_AMOUNT // IDR amount knocked off list price
+}
+
+model Voucher {
+  id          String  @id @default(cuid())
+  // Public-facing code. Always uppercase, validated server-side.
+  // Up to 32 chars so admins can use mnemonic codes ('LAUNCH50', etc).
+  code        String  @unique
+  description String? // admin-only note ('Launch promo', 'Affiliate X')
+
+  discountType  DiscountType
+  // For PERCENTAGE: 0..100 (50 = 50% off).
+  // For FIXED_AMOUNT: IDR amount (10000 = Rp 10.000 off).
+  discountValue Int
+
+  validFrom       DateTime @default(now())
+  validUntil      DateTime
+  // Global redemption cap. Null = unlimited.
+  maxRedemptions  Int?
+  // Per-user cap (defense against one user burning all redemptions).
+  maxPerUser      Int      @default(1)
+  // Plans this voucher can be applied to. Default: PREMIUM only.
+  applicablePlans Plan[]   @default([PREMIUM])
+  // Optional minimum order amount (IDR) before discount applies.
+  minPurchase     Int?
+  // Manual kill switch — admin can disable a voucher without deleting it.
+  isActive        Boolean  @default(true)
+
+  // Audit
+  createdById String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  redemptions VoucherRedemption[]
+
+  @@index([code])
+  @@index([isActive])
+  @@index([validUntil])
+  @@map("vouchers")
+}
+
+model VoucherRedemption {
+  id             String   @id @default(cuid())
+  voucherId      String
+  voucher        Voucher  @relation(fields: [voucherId], references: [id], onDelete: Cascade)
+  userId         String
+  // The Order this redemption applied to. Nullable in case admin issues a
+  // manual redemption record (e.g. for refund tracking) without an order.
+  orderId        String?  @unique
+  order          Order?   @relation(fields: [orderId], references: [id], onDelete: SetNull)
+  // Snapshot of voucher state at redemption time, in case the voucher is
+  // edited later (audit guarantee).
+  discountAmount Int // IDR knocked off
+  originalAmount Int // list price at the moment of redemption
+  finalAmount    Int // amount actually charged
+  redeemedAt     DateTime @default(now())
+
+  @@index([voucherId])
+  @@index([userId])
+  @@index([redeemedAt])
+  @@map("voucher_redemptions")
 }

@@ -10,6 +10,7 @@ import {
   BarChart3,
   ArrowLeft,
   ShieldCheck,
+  Tag,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { CitaUser } from "@/lib/auth/get-user";
@@ -27,6 +28,12 @@ const NAV = [
     href: "/admin/subscriptions",
     label: "Subscriptions",
     icon: CreditCard,
+    exact: false,
+  },
+  {
+    href: "/admin/vouchers",
+    label: "Vouchers",
+    icon: Tag,
     exact: false,
   },
   {

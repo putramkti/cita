@@ -4,16 +4,25 @@
  * Initiate a Premium upgrade. Authenticated users only.
  *
  *   1. Resolve user (Supabase). 401 if anon.
- *   2. Reject if user already PREMIUM ACTIVE (would double-pay).
- *   3. Create Order row (status=PENDING) with a unique midtransOrderId.
- *   4. Call Midtrans Snap to get a token.
- *   5. Persist token on the Order, return { token, redirectUrl } to client.
+ *   2. Reject if user already PREMIUM ACTIVE.
+ *   3. (Optional) Validate voucher code → compute final amount.
+ *   4. If finalAmount === 0 (100% voucher):
+ *        - Create Order with status=PAID, paidAt=now, midtransOrderId
+ *          prefixed `cita-free-`, no Snap call.
+ *        - Activate subscription immediately.
+ *        - Record VoucherRedemption.
+ *        - Return { free: true, redirectUrl: '/akun/billing?status=success' }.
+ *   5. Otherwise (finalAmount > 0):
+ *        - Create Order with status=PENDING.
+ *        - Create Snap transaction with finalAmount.
+ *        - If voucher used, record VoucherRedemption (so quota is
+ *          reserved even before payment confirms — webhook will
+ *          confirm or revert via standard order-status update).
+ *        - Return { token, redirectUrl } as before.
  *
- * Side effect: creates an Order. The actual Subscription change happens
- * only after Midtrans webhook confirms PAID.
- *
- * If Midtrans is not configured (placeholder env), returns 503 with a
- * "pembayaran sedang dipersiapkan" message — pricing UI surfaces this.
+ * Free-after-voucher orders never touch Midtrans. The webhook handler
+ * is unaffected because it looks up Orders by `midtransOrderId` and
+ * those orders are already PAID.
  */
 
 import { NextRequest } from "next/server";
@@ -25,13 +34,16 @@ import {
   isMidtransConfigured,
 } from "@/lib/billing/midtrans";
 import { PLANS, PREMIUM_DURATION_DAYS } from "@/lib/billing/plans";
+import { validateVoucher } from "@/lib/billing/vouchers";
+import { activateSubscriptionForOrder } from "@/lib/billing/activate-subscription";
 import type { Plan } from "@prisma/client";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 interface CheckoutRequest {
-  plan: Plan; // currently must be "PREMIUM"
+  plan: Plan;
+  voucherCode?: string;
 }
 
 function jsonError(status: number, message: string, code?: string) {
@@ -42,13 +54,11 @@ function jsonError(status: number, message: string, code?: string) {
 }
 
 export async function POST(request: NextRequest) {
-  // Auth
   const user = await getCurrentUser();
   if (!user) {
     return jsonError(401, "Login dulu untuk upgrade.", "no_session");
   }
 
-  // Parse
   let body: CheckoutRequest;
   try {
     body = (await request.json()) as CheckoutRequest;
@@ -59,7 +69,6 @@ export async function POST(request: NextRequest) {
     return jsonError(400, "Plan tidak dikenal.", "invalid_plan");
   }
 
-  // No double upgrade
   const currentPlan = await getCurrentPlan(user.id);
   if (currentPlan === "PREMIUM") {
     return jsonError(
@@ -69,7 +78,96 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  // Midtrans guard — if env is placeholder, surface a friendly 503
+  const planMeta = PLANS.PREMIUM;
+  const listPriceIdr = planMeta.priceIdr;
+
+  // ── Voucher validation (optional) ──
+  let finalAmount = listPriceIdr;
+  let discountAmount = 0;
+  let voucherCode: string | null = null;
+  let voucherId: string | null = null;
+
+  if (body.voucherCode && body.voucherCode.trim()) {
+    const voucherResult = await validateVoucher({
+      code: body.voucherCode,
+      userId: user.id,
+      plan: "PREMIUM",
+      listPriceIdr,
+    });
+    if (!voucherResult.ok) {
+      return jsonError(422, voucherResult.message, voucherResult.code);
+    }
+    finalAmount = voucherResult.finalAmount;
+    discountAmount = voucherResult.discountAmount;
+    voucherCode = voucherResult.voucher.code;
+    voucherId = voucherResult.voucher.id;
+  }
+
+  const ts = Date.now();
+  const isFree = finalAmount === 0;
+  const midtransOrderId = isFree
+    ? `cita-free-${user.id.slice(0, 8)}-${ts}`
+    : `cita-${user.id.slice(0, 12)}-${ts}`;
+
+  // ── Free-after-voucher path: skip Midtrans entirely ──
+  if (isFree) {
+    try {
+      const order = await prisma.$transaction(async (tx) => {
+        const created = await tx.order.create({
+          data: {
+            userId: user.id,
+            plan: "PREMIUM",
+            amount: 0,
+            originalAmount: listPriceIdr,
+            voucherCode,
+            discountAmount,
+            durationDays: PREMIUM_DURATION_DAYS,
+            status: "PAID",
+            paidAt: new Date(),
+            midtransOrderId,
+          },
+        });
+
+        await activateSubscriptionForOrder({ order: created, tx });
+
+        if (voucherId) {
+          await tx.voucherRedemption.create({
+            data: {
+              voucherId,
+              userId: user.id,
+              orderId: created.id,
+              discountAmount,
+              originalAmount: listPriceIdr,
+              finalAmount: 0,
+            },
+          });
+        }
+
+        return created;
+      });
+
+      return new Response(
+        JSON.stringify({
+          free: true,
+          orderId: order.midtransOrderId,
+          redirectUrl: "/akun/billing?status=success",
+        }),
+        {
+          status: 200,
+          headers: { "Content-Type": "application/json" },
+        },
+      );
+    } catch (e) {
+      console.error("[billing/checkout] free-order activation error", e);
+      return jsonError(
+        500,
+        "Gagal mengaktifkan langganan dengan voucher. Coba lagi.",
+        "free_activation_failed",
+      );
+    }
+  }
+
+  // ── Paid path: Midtrans Snap ──
   if (!isMidtransConfigured()) {
     return jsonError(
       503,
@@ -78,24 +176,41 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const planMeta = PLANS.PREMIUM;
-  const amount = planMeta.priceIdr;
+  // Create the Order row first (audit trail) + reserve voucher slot.
+  const order = await prisma.$transaction(async (tx) => {
+    const created = await tx.order.create({
+      data: {
+        userId: user.id,
+        plan: "PREMIUM",
+        amount: finalAmount,
+        originalAmount: listPriceIdr,
+        voucherCode,
+        discountAmount,
+        durationDays: PREMIUM_DURATION_DAYS,
+        status: "PENDING",
+        midtransOrderId,
+      },
+      select: { id: true, midtransOrderId: true, amount: true },
+    });
 
-  // Generate a unique order id. Midtrans rule: 1-50 chars, alnum+dash+underscore.
-  const ts = Date.now();
-  const midtransOrderId = `cita-${user.id.slice(0, 12)}-${ts}`;
+    if (voucherId) {
+      // Reserve the voucher slot now. If payment fails, we leave the
+      // redemption in place to discourage retry-spam; admin can clean
+      // up via dashboard if needed. Conservative trade-off favoring
+      // quota integrity over user convenience.
+      await tx.voucherRedemption.create({
+        data: {
+          voucherId,
+          userId: user.id,
+          orderId: created.id,
+          discountAmount,
+          originalAmount: listPriceIdr,
+          finalAmount,
+        },
+      });
+    }
 
-  // Create the Order row first (so even if Midtrans fails we have audit trail).
-  const order = await prisma.order.create({
-    data: {
-      userId: user.id,
-      plan: "PREMIUM",
-      amount,
-      durationDays: PREMIUM_DURATION_DAYS,
-      status: "PENDING",
-      midtransOrderId,
-    },
-    select: { id: true, midtransOrderId: true, amount: true },
+    return created;
   });
 
   // Resolve callback URL — prefer env, fall back to request origin.
@@ -104,20 +219,20 @@ export async function POST(request: NextRequest) {
     request.headers.get("origin") ??
     new URL(request.url).origin;
 
-  // Create Snap transaction
   let snap;
   try {
     snap = await createSnapTransaction({
       orderId: order.midtransOrderId,
-      amountIdr: amount,
+      amountIdr: finalAmount,
       customerEmail: user.email ?? `${user.id}@cita.local`,
       customerName: user.displayName ?? user.email ?? null,
-      itemName: `Cita Premium — ${PREMIUM_DURATION_DAYS} hari`,
+      itemName: voucherCode
+        ? `Cita Premium — ${PREMIUM_DURATION_DAYS} hari (${voucherCode})`
+        : `Cita Premium — ${PREMIUM_DURATION_DAYS} hari`,
       callbackFinishUrl: `${origin}/akun/billing?status=success`,
     });
   } catch (e) {
     console.error("[billing/checkout] midtrans error", e);
-    // Mark the order as FAILED so it doesn't dangle.
     await prisma.order
       .update({
         where: { id: order.id },
@@ -131,7 +246,6 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  // Persist the Snap token so we can re-open the popup if the user closes it.
   await prisma.order.update({
     where: { id: order.id },
     data: { midtransSnapToken: snap.token },
@@ -139,9 +253,13 @@ export async function POST(request: NextRequest) {
 
   return new Response(
     JSON.stringify({
+      free: false,
       token: snap.token,
       redirectUrl: snap.redirectUrl,
       orderId: order.midtransOrderId,
+      finalAmount,
+      discountAmount,
+      voucherCode,
     }),
     {
       status: 200,
