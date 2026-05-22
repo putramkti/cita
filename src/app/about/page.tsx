@@ -1,11 +1,19 @@
 import Link from "next/link"
-import { Compass, Heart, ShieldCheck, Sparkles, ArrowRight } from "lucide-react"
+import {
+  Compass,
+  Heart,
+  ShieldCheck,
+  Sparkles,
+  ArrowRight,
+  ExternalLink,
+} from "lucide-react"
 import { SiteHeader } from "@/components/layout/site-header"
 import { SiteFooter } from "@/components/layout/site-footer"
 import { getDict, getLocale } from "@/lib/i18n"
 
 const REPO_URL = "https://github.com/putramkti/cita"
 const ISSUES_URL = "https://github.com/putramkti/cita/issues/new"
+const CREATOR_URL = "https://github.com/putramkti"
 
 export async function generateMetadata() {
   const t = await getDict()
@@ -63,7 +71,10 @@ export default async function AboutPage() {
               <FeatureItem boldText={t.about.feat2Bold} text={t.about.feat2} />
               <FeatureItem boldText={t.about.feat3Bold} text={t.about.feat3} />
               <FeatureItem boldText={t.about.feat4Bold} text={t.about.feat4} />
-              <FeatureItem boldText={t.about.feat5Bold} text={t.about.feat5}>
+              <FeatureItem boldText={t.about.feat5Bold} text={t.about.feat5} />
+              <FeatureItem boldText={t.about.feat6Bold} text={t.about.feat6} />
+              <FeatureItem boldText={t.about.feat7Bold} text={t.about.feat7} />
+              <FeatureItem boldText={t.about.feat8Bold} text={t.about.feat8}>
                 <a
                   href={REPO_URL}
                   target="_blank"
@@ -97,13 +108,38 @@ export default async function AboutPage() {
             </div>
           </section>
 
-          <section className="space-y-3 text-[15px] leading-relaxed text-foreground/90">
+          <section className="space-y-4 text-[15px] leading-relaxed text-foreground/90">
             <h2 className="serif text-2xl text-foreground mb-2 flex items-center gap-2">
               <Heart className="size-5 text-[var(--gold)]" strokeWidth={1.5} aria-hidden="true" />
               {t.about.teamTitle}
             </h2>
-            <p>{t.about.teamBody1}</p>
-            <p>
+
+            <div className="rounded-xl border border-border bg-card p-5 sm:p-6">
+              <p className="text-foreground/90">
+                {t.about.teamBody1Lead}{" "}
+                <a
+                  href={CREATOR_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-foreground underline underline-offset-2 hover:no-underline"
+                >
+                  {t.about.teamCreatorName}
+                </a>{" "}
+                {t.about.teamBody1Tail}
+              </p>
+              <a
+                href={CREATOR_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <ExternalLink className="size-3.5" strokeWidth={1.5} aria-hidden="true" />
+                {t.about.teamCreatorLinkLabel}
+                <ArrowRight className="size-3.5" strokeWidth={2} />
+              </a>
+            </div>
+
+            <p className="text-muted-foreground">
               {t.about.teamBody2}{" "}
               <a
                 href={ISSUES_URL}
