@@ -274,6 +274,10 @@ const dictionaries = {
       ctaNextTitle: "Lanjut latihan?",
       ctaNextSubtitle: "Konsistensi setiap hari mengalahkan sesi maraton mingguan.",
       ctaStartNew: "Mulai tryout baru",
+      shareTitle: "Bagikan hasil tryout Anda",
+      shareSubtitle:
+        "Buat tautan publik untuk membagikan skor ke teman atau media sosial. Anda tetap mengontrol siapa yang bisa melihat.",
+      shareCta: "Bagikan hasil",
       ctaBackHome: "Kembali ke beranda",
       durationLabel: "Durasi",
       answeredLabel: "Dijawab",
@@ -764,6 +768,10 @@ const dictionaries = {
       ctaNextTitle: "Keep practising?",
       ctaNextSubtitle:
         "Daily consistency outperforms a weekly marathon session.",
+      shareTitle: "Share your tryout result",
+      shareSubtitle:
+        "Create a public link to share your score with friends or on social media. You remain in control of what is visible.",
+      shareCta: "Share result",
       ctaStartNew: "Start a new test",
       ctaBackHome: "Back to home",
       durationLabel: "Duration",

@@ -181,6 +181,7 @@ model Attempt {
   insightStatus String? // PENDING | READY | FAILED — null = never requested
   insightAt     DateTime?
   items         AttemptItem[]
+  share         ResultShare?
 
   @@index([userId])
   @@index([totalScore])
@@ -412,4 +413,19 @@ model VoucherRedemption {
   @@index([userId])
   @@index([redeemedAt])
   @@map("voucher_redemptions")
+}
+
+/// Public share link for an Attempt result. One share per attempt (1:1).
+/// Holds the short public id and per-share privacy preferences.
+model ResultShare {
+  id        String    @id @default(cuid())
+  shareId   String    @unique // short public id, e.g. "abc12345"
+  attemptId String    @unique
+  attempt   Attempt   @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  showName  Boolean   @default(false)
+  revokedAt DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([shareId])
+  @@map("result_shares")
 }

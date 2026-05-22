@@ -13,6 +13,7 @@ import { getCurrentUser } from "@/lib/auth/get-user";
 import { getCurrentPlan } from "@/lib/billing/get-plan";
 import { can } from "@/lib/billing/entitlements";
 import { ResultItemList } from "./result-item-list";
+import { ShareModal } from "@/components/share/share-modal";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import {
@@ -247,6 +248,32 @@ export default async function ResultPage({ params }: PageProps) {
               },
             }))}
           />
+
+          {/* ─── Share section ─── */}
+          {(attempt.status === "SUBMITTED" || attempt.status === "EXPIRED") && (
+            <section className="rounded-2xl border border-border bg-card px-6 sm:px-8 py-7 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
+              <div className="min-w-0">
+                <h3 className="serif text-xl sm:text-2xl text-foreground">
+                  {t.result.shareTitle}
+                </h3>
+                <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">
+                  {t.result.shareSubtitle}
+                </p>
+              </div>
+              <ShareModal
+                attemptId={attemptId}
+                isAuthed={Boolean(supabaseUser)}
+                scorePct={
+                  attempt.totalScore != null && cfg.totalSoal > 0
+                    ? Math.round((attempt.totalScore / cfg.totalSoal) * 100)
+                    : 0
+                }
+                modeLabel={cfg.labelId}
+                locale={t.locale as "id" | "en"}
+                triggerLabel={t.result.shareCta}
+              />
+            </section>
+          )}
 
           {/* ─── CTA next ─── */}
           <CtaNextSection t={t} />
