@@ -396,7 +396,7 @@ const dictionaries = {
       teamBody1Lead: "Cita dirancang dan dikembangkan oleh",
       teamCreatorName: "Dymux",
       teamBody1Tail:
-        "secara independen, dengan dukungan agen AI untuk percepatan eksekusi pengembangan dan pembuatan konten. Roadmap, prioritas fitur, serta peninjauan akhir konten ditangani langsung oleh pembuat.",
+        "dengan sepenuh hati sebagai proyek pribadi. Roadmap, prioritas fitur, serta peninjauan akhir konten ditangani langsung oleh pembuat.",
       teamBody2:
         "Punya saran, menemukan soal yang janggal, atau ingin berkontribusi?",
       teamLinkLabel: "Buka Issue di GitHub",
@@ -892,7 +892,7 @@ const dictionaries = {
       teamBody1Lead: "Cita is designed and developed by",
       teamCreatorName: "Dymux",
       teamBody1Tail:
-        "as an independent project, with AI agents assisting development execution and content generation. Roadmap, feature prioritization, and final content review are handled directly by the maker.",
+        "wholeheartedly as a personal project. Roadmap, feature prioritisation, and final content review are handled directly by the maker.",
       teamBody2:
         "Have a suggestion, found a question that looks off, or want to contribute?",
       teamLinkLabel: "Open an issue on GitHub",
