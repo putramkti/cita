@@ -125,6 +125,8 @@ export default async function TryoutPage({ params }: PageProps) {
           motivationalQuote: t.tryout.motivationalQuote,
           answeredCount: t.tryout.answeredCount,
         }}
+        userEmail={supabaseUser?.email ?? null}
+        locale={t.locale as "id" | "en"}
       />
     </>
   );

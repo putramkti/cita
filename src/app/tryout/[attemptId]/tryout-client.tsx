@@ -16,6 +16,7 @@ import type { AttemptMode, Category } from "@prisma/client";
 import { cn } from "@/lib/utils";
 import { formatDuration } from "@/lib/tryout/config";
 import { saveAnswer, submitAttempt } from "../actions";
+import { ReportButton } from "@/components/report/report-button";
 
 export interface TryoutClientDict {
   modeLabel: string;
@@ -65,6 +66,8 @@ interface Props {
   mode: AttemptMode;
   modeLabelId: string;
   dict: TryoutClientDict;
+  userEmail: string | null;
+  locale: "id" | "en";
 }
 
 /**
@@ -87,6 +90,8 @@ export function TryoutClient({
   mode,
   modeLabelId,
   dict,
+  userEmail,
+  locale,
 }: Props) {
   const [items, setItems] = useState<ClientItem[]>(initialItems);
   const [currentIdx, setCurrentIdx] = useState(0);
@@ -457,6 +462,20 @@ export function TryoutClient({
               label={dict.toolCalc}
               hint={dict.toolsComingSoon}
             />
+            {q && (
+              <ReportButton
+                surface="tryout"
+                questionId={q.id}
+                category={q.category}
+                subcategory={q.subcategory}
+                questionText={q.questionText}
+                attemptId={attemptId}
+                userEmail={userEmail}
+                locale={locale}
+                variant="icon"
+                className="self-center lg:self-auto"
+              />
+            )}
           </div>
         </aside>
       </div>

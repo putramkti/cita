@@ -10,6 +10,7 @@ import { checkTutorQuota } from "@/lib/billing/usage";
 import { SiteHeader } from "@/components/layout/site-header";
 import { TutorChat } from "./tutor-chat";
 import { AnonBlurOverlay } from "@/components/billing/anon-blur-overlay";
+import { ReportButton } from "@/components/report/report-button";
 import type { Category } from "@prisma/client";
 import { cn } from "@/lib/utils";
 import { getDict } from "@/lib/i18n";
@@ -172,6 +173,20 @@ export default async function StudyPage({ params }: PageProps) {
                   <ArrowRight className="size-3.5" strokeWidth={1.5} />
                 </Link>
               )}
+              <ReportButton
+                surface="tutor"
+                questionId={question.id}
+                category={question.category}
+                subcategory={question.subcategory}
+                questionText={question.questionText}
+                userAnswer={item.userAnswer ?? null}
+                correctAnswer={question.correctAnswer ?? null}
+                attemptId={attemptId}
+                userEmail={supabaseUser?.email ?? null}
+                locale={t.locale as "id" | "en"}
+                variant="text"
+                className="ml-1"
+              />
             </div>
           </div>
 

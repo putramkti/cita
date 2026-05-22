@@ -12,6 +12,7 @@ import { prisma } from "@/lib/db/prisma";
 import { getCurrentUser } from "@/lib/auth/get-user";
 import { getCurrentPlan } from "@/lib/billing/get-plan";
 import { can } from "@/lib/billing/entitlements";
+import { ResultItemList } from "./result-item-list";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import {
@@ -203,20 +204,45 @@ export default async function ResultPage({ params }: PageProps) {
             }
           />
 
-          {/* ─── Item analysis ─── */}
-          <ItemAnalysisSection
-            t={t}
+          {/* ─── Item analysis (filter + report + CSV download) ─── */}
+          <ResultItemList
             attemptId={attemptId}
-            items={attempt.items.map((it) => ({
+            attemptCreatedAt={attempt.startedAt.toISOString()}
+            attemptMode={attempt.mode}
+            scorePct={
+              attempt.totalScore != null && cfg.totalSoal > 0
+                ? (attempt.totalScore / cfg.totalSoal) * 100
+                : null
+            }
+            userEmail={supabaseUser?.email ?? null}
+            locale={t.locale as "id" | "en"}
+            dict={{
+              itemAnalysisTitle: t.result.itemAnalysisTitle,
+              filterAll: t.result.filterAll,
+              filterCorrect: t.result.filterCorrect,
+              filterWrong: t.result.filterWrong,
+              filterSkipped: t.result.filterSkipped,
+              downloadReport: t.result.downloadReport,
+              tagCorrect: t.result.tagCorrect,
+              tagWrong: t.result.tagWrong,
+              tagSkipped: t.result.tagSkipped,
+              yourAnswer: t.result.yourAnswer,
+              correctAnswer: t.result.correctAnswer,
+              askTutor: t.result.askTutor,
+              viewAllPrefix: t.result.viewAllPrefix,
+              viewAllSuffix: t.result.viewAllSuffix,
+              emptyFilter: t.result.emptyFilter,
+            }}
+            items={attempt.items.map((it, idx) => ({
               id: it.id,
               userAnswer: it.userAnswer,
               isCorrect: it.isCorrect,
+              position: idx,
               question: {
                 id: it.question.id,
                 category: it.question.category,
                 subcategory: it.question.subcategory,
                 questionText: it.question.questionText,
-                options: it.question.options as { label: string; text: string }[],
                 correctAnswer: it.question.correctAnswer,
               },
             }))}
